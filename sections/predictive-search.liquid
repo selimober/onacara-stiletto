@@ -58,7 +58,34 @@
               {%- endif -%}
             </div>
 
-            {%- if settings.quick_search_show_price -%}
+            {% liquid
+              assign price_content_type = 'price'
+
+              if settings.quick_search_show_price
+                if product.available
+                  if product.price == 0 and product.price_varies == false
+                    if settings.zero_dollar_listing_price_display == 'replace'
+                      assign price_content_type = 'custom'
+                      assign custom_price_content = 'products.inventory.zero_price_custom_label' | t
+                    elsif settings.zero_dollar_listing_price_display == 'hide'
+                      assign price_content_type = 'hide'
+                      assign custom_price_content = blank
+                    endif
+                  endif
+                else
+                  if settings.sold_out_listing_price_display == 'hide'
+                    assign price_content_type = 'hide'
+                    assign custom_price_content = blank
+                  elsif settings.sold_out_listing_price_display == 'replace'
+                    assign price_content_type = 'custom'
+                    assign custom_price_content = 'products.inventory.sold_out_price_custom_label' | t
+                  endif
+                endif
+              else
+                assign price_content_type = 'hide'
+              endif
+            %}
+            {% if price_content_type == 'price' %}
               <span class="quick-search__result-price">
                 {% if product.compare_at_price > product.price %}
                   <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
@@ -76,27 +103,23 @@
                 {%- else -%}
                   {%- if product.price_varies -%}
                     {%- assign price = product.price | money -%}
-
-                    {% if settings.zero_dollar_listing_price_display == 'replace' and product.price == 0 %}
-                      {%- assign custom_price_label = 'products.inventory.zero_price_custom_label' | t -%}
-                      {{ 'products.product.from_lowest_price_html' | t: lowest_price: custom_price_label }}
-                    {% else %}
-                      {{ 'products.product.from_lowest_price_html' | t: lowest_price: price }}
-                    {% endif %}
+                    {{ 'products.product.from_lowest_price_html' | t: lowest_price: price }}
                   {%- else -%}
-                    {% unless settings.zero_dollar_listing_price_display == 'hide' and product.price == 0 %}
-                      {% if settings.zero_dollar_listing_price_display == 'replace' and product.price == 0 %}
-                        <span>{{ 'products.inventory.zero_price_custom_label' | t }}</span>
-                      {% else %}
-                        <span>{{ product.price | money }}</span>
-                      {% endif %}
-                    {% endunless %}
+                    <span>{{ product.price | money }}</span>
                   {%- endif -%}
                 {% endif %}
 
                 {%- render 'unit-price', item: product.selected_or_first_available_variant -%}
               </span>
-            {%- endif -%}
+            {% elsif price_content_type == 'custom' %}
+              {% if product.price_varies and product.price == 0 %}
+                {%- assign sale_price = product.price | money -%}
+                {%- assign custom_price_content = 'products.inventory.zero_price_custom_label' | t -%}
+                {{ 'products.product.from_lowest_price_html' | t: lowest_price: custom_price_content }}
+              {% else %}
+                <span>{{ custom_price_content }}</span>
+              {% endif %}
+            {% endif %}
           </div>
         </a>
       {%- endfor -%}

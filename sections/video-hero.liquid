@@ -4,6 +4,30 @@
   assign hortizontal_position = text_position | first
   assign vertical_position = text_position | last
   assign video_focal_alignment = section.settings.focal_point | replace: '_', ' '
+  assign video_focal_alignment_mobile = section.settings.focal_point_mobile | replace: '_', ' '
+
+  capture video_placeholder_html
+    render 'image', wrapper_class: 'video-hero__image', sizes: '1800x', include_placeholder: true, placeholder_natural_fallback_ratio: placeholder_aspect_ratio, placeholder_name: 'lifestyle-2', animate: true
+  endcapture
+
+  assign has_video = false
+  if section.settings.video != blank
+    assign has_video = true
+    assign video_html = section.settings.video | video_tag: image_size: '1800x', class: 'video-hero__video animation--video-hero', autoplay: true, loop: true, muted: true, controls: false
+  else
+    assign video_html = video_placeholder_html
+  endif
+
+  assign has_mobile_video = false
+  if section.settings.video_mobile != blank
+    assign has_mobile_video = true
+    assign video_html_mobile = section.settings.video_mobile | video_tag: image_size: '720x', class: 'video-hero__video video-hero__video--mobile animation--video-hero', autoplay: true, loop: true, muted: true, controls: false
+  endif
+
+  assign prioritize_loading = filter_value_display
+  if section.index == 1
+    assign prioritize_loading = true
+  endif
 
   assign text_position_modifier = 'center'
 
@@ -38,9 +62,11 @@
     video-hero--image-aspect-{{ section.settings.image_aspect }}
     video-hero--text-{{ text_position_modifier }}
     video-hero--text-mobile-{{ text_position_modifier_mobile }}
-    {% if section.settings.video_url != blank %}
+    {% if has_video -%}
       video-hero--has-video
-    {% endif %}
+    {%- elsif has_mobile_video == true -%}
+      video-hero--has-mobile-video-only
+    {%- endif %}
     section
     section--full-width
     {{ section.settings.section_padding }}
@@ -52,52 +78,69 @@
   data-section-id="{{ section.id }}"
   data-section-type="video-hero"
   style="
-    --custom-height: {{ section.settings.desktop_height }}vh;
-    --custom-height-mobile: {{ section.settings.mobile_height }}vh;
-    --text-hortizontal-position: {{ hortizontal_position }};
-    --text-vertical-position: {{ vertical_position }};
-    --text-horizontal-position-mobile: {{ horizontal_position_mobile }};
-    --text-vertical-position-mobile: {{ vertical_position_mobile }};
-    --color-text: {{ section.settings.text_color }};
-    --color-text-link: {{ section.settings.text_color }};
-    --overlay-background: {{ section.settings.color_overlay }};
-    {% if section.settings.color_overlay_gradient != blank %}
-      --overlay-background-gradient: {{ section.settings.color_overlay_gradient }};
+    {% if has_video %}
+      --original-aspect-ratio: {{ section.settings.video.aspect_ratio }};
     {% endif %}
-    --overlay-opacity: {{ overlay_opacity }};
-    --video-focal-alignment: {{ video_focal_alignment }};
-    {% render 'overlay-button-vars', color_button_text: section.settings.button_text_color, color_button_background: section.settings.button_background_color %}
+    {% if has_mobile_video %}
+      --original-aspect-ratio-mobile: {{ section.settings.video_mobile.aspect_ratio }};
+    {% endif %}
+      --custom-height: {{ section.settings.desktop_height }}vh;
+      --custom-height-mobile: {{ section.settings.mobile_height }}vh;
+      --text-hortizontal-position: {{ hortizontal_position }};
+      --text-vertical-position: {{ vertical_position }};
+      --text-horizontal-position-mobile: {{ horizontal_position_mobile }};
+      --text-vertical-position-mobile: {{ vertical_position_mobile }};
+      --color-text: {{ section.settings.text_color }};
+      --color-text-link: {{ section.settings.text_color }};
+      --overlay-background: {{ section.settings.color_overlay }};
+      {% if section.settings.color_overlay_gradient != blank %}
+        --overlay-background-gradient: {{ section.settings.color_overlay_gradient }};
+      {% endif %}
+      --overlay-opacity: {{ overlay_opacity }};
+      --video-focal-alignment: {{ video_focal_alignment }};
+      {% if has_mobile_video %}
+      --video-focal-alignment-mobile: {{ video_focal_alignment_mobile }};
+      {% endif %}
+      {% render 'overlay-button-vars', color_button_text: section.settings.button_text_color, color_button_background: section.settings.button_background_color %}
   "
 >
   <div class="video-hero__inner">
-    <div class="video-hero__media-container" data-video-loading="false">
-      {%- if section.settings.video_url != blank -%}
-        <div class="video-hero__video-wrapper">
-          <video
-            class="video-hero__video"
-            autoplay
-            playsinline
-            loop
-            muted
-            src="{{ section.settings.video_url }}"
-          ></video>
-          {% render 'video-pause' %}
-        </div>
-      {%- endif -%}
+    <div
+      class="video-hero__media-container"
+      data-video-loading="false"
+      data-has-video="{{ has_video }}"
+      data-has-mobile-video="{{ has_mobile_video }}"
 
-      {% # ensure placeholder only shows when no video %}
-      {%- unless section.settings.video_url != blank and section.settings.image == blank -%}
-        {%- render 'image',
-          wrapper_class: 'video-hero__image',
-          image: section.settings.image,
-          sizes: '100vw',
-          focal_point: section.settings.focal_point,
-          include_placeholder: true,
-          placeholder_natural_fallback_ratio: placeholder_aspect_ratio,
-          placeholder_name: 'lifestyle-2',
-          animate: true
-        -%}
-      {%- endunless -%}
+      {% # Loading background images prevents loading jump when size specified with height or aspect ratio %}
+      style="
+        {% if has_video %}
+          --video-preview-image: url({{ section.settings.video.preview_image | image_url }});
+        {% endif %}
+        {% if has_mobile_video %}
+          --video-preview-image-mobile: url({{ section.settings.video_mobile.preview_image | image_url }});
+        {% endif %}
+      "
+    >
+      {%- if has_video or has_mobile_video -%}
+        <div class="video-hero__video-wrapper">
+          {%- if has_mobile_video or has_video -%}
+            {% # Using templates prevents multiple videos loading at once {% endcomment %}
+            <template id="mobile-video-template">
+              {{ video_html_mobile }}
+            </template>
+            <template id="default-video-template">
+              {{ video_html }}
+            </template>
+
+            <div class="current-video-container"></div>
+
+            {% render 'video-pause' %}
+          {%- endif -%}
+        </div>
+      {%- else -%}
+        {% # ensure placeholder only shows when no video %}
+        {{ video_placeholder_html }}
+      {%- endif -%}
     </div>
     <div class="video-hero__overlay"></div>
     <div class="video-hero__text-container-wrapper">
@@ -163,14 +206,9 @@
             {%- when 'play-button' -%}
               {%- render 'play-button-block',
                 wrapper_class: 'video-hero__text-container-text-play-button section-blocks__video-button',
-                shopify_attributes: block.shopify_attributes,
-                poster_image: block.settings.poster_image,
-                poster_aspect: block.settings.aspect_ratio,
-                video_url: block.settings.video_url,
-                label: block.settings.text,
+                block: block,
                 button_alignment: text_position_modifier,
-                button_alignment_mobile: text_position_modifier_mobile,
-                icon_style: block.settings.icon_style
+                button_alignment_mobile: text_position_modifier_mobile
               -%}
             {%- when 'border' -%}
               {%- render 'border-block' -%}
@@ -227,16 +265,15 @@
       "content": "t:sections.video_hero.settings.height_paragraph.content"
     },
     {
-      "type": "url",
-      "id": "video_url",
-      "label": "Video link",
-      "label": "t:sections.video_hero.settings.video_url.label",
-      "info": "t:sections.video_hero.settings.video_url.info"
+      "type": "video",
+      "id": "video",
+      "label": "t:shared.settings.video.label",
+      "info": "t:shared.settings.video.info"
     },
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "t:sections.video_hero.settings.image.label"
+      "type": "video",
+      "id": "video_mobile",
+      "label": "t:shared.settings.video_mobile.label"
     },
     {
       "type": "url",
@@ -247,6 +284,13 @@
       "id": "focal_point",
       "type": "select",
       "label": "t:sections.video_hero.settings.focal_point.label",
+      "options": [{"label":"t:shared.settings.focal_point.option_image","value":"image_presentation"},{"label":"t:shared.settings.focal_point.option_center","value":"center"},{"label":"t:shared.settings.focal_point.option_top","value":"top"},{"label":"t:shared.settings.focal_point.option_bottom","value":"bottom"},{"label":"t:shared.settings.focal_point.option_left","value":"left"},{"label":"t:shared.settings.focal_point.option_right","value":"right"}],
+      "default": "image_presentation"
+    },
+    {
+      "id": "focal_point_mobile",
+      "type": "select",
+      "label": "t:sections.video_hero.settings.focal_point_mobile.label",
       "options": [{"label":"t:shared.settings.focal_point.option_image","value":"image_presentation"},{"label":"t:shared.settings.focal_point.option_center","value":"center"},{"label":"t:shared.settings.focal_point.option_top","value":"top"},{"label":"t:shared.settings.focal_point.option_bottom","value":"bottom"},{"label":"t:shared.settings.focal_point.option_left","value":"left"},{"label":"t:shared.settings.focal_point.option_right","value":"right"}],
       "default": "image_presentation"
     },
@@ -473,15 +517,44 @@
       "name": "t:shared.section_blocks.play_button.name",
       "settings": [
         {
-          "type": "url",
-          "id": "video_url",
-          "label": "Video link",
-          "label": "t:shared.section_blocks.play_button.settings.video_url.label",
-          "info": "t:shared.section_blocks.play_button.settings.video_url.info"
+          "id": "video_source",
+          "type": "radio",
+          "label": "t:shared.settings.video_source.label",
+          "options": [
+            {
+              "label": "t:shared.settings.video_source.option_1",
+              "value": "shopify"
+            },
+            {
+              "label": "t:shared.settings.video_source.option_2",
+              "value": "external"
+            }
+          ],
+          "default": "external"
         },
         {
+          "type": "video",
+          "id": "video",
+          "label": "t:shared.settings.video.label",
+          "info": "t:shared.settings.video.info"
+        },
+        {
+          "id": "video_url",
+          "type": "video_url",
+          "label": "t:shared.settings.external_video_url.label",
+          "accept": [
+            "youtube",
+            "vimeo"
+          ],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.video.blocks.play_button.name"
+        },
+        {
+          "id": "image",
           "type": "image_picker",
-          "id": "poster_image",
           "label": "t:shared.section_blocks.play_button.settings.poster_image.label"
         },
         {

@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "Stiletto",
-    "theme_version": "2.4.0",
+    "theme_version": "3.0.0",
     "theme_author": "Fluorescent Design Inc.",
     "theme_documentation_url": "https:\/\/fluorescent.co\/help\/stiletto",
     "theme_support_url": "https:\/\/fluorescent.co\/help\/contact"
@@ -370,7 +370,7 @@
       },
       {
         "type": "header",
-        "content": "t:settings_schema.product.settings.header__swatches"
+        "content": "t:shared.settings.swatches.default_swatches.header__swatches.content"
       },
       {
         "type": "text",
@@ -407,6 +407,40 @@
       },
       {
         "type": "header",
+        "content": "t:shared.settings.swatches.sibling_swatches.header__siblings.content",
+        "info": "t:shared.settings.swatches.sibling_swatches.header__siblings.info"
+      },
+      {
+        "id": "enable_product_sibling_swatches",
+        "type": "checkbox",
+        "label": "t:shared.settings.swatches.sibling_swatches.show_sibling_swatches.label",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "product_show_siblings_product_image",
+        "label": "t:shared.settings.swatches.sibling_swatches.show_product_image.label",
+        "info": "t:shared.settings.swatches.sibling_swatches.show_product_image.info",
+        "default": "image",
+        "options": [
+          {
+            "value": "image",
+            "label": "t:shared.settings.swatches.sibling_swatches.show_product_image.option_image"
+          },
+          {
+            "value": "color",
+            "label": "t:shared.settings.swatches.sibling_swatches.show_product_image.option_color"
+          }
+        ]
+      },
+      {
+        "id": "siblings_option_name",
+        "type": "text",
+        "label": "t:shared.settings.swatches.sibling_swatches.siblings_option_name.label",
+        "default": "Color"
+      },
+      {
+        "type": "header",
         "content": "t:settings_schema.product.settings.header__chip_selectors"
       },
       {
@@ -418,7 +452,8 @@
       },
       {
         "type": "header",
-        "content": "t:shared.settings.header__prices"
+        "content": "t:shared.settings.header__prices.content",
+        "info": "t:shared.settings.header__prices.info"
       },
       {
         "id": "zero_dollar_product_price_display",
@@ -438,6 +473,27 @@
           {
             "value": "hide",
             "label": "t:shared.settings.zero_dollar_price_display.option_hide"
+          }
+        ]
+      },
+      {
+        "id": "sold_out_product_price_display",
+        "type": "select",
+        "label": "t:settings_schema.product.settings.sold_out_product_price_display.label",
+        "info": "t:settings_schema.product.settings.sold_out_product_price_display.info",
+        "default": "show",
+        "options": [
+          {
+            "value": "show",
+            "label": "t:settings_schema.product.settings.sold_out_product_price_display.option_show"
+          },
+          {
+            "value": "replace",
+            "label": "t:settings_schema.product.settings.sold_out_product_price_display.option_replace"
+          },
+          {
+            "value": "hide",
+            "label": "t:settings_schema.product.settings.sold_out_product_price_display.option_hide"
           }
         ]
       }
@@ -583,13 +639,6 @@
         "default": true
       },
       {
-        "id": "enable_product_card_swatches",
-        "type": "checkbox",
-        "label": "t:settings_schema.product_listing.settings.show_swatches.label",
-        "info": "t:settings_schema.product_listing.settings.show_swatches.info",
-        "default": true
-      },
-      {
         "id": "enable_quick_view",
         "type": "checkbox",
         "label": "t:settings_schema.product_listing.settings.enable_quick_view.label",
@@ -600,6 +649,45 @@
         "type": "checkbox",
         "label": "t:settings_schema.product_listing.settings.enable_border_on_hover.label",
         "default": true
+      },
+      {
+        "type": "header",
+        "content": "t:shared.settings.swatches.default_swatches.header__swatches.content"
+      },
+      {
+        "id": "enable_product_card_swatches",
+        "type": "checkbox",
+        "label": "t:shared.settings.swatches.default_swatches.show_swatches.label",
+        "info": "t:shared.settings.swatches.default_swatches.show_swatches.info",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "t:shared.settings.swatches.sibling_swatches.header__siblings.content",
+        "info": "t:shared.settings.swatches.sibling_swatches.header__siblings.info"
+      },
+      {
+        "id": "enable_product_card_sibling_swatches",
+        "type": "checkbox",
+        "label": "t:shared.settings.swatches.sibling_swatches.show_sibling_swatches.label",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "product_listing_show_siblings_product_image",
+        "label": "t:shared.settings.swatches.sibling_swatches.show_product_image.label",
+        "info": "t:shared.settings.swatches.sibling_swatches.show_product_image.info",
+        "default": "image",
+        "options": [
+          {
+            "value": "image",
+            "label": "t:shared.settings.swatches.sibling_swatches.show_product_image.option_image"
+          },
+          {
+            "value": "custom",
+            "label": "t:shared.settings.swatches.sibling_swatches.show_product_image.option_color"
+          }
+        ]
       },
       {
         "type": "header",
@@ -665,7 +753,7 @@
       },
       {
         "type": "header",
-        "content": "t:shared.settings.header__prices"
+        "content": "t:shared.settings.header__prices.content"
       },
       {
         "type": "checkbox",
@@ -727,6 +815,27 @@
           {
             "value": "hide",
             "label": "t:shared.settings.zero_dollar_price_display.option_hide"
+          }
+        ]
+      },
+      {
+        "id": "sold_out_listing_price_display",
+        "type": "select",
+        "label": "t:settings_schema.product.settings.sold_out_product_price_display.label",
+        "info": "t:settings_schema.product.settings.sold_out_product_price_display.info",
+        "default": "show",
+        "options": [
+          {
+            "value": "show",
+            "label": "t:settings_schema.product.settings.sold_out_product_price_display.option_show"
+          },
+          {
+            "value": "replace",
+            "label": "t:settings_schema.product.settings.sold_out_product_price_display.option_replace"
+          },
+          {
+            "value": "hide",
+            "label": "t:settings_schema.product.settings.sold_out_product_price_display.option_hide"
           }
         ]
       },
@@ -945,6 +1054,63 @@
         "id": "enable_quick_search",
         "type": "checkbox",
         "label": "t:settings_schema.quick_search.settings.enable_quick_search.label",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.quick_search.settings.header__searchable_fields.content"
+      },
+      {
+        "type": "paragraph",
+        "content": "t:settings_schema.quick_search.settings.paragraph__searchable_fields.content"
+      },
+      {
+        "type": "checkbox",
+        "id": "searchable_fields_author",
+        "label": "t:settings_schema.quick_search.settings.searchable_fields.author.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "searchable_fields_body",
+        "label": "t:settings_schema.quick_search.settings.searchable_fields.body.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "searchable_fields_product_type",
+        "label": "t:settings_schema.quick_search.settings.searchable_fields.product_type.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "searchable_fields_tag",
+        "label": "t:settings_schema.quick_search.settings.searchable_fields.tag.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "searchable_fields_title",
+        "label": "t:settings_schema.quick_search.settings.searchable_fields.title.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "searchable_fields_variant_barcode",
+        "label": "t:settings_schema.quick_search.settings.searchable_fields.variant_barcode.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "searchable_fields_variant_sku",
+        "label": "t:settings_schema.quick_search.settings.searchable_fields.variant_sku.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "searchable_fields_variant_title",
+        "label": "t:settings_schema.quick_search.settings.searchable_fields.variant_title.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "searchable_fields_vendor",
+        "label": "t:settings_schema.quick_search.settings.searchable_fields.vendor.label",
         "default": true
       },
       {

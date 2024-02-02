@@ -6,7 +6,10 @@
   - aspect_ratio
   - current_variant
   - is_quick: boolean to indicate if we are rendering quick product or not. Some sections omitted if true
+  - is_featured: boolean to indicate if we are rendering featured product or not.
   - column (optional): "left" or "right" to filter by "column_placement"
+  - price_content_type: "price" or "custom" or "hide" after checking both $0 and sold out pricing display settings
+  - custom_price_content: the translation to populate price if sold out or free, depending on logic checks and settings
 {%- endcomment -%}
 {%- capture product_url -%}{{ shop.url | append: prod.url }}{%- endcapture -%}
 
@@ -34,7 +37,10 @@
           block_settings: block.settings,
           current_variant: current_variant,
           is_quick: is_quick,
-          featured_media: featured_media
+          is_featured: is_featured,
+          featured_media: featured_media,
+          price_content_type: price_content_type,
+          custom_price_content: custom_price_content
         -%}
         {% if is_quick %}</div>{% endif %}
       {%- when 'spacer' -%}
@@ -46,20 +52,13 @@
 
       {%- when 'variant_picker' -%}
         {%- if prod != blank -%}
-          {%- liquid
-            assign show_siblings = true
-
-            if is_quick or is_featured
-              assign show_siblings = false
-            endif
-          -%}
           {%-
             render 'product-block-variant-picker' with
             product: prod,
             block: block,
             block_settings: block.settings,
             current_variant: current_variant,
-            show_siblings: show_siblings
+            show_siblings: settings.enable_product_sibling_swatches
           -%}
         {%- endif -%}
 
@@ -91,6 +90,8 @@
             current_variant: current_variant,
             featured_media: featured_media,
             aspect_ratio: aspect_ratio,
+            price_content_type: price_content_type,
+            custom_price_content: custom_price_content
           -%}
         {%- else -%}
           <div class="product-form">

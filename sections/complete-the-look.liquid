@@ -1,4 +1,4 @@
-{% if section.settings.image and section.settings.video_url %}
+{% if section.settings.image and section.settings.video %}
   {% assign video_poster = section.settings.image | image_url: width: 400 %}
 {% endif %}
 
@@ -64,9 +64,9 @@
       <div class="complete-the-look__image-container">
         <div class="complete-the-look__image-container-inner">
           <div class="complete-the-look__image-wrapper">
-            {%- if section.settings.video_url -%}
+            {%- if section.settings.video != blank -%}
               {% render 'video',
-                video: section.settings.video_url,
+                video: section.settings.video,
                 aspect_ratio: section.settings.aspect_ratio,
                 poster: video_poster,
                 controls: section.settings.video_controls,
@@ -140,16 +140,16 @@
       "label": "t:sections.complete_the_look.settings.image.label"
     },
     {
-      "type": "url",
-      "id": "video_url",
-      "label": "t:sections.complete_the_look.settings.video_url.label",
-      "info": "t:sections.complete_the_look.settings.video_url.info"
+      "type": "video",
+      "id": "video",
+      "label": "t:shared.settings.video.label",
+      "info": "t:shared.settings.video.info"
     },
     {
       "type": "checkbox",
       "id": "video_loop",
       "default": true,
-      "label": "t:sections.complete_the_look.settings.video_loop.label"
+      "label": "t:shared.settings.video_loop.label"
     },
     {
       "type": "checkbox",

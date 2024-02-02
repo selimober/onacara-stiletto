@@ -65,7 +65,7 @@
                       <div>
                         <h4 class="fs-product-card-title">{{ line_item.product.title | link_to: line_item.product.url }}</h4>
                         {%- unless line_item.product.has_only_default_variant -%}
-                          <div class="fs-body-50 t-opacity-50">{{ line_item.variant.title }}</div>
+                          <div class="fs-body-50 t-opacity-60">{{ line_item.variant.title }}</div>
                         {%- endunless -%}
                         {%- if line_item.line_level_discount_allocations != blank -%}
                           <ul class="order-discount order-discount--list order-discount--title" aria-label="{{ 'customer.order.discount' | t }}">
@@ -78,7 +78,7 @@
                         {%- endif -%}
 
                         {% if line_item.selling_plan_allocation %}
-                          <p class="fs-body-50 t-opacity-50">{{ line_item.selling_plan_allocation.selling_plan.name }}<p>
+                          <p class="fs-body-50 t-opacity-60">{{ line_item.selling_plan_allocation.selling_plan.name }}<p>
                         {% endif %}
                       </div>
                       {%- if line_item.fulfillment -%}

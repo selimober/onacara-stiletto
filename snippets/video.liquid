@@ -31,22 +31,11 @@
     style="--focal-alignment: {{ focal_alignment }};"
   {%- endif -%}
 >
-  <video
-    class="video"
-    playsinline
-    muted
-    {% if video_should_loop %}
-      loop
-    {% endif %}
-    autoplay
-    {% comment %}TODO consider delaying autoplay until video is near viewport {% endcomment %}
-    src="{{ video }}"
-    {% if controls %}
-      controls
-    {% endif %}
-    {% if poster != blank %}
-      poster="{{poster}}"
-    {% endif %}
-  ></video>
+  {% liquid
+    assign video_html = video | video_tag: image_size: '1800x', class: 'video', autoplay: true, loop: video_should_loop, muted: true, controls: controls
+    assign video_poster_alt = '<img alt="' | append: video.title | append: '"'
+    assign video_html = video_html | replace: '<img ', video_poster_alt
+  %}
+  {{ video_html }}
   {% render 'video-pause' %}
 </div>

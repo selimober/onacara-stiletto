@@ -36,18 +36,18 @@
     when 'large'
       assign siblings_image_width = 72 | times: 2
   endcase
+
+  if show_siblings and product.metafields.stiletto.sibling_option_name and siblings_collection and settings.siblings_option_name != blank
+    assign show_sibling_swatches = true
+  endif
 -%}
 
 {% comment %} Siblings {% endcomment %}
-{%- if show_siblings
-  and product.metafields.stiletto.sibling_option_name
-  and siblings_collection
-  and block.settings.siblings_option_name != blank
--%}
+{%- if show_sibling_swatches -%}
   <div class="product__block product__block--medium" data-sibling-products>
     <div class="product__label-wrapper">
       <label class="product__label fs-body-100">
-        {{ block.settings.siblings_option_name }}:
+        {{ settings.siblings_option_name }}:
         <span class="t-opacity-70" data-sibling-label-value>
           {{- product.metafields.stiletto.sibling_option_name -}}
         </span>
@@ -73,7 +73,7 @@
               {% endif %}
             "
             style="
-              {% if block_settings.siblings_show_product_image %}
+              {% if settings.product_show_siblings_product_image == 'image' %}
                 background-image: url({{ sibling_product.featured_media | image_url: width: image_width }});
               {% else %}
                 {% if custom_color_map_key contains sibling_product.metafields.stiletto.sibling_option_name %}

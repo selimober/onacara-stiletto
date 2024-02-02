@@ -30,6 +30,11 @@
 
 {% if useCustomEvents %}
   <script src="{{ 'custom-events.js' | asset_url }}" defer></script>
+  <script>
+    window.flu.states = {
+      useCustomEvents: true,
+    };
+  </script>
 {% endif %}
 
 <meta name="viewport" content="width=device-width,initial-scale=1">

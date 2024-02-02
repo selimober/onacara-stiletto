@@ -205,7 +205,6 @@
         "rows": {
           "label": "Numero di righe su desktop",
           "option_1": "1",
-          "option_10": "10",
           "option_2": "2",
           "option_3": "3",
           "option_4": "4",
@@ -213,7 +212,8 @@
           "option_6": "6",
           "option_7": "7",
           "option_8": "8",
-          "option_9": "9"
+          "option_9": "9",
+          "option_10": "10"
         },
         "show_view_all": {
           "info": "Appare alla fine dell'elenco se ci sono più prodotti di quelli mostrati.",
@@ -286,13 +286,6 @@
         },
         "video_controls": {
           "label": "Mostra controlli video"
-        },
-        "video_loop": {
-          "label": "Video in loop"
-        },
-        "video_url": {
-          "info": "Usa un link diretto a un file video .mp4. [Maggiori informazioni](https:\/\/fluorescent.co\/help\/stiletto\/video-hero#set-up-video-player).",
-          "label": "Link Video"
         }
       }
     },
@@ -307,7 +300,6 @@
             "heading": "Includere fino a 10 opzioni",
             "info": "Le opzioni vuote non vengono visualizzate",
             "option_1": "Opzione 1",
-            "option_10": "Opzione 10",
             "option_2": "Opzione 2",
             "option_3": "Opzione 3",
             "option_4": "Opzione 4",
@@ -315,7 +307,8 @@
             "option_6": "Opzione 6",
             "option_7": "Opzione 7",
             "option_8": "Opzione 8",
-            "option_9": "Opzione 9"
+            "option_9": "Opzione 9",
+            "option_10": "Opzione 10"
           },
           "required": "Richiesto",
           "width": {
@@ -435,6 +428,14 @@
             "date_badge_day": {
               "label": "Giorno",
               "option__1": "1",
+              "option__2": "2",
+              "option__3": "3",
+              "option__4": "4",
+              "option__5": "5",
+              "option__6": "6",
+              "option__7": "7",
+              "option__8": "8",
+              "option__9": "9",
               "option__10": "10",
               "option__11": "11",
               "option__12": "12",
@@ -445,7 +446,6 @@
               "option__17": "17",
               "option__18": "18",
               "option__19": "19",
-              "option__2": "2",
               "option__20": "20",
               "option__21": "21",
               "option__22": "22",
@@ -456,15 +456,8 @@
               "option__27": "27",
               "option__28": "28",
               "option__29": "29",
-              "option__3": "3",
               "option__30": "30",
-              "option__31": "31",
-              "option__4": "4",
-              "option__5": "5",
-              "option__6": "6",
-              "option__7": "7",
-              "option__8": "8",
-              "option__9": "9"
+              "option__31": "31"
             },
             "date_badge_month": {
               "info": "Modifica le abbreviazioni dei mesi nelle lingue del tema",
@@ -619,6 +612,14 @@
             "title": {
               "info": "Includi un'intestazione per il tuo testo. L'intestazione funziona come un comando a levetta sulle dimensioni più piccole dello schermo.",
               "label": "Titolo"
+            }
+          }
+        },
+        "liquid": {
+          "name": "Liquid",
+          "settings": {
+            "liquid": {
+              "label": "Liquid"
             }
           }
         },
@@ -816,11 +817,11 @@
             },
             "width": {
               "label": "Larghezza",
-              "option_100": "100%",
               "option_25": "25%",
               "option_33": "33%",
               "option_50": "50%",
-              "option_66": "66%"
+              "option_66": "66%",
+              "option_100": "100%"
             }
           }
         }
@@ -1973,23 +1974,9 @@
             "header__chips": {
               "content": "Stile del chip"
             },
-            "header__siblings": {
-              "content": "Campioni di prodotto dei fratelli",
-              "info": "Visualizzare prodotti simili come campioni. Impostare collezioni \"sibling\" per raggruppare prodotti con varianti separate utilizzando i metacampi. [Per saperne di più](http:\/\/fluorescent.co\/help\/stiletto\/sibling-product-swatches)"
-            },
-            "header__swatches": {
-              "content": "Campionario",
-              "info": "La configurazione dei campioni si trova nell'area \"Prodotto\" delle impostazioni del tema."
-            },
             "popup__header": {
               "content": "Popup informativo",
               "info": "Aggiungi un popup per visualizzare informazioni extra sui tuoi prodotti, come una guida alle taglie."
-            },
-            "siblings_option_name": {
-              "label": "Etichetta fratelli e sorelle"
-            },
-            "siblings_show_product_image": {
-              "label": "Mostra l'immagine del prodotto"
             },
             "swatch_size": {
               "label": "Dimensione del campione",
@@ -2434,17 +2421,17 @@
             },
             "delay": {
               "label": "Ritardo nella comparsa",
-              "option_10s": "Dopo 10 secondi",
               "option_1m": "Dopo 1 minuto",
               "option_2m": "Dopo 2 minuti",
-              "option_30s": "Dopo 30 secondi",
               "option_3s": "Dopo 3 secondi",
               "option_5s": "Dopo 5 secondi",
+              "option_10s": "Dopo 10 secondi",
+              "option_30s": "Dopo 30 secondi",
               "option_immediate": "Mostra immediatamente",
-              "option_scroll100": "Dopo lo scorrimento del 100% della pagina",
               "option_scroll25": "Dopo aver fatto scorrere il 25% della pagina",
               "option_scroll50": "Dopo lo scorrimento del 50% della pagina",
-              "option_scroll75": "Dopo aver fatto scorrere il 75% della pagina"
+              "option_scroll75": "Dopo aver fatto scorrere il 75% della pagina",
+              "option_scroll100": "Dopo lo scorrimento del 100% della pagina"
             },
             "disable_for_account_holders": {
               "info": "Il popup non apparirà per i clienti che hanno già creato un account sul vostro negozio.",
@@ -2471,12 +2458,12 @@
               "info": "L'intervallo di tempo prima che un popup chiuso venga visualizzato di nuovo.",
               "label": "Frequenza",
               "option_1": "Ogni ora",
-              "option_12": "Ogni 12 ore",
-              "option_168": "Ogni settimana",
-              "option_24": "ogni giorno",
-              "option_336": "Ogni 2 settimane",
               "option_6": "Ogni 6 ore",
+              "option_12": "Ogni 12 ore",
+              "option_24": "ogni giorno",
               "option_76": "Ogni 3 giorni",
+              "option_168": "Ogni settimana",
+              "option_336": "Ogni 2 settimane",
               "option_no_limit": "Nessun limite",
               "option_once": "Una volta"
             },
@@ -3281,29 +3268,11 @@
         "focal_point": {
           "label": "Punto focale dei media"
         },
-        "image": {
-          "info": "Consigliato quando si utilizza YouTube o Vimeo.",
-          "label": "Immagine di copertina"
-        },
-        "loop": {
-          "label": "Video in loop"
-        },
         "text_position": {
           "label": "Allineamento del testo"
         },
         "text_position_mobile": {
           "label": "Allineamento del testo mobile"
-        },
-        "video": {
-          "label": "Video di Shopify"
-        },
-        "video_source": {
-          "label": "Fonte video",
-          "option_1": "Shopify",
-          "option_2": "Youtube o Vimeo"
-        },
-        "video_url": {
-          "label": "URL di Youtube o Vimeo"
         }
       }
     },
@@ -3361,22 +3330,19 @@
         "focal_point": {
           "label": "Punto focale del media"
         },
+        "focal_point_mobile": {
+          "label": "Punto focale dei media mobili"
+        },
         "height": {
           "label": "Altezza personalizzata"
         },
         "height_paragraph": {
           "content": "Le altezze personalizzate sono una percentuale dell'altezza dello schermo."
         },
-        "image": {
-          "label": "Immagine di sfondo"
-        },
         "image_aspect": {
           "label": "Altezza dei supporti",
           "option_custom": "Personalizzato",
           "option_original": "Originale"
-        },
-        "image_mobile": {
-          "label": "Immagine di sfondo mobile"
         },
         "media_link": {
           "label": "Link di sfondo"
@@ -3389,10 +3355,6 @@
         },
         "text_position_mobile": {
           "label": "Allineamento del testo mobile"
-        },
-        "video_url": {
-          "info": "Usa un link diretto a un file video .mp4. [Maggiori informazioni](https:\/\/fluorescent.co\/help\/stiletto\/video-hero#set-up-video-player).",
-          "label": "Link al video di sfondo"
         }
       }
     }
@@ -3493,7 +3455,7 @@
           "content": "Usa le vendite incrociate per consigliare prodotti aggiuntivi da una collezione o da un elenco di prodotti."
         },
         "paragraph__free_shipping_bar": {
-          "content": "La barra della spedizione gratuita è configurata separatamente dalle tariffe di spedizione effettive, che devono essere [configurate separatamente] (https:\/\/help.shopify.com\/en\/manual\/shipping\/setting-up-and-managing-your-shipping\/free-shipping-rates#free-shipping-over-a-certain-value)."
+          "content": "La barra di spedizione gratuita richiede l'impostazione di una tariffa di spedizione gratuita nell'amministrazione di Shopify, che deve essere [configurata separatamente] (https:\/\/fluorescent.co\/help\/stiletto\/cart#add-free-shipping-rate-in-shopify-admin)."
         },
         "paragraph__low_inventory_warning": {
           "content": "Gli articoli nel carrello visualizzeranno un avviso se la quantità rimanente corrente è inferiore alla soglia di inventario basso"
@@ -3641,7 +3603,13 @@
         "header__dynamic_availability": {
           "content": "Disponibilità dinamica delle varianti di prodotto"
         },
-        "header__swatches": "Campionario",
+        "sold_out_product_price_display": {
+          "info": "Se un prodotto è sia $0 che esaurito, si applicheranno le impostazioni di esaurimento.",
+          "label": "Prezzi da tutto esaurito",
+          "option_hide": "Nascondi",
+          "option_replace": "Mostra come etichetta personalizzata",
+          "option_show": "Mostra come prezzo"
+        },
         "swatch_options": {
           "info": "Nome dell'opzione variante da utilizzare per la visualizzazione dei campioni. Utilizzare un elenco separato da virgole per supportare più opzioni: \"Colore, Stile, Finitura\".",
           "label": "Opzione per i campioni (swatches)"
@@ -3710,10 +3678,6 @@
         },
         "product_listing_show_vendor": {
           "label": "Mostra fornitore"
-        },
-        "show_swatches": {
-          "info": "Rivela i campioni dei prodotti al passaggio del mouse. Per saperne di più sull'impostazione di campioni e chip, consultare la nostra [documentazione](https:\/\/fluorescent.co\/help\/stiletto\/theme-settings#product).",
-          "label": "Mostra i campioni"
         }
       }
     },
@@ -3730,8 +3694,14 @@
         "header__promotion": {
           "content": "Promozione"
         },
+        "header__searchable_fields": {
+          "content": "Campi ricercabili"
+        },
         "paragraph__promotion": {
           "content": "Promuovere le collezioni quando non è ancora stata effettuata una ricerca."
+        },
+        "paragraph__searchable_fields": {
+          "content": "I campi delle risorse in cui effettuare la ricerca."
         },
         "quick_search_product_style": {
           "label": "Stile dei risultati dei prodotti",
@@ -3750,6 +3720,35 @@
         },
         "quick_search_suggested_links": {
           "label": "Link suggeriti"
+        },
+        "searchable_fields": {
+          "author": {
+            "label": "Autore"
+          },
+          "body": {
+            "label": "Corpo"
+          },
+          "product_type": {
+            "label": "Tipologia di prodotto"
+          },
+          "tag": {
+            "label": "Etichetta"
+          },
+          "title": {
+            "label": "Titolo"
+          },
+          "variant_barcode": {
+            "label": "Codice a barre variante"
+          },
+          "variant_sku": {
+            "label": "SKU variante"
+          },
+          "variant_title": {
+            "label": "Titolo variante"
+          },
+          "vendor": {
+            "label": "Venditore"
+          }
         }
       }
     },
@@ -3861,10 +3860,6 @@
           },
           "text": {
             "label": "Etichetta pulsante"
-          },
-          "video_url": {
-            "info": "Usa un link diretto a un file video .mp4. [Maggiori informazioni](https:\/\/fluorescent.co\/help\/stiletto\/video-hero#set-up-video-player).",
-            "label": "Link Video"
           }
         }
       },
@@ -4108,6 +4103,14 @@
         "day": {
           "label": "Giorno",
           "option__1": "1",
+          "option__2": "2",
+          "option__3": "3",
+          "option__4": "4",
+          "option__5": "5",
+          "option__6": "6",
+          "option__7": "7",
+          "option__8": "8",
+          "option__9": "9",
           "option__10": "10",
           "option__11": "11",
           "option__12": "12",
@@ -4118,7 +4121,6 @@
           "option__17": "17",
           "option__18": "18",
           "option__19": "19",
-          "option__2": "2",
           "option__20": "20",
           "option__21": "21",
           "option__22": "22",
@@ -4129,15 +4131,8 @@
           "option__27": "27",
           "option__28": "28",
           "option__29": "29",
-          "option__3": "3",
           "option__30": "30",
-          "option__31": "31",
-          "option__4": "4",
-          "option__5": "5",
-          "option__6": "6",
-          "option__7": "7",
-          "option__8": "8",
-          "option__9": "9"
+          "option__31": "31"
         },
         "header__background_image": {
           "content": "Immagine di sfondo"
@@ -4158,6 +4153,14 @@
           "label": "Ora",
           "option__0": "00:00",
           "option__1": "01:00",
+          "option__2": "02:00",
+          "option__3": "03:00",
+          "option__4": "04:00",
+          "option__5": "05:00",
+          "option__6": "06:00",
+          "option__7": "07:00",
+          "option__8": "08:00",
+          "option__9": "09:00",
           "option__10": "10:00",
           "option__11": "11:00",
           "option__12": "12:00",
@@ -4168,18 +4171,10 @@
           "option__17": "17:00",
           "option__18": "18:00",
           "option__19": "19:00",
-          "option__2": "02:00",
           "option__20": "20:00",
           "option__21": "21:00",
           "option__22": "22:00",
-          "option__23": "23:00",
-          "option__3": "03:00",
-          "option__4": "04:00",
-          "option__5": "05:00",
-          "option__6": "06:00",
-          "option__7": "07:00",
-          "option__8": "08:00",
-          "option__9": "09:00"
+          "option__23": "23:00"
         },
         "image": {
           "label": "Immagine"
@@ -4194,6 +4189,14 @@
           "label": "Minuto",
           "option__0": "0",
           "option__1": "1",
+          "option__2": "2",
+          "option__3": "3",
+          "option__4": "4",
+          "option__5": "5",
+          "option__6": "6",
+          "option__7": "7",
+          "option__8": "8",
+          "option__9": "9",
           "option__10": "10",
           "option__11": "11",
           "option__12": "12",
@@ -4204,7 +4207,6 @@
           "option__17": "17",
           "option__18": "18",
           "option__19": "19",
-          "option__2": "2",
           "option__20": "20",
           "option__21": "21",
           "option__22": "22",
@@ -4215,7 +4217,6 @@
           "option__27": "27",
           "option__28": "28",
           "option__29": "29",
-          "option__3": "3",
           "option__30": "30",
           "option__31": "31",
           "option__32": "32",
@@ -4226,7 +4227,6 @@
           "option__37": "37",
           "option__38": "38",
           "option__39": "39",
-          "option__4": "4",
           "option__40": "40",
           "option__41": "41",
           "option__42": "42",
@@ -4237,7 +4237,6 @@
           "option__47": "47",
           "option__48": "48",
           "option__49": "49",
-          "option__5": "5",
           "option__50": "50",
           "option__51": "51",
           "option__52": "52",
@@ -4247,11 +4246,7 @@
           "option__56": "56",
           "option__57": "57",
           "option__58": "58",
-          "option__59": "59",
-          "option__6": "6",
-          "option__7": "7",
-          "option__8": "8",
-          "option__9": "9"
+          "option__59": "59"
         },
         "mobile_focal_point": {
           "label": "Punto focale dell'immagine mobile"
@@ -4336,6 +4331,9 @@
       "enable_sticky_filter_sidebar": {
         "label": "Abilita la barra laterale del filtro permanente"
       },
+      "external_video_url": {
+        "label": "URL di Youtube o Vimeo"
+      },
       "filtering__header": {
         "content": "Filtro e ordinamento"
       },
@@ -4357,7 +4355,10 @@
       "header__button_2": {
         "content": "Pulsante 2"
       },
-      "header__prices": "Prezzi",
+      "header__prices": {
+        "content": "Prezzi",
+        "info": "Puoi modificare entrambe le etichette personalizzate in \"Prodotti > Inventario\" nelle lingue del tema."
+      },
       "header__rating": "Valutazione del prodotto",
       "header_color": {
         "content": "Colore"
@@ -4504,15 +4505,45 @@
       "show_sort": {
         "label": "Abilita ordinamento"
       },
-      "show_swatch_filters": {
-        "info": "La configurazione dei campioni si trova nell'area \"Prodotto\" delle impostazioni del tema.",
-        "label": "Mostra filtri per i campioni"
-      },
       "subheading_font_class": {
         "label": "Dimensione del sottotitolo",
         "option_large": "Grande",
         "option_medium": "Medio",
         "option_small": "Piccolo"
+      },
+      "swatches": {
+        "default_swatches": {
+          "header__swatches": {
+            "content": "Campioni",
+            "info": "La configurazione dei campioni si trova nell'area \"Prodotto\" delle impostazioni del tema."
+          },
+          "show_swatch_filters": {
+            "info": "Questi campioni rispecchiano i campioni del selettore delle varianti di prodotto e sono configurati nell'area \"Prodotto\" delle impostazioni del tema. I [filtri visivi] di Shopify (https:\/\/help.shopify.com\/en\/manual\/online-store\/search-and-discovery\/filters#visual-filters) sono configurati separatamente. Per saperne di più, consultare i nostri [help docs](https:\/\/fluorescent.co\/help\/stiletto\/collection-pages#filters-and-sorting).",
+            "label": "Mostra i filtri dei campioni"
+          },
+          "show_swatches": {
+            "info": "Rivela i campioni dei prodotti al passaggio del mouse. Per ulteriori informazioni sulla configurazione di campioni e chip, consulta la nostra [documentazione](https:\/\/fluorescent.co\/help\/stiletto\/theme-settings#product).",
+            "label": "Mostra campioni"
+          }
+        },
+        "sibling_swatches": {
+          "header__siblings": {
+            "content": "Campioni fratelli",
+            "info": "Mostra prodotti simili come campioni. Imposta raccolte \"di pari livello\" per raggruppare varianti di prodotti separate utilizzando i metafield. [Ulteriori informazioni](http:\/\/fluorescent.co\/help\/stiletto\/sibling-product-swatches)"
+          },
+          "show_product_image": {
+            "info": "I colori dei prodotti possono essere personalizzati. [Ulteriori informazioni](https:\/\/fluorescent.co\/help\/stiletto\/swatches)",
+            "label": "Fonte del campione",
+            "option_color": "Colore del prodotto",
+            "option_image": "Immagine del prodotto"
+          },
+          "show_sibling_swatches": {
+            "label": "Mostra campioni di fratelli"
+          },
+          "siblings_option_name": {
+            "label": "Etichetta fratelli"
+          }
+        }
       },
       "text_color": {
         "label": "Testo"
@@ -4538,12 +4569,31 @@
           "label": "Maiuscolo"
         }
       },
+      "video": {
+        "info": "L'immagine di copertina del video Shopify verrà visualizzata come fallback nel caso in cui non riesca a caricarsi.",
+        "label": "Video di Shopify"
+      },
+      "video_image_poster": {
+        "info": "Consigliato quando si utilizza YouTube o Vimeo.",
+        "label": "Immagine di copertina"
+      },
+      "video_loop": {
+        "label": "Loop Video"
+      },
+      "video_mobile": {
+        "label": "Video Shopify mobile"
+      },
+      "video_source": {
+        "label": "Sorgente video",
+        "option_1": "Shopify",
+        "option_2": "Youtube o Vimeo"
+      },
       "zero_dollar_price_custom_label": {
         "label": "Etichetta personalizzata con prezzo $ 0"
       },
       "zero_dollar_price_display": {
         "info_listing": "Non applicabile a prodotti con prezzi variabili o prezzi di confronto. Puoi modificare l'etichetta personalizzata in \"Prodotti > Inventario > 'Etichetta personalizzata prezzo zero'\" nelle lingue del tema.",
-        "info_product": "Non applicabile alle varianti con prezzi di confronto. Puoi modificare l'etichetta personalizzata in \"Prodotti > Inventario > 'Etichetta personalizzata prezzo zero'\" nelle lingue del tema.",
+        "info_product": "Non applicabile alle varianti con prezzi di confronto.",
         "label": "Prezzi $ 0",
         "option_hide": "Nascondere",
         "option_replace": "Mostra come etichetta personalizzata",

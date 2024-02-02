@@ -2,6 +2,8 @@
   Pass in:
   - prod: object The product object
   - hidden: boolean (optional, used to not trip up javascript if buy button is removed)
+  - price_content_type: "price" or "custom" or "hide" after checking both $0 and sold out pricing display settings
+  - custom_price_content: the translation to populate price if sold out or free, depending on logic checks and settings
 {%- endcomment -%}
 
 {%- liquid
@@ -196,13 +198,14 @@
   </div>
 
   {%- if block.settings.enable_sticky_atc_bar_desktop or block.settings.enable_sticky_atc_bar_mobile -%}
-    {%
-      render 'sticky-atc-bar',
+    {% render 'sticky-atc-bar',
       local_settings: block.settings,
       prod: prod,
       current_variant: current_variant,
       featured_media: featured_media,
       aspect_ratio: aspect_ratio,
+      price_content_type: price_content_type,
+      custom_price_content: custom_price_content
     %}
   {%- endif -%}
 {%- endform -%}

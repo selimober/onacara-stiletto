@@ -10,6 +10,7 @@
   assign gallery_overflow = section.settings.gallery_overflow
   assign gallery_overflow_mobile = section.settings.gallery_overflow
   assign image_aspect_ratio = section.settings.image_aspect_ratio
+  assign header_block = section.blocks | where: 'type', 'product_header'
 
   if gallery_style == 'thumbnails'
     assign gallery_overflow = 'never'
@@ -182,6 +183,27 @@
       echo product.featured_media | image_url: featured_media_size | prepend: 'https:' | json
     endcapture
   endif
+
+  assign price_content_type = 'price'
+  assign custom_price_content = blank
+
+  if current_variant.available
+    if current_variant.price == 0 and current_variant.compare_at_price == null
+      if settings.zero_dollar_product_price_display == 'hide'
+        assign price_content_type = 'hide'
+      elsif settings.zero_dollar_product_price_display == 'replace'
+        assign price_content_type = 'custom'
+        assign custom_price_content = 'products.inventory.zero_price_custom_label' | t
+      endif
+    endif
+  else
+    if settings.sold_out_product_price_display == 'hide'
+      assign price_content_type = 'hide'
+    elsif settings.sold_out_product_price_display == 'replace'
+      assign price_content_type = 'custom'
+      assign custom_price_content = 'products.inventory.sold_out_price_custom_label' | t
+    endif
+  endif
 -%}
 
 <div
@@ -204,6 +226,10 @@
   data-is-full-product="true"
   data-product-handle="{{ product.handle }}"
 >
+  {% if header_block == blank %}
+    {% comment %} Added in the event the product header is removed so the page has an h1 tag present {% endcomment %}
+    <h1 class="visually-hidden">{{ product.title }}</h1>
+  {% endif %}
   {% if section.settings.show_breadcrumbs or section.settings.show_navigation_buttons -%}
     <div class="product__breadcrumbs">
       {% render 'breadcrumbs',
@@ -213,11 +239,21 @@
     </div>
   {%- endif %}
 
-  <div class="product__top product__primary">
+  <div
+    class="product__top product__primary"
+
+    data-zero-price-display="{{ settings.zero_dollar_product_price_display }}"
+    data-zero-price-custom-content="{{ 'products.inventory.zero_price_custom_label' | t }}"
+    data-sold-out-price-display="{{ settings.sold_out_product_price_display }}"
+    data-sold-out-price-custom-content="{{ 'products.inventory.sold_out_price_custom_label' | t }}"
+    data-price-display-type="{{ price_content_type }}"
+  >
     <div class="product__primary-left">
       {% if gallery_style_mobile == 'carousel' -%}
         <div class="product__media-container below-mobile carousel swiper{% if section.settings.enable_product_lightbox %} lightbox-media-container{% endif %}">
           <div class="product__media carousel__wrapper swiper-wrapper">
+            {%- assign media_index = 0 -%}
+
             {% for media in product.media -%}
               {% liquid
                 assign prioritize_loading = false
@@ -245,7 +281,7 @@
               <div
                 class="product__media-item carousel_slide swiper-slide"
                 data-is-featured="{{ is_featured_media }}"
-                data-slide-index="{{ forloop.index0 }}"
+                data-slide-index="{{ media_index }}"
                 data-media-item-id="{{ media.id }}"
                 data-media-type="{{ media.media_type }}"
                 data-product-media-wrapper
@@ -263,6 +299,8 @@
                   within_carousel: true
                 %}
               </div>
+
+              {%- assign media_index = media_index | plus: 1 -%}
             {%- else -%}
               <div class="product__media-item placeholder-image">
                 {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -446,7 +484,15 @@
       {%- endif %}
 
       {% capture left_side_blocks -%}
-        {%- render 'product-blocks', blocks: section.blocks, prod: product, is_quick: false, column: 'left' -%}
+        {%- render 'product-blocks',
+          blocks: section.blocks,
+          prod: product,
+          is_quick: false,
+          is_featured: false,
+          column: 'left',
+          price_content_type: price_content_type,
+          custom_price_content: custom_price_content
+        -%}
       {%- endcapture %}
 
       {% unless left_side_blocks == blank -%}
@@ -458,15 +504,17 @@
 
     <div class="product__details product__primary-right">
       <div class="product__meta" data-sticky-container>
-        {%
-          render 'product-blocks',
+        {% render 'product-blocks',
           blocks: section.blocks,
           prod: product,
           is_quick: false,
+          is_featured: false,
           column: 'right',
           current_variant: current_variant,
           featured_media: featured_media,
           aspect_ratio: image_aspect_ratio,
+          price_content_type: price_content_type,
+          custom_price_content: custom_price_content
         %}
 
         {% comment -%}
@@ -531,8 +579,6 @@
   window.ShopifyXR=window.ShopifyXR||function(){(ShopifyXR.q=ShopifyXR.q||[]).push(arguments)}
   ShopifyXR('addModels', {{ models }});
 </script>
-
-<script src="//cdn.shopify.com/shopifycloud/shopify-xr-js/assets/v1.0/shopify-xr.en.js" defer="defer"></script>
 
 {% unless product == empty -%}
   <script type="application/json" id="ProductJson-{{ section.id }}">
@@ -1869,8 +1915,8 @@
         },
         {
           "type": "header",
-          "content": "t:sections.main_product_overview.blocks.variant_picker.settings.header__swatches.content",
-          "info": "t:sections.main_product_overview.blocks.variant_picker.settings.header__swatches.info"
+          "content": "t:shared.settings.swatches.default_swatches.header__swatches.content",
+          "info": "t:shared.settings.swatches.default_swatches.header__swatches.info"
         },
         {
           "type": "select",
@@ -1891,23 +1937,6 @@
               "label": "t:sections.main_product_overview.blocks.variant_picker.settings.swatch_size.option_large"
             }
           ]
-        },
-        {
-          "type": "header",
-          "content": "t:sections.main_product_overview.blocks.variant_picker.settings.header__siblings.content",
-          "info": "t:sections.main_product_overview.blocks.variant_picker.settings.header__siblings.info"
-        },
-        {
-          "type": "checkbox",
-          "id": "siblings_show_product_image",
-          "label": "t:sections.main_product_overview.blocks.variant_picker.settings.siblings_show_product_image.label",
-          "default": true
-        },
-        {
-          "id": "siblings_option_name",
-          "type": "text",
-          "label": "t:sections.main_product_overview.blocks.variant_picker.settings.siblings_option_name.label",
-          "default": "Color"
         },
         {
           "type": "header",

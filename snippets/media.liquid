@@ -25,17 +25,19 @@
         div
       {%- endif -%}
     {%- endcapture -%}
+
     {%- capture media_atributes -%}
       {% if enable_product_lightbox %}
-        href="{{ media.src | image_url }}" class="lightbox-image no-transition" data-pswp-src="
-        {{- media.src | image_url -}}
-        " data-pswp-width="
-        {{- media.width -}}
-        " data-pswp-height="{{ media.height }}"
+        href="{{ media.src | image_url }}" class="lightbox-image no-transition"
+        data-pswp-src="{{- media.src | image_url -}}"
+        data-pswp-width="{{- media.width -}}"
+        data-pswp-height="{{ media.height }}"
+        data-cropped="true"
       {%- elsif link -%}
         href="{{ link }}"
       {%- endif -%}
     {%- endcapture -%}
+
     <{{ media_link_element }} {{ media_atributes }}>
       {%
         render 'image' with
@@ -44,6 +46,7 @@
         sizes: sizes,
         prioritize_loading: prioritize_loading,
         fallback_alt: fallback_alt,
+        no_crop: enable_product_lightbox,
         animate: animate
       %}
     </{{ media_link_element }}>

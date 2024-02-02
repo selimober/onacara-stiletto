@@ -239,9 +239,9 @@
               {%- liquid
                 assign post_message = 'blogs.comments.success' | t
 
-                if blog.moderated? and comment.status == 'pending'
+                if blog.moderated? and comment.status == 'pending' or comment.status == 'unapproved'
                   assign post_message = 'blogs.comments.success_moderated' | t
-                elsif comment.status == 'unapproved' or comment.status == 'spam'
+                elsif comment.status == 'spam'
                   assign post_message = 'blogs.comments.unapproved' | t
                 endif
               -%}

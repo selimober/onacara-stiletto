@@ -29,6 +29,8 @@
   endcase
 
   assign has_hover_swatches = false
+  assign show_sibling_swatches = false
+  assign siblings_collection = prod.metafields.stiletto.sibling_collection.value.products | default: prod.metafields.stiletto.siblings_collection.value.products
 -%}
 
 {% if settings.enable_product_card_swatches %}
@@ -40,6 +42,17 @@
   {% if displayed_swatch_count != 0 %}
     {% assign has_hover_swatches = true %}
   {% endif %}
+{% endif %}
+
+{% comment %} Sibling swatches will override other swatches if these conditions are met {% endcomment %}
+{% if settings.enable_product_card_sibling_swatches
+  and settings.siblings_option_name != blank
+  and siblings_collection.size > 0
+%}
+  {% assign has_hover_swatches = true %}
+  {% assign show_sibling_swatches = true %}
+  {% assign displayed_swatch_count = siblings_collection.size %}
+  {% assign first_swatchified_option = settings.siblings_option_name | downcase %}
 {% endif %}
 
 <div
@@ -149,72 +162,101 @@
           {% render 'product-rating', prod: prod %}
         {% endif %}
 
-        <p class="product-item__price">
-          {% if placeholder %}
-            {{ 9999 | money }}
+        {% liquid
+          assign price_content_type = 'price'
 
-          {% elsif prod.compare_at_price > prod.price %}
-            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+          if prod.available
+            if prod.price == 0 and prod.price_varies == false
+              if settings.zero_dollar_listing_price_display == 'replace'
+                assign price_content_type = 'custom'
+                assign custom_price_content = 'products.inventory.zero_price_custom_label' | t
+              elsif settings.zero_dollar_listing_price_display == 'hide'
+                assign price_content_type = 'hide'
+                assign custom_price_content = blank
+              endif
+            endif
+          else
+            if settings.sold_out_listing_price_display == 'hide'
+              assign price_content_type = 'hide'
+              assign custom_price_content = blank
+            elsif settings.sold_out_listing_price_display == 'replace'
+              assign price_content_type = 'custom'
+              assign custom_price_content = 'products.inventory.sold_out_price_custom_label' | t
+            endif
+          endif
+        %}
+        {% if price_content_type == 'price' %}
+          <p class="product-item__price">
+            {% if placeholder %}
+              {{ 9999 | money }}
 
-            {% liquid
-              # Extend Shopify's detection for varied compare_at_price
-              assign has_null_compare_at_price = false
-              for variant in prod.variants
-                if variant.compare_at_price == null
-                  assign has_null_compare_at_price = true
-                  break
-                endif
-              endfor
-            %}
+            {% elsif prod.compare_at_price > prod.price %}
+              <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
 
-            {% unless prod.compare_at_price_varies or has_null_compare_at_price %}
-              <s class="t-subdued">{{ prod.compare_at_price | money }}</s>
-            {% endunless %}
+              {% liquid
+                # Extend Shopify's detection for varied compare_at_price
+                assign has_null_compare_at_price = false
+                for variant in prod.variants
+                  if variant.compare_at_price == null
+                    assign has_null_compare_at_price = true
+                    break
+                  endif
+                endfor
+              %}
 
-            {% if prod.price_varies or prod.compare_at_price_varies or has_null_compare_at_price %}
-              {%- assign sale_price = prod.price | money -%}
+              {% unless prod.compare_at_price_varies or has_null_compare_at_price %}
+                <s class="t-subdued">{{ prod.compare_at_price | money }}</s>
+              {% endunless %}
 
-              <span class="sale">
-                {{- 'products.product.on_sale_from_html' | t: price: sale_price -}}
-              </span>
-            {% else %}
-              <span class="sale">{{ prod.price | money }}</span>
-            {% endif %}
+              {% if prod.price_varies or prod.compare_at_price_varies or has_null_compare_at_price %}
+                {%- assign sale_price = prod.price | money -%}
 
-          {% else %}
-            {% if prod.price_varies %}
-              {%- assign price = prod.price | money -%}
-
-              {% if settings.zero_dollar_listing_price_display == 'replace' and prod.price == 0 %}
-                {%- assign custom_price_label = 'products.inventory.zero_price_custom_label' | t -%}
-                {{ 'products.product.from_lowest_price_html' | t: lowest_price: custom_price_label }}
+                <span class="sale">
+                  {{- 'products.product.on_sale_from_html' | t: price: sale_price -}}
+                </span>
               {% else %}
-                {{ 'products.product.from_lowest_price_html' | t: lowest_price: price }}
+                <span class="sale">{{ prod.price | money }}</span>
               {% endif %}
 
             {% else %}
-              {% unless settings.zero_dollar_listing_price_display == 'hide' and prod.price == 0 %}
-                {% if settings.zero_dollar_listing_price_display == 'replace' and prod.price == 0 %}
-                  <p class="product-item__price">{{ 'products.inventory.zero_price_custom_label' | t }}</p>
-                {% else %}
-                  <span class="product-item__price">{{ prod.price | money }}</span>
-                {% endif %}
-              {% endunless %}
+              {% if prod.price_varies %}
+                {%- assign price = prod.price | money -%}
+
+                {{ 'products.product.from_lowest_price_html' | t: lowest_price: price }}
+
+              {% else %}
+                <span class="product-item__price">{{ prod.price | money }}</span>
+              {% endif %}
+            {% endif %}
+
+            {% if settings.product_listing_show_discount %}
+              <span class="displayed-discount fs-body-50">
+                {%-
+                  render "get-display-discount"
+                  with prod: prod,
+                  format: settings.product_listing_discount_format
+                -%}
+              </span>
+            {% endif %}
+
+            {% render 'unit-price', item: current_variant %}
+          </p>
+        {% elsif price_content_type == 'custom' %}
+          {% if prod.price_varies and prod.price == 0 %}
+            {%- assign price = prod.price | money -%}
+            {%- assign custom_price_content = 'products.inventory.zero_price_custom_label' | t -%}
+
+            <p class="product-item__price">
+              {% if prod.compare_at_price > prod.price %}<span class="sale">{% endif %}
+              {{ 'products.product.from_lowest_price_html' | t: lowest_price: custom_price_content }}
+              {% if prod.compare_at_price > prod.price %}</span>{% endif %}
+            </p>
+          {% else %}
+            {% if custom_price_content != blank %}
+              <p class="product-item__price">{{ custom_price_content }}</p>
             {% endif %}
           {% endif %}
-
-          {% if settings.product_listing_show_discount %}
-            <span class="displayed-discount fs-body-50">
-              {%-
-                render "get-display-discount"
-                with prod: prod,
-                format: settings.product_listing_discount_format
-              -%}
-            </span>
-          {% endif %}
-
-          {% render 'unit-price', item: current_variant %}
-        </p>
+        {% endif %}
 
         {% if has_hover_swatches %}
           <h5 class="ff-body fs-body-50 product-item__swatch-count">
@@ -228,7 +270,7 @@
 
       {%- if has_hover_swatches -%}
         <div class="product-item__variant-info">
-          {%- render 'product-item-swatches' with prod: prod, option_name: first_swatchified_option -%}
+          {%- render 'product-item-swatches' with prod: prod, option_name: first_swatchified_option, show_sibling_swatches: show_sibling_swatches -%}
         </div>
       {%- endif -%}
 

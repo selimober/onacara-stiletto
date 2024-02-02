@@ -88,6 +88,14 @@
   if enable_country_selector and localization.available_countries.size > 1
     assign country_selector = true
   endif
+
+  capture logo_tag_type
+    if request.page_type == 'index'
+      echo 'h1'
+    else
+      echo 'span'
+    endif
+  endcapture
 -%}
 
 {%- capture logo_sizes -%}(max-width: 960px) {{ mobile_logo_width }}px, {{ logo_width }}px{%- endcapture -%}
@@ -99,7 +107,7 @@
 {%- comment -%} theme-check-enable UnusedAssign {%- endcomment -%}
 
 {%- capture header_logo -%}
-  <h1 class="header__logo">
+  <{{ logo_tag_type }} class="header__logo">
     <a
       class="header__logo-link"
       href="{{ routes.root_url }}"
@@ -119,7 +127,7 @@
         <span class="header__logo-text">{{ shop.name }}</span>
       {%- endif -%}
     </a>
-  </h1>
+  </{{ logo_tag_type }}>
 {%- endcapture -%}
 
 {%- capture search_icon -%}

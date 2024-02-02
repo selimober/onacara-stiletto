@@ -9,6 +9,8 @@
   * current_variant: { Object } The selected_or_first_available_variant of the product.
   * featured_media: { Object } The initial media shown.
   * aspect_ratio: { String } The value which determines the aspect ratio of the media.
+  * price_content_type: { String } "price" or "custom" or "hide" after checking both $0 and sold out pricing display settings
+  * custom_price_content: { String } The translation to populate price if sold out or free, depending on logic checks and settings
 {%- endcomment -%}
 
 {%- liquid
@@ -75,11 +77,18 @@
         {%- if prod != blank -%}
           <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
           <s class="t-subdued" data-compare-price>
-            {%- if current_variant.compare_at_price > current_variant.price -%}
+            {%- if price_content_type == 'price' and current_variant.compare_at_price > current_variant.price -%}
               {{- current_variant.compare_at_price | money -}}
             {%- endif -%}
           </s>
-          <span data-price>{{ current_variant.price | money }}</span>
+
+          <span data-price>
+            {% if price_content_type == 'price' %}
+              {{ current_variant.price | money }}
+            {%- elsif price_content_type == 'custom' -%}
+              {{- custom_price_content }}
+            {% endif %}
+          </span>
         {%- else -%}
           <span>{{ 9999 | money }}</span>
         {%- endif -%}

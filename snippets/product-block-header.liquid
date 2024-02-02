@@ -33,6 +33,15 @@
   {%- endif -%}
 
   <div class="product__block--product-header-inner">
+    {% liquid
+      capture product_title_tag_type
+        if is_quick or is_featured
+          echo 'h2'
+        else
+          echo 'h1'
+        endif
+      endcapture
+    %}
     {%- if product != blank -%}
       {%- if block_settings.show_sale_badge or block_settings.show_custom_badges -%}
         {%-
@@ -43,7 +52,9 @@
           show_sold_out_badge: false
         -%}
       {%- endif -%}
-      <h1 class="product__title ff-heading fs-heading-4-base fs-heading-3-base-ns">{{ product.title }}</h1>
+      <{{ product_title_tag_type }} class="product__title ff-heading fs-heading-4-base fs-heading-3-base-ns">
+        {{- product.title -}}
+      </{{ product_title_tag_type }}>
       {%- if block_settings.show_vendor or block_settings.show_sku -%}
         <div
           class="product__vendor_and_sku"
@@ -63,7 +74,9 @@
         </div>
       {%- endif -%}
     {%- else -%}
-      <h1 class="product__title ff-heading">{{ 'sections.featured_product.placeholder.title' | t }}</h1>
+      <h2 class="product__title ff-heading">
+        {{- 'sections.featured_product.placeholder.title' | t -}}
+      </h2>
       {%- if block_settings.show_vendor -%}
         <div
           class="product__vendor_and_sku"
@@ -76,43 +89,23 @@
       {%- endif -%}
     {%- endif -%}
 
-    {% liquid
-      assign show_price = true
-      assign show_price_content = 'price'
-
-      if current_variant.price == 0 and current_variant.compare_at_price == null
-        if settings.zero_dollar_product_price_display == 'hide'
-          assign show_price = false
-        endif
-
-        if show_price
-          if settings.zero_dollar_product_price_display == 'replace'
-            assign show_price_content = 'custom'
-          endif
-        endif
-      endif
-    %}
     <div
       class="product__price-and-ratings"
-
-      data-show-price="{{ show_price }}"
       data-show-product-rating="{{ block_settings.show_product_rating }}"
-      data-zero-price-display="{{ settings.zero_dollar_product_price_display }}"
-      data-custom-price-content="{{ 'products.inventory.zero_price_custom_label' | t }}"
     >
       <div class="product__price fs-body-100">
         {%- if product != blank -%}
           <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
           <s data-compare-price>
-            {%- if current_variant.compare_at_price > current_variant.price -%}
+            {%- if price_content_type == 'price' and current_variant.compare_at_price > current_variant.price -%}
               {{- current_variant.compare_at_price | money -}}
             {%- endif -%}
           </s>
           <span data-price>
-            {%- if show_price_content == 'price' or current_variant.compare_at_price > current_variant.price %}
+            {%- if price_content_type == 'price' %}
               {{ current_variant.price | money -}}
-            {%- elsif show_price_content == 'custom' -%}
-              {{- 'products.inventory.zero_price_custom_label' | t }}
+            {%- elsif price_content_type == 'custom' -%}
+              {{- custom_price_content }}
             {% endif -%}
           </span>
 

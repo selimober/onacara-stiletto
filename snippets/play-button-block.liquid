@@ -1,7 +1,39 @@
+{% comment %}
+  Required params:
+    - wrapper_class
+    - block
+    - button_alignment
+
+  Optional params:
+    - button_alignment_mobile
+{% endcomment %}
+
 {%- liquid
+  assign video_source = block.settings.video_source
+  assign shopify_video = block.settings.video
+  assign external_video = block.settings.video_url
+  assign poster_image = block.settings.image
+  assign poster_aspect = block.settings.aspect_ratio
+  assign has_video = false
+
+  assign is_shopify_video = false
+  assign is_external_video = false
+
+  if video_source == 'shopify' and shopify_video != blank
+    assign has_video = true
+    assign is_shopify_video = true
+    assign poster_image = shopify_video.preview_image
+  elsif video_source == 'external' and external_video != blank
+    assign has_video = true
+    assign is_external_video = true
+  endif
+
   if button_alignment_mobile == null
     assign button_alignment_mobile = button_alignment
   endif
+
+  assign label = block.settings.text
+  assign icon_style = block.settings.icon_style
 -%}
 <div
   class="
@@ -19,7 +51,7 @@
     fs-body-75
     {{ wrapper_class }}
   "
-  {{ shopify_attributes }}
+  {{ block.shopify_attributes }}
 >
   <button
     class="play-button-block__inner"
@@ -28,7 +60,7 @@
     {% if label == blank %}
       aria-label="{{ 'general.accessibility.play_video' | t }}"
     {% endif %}
-    {% if video_url == blank %}
+    {% if has_video == false %}
       data-flash-trigger data-flash-message="{{ 'general.flash_alert.no_video' | t }}"
     {% endif %}
   >
@@ -50,16 +82,33 @@
       </div>
     {%- endif -%}
 
-    {%- unless video_url == blank -%}
-      <div class="play-button-block-video-container" data-play-button-block-video-container>
-        <video
-          class="play-button-block-video"
-          data-play-button-block-video
-          controls
-          playsinline
-          src="{{ video_url }}"
-        ></video>
+    {%- if has_video -%}
+      <div
+        class="play-button-block-video-container"
+        data-play-button-block-video-container
+        data-video-type="{{ video_source }}"
+      >
+        {%- if is_shopify_video -%}
+          {%- liquid
+            assign video_html = shopify_video | video_tag: class: 'play-button-block-video', data-play-button-block-video: '', autoplay: true, controls: true
+          -%}
+          {{ video_html }}
+        {%- elsif is_external_video %}
+          {% liquid
+            assign video_class = 'play-button-block-video'
+
+            unless external_video.type == 'youtube'
+              assign video_class = video_class | append: ' video__iframe'
+            endunless
+          %}
+          <div
+            class="{{ video_class }}"
+            data-play-button-block-video
+            data-video-provider="{{ external_video.type }}"
+            data-video-id="{{ external_video.id | escape }}"
+          ></div>
+        {%- endif -%}
       </div>
-    {%- endunless -%}
+    {%- endif -%}
   </button>
 </div>

@@ -2413,7 +2413,7 @@ const classes$I = {
   active: "active",
   fixed: "is-fixed"
 };
-const selectors$1I = {
+const selectors$1H = {
   closeBtn: "[data-modal-close]",
   wash: ".modal__wash",
   modalContent: ".modal__content"
@@ -2422,10 +2422,10 @@ const modal = node => {
   const focusTrap = createFocusTrap(node, {
     allowOutsideClick: true
   });
-  const modalContent = n$2(selectors$1I.modalContent, node);
+  const modalContent = n$2(selectors$1H.modalContent, node);
   const delegate = new Delegate(document);
-  delegate.on("click", selectors$1I.wash, () => _close());
-  const events = [e$2(n$2(selectors$1I.closeBtn, node), "click", e => {
+  delegate.on("click", selectors$1H.wash, () => _close());
+  const events = [e$2(n$2(selectors$1H.closeBtn, node), "click", e => {
     e.preventDefault();
     _close();
   }), e$2(node, "keydown", _ref => {
@@ -2570,7 +2570,7 @@ var shouldAnimate = (node => {
   return a$1(node, "animation") && !a$1(document.documentElement, "prefers-reduced-motion");
 });
 
-const selectors$1H = {
+const selectors$1G = {
   sectionBlockItems: ".section-blocks > *",
   image: ".image-with-text__image .image__img",
   imageSmall: ".image-with-text__small-image .image__img",
@@ -2578,23 +2578,7 @@ const selectors$1H = {
 };
 var animateImageWithText = (node => {
   // Add the animation delay offset variables
-  delayOffset(node, [selectors$1H.image, selectors$1H.imageSmall, selectors$1H.imageCaption]);
-  delayOffset(node, [selectors$1H.sectionBlockItems], 6);
-  const observer = intersectionWatcher(node);
-  return {
-    destroy() {
-      observer === null || observer === void 0 ? void 0 : observer.destroy();
-    }
-  };
-});
-
-const selectors$1G = {
-  sectionBlockItems: ".section-blocks > *",
-  image: ".image-with-text-split__image .image__img"
-};
-var animateImageWithTextSplit = (node => {
-  // Add the animation delay offset variables
-  delayOffset(node, [selectors$1G.image]);
+  delayOffset(node, [selectors$1G.image, selectors$1G.imageSmall, selectors$1G.imageCaption]);
   delayOffset(node, [selectors$1G.sectionBlockItems], 6);
   const observer = intersectionWatcher(node);
   return {
@@ -2605,6 +2589,22 @@ var animateImageWithTextSplit = (node => {
 });
 
 const selectors$1F = {
+  sectionBlockItems: ".section-blocks > *",
+  image: ".image-with-text-split__image .image__img"
+};
+var animateImageWithTextSplit = (node => {
+  // Add the animation delay offset variables
+  delayOffset(node, [selectors$1F.image]);
+  delayOffset(node, [selectors$1F.sectionBlockItems], 6);
+  const observer = intersectionWatcher(node);
+  return {
+    destroy() {
+      observer === null || observer === void 0 ? void 0 : observer.destroy();
+    }
+  };
+});
+
+const selectors$1E = {
   content: ".testimonials__item-content > *",
   image: ".testimonials__item-product-image",
   imageCaption: ".testimonials__item-product-title",
@@ -2619,35 +2619,35 @@ var animateTestimonials = (node => {
   // Create an array of selectors for the animation elements
   // in the order they should animate in
   if (a$1(node, classes$H.imageRight)) {
-    delayItems.push(selectors$1F.content);
-    delayItems.push(selectors$1F.image);
-    delayItems.push(selectors$1F.imageCaption);
+    delayItems.push(selectors$1E.content);
+    delayItems.push(selectors$1E.image);
+    delayItems.push(selectors$1E.imageCaption);
   } else {
-    delayItems.push(selectors$1F.image);
-    delayItems.push(selectors$1F.imageCaption);
-    delayItems.push(selectors$1F.content);
+    delayItems.push(selectors$1E.image);
+    delayItems.push(selectors$1E.imageCaption);
+    delayItems.push(selectors$1E.content);
   }
 
   // Add the animation delay offset variables
   delayOffset(node, delayItems, 2);
-  delayOffset(node, [selectors$1F.item]);
+  delayOffset(node, [selectors$1E.item]);
 });
 
-const selectors$1E = {
+const selectors$1D = {
   content: ".quote__item-inner > *"
 };
 var animateQuotes = (node => {
   // Add the animation delay offset variables
-  delayOffset(node, [selectors$1E.content]);
+  delayOffset(node, [selectors$1D.content]);
 });
 
-const selectors$1D = {
+const selectors$1C = {
   sectionBlockItems: ".animation--section-introduction > *",
   controls: ".animation--controls",
   items: ".animation--item"
 };
 var animateListSlider = (node => {
-  const delayItems = [selectors$1D.sectionBlockItems, selectors$1D.controls, selectors$1D.items];
+  const delayItems = [selectors$1C.sectionBlockItems, selectors$1C.controls, selectors$1C.items];
 
   // Add the animation delay offset variables
   delayOffset(node, delayItems);
@@ -2659,7 +2659,7 @@ var animateListSlider = (node => {
   };
 });
 
-const selectors$1C = {
+const selectors$1B = {
   introductionItems: ".section-introduction > *",
   media: ".complete-the-look__image-wrapper .image__img, .complete-the-look__image-wrapper .video",
   product: ".complete-the-look__product",
@@ -2670,18 +2670,18 @@ const classes$G = {
 };
 var animateCompleteTheLook = (node => {
   const delayItems = [];
-  delayItems.push(selectors$1C.introductionItems);
+  delayItems.push(selectors$1B.introductionItems);
 
   // Create an array of selectors for the animation elements
   // in the order they should animate in
   if (a$1(node, classes$G.imageLeft) || window.matchMedia(getMediaQuery("below-720")).matches) {
-    delayItems.push(selectors$1C.media);
-    delayItems.push(selectors$1C.products);
-    delayItems.push(selectors$1C.product);
+    delayItems.push(selectors$1B.media);
+    delayItems.push(selectors$1B.products);
+    delayItems.push(selectors$1B.product);
   } else {
-    delayItems.push(selectors$1C.products);
-    delayItems.push(selectors$1C.product);
-    delayItems.push(selectors$1C.media);
+    delayItems.push(selectors$1B.products);
+    delayItems.push(selectors$1B.product);
+    delayItems.push(selectors$1B.media);
   }
 
   // Add the animation delay offset variables
@@ -2694,34 +2694,14 @@ var animateCompleteTheLook = (node => {
   };
 });
 
-const selectors$1B = {
+const selectors$1A = {
   introductionItems: ".section-introduction > *",
   image: ".shoppable-image__image-wrapper .image__img",
   hotspots: ".shoppable-item__hotspot-wrapper"
 };
 var animateShoppableImage = (node => {
   // Add the animation delay offset variables
-  delayOffset(node, [selectors$1B.introductionItems, selectors$1B.image, selectors$1B.hotspots]);
-  const observer = intersectionWatcher(node);
-  return {
-    destroy() {
-      observer.destroy();
-    }
-  };
-});
-
-const selectors$1A = {
-  introductionItems: ".section-introduction > *",
-  carousel: ".shoppable-feature__secondary-content .shoppable-feature__carousel-outer",
-  hotspots: ".shoppable-item__hotspot-wrapper",
-  mobileDrawerItems: ".animation--shoppable-feature-mobile-drawer  .shoppable-feature__carousel-outer > *:not(.swiper-pagination)"
-};
-var animateShoppableFeature = (node => {
-  // Add the animation delay offset variables
-  delayOffset(node, [selectors$1A.introductionItems, selectors$1A.carousel], 1);
-  delayOffset(node, [selectors$1A.hotspots], 1);
-  // Add separate delay offsets for mobile drawer
-  delayOffset(node, [selectors$1A.mobileDrawerItems], 1);
+  delayOffset(node, [selectors$1A.introductionItems, selectors$1A.image, selectors$1A.hotspots]);
   const observer = intersectionWatcher(node);
   return {
     destroy() {
@@ -2731,19 +2711,39 @@ var animateShoppableFeature = (node => {
 });
 
 const selectors$1z = {
+  introductionItems: ".section-introduction > *",
+  carousel: ".shoppable-feature__secondary-content .shoppable-feature__carousel-outer",
+  hotspots: ".shoppable-item__hotspot-wrapper",
+  mobileDrawerItems: ".animation--shoppable-feature-mobile-drawer  .shoppable-feature__carousel-outer > *:not(.swiper-pagination)"
+};
+var animateShoppableFeature = (node => {
+  // Add the animation delay offset variables
+  delayOffset(node, [selectors$1z.introductionItems, selectors$1z.carousel], 1);
+  delayOffset(node, [selectors$1z.hotspots], 1);
+  // Add separate delay offsets for mobile drawer
+  delayOffset(node, [selectors$1z.mobileDrawerItems], 1);
+  const observer = intersectionWatcher(node);
+  return {
+    destroy() {
+      observer.destroy();
+    }
+  };
+});
+
+const selectors$1y = {
   textContent: ".image-hero-split-item__text-container-inner > *"
 };
 var animateImageHeroSplit = (node => {
   // Add the animation delay offset variables
-  delayOffset(node, [selectors$1z.textContent], 1);
+  delayOffset(node, [selectors$1y.textContent], 1);
 });
 
-const selectors$1y = {
+const selectors$1x = {
   textContent: ".image-hero__text-container-inner > *"
 };
 var animateImageHero = (node => {
   // Add the animation delay offset variables
-  delayOffset(node, [selectors$1y.textContent], 3);
+  delayOffset(node, [selectors$1x.textContent], 3);
   const observer = intersectionWatcher(node);
   return {
     destroy() {
@@ -2755,7 +2755,7 @@ var animateImageHero = (node => {
 const classes$F = {
   animation: "animation--image-compare"
 };
-const selectors$1x = {
+const selectors$1w = {
   introductionItems: ".animation--section-introduction > *",
   image: ".image_compare__image-wrapper .image__img",
   labels: ".image-compare__label-container",
@@ -2763,7 +2763,7 @@ const selectors$1x = {
   sliderButton: ".image-compare__slider-button"
 };
 var animateImageCompare = (node => {
-  delayOffset(node, [selectors$1x.introductionItems, selectors$1x.image, selectors$1x.labels, selectors$1x.sliderLine, selectors$1x.sliderButton]);
+  delayOffset(node, [selectors$1w.introductionItems, selectors$1w.image, selectors$1w.labels, selectors$1w.sliderLine, selectors$1w.sliderButton]);
   const margin = window.matchMedia(getMediaQuery("above-720")).matches ? 200 : 100;
   const threshold = Math.min(margin / node.offsetHeight, 0.5);
   const observer = new IntersectionObserver(_ref => {
@@ -2790,24 +2790,10 @@ var animateImageCompare = (node => {
   };
 });
 
-const selectors$1w = {
+const selectors$1v = {
   textContent: ".video__text-container > *"
 };
 var animateVideo = (node => {
-  // Add the animation delay offset variables
-  delayOffset(node, [selectors$1w.textContent], 3);
-  const observer = intersectionWatcher(node);
-  return {
-    destroy() {
-      observer === null || observer === void 0 ? void 0 : observer.destroy();
-    }
-  };
-});
-
-const selectors$1v = {
-  textContent: ".video-hero__text-container > *"
-};
-var animateVideoHero = (node => {
   // Add the animation delay offset variables
   delayOffset(node, [selectors$1v.textContent], 3);
   const observer = intersectionWatcher(node);
@@ -2819,14 +2805,28 @@ var animateVideoHero = (node => {
 });
 
 const selectors$1u = {
+  textContent: ".video-hero__text-container > *"
+};
+var animateVideoHero = (node => {
+  // Add the animation delay offset variables
+  delayOffset(node, [selectors$1u.textContent], 3);
+  const observer = intersectionWatcher(node);
+  return {
+    destroy() {
+      observer === null || observer === void 0 ? void 0 : observer.destroy();
+    }
+  };
+});
+
+const selectors$1t = {
   articleHeading: "\n    .article__image-container,\n    .article__header-inner > *\n  ",
   articleContent: ".article__content"
 };
 var animateArticle = (node => {
   // Add the animation delay offset variables
-  delayOffset(node, [selectors$1u.articleHeading, selectors$1u.articleContent]);
-  const articleHeading = t$2(selectors$1u.articleHeading, node);
-  const articleContent = n$2(selectors$1u.articleContent, node);
+  delayOffset(node, [selectors$1t.articleHeading, selectors$1t.articleContent]);
+  const articleHeading = t$2(selectors$1t.articleHeading, node);
+  const articleContent = n$2(selectors$1t.articleContent, node);
   const observers = articleHeading.map(item => intersectionWatcher(item));
   observers.push(intersectionWatcher(articleContent));
   return {
@@ -2836,13 +2836,13 @@ var animateArticle = (node => {
   };
 });
 
-const selectors$1t = {
+const selectors$1s = {
   image: ".collection-banner__image-container",
   content: ".collection-banner__text-container-inner > *"
 };
 var animateCollectionBanner = (node => {
   // Add the animation delay offset variables
-  delayOffset(node, [selectors$1t.image, selectors$1t.content]);
+  delayOffset(node, [selectors$1s.image, selectors$1s.content]);
   const observer = intersectionWatcher(node);
   return {
     destroy() {
@@ -2851,7 +2851,7 @@ var animateCollectionBanner = (node => {
   };
 });
 
-const selectors$1s = {
+const selectors$1r = {
   stickyHeader: ".header[data-enable-sticky-header='true']",
   partial: "[data-partial]",
   filterBar: "[data-filter-bar]",
@@ -2864,10 +2864,10 @@ const classes$E = {
   stickyFilterBar: "filter-bar--sticky"
 };
 var animateCollection = (node => {
-  const stickyHeader = n$2(selectors$1s.stickyHeader, document);
-  const partial = n$2(selectors$1s.partial, node);
-  const filterbarEl = n$2(selectors$1s.filterBar, node);
-  const mobileFilterBarEl = n$2(selectors$1s.mobileFilterBar, node);
+  const stickyHeader = n$2(selectors$1r.stickyHeader, document);
+  const partial = n$2(selectors$1r.partial, node);
+  const filterbarEl = n$2(selectors$1r.filterBar, node);
+  const mobileFilterBarEl = n$2(selectors$1r.mobileFilterBar, node);
   let filterbarObserver = null;
   if (filterbarEl) {
     filterbarObserver = intersectionWatcher(filterbarEl, true);
@@ -2878,8 +2878,8 @@ var animateCollection = (node => {
   }
   setupProductItem();
   function setupProductItem() {
-    let productItems = t$2(selectors$1s.productItems, node);
-    delayOffset(node, [selectors$1s.productItems]);
+    let productItems = t$2(selectors$1r.productItems, node);
+    delayOffset(node, [selectors$1r.productItems]);
     setTimeout(() => {
       u$1(productItems, classes$E.itemRevealed);
     }, 0);
@@ -2915,14 +2915,14 @@ var animateCollection = (node => {
   };
 });
 
-const selectors$1r = {
+const selectors$1q = {
   saleAmount: ".animation--sale-amount",
   sectionBlockItems: ".animation--section-blocks > *",
   saleItems: ".sale-promotion .sale-promotion__type,\n  .sale-promotion .sale-promotion__unit-currency,\n  .sale-promotion .sale-promotion__unit-percent,\n  .sale-promotion .sale-promotion__unit-off,\n  .sale-promotion .sale-promotion__amount,\n  .sale-promotion .sale-promotion__per-month,\n  .sale-promotion .sale-promotion__per-year,\n  .sale-promotion .sale-promotion__terms,\n  .sale-promotion .sales-banner__button"
 };
 var animateSalesBanner = (node => {
-  const leftColumnDelayItems = [selectors$1r.saleAmount, selectors$1r.saleItems];
-  const rightColumnDelayItems = [selectors$1r.sectionBlockItems];
+  const leftColumnDelayItems = [selectors$1q.saleAmount, selectors$1q.saleItems];
+  const rightColumnDelayItems = [selectors$1q.sectionBlockItems];
 
   // Add the animation delay offset variables
   delayOffset(node, leftColumnDelayItems);
@@ -2935,12 +2935,12 @@ var animateSalesBanner = (node => {
   };
 });
 
-const selectors$1q = {
+const selectors$1p = {
   sectionBlockItems: ".section-blocks > *"
 };
 var animateCountdownBanner = (node => {
   const observer = intersectionWatcher(node);
-  delayOffset(node, [selectors$1q.sectionBlockItems]);
+  delayOffset(node, [selectors$1p.sectionBlockItems]);
   return {
     destroy() {
       observer === null || observer === void 0 ? void 0 : observer.destroy();
@@ -2948,12 +2948,12 @@ var animateCountdownBanner = (node => {
   };
 });
 
-const selectors$1p = {
+const selectors$1o = {
   items: "\n  .sales-banner__bar-item--heading,\n  .sales-banner__bar-text,\n  .sales-banner__button,\n  .countdown-banner__bar-item--heading,\n  .countdown-banner__bar-item--timer,\n  .countdown-banner__bar-text,\n  .countdown-banner__button"
 };
 var animateCountdownBar = (node => {
   const observer = intersectionWatcher(node);
-  delayOffset(node, [selectors$1p.items]);
+  delayOffset(node, [selectors$1o.items]);
   return {
     destroy() {
       observer === null || observer === void 0 ? void 0 : observer.destroy();
@@ -2970,13 +2970,13 @@ var animatePromotionBar = (node => {
   };
 });
 
-const selectors$1o = {
+const selectors$1n = {
   headerItems: ".animation--blog-header > *",
   articleItem: ".article-item",
   pagination: ".blog__pagination"
 };
 var animateBlog = (node => {
-  delayOffset(node, [selectors$1o.headerItems, selectors$1o.articleItem, selectors$1o.pagination]);
+  delayOffset(node, [selectors$1n.headerItems, selectors$1n.articleItem, selectors$1n.pagination]);
   const observer = intersectionWatcher(node, true);
   return {
     destroy() {
@@ -2985,7 +2985,7 @@ var animateBlog = (node => {
   };
 });
 
-const selectors$1n = {
+const selectors$1m = {
   flyouts: "[data-filter-modal]",
   animationFilterDrawerItem: ".animation--filter-drawer-item"
 };
@@ -2994,12 +2994,12 @@ const classes$D = {
   animationFilterDrawerItem: "animation--filter-drawer-item"
 };
 var animateFilterDrawer = (node => {
-  const flyouts = t$2(selectors$1n.flyouts, node);
+  const flyouts = t$2(selectors$1m.flyouts, node);
   flyouts.forEach(_setupItemOffsets);
 
   // Set the position offset on each time to be animated
   function _setupItemOffsets(flyout) {
-    delayOffset(flyout, [selectors$1n.animationFilterDrawerItem]);
+    delayOffset(flyout, [selectors$1m.animationFilterDrawerItem]);
   }
 
   // Trigger the reveal animation when the drawer is opened
@@ -3017,7 +3017,7 @@ var animateFilterDrawer = (node => {
   };
 });
 
-const selectors$1m = {
+const selectors$1l = {
   sidebar: ".filter-sidebar-inner",
   sidebarItem: ".animation--filter-drawer-item"
 };
@@ -3025,10 +3025,10 @@ const classes$C = {
   animationRevealed: "animation--filter-sidebar-revealed"
 };
 var animateFilterSidebar = (node => {
-  const sidebar = n$2(selectors$1m.sidebar, node);
+  const sidebar = n$2(selectors$1l.sidebar, node);
 
   // Set the position offset on each time to be animated
-  delayOffset(sidebar, [selectors$1m.sidebarItem]);
+  delayOffset(sidebar, [selectors$1l.sidebarItem]);
 
   // Trigger the reveal animation when the drawer is opened
   function open(sidebar) {
@@ -3045,14 +3045,14 @@ var animateFilterSidebar = (node => {
   };
 });
 
-const selectors$1l = {
+const selectors$1k = {
   animationItem: ".animation--drawer-menu-item"
 };
 const classes$B = {
   animationRevealed: "animation--drawer-menu-revealed"
 };
 var animateDrawerMenu = (node => {
-  delayOffset(node, [selectors$1l.animationItem]);
+  delayOffset(node, [selectors$1k.animationItem]);
 
   // Trigger the reveal animation when the drawer is opened
   function open() {
@@ -3073,7 +3073,7 @@ var animateDrawerMenu = (node => {
   };
 });
 
-const selectors$1k = {
+const selectors$1j = {
   animationItem: ".animation--quick-cart-items > *, .animation--quick-cart-footer"
 };
 const classes$A = {
@@ -3094,7 +3094,7 @@ var animateQuickCart = (node => {
 
   // Setup delay offsets
   function setup() {
-    delayOffset(node, [selectors$1k.animationItem]);
+    delayOffset(node, [selectors$1j.animationItem]);
   }
   return {
     open,
@@ -3103,7 +3103,7 @@ var animateQuickCart = (node => {
   };
 });
 
-const selectors$1j = {
+const selectors$1i = {
   animationItems: ".animation--quick-view-items > *"
 };
 const classes$z = {
@@ -3112,7 +3112,7 @@ const classes$z = {
 var animateQuickView = (node => {
   function animate() {
     // Add the animation delay offset variables
-    delayOffset(node, [selectors$1j.animationItems]);
+    delayOffset(node, [selectors$1i.animationItems]);
 
     // Trigger the reveal animation when the quick view is opened.
     // We can't use the `.is-visible` class added in `quick-view-modal.js`
@@ -3130,7 +3130,7 @@ var animateQuickView = (node => {
   };
 });
 
-const selectors$1i = {
+const selectors$1h = {
   columns: ".meganav__list-parent > li",
   image: ".meganav__promo-image .image__img",
   overlay: ".meganav__secondary-promo-overlay",
@@ -3140,10 +3140,10 @@ const selectors$1i = {
 };
 var animateMeganav = (node => {
   const delayItems = [];
-  const columnItems = t$2(selectors$1i.columns, node);
-  if (a$1(node, selectors$1i.hasPromo)) {
-    delayOffset(node, [selectors$1i.image, selectors$1i.overlay, selectors$1i.promoItems]);
-    if (a$1(node, selectors$1i.promoLeft)) {
+  const columnItems = t$2(selectors$1h.columns, node);
+  if (a$1(node, selectors$1h.hasPromo)) {
+    delayOffset(node, [selectors$1h.image, selectors$1h.overlay, selectors$1h.promoItems]);
+    if (a$1(node, selectors$1h.promoLeft)) {
       // Set columnItem initial delay to i + 1 of previously delayed
       assignColumnDelays(columnItems, 4);
     } else {
@@ -3170,12 +3170,12 @@ var animateMeganav = (node => {
   }
 });
 
-const selectors$1h = {
+const selectors$1g = {
   heading: ".list-collections__heading",
   productItems: ".animation--item"
 };
 var animateListCollections = (node => {
-  delayOffset(node, [selectors$1h.heading, selectors$1h.productItems]);
+  delayOffset(node, [selectors$1g.heading, selectors$1g.productItems]);
   const observer = intersectionWatcher(node, true);
   return {
     destroy() {
@@ -3184,11 +3184,11 @@ var animateListCollections = (node => {
   };
 });
 
-const selectors$1g = {
+const selectors$1f = {
   gridItems: ".grid-item"
 };
 var animateGrid = (node => {
-  delayOffset(node, [selectors$1g.gridItems]);
+  delayOffset(node, [selectors$1f.gridItems]);
   const observer = intersectionWatcher(node);
   return {
     destroy() {
@@ -3197,7 +3197,7 @@ var animateGrid = (node => {
   };
 });
 
-const selectors$1f = {
+const selectors$1e = {
   animationItems: ".animation--purchase-confirmation-item",
   animationFooterItems: ".animation--purchase-confirmation-footer-item"
 };
@@ -3207,8 +3207,8 @@ const classes$y = {
 var animatePurchaseConfirmation = (node => {
   function animate() {
     // Add the animation delay offset variables
-    delayOffset(node, [selectors$1f.animationItems]);
-    delayOffset(node, [selectors$1f.animationFooterItems]);
+    delayOffset(node, [selectors$1e.animationItems]);
+    delayOffset(node, [selectors$1e.animationFooterItems]);
 
     // Trigger the reveal animation when the quick view is opened.
     setTimeout(() => {
@@ -3224,12 +3224,12 @@ var animatePurchaseConfirmation = (node => {
   };
 });
 
-const selectors$1e = {
+const selectors$1d = {
   pageItems: ".page-section__inner > *"
 };
 var animatePage = (node => {
   // Add the animation delay offset variables
-  delayOffset(node, [selectors$1e.pageItems]);
+  delayOffset(node, [selectors$1d.pageItems]);
   const observer = intersectionWatcher(node, true);
   return {
     destroy() {
@@ -3238,12 +3238,12 @@ var animatePage = (node => {
   };
 });
 
-const selectors$1d = {
+const selectors$1c = {
   items: ".collapsible-row-list__inner > *"
 };
 var animateCollapsibleRowList = (node => {
   // Add the animation delay offset variables
-  delayOffset(node, [selectors$1d.items]);
+  delayOffset(node, [selectors$1c.items]);
   const observer = intersectionWatcher(node);
   return {
     destroy() {
@@ -3252,25 +3252,11 @@ var animateCollapsibleRowList = (node => {
   };
 });
 
-const selectors$1c = {
+const selectors$1b = {
   items: ".animation--section-blocks > *"
 };
 var animateRichText = (node => {
-  delayOffset(node, [selectors$1c.items]);
-  const observer = intersectionWatcher(node, true);
-  return {
-    destroy() {
-      observer === null || observer === void 0 ? void 0 : observer.destroy();
-    }
-  };
-});
-
-const selectors$1b = {
-  headerItems: ".animation--section-introduction > *",
-  articleItem: ".article-item"
-};
-var animateBlogPosts = (node => {
-  delayOffset(node, [selectors$1b.headerItems, selectors$1b.articleItem]);
+  delayOffset(node, [selectors$1b.items]);
   const observer = intersectionWatcher(node, true);
   return {
     destroy() {
@@ -3280,12 +3266,12 @@ var animateBlogPosts = (node => {
 });
 
 const selectors$1a = {
-  intro: ".animation--section-introduction > *",
-  items: ".animation--item"
+  headerItems: ".animation--section-introduction > *",
+  articleItem: ".article-item"
 };
-var animateFeaturedCollectionGrid = (node => {
-  delayOffset(node, [selectors$1a.intro, selectors$1a.items]);
-  const observer = intersectionWatcher(node);
+var animateBlogPosts = (node => {
+  delayOffset(node, [selectors$1a.headerItems, selectors$1a.articleItem]);
+  const observer = intersectionWatcher(node, true);
   return {
     destroy() {
       observer === null || observer === void 0 ? void 0 : observer.destroy();
@@ -3294,11 +3280,11 @@ var animateFeaturedCollectionGrid = (node => {
 });
 
 const selectors$19 = {
-  productItems: ".animation--item",
-  introductionItems: ".animation--section-introduction > *"
+  intro: ".animation--section-introduction > *",
+  items: ".animation--item"
 };
-var animateCollectionListGrid = (node => {
-  delayOffset(node, [selectors$19.introductionItems, selectors$19.productItems]);
+var animateFeaturedCollectionGrid = (node => {
+  delayOffset(node, [selectors$19.intro, selectors$19.items]);
   const observer = intersectionWatcher(node);
   return {
     destroy() {
@@ -3308,6 +3294,20 @@ var animateCollectionListGrid = (node => {
 });
 
 const selectors$18 = {
+  productItems: ".animation--item",
+  introductionItems: ".animation--section-introduction > *"
+};
+var animateCollectionListGrid = (node => {
+  delayOffset(node, [selectors$18.introductionItems, selectors$18.productItems]);
+  const observer = intersectionWatcher(node);
+  return {
+    destroy() {
+      observer === null || observer === void 0 ? void 0 : observer.destroy();
+    }
+  };
+});
+
+const selectors$17 = {
   animationItems: ".animation--store-availability-drawer-items > *"
 };
 const classes$x = {
@@ -3316,7 +3316,7 @@ const classes$x = {
 var animateStoreAvailabilityDrawer = (node => {
   function animate() {
     // Set the position offset on each time to be animated
-    const items = t$2(selectors$18.animationItems, node);
+    const items = t$2(selectors$17.animationItems, node);
     items.forEach((item, i) => {
       item.style.setProperty("--position-offset-multiplier", i);
     });
@@ -3337,26 +3337,12 @@ var animateStoreAvailabilityDrawer = (node => {
   };
 });
 
-const selectors$17 = {
+const selectors$16 = {
   media: ".animation--product-media"
 };
 var animateProduct = (node => {
   // Add the animation delay offset variables
-  delayOffset(node, [selectors$17.media]);
-  const observer = intersectionWatcher(node, true);
-  return {
-    destroy() {
-      observer === null || observer === void 0 ? void 0 : observer.destroy();
-    }
-  };
-});
-
-const selectors$16 = {
-  headerItems: ".animation--section-introduction > *",
-  animationItem: ".animation--item"
-};
-var animateContactForm = (node => {
-  delayOffset(node, [selectors$16.headerItems, selectors$16.animationItem]);
+  delayOffset(node, [selectors$16.media]);
   const observer = intersectionWatcher(node, true);
   return {
     destroy() {
@@ -3366,6 +3352,20 @@ var animateContactForm = (node => {
 });
 
 const selectors$15 = {
+  headerItems: ".animation--section-introduction > *",
+  animationItem: ".animation--item"
+};
+var animateContactForm = (node => {
+  delayOffset(node, [selectors$15.headerItems, selectors$15.animationItem]);
+  const observer = intersectionWatcher(node, true);
+  return {
+    destroy() {
+      observer === null || observer === void 0 ? void 0 : observer.destroy();
+    }
+  };
+});
+
+const selectors$14 = {
   partial: "[data-partial]",
   filterBar: "[data-filter-bar]",
   mobileFilterBar: "[data-mobile-filters]",
@@ -3376,9 +3376,9 @@ const classes$w = {
   itemRevealed: "animation--item-revealed"
 };
 var animateSearch = (node => {
-  const partial = n$2(selectors$15.partial, node);
-  const filterbarEl = n$2(selectors$15.filterBar, node);
-  const mobileFilterBarEl = n$2(selectors$15.mobileFilterBar, node);
+  const partial = n$2(selectors$14.partial, node);
+  const filterbarEl = n$2(selectors$14.filterBar, node);
+  const mobileFilterBarEl = n$2(selectors$14.mobileFilterBar, node);
   let filterbarObserver = null;
   if (filterbarEl) {
     filterbarObserver = intersectionWatcher(filterbarEl, true);
@@ -3389,8 +3389,8 @@ var animateSearch = (node => {
   }
   _setupProductItem();
   function _setupProductItem() {
-    let productItems = t$2(selectors$15.productItems, node);
-    delayOffset(node, [selectors$15.productItems]);
+    let productItems = t$2(selectors$14.productItems, node);
+    delayOffset(node, [selectors$14.productItems]);
     setTimeout(() => {
       u$1(productItems, classes$w.itemRevealed);
     }, 0);
@@ -3425,12 +3425,12 @@ var animateSearch = (node => {
   };
 });
 
-const selectors$14 = {
+const selectors$13 = {
   content: ".animation--section-blocks > *"
 };
 var animateSearchBanner = (node => {
   // Add the animation delay offset variables
-  delayOffset(node, [selectors$14.content]);
+  delayOffset(node, [selectors$13.content]);
   const observer = intersectionWatcher(node);
   return {
     destroy() {
@@ -3439,12 +3439,12 @@ var animateSearchBanner = (node => {
   };
 });
 
-const selectors$13 = {
+const selectors$12 = {
   headerItems: ".animation--section-introduction > *",
   columnItems: ".multi-column__grid-item"
 };
 var animateMultiColumn = (node => {
-  delayOffset(node, [selectors$13.headerItems, selectors$13.columnItems]);
+  delayOffset(node, [selectors$12.headerItems, selectors$12.columnItems]);
   const observer = intersectionWatcher(node);
   return {
     destroy() {
@@ -3453,12 +3453,12 @@ var animateMultiColumn = (node => {
   };
 });
 
-const selectors$12 = {
+const selectors$11 = {
   textContent: ".password__text-container-inner > *"
 };
 var animatePassword = (node => {
   // Add the animation delay offset variables
-  delayOffset(node, [selectors$12.textContent], 3);
+  delayOffset(node, [selectors$11.textContent], 3);
   const observer = intersectionWatcher(node);
   return {
     destroy() {
@@ -3467,14 +3467,14 @@ var animatePassword = (node => {
   };
 });
 
-const selectors$11 = {
+const selectors$10 = {
   animationItem: ".animation--popup-item"
 };
 const classes$v = {
   animationRevealed: "animation--popup-revealed"
 };
 var animatePopup = (node => {
-  delayOffset(node, [selectors$11.animationItem]);
+  delayOffset(node, [selectors$10.animationItem]);
 
   // Trigger the reveal animation when the drawer is opened
   function open() {
@@ -3495,23 +3495,10 @@ var animatePopup = (node => {
   };
 });
 
-const selectors$10 = {
-  items: ".animation--section-blocks > *"
-};
-var animateNewsletter = (node => {
-  delayOffset(node, [selectors$10.items]);
-  const observer = intersectionWatcher(node, true);
-  return {
-    destroy() {
-      observer === null || observer === void 0 ? void 0 : observer.destroy();
-    }
-  };
-});
-
 const selectors$$ = {
   items: ".animation--section-blocks > *"
 };
-var animateNewsletterCompact = (node => {
+var animateNewsletter = (node => {
   delayOffset(node, [selectors$$.items]);
   const observer = intersectionWatcher(node, true);
   return {
@@ -3522,14 +3509,27 @@ var animateNewsletterCompact = (node => {
 });
 
 const selectors$_ = {
+  items: ".animation--section-blocks > *"
+};
+var animateNewsletterCompact = (node => {
+  delayOffset(node, [selectors$_.items]);
+  const observer = intersectionWatcher(node, true);
+  return {
+    destroy() {
+      observer === null || observer === void 0 ? void 0 : observer.destroy();
+    }
+  };
+});
+
+const selectors$Z = {
   headerItems: ".animation--section-introduction > *",
   eventItems: ".event-item"
 };
 var animateEvents = (node => {
-  delayOffset(node, [selectors$_.headerItems]);
+  delayOffset(node, [selectors$Z.headerItems]);
   const observer = intersectionWatcher(node, true);
   function animateEventItems() {
-    delayOffset(node, [selectors$_.eventItems]);
+    delayOffset(node, [selectors$Z.eventItems]);
     setTimeout(() => {
       u$1(node, "animate-event-items");
     }, 50);
@@ -3542,30 +3542,13 @@ var animateEvents = (node => {
   };
 });
 
-const selectors$Z = {
+const selectors$Y = {
   giantHeading: ".animation--giant-heading",
   sectionBlockItems: ".animation--section-blocks > *"
 };
 var animatePromoBanner = (node => {
   // Add the animation delay offset variables
-  delayOffset(node, [selectors$Z.giantHeading, selectors$Z.sectionBlockItems]);
-  const observer = intersectionWatcher(node);
-  return {
-    destroy() {
-      observer === null || observer === void 0 ? void 0 : observer.destroy();
-    }
-  };
-});
-
-const selectors$Y = {
-  controls: ".product-tabs__tab-buttons",
-  items: ".product-tabs__tab-list-wrapper",
-  accordionItems: ".accordion"
-};
-var animateProductTabs = (node => {
-  // Add the animation delay offset variables
-  delayOffset(node, [selectors$Y.controls, selectors$Y.items]);
-  delayOffset(node, [selectors$Y.accordionItems]);
+  delayOffset(node, [selectors$Y.giantHeading, selectors$Y.sectionBlockItems]);
   const observer = intersectionWatcher(node);
   return {
     destroy() {
@@ -3575,11 +3558,28 @@ var animateProductTabs = (node => {
 });
 
 const selectors$X = {
+  controls: ".product-tabs__tab-buttons",
+  items: ".product-tabs__tab-list-wrapper",
+  accordionItems: ".accordion"
+};
+var animateProductTabs = (node => {
+  // Add the animation delay offset variables
+  delayOffset(node, [selectors$X.controls, selectors$X.items]);
+  delayOffset(node, [selectors$X.accordionItems]);
+  const observer = intersectionWatcher(node);
+  return {
+    destroy() {
+      observer === null || observer === void 0 ? void 0 : observer.destroy();
+    }
+  };
+});
+
+const selectors$W = {
   intro: ".animation--section-introduction > *",
   items: ".animation--item"
 };
 var animateApps = (node => {
-  delayOffset(node, [selectors$X.intro, selectors$X.items]);
+  delayOffset(node, [selectors$W.intro, selectors$W.items]);
   const observer = intersectionWatcher(node);
   return {
     destroy() {
@@ -3609,7 +3609,7 @@ function makeRequest(method, url) {
 const classes$u = {
   active: "active"
 };
-const selectors$W = {
+const selectors$V = {
   drawerTrigger: "[data-store-availability-drawer-trigger]",
   closeBtn: "[data-store-availability-close]",
   productTitle: "[data-store-availability-product-title]",
@@ -3623,15 +3623,15 @@ const storeAvailabilityDrawer = node => {
   var focusTrap = createFocusTrap(node, {
     allowOutsideClick: true
   });
-  const wash = n$2(selectors$W.wash, node.parentNode);
-  const productTitleContainer = n$2(selectors$W.productTitle);
-  const variantTitleContainer = n$2(selectors$W.variantTitle);
-  const storeListContainer = n$2(selectors$W.storeListContainer, node);
+  const wash = n$2(selectors$V.wash, node.parentNode);
+  const productTitleContainer = n$2(selectors$V.productTitle);
+  const variantTitleContainer = n$2(selectors$V.variantTitle);
+  const storeListContainer = n$2(selectors$V.storeListContainer, node);
   let storeAvailabilityDrawerAnimate = null;
   if (shouldAnimate(node)) {
     storeAvailabilityDrawerAnimate = animateStoreAvailabilityDrawer(node);
   }
-  const events = [e$2([n$2(selectors$W.closeBtn, node), wash], "click", e => {
+  const events = [e$2([n$2(selectors$V.closeBtn, node), wash], "click", e => {
     e.preventDefault();
     _close();
   }), e$2(node, "keydown", _ref => {
@@ -3641,7 +3641,7 @@ const storeAvailabilityDrawer = node => {
     if (keyCode === 27) _close();
   })];
   const _handleClick = target => {
-    const parentContainer = target.closest(selectors$W.parentWrapper);
+    const parentContainer = target.closest(selectors$V.parentWrapper);
     const {
       baseUrl,
       variantId,
@@ -3655,7 +3655,7 @@ const storeAvailabilityDrawer = node => {
       productTitleContainer.innerText = productTitle;
       // Shopify returns string null on variant titles for products without varians
       variantTitleContainer.innerText = variantTitle === "null" ? "" : variantTitle;
-      const storeList = n$2(selectors$W.storeListContent, container);
+      const storeList = n$2(selectors$V.storeListContent, container);
       storeListContainer.innerHTML = "";
       storeListContainer.appendChild(storeList);
     }).then(_open);
@@ -3693,7 +3693,7 @@ const storeAvailabilityDrawer = node => {
     }, 500);
   };
   const delegate = new Delegate(document.body);
-  delegate.on("click", selectors$W.drawerTrigger, (_, target) => _handleClick(target));
+  delegate.on("click", selectors$V.drawerTrigger, (_, target) => _handleClick(target));
   const unload = () => {
     events.forEach(unsubscribe => unsubscribe());
   };
@@ -3948,19 +3948,19 @@ function getUrlWithVariant(url, id) {
   return url.concat('?variant=').concat(id);
 }
 
-const selectors$V = {
+const selectors$U = {
   sentinal: ".scroll-sentinal",
   scrollButtons: ".scroll-button",
   scrollViewport: "[data-scroll-container-viewport]"
 };
 const scrollContainer = node => {
-  const sentinals = t$2(selectors$V.sentinal, node);
-  const buttons = t$2(selectors$V.scrollButtons, node);
+  const sentinals = t$2(selectors$U.sentinal, node);
+  const buttons = t$2(selectors$U.scrollButtons, node);
   const {
     axis,
     startAtEnd
   } = node.dataset;
-  const scrollerViewport = n$2(selectors$V.scrollViewport, node);
+  const scrollerViewport = n$2(selectors$U.scrollViewport, node);
   window.addEventListener("load", () => {
     u$1(node, "scroll-container-initialized");
     if (startAtEnd === "true") {
@@ -4155,6 +4155,7 @@ function setStorage(key, val) {
   return true;
 }
 
+var _window$flu$states$3;
 const routes = window.theme.routes.cart || {};
 const paths = {
   base: "".concat(routes.base || "/cart", ".js"),
@@ -4168,6 +4169,7 @@ const {
     cart: strings$6
   }
 } = window.theme;
+const useCustomEvents$3 = (_window$flu$states$3 = window.flu.states) === null || _window$flu$states$3 === void 0 ? void 0 : _window$flu$states$3.useCustomEvents;
 
 // Add a `sorted` key that orders line items
 // in the order the customer added them if possible
@@ -4219,6 +4221,11 @@ function changeItem(line, itemKey, quantity) {
       cart
     });
     r$1("quick-cart:updated");
+    if (useCustomEvents$3) {
+      dispatchCustomEvent("cart:updated", {
+        cart
+      });
+    }
     return sortCart(cart);
   });
 }
@@ -4250,6 +4257,11 @@ function addItemById(id, quantity) {
       r$1("cart:updated", {
         cart
       });
+      if (useCustomEvents$3) {
+        dispatchCustomEvent("cart:updated", {
+          cart: sortCart(cart)
+        });
+      }
       return {
         res,
         cart
@@ -4293,9 +4305,11 @@ function addItem(form) {
       });
       r$1("quick-cart:updated");
       r$1("quick-view:close");
-      dispatchCustomEvent("cart:updated", {
-        cart: sortCart(cart)
-      });
+      if (useCustomEvents$3) {
+        dispatchCustomEvent("cart:updated", {
+          cart: sortCart(cart)
+        });
+      }
       return {
         item: res,
         cart: sortCart(cart)
@@ -4304,9 +4318,11 @@ function addItem(form) {
   });
 }
 function handleError(error, source, itemKeyOrId) {
-  dispatchCustomEvent("cart:error", {
-    errorMessage: error.message
-  });
+  if (useCustomEvents$3) {
+    dispatchCustomEvent("cart:error", {
+      errorMessage: error.message
+    });
+  }
   if (source === "changeItem") {
     r$1("quick-cart:error", null, {
       key: itemKeyOrId,
@@ -4898,7 +4914,7 @@ function Media(node) {
   };
 }
 
-const selectors$U = {
+const selectors$T = {
   idInput: '[name="id"]',
   optionInput: '[name^="options"]',
   quantityInput: "[data-quantity-input]",
@@ -4944,7 +4960,7 @@ function ProductForm(container, form, prod) {
     };
   };
   const setIdInputValue = value => {
-    let idInputElement = form.querySelector(selectors$U.idInput);
+    let idInputElement = form.querySelector(selectors$T.idInput);
     if (!idInputElement) {
       idInputElement = document.createElement("input");
       idInputElement.type = "hidden";
@@ -4968,9 +4984,9 @@ function ProductForm(container, form, prod) {
     });
   };
   listeners.push(e$2(form, "submit", onSubmit));
-  const optionInputs = initInputs(selectors$U.optionInput, config.onOptionChange);
-  const formQuantityInput = initInputs(selectors$U.quantityInput, config.onQuantityChange);
-  const propertyInputs = initInputs(selectors$U.propertyInput, config.onPropertyChange);
+  const optionInputs = initInputs(selectors$T.optionInput, config.onOptionChange);
+  const formQuantityInput = initInputs(selectors$T.quantityInput, config.onQuantityChange);
+  const propertyInputs = initInputs(selectors$T.propertyInput, config.onPropertyChange);
   const destroy = () => {
     listeners.forEach(unsubscribe => unsubscribe());
   };
@@ -5019,7 +5035,7 @@ var preventDefault = (fn => e => {
   fn();
 });
 
-const selectors$T = {
+const selectors$S = {
   imageById: id => "[data-media-item-id='".concat(id, "']"),
   imageWrapper: "[data-product-media-wrapper]",
   inYourSpace: "[data-in-your-space]"
@@ -5028,8 +5044,8 @@ const classes$r = {
   hidden: "hidden"
 };
 function switchImage (container, imageId, inYourSpaceButton) {
-  const newImage = n$2(selectors$T.imageWrapper + selectors$T.imageById(imageId), container);
-  const otherImages = t$2("".concat(selectors$T.imageWrapper, ":not(").concat(selectors$T.imageById(imageId), ")"), container);
+  const newImage = n$2(selectors$S.imageWrapper + selectors$S.imageById(imageId), container);
+  const otherImages = t$2("".concat(selectors$S.imageWrapper, ":not(").concat(selectors$S.imageById(imageId), ")"), container);
   newImage && i$1(newImage, classes$r.hidden);
 
   // Update view in space button
@@ -5079,12 +5095,12 @@ function quantityInput (container) {
   };
 }
 
-const selectors$S = {
+const selectors$R = {
   popupTrigger: "[data-popup-trigger]"
 };
 const informationPopup = node => {
   const events = [];
-  const popupTriggers = t$2(selectors$S.popupTrigger, node);
+  const popupTriggers = t$2(selectors$R.popupTrigger, node);
   if (!popupTriggers.length) {
     return;
   }
@@ -5108,7 +5124,7 @@ const informationPopup = node => {
   };
 };
 
-const selectors$R = {
+const selectors$Q = {
   moreButton: "[data-more-media]",
   moreBar: "[data-more-media-bar]",
   productMedia: "[data-product-media]"
@@ -5121,10 +5137,10 @@ const states = {
 };
 const moreMedia = node => {
   if (!node) return;
-  const moreButton = n$2(selectors$R.moreButton, node);
+  const moreButton = n$2(selectors$Q.moreButton, node);
   if (!moreButton) return;
-  const moreBar = n$2(selectors$R.moreBar, node);
-  const productMedia = n$2(selectors$R.productMedia, node);
+  const moreBar = n$2(selectors$Q.moreBar, node);
+  const productMedia = n$2(selectors$Q.productMedia, node);
   const initialAR = parseFloat(window.getComputedStyle(productMedia).aspectRatio);
   let isOpen = false;
   const updateText = open => {
@@ -5191,8 +5207,7 @@ const moreMedia = node => {
   const clickListener = e$2(moreButton, "click", () => {
     isOpen ? close() : open();
   });
-  const resizeListener = e$2(window, "resize", () => close());
-  const events = [clickListener, resizeListener];
+  const events = [clickListener];
   const unload = () => {
     events.forEach(evt => evt());
   };
@@ -5206,44 +5221,70 @@ const {
     products: strings$5
   }
 } = window.theme;
-const selectors$Q = {
+const selectors$P = {
   price: "[data-price]",
   comparePrice: "[data-compare-price]",
-  priceContainer: ".product__price-and-ratings"
+  defaultProductContainer: ".product__top",
+  quickProductContainer: ".quick-product"
 };
-function updatePrices (container, variant) {
-  const price = t$2(selectors$Q.price, container);
-  const comparePrice = t$2(selectors$Q.comparePrice, container);
+function updatePrices (container, variant, productTemplate) {
+  const price = t$2(selectors$P.price, container);
+  const comparePrice = t$2(selectors$P.comparePrice, container);
   const unavailableString = strings$5.product.unavailable;
   if (!variant) {
     price.forEach(el => el.innerHTML = unavailableString);
     comparePrice.forEach(el => el.innerHTML = "");
     return;
   }
-  const priceContainer = n$2(selectors$Q.priceContainer, container);
+  const defaultProdContainer = n$2(selectors$P.defaultProductContainer, container);
+  const quickProdContainer = n$2(selectors$P.quickProductContainer, document);
+  let productContainer;
+  if (productTemplate) {
+    productContainer = defaultProdContainer;
+  } else {
+    productContainer = quickProdContainer;
+  }
   const {
     zeroPriceDisplay,
-    customPriceContent
-  } = priceContainer.dataset;
-  let showPrice = true;
+    zeroPriceCustomContent,
+    soldOutPriceDisplay,
+    soldOutPriceCustomContent
+  } = productContainer.dataset;
+  let priceContentType = "price";
   let priceContent = formatMoney(variant.price);
-  if (variant.compare_at_price === null) {
-    if (variant.price === 0) {
+  if (variant.available) {
+    if (variant.compare_at_price === null && variant.price === 0) {
       if (zeroPriceDisplay === "hide") {
-        showPrice = false;
+        priceContentType = "hide";
+        priceContent = "";
       } else {
         if (zeroPriceDisplay === "replace") {
-          priceContent = customPriceContent;
+          priceContentType = "custom";
+          priceContent = zeroPriceCustomContent;
         }
       }
     }
+  } else {
+    if (soldOutPriceDisplay === "hide") {
+      priceContentType = "hide";
+      priceContent = "";
+    } else {
+      if (soldOutPriceDisplay === "replace") {
+        priceContentType = "custom";
+        priceContent = soldOutPriceCustomContent;
+      }
+    }
   }
-  priceContainer.setAttribute("data-show-price", showPrice);
+  if (productTemplate) {
+    defaultProdContainer.setAttribute("data-price-display-type", priceContentType);
+  } else {
+    quickProdContainer.setAttribute("data-price-display-type", priceContentType);
+  }
   price.forEach(el => el.innerHTML = priceContent);
-  comparePrice.forEach(el => el.innerHTML = variant.compare_at_price > variant.price ? formatMoney(variant.compare_at_price) : "");
+  comparePrice.forEach(el => el.innerHTML = variant.compare_at_price > variant.price && priceContentType === "price" ? formatMoney(variant.compare_at_price) : "");
 }
 
-const selectors$P = {
+const selectors$O = {
   productSku: "[data-product-sku]",
   productSkuContainer: ".product__vendor_and_sku"
 };
@@ -5253,8 +5294,8 @@ const {
   }
 } = window.theme;
 function updateSku (container, variant) {
-  const skuElement = n$2(selectors$P.productSku, container);
-  const skuContainer = n$2(selectors$P.productSkuContainer, container);
+  const skuElement = n$2(selectors$O.productSku, container);
+  const skuContainer = n$2(selectors$O.productSkuContainer, container);
   if (!skuElement) return;
   const {
     sku
@@ -5288,7 +5329,7 @@ function updateBuyButton (btn, variant) {
   }
 }
 
-const selectors$O = {
+const selectors$N = {
   accordionShell: ".accordion.product-reviews",
   accordionContent: ".accordion__content"
 };
@@ -5299,8 +5340,8 @@ const classes$q = {
 function reviewsHandler (node, container) {
   if (!node) return;
   const parentAppBlockContainer = node.parentNode;
-  const accordion = n$2(selectors$O.accordionShell, container);
-  const accordionContent = n$2(selectors$O.accordionContent, accordion);
+  const accordion = n$2(selectors$N.accordionShell, container);
+  const accordionContent = n$2(selectors$N.accordionContent, accordion);
 
   // Move the contents of the reviews app into the accordion shell
   // Then move the contents with the accrdion back into the original
@@ -5340,7 +5381,7 @@ function createOptionGroup(el) {
   return () => buttonClick();
 }
 
-const selectors$N = {
+const selectors$M = {
   counterContainer: "[data-inventory-counter]",
   inventoryMessage: ".inventory-counter__message",
   countdownBar: ".inventory-counter__bar",
@@ -5354,9 +5395,9 @@ const classes$p = {
 };
 const inventoryCounter = (container, config) => {
   const variantsInventories = config.variantsInventories;
-  const counterContainer = n$2(selectors$N.counterContainer, container);
-  const inventoryMessageElement = n$2(selectors$N.inventoryMessage, container);
-  const progressBar = n$2(selectors$N.progressBar, container);
+  const counterContainer = n$2(selectors$M.counterContainer, container);
+  const inventoryMessageElement = n$2(selectors$M.inventoryMessage, container);
+  const progressBar = n$2(selectors$M.progressBar, container);
   const {
     lowInventoryThreshold,
     showUntrackedQuantity,
@@ -5434,19 +5475,19 @@ const inventoryCounter = (container, config) => {
   };
 };
 
-const selectors$M = {
+const selectors$L = {
   item: ".product-item",
   itemInner: ".product-item__inner",
   quickViewButton: ".show-product-quickview"
 };
 function ProductItem(container) {
-  const items = t$2(selectors$M.item, container);
+  const items = t$2(selectors$L.item, container);
   if (!items.length) return;
 
   // Add z-index for quick-buy overlap
   items.forEach((item, i) => item.style.setProperty("--z-index-item", items.length - i));
   const productItemAnimations = AnimateProductItem(items);
-  const quickViewButtons = t$2(selectors$M.quickViewButton, container);
+  const quickViewButtons = t$2(selectors$L.quickViewButton, container);
   const events = [e$2(quickViewButtons, "click", e => {
     e.preventDefault();
     e.stopPropagation();
@@ -5465,7 +5506,7 @@ function ProductItem(container) {
   };
 }
 
-const selectors$L = {
+const selectors$K = {
   sliderContainer: ".swiper",
   visibleSlides: ".swiper-slide-visible"
 };
@@ -5476,7 +5517,7 @@ const classes$o = {
 var Carousel = (function (node) {
   let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   // Pass the swiper container or the contain section
-  const swiperContainer = a$1(node, classes$o.carousel) ? node : n$2(selectors$L.sliderContainer, node);
+  const swiperContainer = a$1(node, classes$o.carousel) ? node : n$2(selectors$K.sliderContainer, node);
   if (!swiperContainer) return;
   let carousel;
   const events = [];
@@ -5503,7 +5544,7 @@ var Carousel = (function (node) {
     // Allow breakpoints config settings to apply
     setTimeout(() => {
       const hasOverflow = a$1(swiperContainer, classes$o.overflow);
-      const needsOverflow = t$2(selectors$L.visibleSlides, swiperContainer).length !== slides.length;
+      const needsOverflow = t$2(selectors$K.visibleSlides, swiperContainer).length !== slides.length;
       if (!hasOverflow && needsOverflow) {
         u$1(swiperContainer, classes$o.overflow);
       } else if (hasOverflow && !needsOverflow) {
@@ -5561,14 +5602,14 @@ var Carousel = (function (node) {
   };
 });
 
-const selectors$K = {
+const selectors$J = {
   wrappingContainer: ".product__block-featured-products",
   featuredProducts: "[data-featured-products]",
   featuredProductsContent: "[data-featured-products-content]",
   leftSideMobileFeaturedProducts: ".left-side-blocks.for-mobile [data-featured-products]"
 };
 const featuredProducts = node => {
-  const featuredProducts = t$2(selectors$K.featuredProducts, node);
+  const featuredProducts = t$2(selectors$J.featuredProducts, node);
   if (!featuredProducts.length) return;
   let productItems;
   let mobileSwiper;
@@ -5584,7 +5625,7 @@ const featuredProducts = node => {
     handleRecommendedProducts();
   } else {
     // Merchant is using custom product list
-    productItems = featuredProducts.forEach(productContainer => ProductItem(productContainer));
+    productItems = featuredProducts.map(productContainer => ProductItem(productContainer));
     handleMobileSwiper();
   }
   function handleRecommendedProducts() {
@@ -5592,14 +5633,14 @@ const featuredProducts = node => {
     fetch(requestUrl).then(response => response.text()).then(text => {
       const html = document.createElement("div");
       html.innerHTML = text;
-      const recommendations = n$2(selectors$K.featuredProductsContent, html);
+      const recommendations = n$2(selectors$J.featuredProductsContent, html);
       if (recommendations && recommendations.innerHTML.trim().length) {
         featuredProducts.forEach(block => block.innerHTML = recommendations.innerHTML);
         productItems = featuredProducts.map(productContainer => ProductItem(productContainer));
 
         // Remove hidden flag as content has been fetched
         featuredProducts.forEach(block => {
-          i$1(block.closest(selectors$K.wrappingContainer), "hidden");
+          i$1(block.closest(selectors$J.wrappingContainer), "hidden");
         });
         handleMobileSwiper();
       }
@@ -5613,7 +5654,7 @@ const featuredProducts = node => {
     // ordering with right column blocks on mobile. Here we
     // target the mobile left version if it exists as it requires
     // the potential mobile swiper only.
-    mobileFeaturedProducts = n$2(selectors$K.leftSideMobileFeaturedProducts, node) || n$2(selectors$K.featuredProducts, node);
+    mobileFeaturedProducts = n$2(selectors$J.leftSideMobileFeaturedProducts, node) || n$2(selectors$J.featuredProducts, node);
     if (window.matchMedia(getMediaQuery("below-720")).matches) {
       _initMobileSwiper();
     }
@@ -5645,14 +5686,14 @@ const featuredProducts = node => {
 const classes$n = {
   disabled: "disabled"
 };
-const selectors$J = {
+const selectors$I = {
   variantsWrapper: ".product__variants-wrapper",
   variantsJson: "[data-variant-json]",
   input: ".dynamic-variant-input",
   inputWrap: ".dynamic-variant-input-wrap",
-  inputWrapWithValue: option => "".concat(selectors$J.inputWrap, "[data-index=\"").concat(option, "\"]"),
+  inputWrapWithValue: option => "".concat(selectors$I.inputWrap, "[data-index=\"").concat(option, "\"]"),
   buttonWrap: ".dynamic-variant-button",
-  buttonWrapWithValue: value => "".concat(selectors$J.buttonWrap, "[data-option-value=\"").concat(value, "\"]")
+  buttonWrapWithValue: value => "".concat(selectors$I.buttonWrap, "[data-option-value=\"").concat(value, "\"]")
 };
 
 /**
@@ -5667,7 +5708,7 @@ const selectors$J = {
   * @returns {unload} remove event listeners
  */
 function variantAvailability (container) {
-  const variantsWrapper = n$2(selectors$J.variantsWrapper, container);
+  const variantsWrapper = n$2(selectors$I.variantsWrapper, container);
 
   // Variant options block do not exist
   if (!variantsWrapper) return;
@@ -5676,11 +5717,11 @@ function variantAvailability (container) {
     currentVariantId
   } = variantsWrapper.dataset;
   if (enableDynamicProductOptions === "false") return;
-  const productVariants = JSON.parse(n$2(selectors$J.variantsJson, container).innerText);
+  const productVariants = JSON.parse(n$2(selectors$I.variantsJson, container).innerText);
 
   // Using associated selects as buy buttons may be disabled.
-  const variantSelectors = t$2(selectors$J.input, container);
-  const variantSelectorWrappers = t$2(selectors$J.inputWrap, container);
+  const variantSelectors = t$2(selectors$I.input, container);
+  const variantSelectorWrappers = t$2(selectors$I.inputWrap, container);
   const events = [];
   init();
   function init() {
@@ -5780,7 +5821,7 @@ function variantAvailability (container) {
     }
   }
   function manageOptionState(option, values) {
-    const group = n$2(selectors$J.inputWrapWithValue(option), container);
+    const group = n$2(selectors$I.inputWrapWithValue(option), container);
 
     // Loop through each option value
     values.forEach(obj => {
@@ -5793,7 +5834,7 @@ function variantAvailability (container) {
 
     // Do nothing if the option is a select dropdown
     if (a$1(group, "select-wrapper")) return;
-    const button = n$2(selectors$J.buttonWrapWithValue(value), group);
+    const button = n$2(selectors$I.buttonWrapWithValue(value), group);
     // Variant exists - enable & show variant
     i$1(button, classes$n.disabled);
     // Variant sold out - cross out option (remains selectable)
@@ -5803,7 +5844,7 @@ function variantAvailability (container) {
   }
   function disableVariantGroup(group) {
     if (a$1(group, "select-wrapper")) return;
-    t$2(selectors$J.buttonWrap, group).forEach(button => u$1(button, classes$n.disabled));
+    t$2(selectors$I.buttonWrap, group).forEach(button => u$1(button, classes$n.disabled));
   }
   function escapeQuotes(str) {
     const escapeMap = {
@@ -5820,16 +5861,16 @@ function variantAvailability (container) {
   };
 }
 
-const selectors$I = {
+const selectors$H = {
   siblingProducts: "[data-sibling-products]",
   siblingSwatch: "[data-sibling-swatch]",
   siblingLabelEl: "[data-sibling-label-value]"
 };
 function siblingProducts (container) {
-  const siblingProducts = n$2(selectors$I.siblingProducts, container);
+  const siblingProducts = n$2(selectors$H.siblingProducts, container);
   if (!siblingProducts) return;
-  const siblingSwatches = t$2(selectors$I.siblingSwatch, siblingProducts);
-  const labelValueEl = n$2(selectors$I.siblingLabelEl, siblingProducts);
+  const siblingSwatches = t$2(selectors$H.siblingSwatch, siblingProducts);
+  const labelValueEl = n$2(selectors$H.siblingLabelEl, siblingProducts);
   const baseLabel = labelValueEl.innerText;
   const events = [];
   siblingSwatches.forEach(item => {
@@ -6074,7 +6115,7 @@ const lerp = (start, end, amt) => {
   return (1 - amt) * start + amt * end;
 };
 
-const selectors$H = {
+const selectors$G = {
   stickyContainer: "[data-sticky-container]",
   stickyFilterBar: ".filter-bar--sticky",
   root: ":root"
@@ -6083,7 +6124,7 @@ const classes$m = {
   hasSticky: "has-sticky-scroll"
 };
 function stickyScroll (node) {
-  const stickyContainer = n$2(selectors$H.stickyContainer, node);
+  const stickyContainer = n$2(selectors$G.stickyContainer, node);
   if (!stickyContainer) return false;
   let resizeObserver;
   node.style.setProperty("--sticky-container-top", 0);
@@ -6102,10 +6143,10 @@ function stickyScroll (node) {
   //  Used for calculating position
   //  Set in `_observeHeight()` when the `--header-desktop-sticky-height` var is set
   let stickyFilterBarHeight = 0;
-  const stickyFilterBar = n$2(selectors$H.stickyFilterBar);
+  const stickyFilterBar = n$2(selectors$G.stickyFilterBar);
 
   // Save the sticky filter bar height to a CSS variable
-  const root = n$2(selectors$H.root, document);
+  const root = n$2(selectors$G.root, document);
   root.style.setProperty("--sticky-filter-bar-height", "0px");
   let stickyContainerTop = headerHeight; // The sticky container's `top` value
   let stickyContainerTopPrevious = stickyContainerTop;
@@ -6217,6 +6258,7 @@ function productLightbox() {
     productLightbox = new PhotoSwipeLightbox({
       gallery: ".lightbox-media-container",
       children: ".lightbox-image",
+      showHideAnimationType: "zoom",
       pswpModule: PhotoSwipe,
       mainClass: "pswp--product-lightbox",
       bgOpacity: 1,
@@ -6241,7 +6283,7 @@ function productLightbox() {
   });
 }
 
-const selectors$G = {
+const selectors$F = {
   unitPriceContainer: "[data-unit-price-container]",
   unitPrice: "[data-unit-price]",
   unitPriceBase: "[data-unit-base]"
@@ -6250,9 +6292,9 @@ const classes$l = {
   available: "unit-price--available"
 };
 const updateUnitPrices = (container, variant) => {
-  const unitPriceContainers = t$2(selectors$G.unitPriceContainer, container);
-  const unitPrices = t$2(selectors$G.unitPrice, container);
-  const unitPriceBases = t$2(selectors$G.unitPriceBase, container);
+  const unitPriceContainers = t$2(selectors$F.unitPriceContainer, container);
+  const unitPrices = t$2(selectors$F.unitPrice, container);
+  const unitPriceBases = t$2(selectors$F.unitPriceBase, container);
   const showUnitPricing = !variant || !variant.unit_price;
   l(unitPriceContainers, classes$l.available, !showUnitPricing);
   if (!variant || !variant.unit_price) return;
@@ -6311,7 +6353,8 @@ const storeAvailability = (container, product, variant) => {
   };
 };
 
-const selectors$F = {
+var _window$flu$states$2;
+const selectors$E = {
   form: "[data-product-form]",
   addToCart: "[data-add-to-cart]",
   variantSelect: "[data-variant-select]",
@@ -6336,6 +6379,7 @@ const selectors$F = {
   customOptionInputTargetsById: id => "[data-custom-option-target='".concat(id, "']"),
   giftCardRecipientContainer: ".product-form__gift-card-recipient"
 };
+const useCustomEvents$2 = (_window$flu$states$2 = window.flu.states) === null || _window$flu$states$2 === void 0 ? void 0 : _window$flu$states$2.useCustomEvents;
 class Product {
   constructor(node) {
     this.container = node;
@@ -6358,34 +6402,36 @@ class Product {
     this.previousMediaId = initialMediaId;
     this.sectionId = sectionId;
     this.productHandle = productHandle;
-    this.formElement = n$2(selectors$F.form, this.container);
-    this.quantityError = n$2(selectors$F.quantityError, this.container);
-    this.displayedDiscount = n$2(selectors$F.displayedDiscount, this.container);
+    this.formElement = n$2(selectors$E.form, this.container);
+    this.quantityError = n$2(selectors$E.quantityError, this.container);
+    this.displayedDiscount = n$2(selectors$E.displayedDiscount, this.container);
     this.viewInYourSpace = n$2("[data-in-your-space]", this.container);
     this.viewInYourSpace && l(this.viewInYourSpace, "visible", isMobile$1());
-    this.photosDesktop = n$2(selectors$F.photosDesktop, this.container);
+    this.photosDesktop = n$2(selectors$E.photosDesktop, this.container);
     this.mobileQuery = window.matchMedia(getMediaQuery("below-960"));
     this.breakPointHandler = atBreakpointChange(960, () => {
-      if (this.mobileQuery.matches) {
-        this._initPhotoCarousel();
-      } else {
-        var _this$mobileSwiper;
-        (_this$mobileSwiper = this.mobileSwiper) === null || _this$mobileSwiper === void 0 ? void 0 : _this$mobileSwiper.destroy();
+      if (this.isFullProduct) {
+        if (this.mobileQuery.matches) {
+          this._initPhotoCarousel();
+        } else {
+          var _this$mobileSwiper;
+          (_this$mobileSwiper = this.mobileSwiper) === null || _this$mobileSwiper === void 0 ? void 0 : _this$mobileSwiper.destroy();
+        }
       }
       this._initStickyScroll();
     });
     this._initThumbnails();
 
     // Handle Surface pickup
-    this.storeAvailabilityContainer = n$2(selectors$F.storeAvailability, this.container);
+    this.storeAvailabilityContainer = n$2(selectors$E.storeAvailability, this.container);
     this.availability = null;
 
     // Handle Shopify Product Reviews if they exist as a product block
-    this.reviewsHandler = reviewsHandler(n$2(selectors$F.productReviews, this.container), this.container);
+    this.reviewsHandler = reviewsHandler(n$2(selectors$E.productReviews, this.container), this.container);
 
     // // non-SPR rating display
-    let nonSprRatingCount = n$2(selectors$F.nonSprRatingCountLink, this.container);
-    if (nonSprRatingCount && !n$2(selectors$F.productReviews, document)) {
+    let nonSprRatingCount = n$2(selectors$E.nonSprRatingCountLink, this.container);
+    if (nonSprRatingCount && !n$2(selectors$E.productReviews, document)) {
       // The rating count links to "#shopify-product-reviews" but
       // if that block doesn't exist we should remove the link
       nonSprRatingCount.removeAttribute("href");
@@ -6421,7 +6467,7 @@ class Product {
       });
     }
     this.quantityInput = quantityInput(this.container);
-    this.customOptionInputs = t$2(selectors$F.customOptionInputs, this.container);
+    this.customOptionInputs = t$2(selectors$E.customOptionInputs, this.container);
     this.socialButtons = t$2("[data-social-share]", this.container);
     this.featuredProducts = featuredProducts(this.container);
     if (enableStickyContainer === "true") {
@@ -6474,7 +6520,7 @@ class Product {
     if (this.customOptionInputs) {
       this.customOptionInputs.forEach(input => {
         const id = input.dataset.customOptionInput;
-        const target = n$2(selectors$F.customOptionInputTargetsById(id), this.container);
+        const target = n$2(selectors$E.customOptionInputTargetsById(id), this.container);
         this.events.push(e$2(input, "change", e => {
           // Update the hidden input within the form, per type
           if (e.target.type === "checkbox") {
@@ -6497,8 +6543,8 @@ class Product {
     }
   }
   _initPhotoCarousel() {
-    let swiperWrapper = n$2(selectors$F.photosMobile, this.container);
-    const mobileFeaturedImage = n$2(selectors$F.mobileFeaturedImage, swiperWrapper);
+    let swiperWrapper = n$2(selectors$E.photosMobile, this.container);
+    const mobileFeaturedImage = n$2(selectors$E.mobileFeaturedImage, swiperWrapper);
     const initialSlide = mobileFeaturedImage ? parseInt(mobileFeaturedImage.dataset.slideIndex) : 0;
     import(flu.chunks.swiper).then(_ref => {
       let {
@@ -6534,22 +6580,22 @@ class Product {
     });
   }
   _initThumbnails() {
-    this.productThumbnails = n$2(selectors$F.thumbs, this.container);
-    this.productThumbnailItems = t$2(selectors$F.thumb, this.container);
+    this.productThumbnails = n$2(selectors$E.thumbs, this.container);
+    this.productThumbnailItems = t$2(selectors$E.thumb, this.container);
     if (this.productThumbnails) {
       this.productThumbnailsScroller = scrollContainer(this.productThumbnails);
     }
   }
   _loadMedia() {
-    this.mobileMedia = n$2(selectors$F.photosMobile, this.container);
-    this.desktopMedia = n$2(selectors$F.photosDesktop, this.container);
+    this.mobileMedia = n$2(selectors$E.photosMobile, this.container);
+    this.desktopMedia = n$2(selectors$E.photosDesktop, this.container);
     this.mobileMoreMedia = moreMedia(this.mobileMedia);
     this.desktopMoreMedia = moreMedia(this.desktopMedia);
     this.mediaContainers = Media(this.desktopMedia);
     this.mediaContainersMobile = Media(this.mobileMedia);
     this._initThumbnails();
     productLightbox();
-    if (this.mobileQuery.matches) {
+    if (this.isFullProduct && this.mobileQuery.matches) {
       this._initPhotoCarousel();
     }
   }
@@ -6574,7 +6620,7 @@ class Product {
   _refreshOverviewWithVariant(variant_id) {
     const requestURL = "".concat(window.location.pathname, "?section_id=").concat(this.sectionId, "&variant=").concat(variant_id);
     const target = n$2(".product__primary-left", this.container);
-    const mediaContainers = t$2("".concat(selectors$F.photosDesktop, ", ").concat(selectors$F.photosMobile), target);
+    const mediaContainers = t$2("".concat(selectors$E.photosDesktop, ", ").concat(selectors$E.photosMobile), target);
     mediaContainers.forEach(container => {
       u$1(container, "loading");
     });
@@ -6608,17 +6654,18 @@ class Product {
       srcElement
     } = _ref2;
     // Update option label
-    const optionParentWrapper = srcElement.closest(selectors$F.productOption);
-    const optionLabel = n$2(selectors$F.optionLabelValue, optionParentWrapper);
+    const optionParentWrapper = srcElement.closest(selectors$E.productOption);
+    const optionLabel = n$2(selectors$E.optionLabelValue, optionParentWrapper);
     if (optionLabel) {
       optionLabel.textContent = srcElement.value;
     }
-    const buyButtonEls = t$2(selectors$F.addToCart, this.container);
-    const priceWrapper = n$2(selectors$F.priceWrapper, this.container);
+    const buyButtonEls = t$2(selectors$E.addToCart, this.container);
+    const priceWrapper = n$2(selectors$E.priceWrapper, this.container);
     priceWrapper && l(priceWrapper, "hide", !variant);
 
     // Update prices to reflect selected variant
-    updatePrices(this.container, variant);
+    const defaultProductTemplate = this.isFullProduct === "true" ? true : false;
+    updatePrices(this.container, variant, defaultProductTemplate);
 
     // Update buy button
     buyButtonEls.forEach(buyButton => {
@@ -6636,7 +6683,7 @@ class Product {
 
     // Update displayed discount
     if (this.displayedDiscount) {
-      const newDiscountEl = variant && n$2(selectors$F.displayedDiscountByVariantId(variant.id), this.container);
+      const newDiscountEl = variant && n$2(selectors$E.displayedDiscountByVariantId(variant.id), this.container);
       if (variant && newDiscountEl) {
         this.displayedDiscount.textContent = newDiscountEl.textContent;
       } else {
@@ -6644,9 +6691,11 @@ class Product {
       }
     }
     this.inventoryCounter && this.inventoryCounter.update(variant);
-    dispatchCustomEvent("product:variant-change", {
-      variant: variant
-    });
+    if (useCustomEvents$2) {
+      dispatchCustomEvent("product:variant-change", {
+        variant: variant
+      });
+    }
     if (!variant) {
       updateBuyButton(n$2("[data-add-to-cart]", this.container), false);
       this.availability && this.availability.unload();
@@ -6660,7 +6709,7 @@ class Product {
     }, "", url);
 
     // We need to set the id input manually so the Dynamic Checkout Button works
-    const selectedVariantOpt = n$2("".concat(selectors$F.variantSelect, " ").concat(selectors$F.optionById(variant.id)), this.container);
+    const selectedVariantOpt = n$2("".concat(selectors$E.variantSelect, " ").concat(selectors$E.optionById(variant.id)), this.container);
     selectedVariantOpt.selected = true;
 
     // We need to dispatch an event so Shopify pay knows the form has changed
@@ -6726,23 +6775,25 @@ class Product {
     quantityInputs.forEach(quantityInput => {
       quantityInput.value = quantity;
     });
-    dispatchCustomEvent("product:quantity-update", {
-      quantity: quantity,
-      variant: variant
-    });
+    if (useCustomEvents$2) {
+      dispatchCustomEvent("product:quantity-update", {
+        quantity: quantity,
+        variant: variant
+      });
+    }
   }
 
   // When user submits the product form
   onFormSubmit(e) {
-    const purchaseConfirmation = n$2(selectors$F.purchaseConfirmation, document);
-    const quickCart = n$2(selectors$F.quickCart, document);
+    const purchaseConfirmation = n$2(selectors$E.purchaseConfirmation, document);
+    const quickCart = n$2(selectors$E.quickCart, document);
     const isQuickViewForm = Boolean(e.target.closest(".quick-product"));
 
     // if quick cart and confirmation popup are enable submit form
     if (!purchaseConfirmation && !quickCart && !isQuickViewForm) return;
     e.preventDefault();
     u$1(this.quantityError, "hidden");
-    const buttonEls = t$2(selectors$F.addToCart, this.container);
+    const buttonEls = t$2(selectors$E.addToCart, this.container);
     buttonEls.forEach(button => {
       u$1(button, "loading");
     });
@@ -6764,14 +6815,16 @@ class Product {
           r$1("quick-cart:open");
         }, 300);
       }
-      dispatchCustomEvent("cart:item-added", {
-        product: item
-      });
+      if (useCustomEvents$2) {
+        dispatchCustomEvent("cart:item-added", {
+          product: item
+        });
+      }
     }).catch(error => {
       cart.get(); // update local cart data
       if (error && error.message) {
         if (typeof error.message === "object") {
-          const sectionID = n$2(selectors$F.giftCardRecipientContainer, this.container).dataset.sectionId;
+          const sectionID = n$2(selectors$E.giftCardRecipientContainer, this.container).dataset.sectionId;
           Object.entries(error.message).forEach(_ref5 => {
             let [key, value] = _ref5;
             const errorMessageID = "display-gift-card-recipient-".concat(key, "-error--").concat(sectionID);
@@ -6790,7 +6843,7 @@ class Product {
         this.quantityError.innerText = this.quantityErorr.getAttribute("data-fallback-error-message");
         i$1(this.quantityError, "hidden");
       }
-      const buttonEls = t$2(selectors$F.addToCart, this.container);
+      const buttonEls = t$2(selectors$E.addToCart, this.container);
       buttonEls.forEach(button => {
         i$1(button, "loading");
       });
@@ -6805,7 +6858,7 @@ class Product {
   }
   unload() {
     var _this$quantityInput, _this$stickyScroll, _this$mobileMoreMedia2, _this$desktopMoreMedi2, _this$featuredProduct2, _this$variantAvailabi, _this$siblingProducts, _this$giftCardRecipie, _this$stickyAtcBar;
-    _unloadMedia();
+    this._unloadMedia();
     this.productForm.destroy();
     this.accordions.forEach(accordion => accordion.unload());
     this.optionButtons.destroy();
@@ -6822,25 +6875,28 @@ class Product {
   }
 }
 
+var _window$flu$states$1;
 const classes$k = {
   visible: "is-visible",
   active: "active",
   fixed: "is-fixed"
 };
-const selectors$E = {
+const selectors$D = {
   closeBtn: "[data-modal-close]",
   wash: ".modal__wash",
   modalContent: ".quick-view-modal__content",
-  loadingMessage: ".quick-view-modal-loading-indicator"
+  loadingMessage: ".quick-view-modal-loading-indicator",
+  siblingSwatch: ".product__color-swatch--sibling-product"
 };
+const useCustomEvents$1 = (_window$flu$states$1 = window.flu.states) === null || _window$flu$states$1 === void 0 ? void 0 : _window$flu$states$1.useCustomEvents;
 const quickViewModal = node => {
   const focusTrap = createFocusTrap(node, {
     allowOutsideClick: true
   });
-  const wash = n$2(selectors$E.wash, node);
-  const closeButton = n$2(selectors$E.closeBtn, node);
-  const modalContent = n$2(selectors$E.modalContent, node);
-  const loadingMessage = n$2(selectors$E.loadingMessage, node);
+  const wash = n$2(selectors$D.wash, node);
+  const closeButton = n$2(selectors$D.closeBtn, node);
+  const modalContent = n$2(selectors$D.modalContent, node);
+  const loadingMessage = n$2(selectors$D.loadingMessage, node);
   let quickViewAnimation = null;
   if (shouldAnimate(node)) {
     quickViewAnimation = animateQuickView(node);
@@ -6862,6 +6918,11 @@ const quickViewModal = node => {
     _open();
   }), c("quick-view:close", () => {
     _close();
+  }), c("quick-view:refresh", (state, _ref3) => {
+    let {
+      productUrl
+    } = _ref3;
+    _renderProductContent(productUrl);
   })];
   const _renderProductContent = productUrl => {
     const xhrUrl = "".concat(productUrl).concat(productUrl.includes("?") ? "&" : "?", "view=quick-view");
@@ -6869,6 +6930,17 @@ const quickViewModal = node => {
       let container = document.createElement("div");
       container.innerHTML = response;
       const productElement = n$2("[data-is-quick-view]", container);
+      const siblingElements = t$2(selectors$D.siblingSwatch, container);
+      siblingElements.forEach(sibling => {
+        const productUrl = sibling.pathname;
+        e$2(sibling, "click", e => {
+          e.preventDefault();
+          e.stopPropagation();
+          r$1("quick-view:refresh", null, {
+            productUrl: productUrl
+          });
+        });
+      });
       i$1(modalContent, "empty");
       modalContent.innerHTML = "";
       modalContent.appendChild(productElement);
@@ -6877,7 +6949,9 @@ const quickViewModal = node => {
         quickViewAnimation.animate();
       }
       product = new Product(renderedProductElement);
-      dispatchCustomEvent("quickview:loaded");
+      if (useCustomEvents$1) {
+        dispatchCustomEvent("quickview:loaded");
+      }
     });
   };
   const _open = () => {
@@ -6962,7 +7036,7 @@ const flashAlertModal = node => {
   };
 };
 
-const selectors$D = {
+const selectors$C = {
   innerOverlay: ".header-overlay__inner"
 };
 const classes$i = {
@@ -6977,7 +7051,7 @@ const events = {
 const headerOverlay = node => {
   if (!node) return;
   const overlay = node;
-  const overlayInner = node.querySelector(selectors$D.innerOverlay);
+  const overlayInner = node.querySelector(selectors$C.innerOverlay);
   const overlayShowListener = c(events.show, () => _showOverlay());
   const overlayHideListener = c(events.hide, () => _hideOverlay());
   const _showOverlay = () => {
@@ -7008,12 +7082,12 @@ const headerOverlay = node => {
   };
 };
 
-var timer;
-function debounce(func) {
-  let time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
-  return function (event) {
+function debounce() {
+  let timer;
+  return function (func) {
+    let time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
     if (timer) clearTimeout(timer);
-    timer = setTimeout(func, time, event);
+    timer = setTimeout(func, time);
   };
 }
 
@@ -7026,13 +7100,14 @@ const backToTop = () => {
   // Handling button visibility
   const pageHeight = window.innerHeight;
   let isVisible = false;
+  const backToTopDebounce = debounce();
 
   // Whatch scroll updates, we don't need precision here so we're debouncing
   srraf(_ref => {
     let {
       y
     } = _ref;
-    return debounce(() => _scrollHandler(y))();
+    return backToTopDebounce(() => _scrollHandler(y));
   });
   function _scrollHandler(y) {
     // Check if the button visibility should be toggled
@@ -7074,7 +7149,14 @@ function PredictiveSearch(resultsContainer) {
       renderSearchResults(cachedResults["".concat(queryKey)]);
       return;
     }
-    fetch("".concat(window.theme.routes.predictive_search_url, "?q=").concat(encodeURIComponent(searchTerm), "&section_id=predictive-search")).then(response => {
+    const params = new URLSearchParams();
+    params.set("section_id", "predictive-search");
+    params.set("q", searchTerm);
+    if (window.theme.searchableFields) {
+      params.set("resources[options][fields]", window.theme.searchableFields);
+    }
+    const url = "".concat(window.theme.routes.predictive_search_url, "?").concat(params);
+    fetch(url).then(response => {
       if (!response.ok) {
         const error = new Error(response.status);
         throw error;
@@ -7703,7 +7785,7 @@ const menu = node => {
   };
 };
 
-const selectors$C = {
+const selectors$B = {
   progressBar: ".free-shipping-bar__bar",
   message: ".free-shipping-bar__message"
 };
@@ -7726,7 +7808,7 @@ function freeShippingBar(node) {
   _setProgressBar();
   u$1(node, classes$f.loaded);
   function _setProgressMessage() {
-    const message = n$2(selectors$C.message, node);
+    const message = n$2(selectors$B.message, node);
     if (cartTotal >= thresholdInCents) {
       u$1(node, classes$f.success);
       message.innerText = freeShippingSuccessMessage;
@@ -7736,13 +7818,13 @@ function freeShippingBar(node) {
     }
   }
   function _setProgressBar() {
-    const progressBar = n$2(selectors$C.progressBar, node);
+    const progressBar = n$2(selectors$B.progressBar, node);
     const progress = cartTotal < thresholdInCents ? cartTotal / threshold : 100;
     progressBar.style.setProperty("--progress-width", "".concat(progress, "%"));
   }
 }
 
-const selectors$B = {
+const selectors$A = {
   header: ".header__outer-wrapper",
   containerInner: ".purchase-confirmation-popup__inner",
   freeShippingBar: ".free-shipping-bar",
@@ -7756,20 +7838,20 @@ const classes$e = {
 };
 function PurchaseConfirmationPopup(node) {
   if (!node) return;
-  const quickCartEnabled = Boolean(n$2(selectors$B.quickCart, document));
-  const containerInner = n$2(selectors$B.containerInner, node);
+  const quickCartEnabled = Boolean(n$2(selectors$A.quickCart, document));
+  const containerInner = n$2(selectors$A.containerInner, node);
   let purchaseConfirmationAnimation = null;
   if (shouldAnimate(node)) {
     purchaseConfirmationAnimation = animatePurchaseConfirmation(node);
   }
   const delegate = new Delegate(node);
-  delegate.on("click", selectors$B.viewCartButton, event => {
+  delegate.on("click", selectors$A.viewCartButton, event => {
     if (!quickCartEnabled) return;
     event.preventDefault();
     r$1("quick-cart:open");
     close();
   });
-  delegate.on("click", selectors$B.closeButton, event => {
+  delegate.on("click", selectors$A.closeButton, event => {
     event.preventDefault();
     close();
   });
@@ -7786,7 +7868,7 @@ function PurchaseConfirmationPopup(node) {
       container.innerHTML = response;
       containerInner.innerHTML = "";
       containerInner.appendChild(container);
-      const freeShippingBar$1 = n$2(selectors$B.freeShippingBar, containerInner);
+      const freeShippingBar$1 = n$2(selectors$A.freeShippingBar, containerInner);
       if (freeShippingBar$1) {
         freeShippingBar(freeShippingBar$1);
       }
@@ -7826,7 +7908,7 @@ function PurchaseConfirmationPopup(node) {
   }
 }
 
-const selectors$A = {
+const selectors$z = {
   headerInner: ".header__inner",
   form: ".disclosure-form",
   list: "[data-disclosure-list]",
@@ -7842,12 +7924,12 @@ function has(list, selector) {
   return list.map(l => l.contains(selector)).filter(Boolean);
 }
 function Disclosure(node) {
-  const headerInner = n$2(selectors$A.headerInner);
-  const form = node.closest(selectors$A.form);
-  const list = n$2(selectors$A.list, node);
-  const toggle = n$2(selectors$A.toggle, node);
-  const input = n$2(selectors$A.input, node);
-  const options = t$2(selectors$A.option, node);
+  const headerInner = n$2(selectors$z.headerInner);
+  const form = node.closest(selectors$z.form);
+  const list = n$2(selectors$z.list, node);
+  const toggle = n$2(selectors$z.toggle, node);
+  const input = n$2(selectors$z.input, node);
+  const options = t$2(selectors$z.option, node);
   const events = [e$2(toggle, "click", handleToggle), e$2(options, "click", submitForm), e$2(document, "click", handleBodyClick), e$2(toggle, "focusout", handleToggleFocusOut), e$2(list, "focusout", handleListFocusOut), e$2(node, "keyup", handleKeyup)];
   function submitForm(evt) {
     evt.preventDefault();
@@ -7935,7 +8017,7 @@ function setHeaderStickyTopVar(value) {
 function setHeaderStickyHeaderHeight(value) {
   document.documentElement.style.setProperty("--header-desktop-sticky-height", value + "px");
 }
-const selectors$z = {
+const selectors$y = {
   disclosure: "[data-disclosure]"
 };
 register("header", {
@@ -8037,7 +8119,7 @@ register("header", {
     });
 
     // Wire up Cross Border disclosures
-    const cbSelectors = t$2(selectors$z.disclosure, this.container);
+    const cbSelectors = t$2(selectors$y.disclosure, this.container);
     if (cbSelectors) {
       cbSelectors.forEach(selector => {
         const {
@@ -8086,12 +8168,12 @@ register("header", {
   }
 });
 
-const selectors$y = {
+const selectors$x = {
   popupTrigger: "[data-popup-trigger]"
 };
 const passwordUnlock = node => {
   const events = [];
-  const popupTriggers = t$2(selectors$y.popupTrigger, node);
+  const popupTriggers = t$2(selectors$x.popupTrigger, node);
   if (popupTriggers.length) {
     events.push(e$2(popupTriggers, "click", e => {
       e.preventDefault();
@@ -8148,14 +8230,14 @@ register("password-header", {
   }
 });
 
-const selectors$x = {
+const selectors$w = {
   disclosure: "[data-disclosure]",
   header: "[data-header]"
 };
 register("footer", {
   crossBorder: {},
   onLoad() {
-    const headers = t$2(selectors$x.header, this.container);
+    const headers = t$2(selectors$w.header, this.container);
     this.headerClick = e$2(headers, "click", handleHeaderClick);
     function handleHeaderClick(_ref) {
       let {
@@ -8174,7 +8256,7 @@ register("footer", {
     }
 
     // Wire up Cross Border disclosures
-    const cbSelectors = t$2(selectors$x.disclosure, this.container);
+    const cbSelectors = t$2(selectors$w.disclosure, this.container);
     if (cbSelectors) {
       cbSelectors.forEach(selector => {
         const {
@@ -8190,7 +8272,7 @@ register("footer", {
   }
 });
 
-const selectors$w = {
+const selectors$v = {
   slider: "[data-slider]",
   slide: "[data-slider] [data-slide]",
   navPrev: ".slider-nav-button-prev",
@@ -8212,8 +8294,8 @@ register("announcement-bar", {
     });
     this.disableTabbingToInners = function () {
       // Disable tabbing on items that aren't shown
-      const desktopOnlyInners = t$2(selectors$w.desktopOnlyInner, this.container);
-      const mobileOnlyInners = t$2(selectors$w.mobileOnlyInner, this.container);
+      const desktopOnlyInners = t$2(selectors$v.desktopOnlyInner, this.container);
+      const mobileOnlyInners = t$2(selectors$v.mobileOnlyInner, this.container);
       const desktopIsMobileSize = window.matchMedia(getMediaQuery("below-720")).matches;
       desktopOnlyInners.forEach(inner => {
         inner.toggleAttribute("inert", desktopIsMobileSize);
@@ -8222,10 +8304,10 @@ register("announcement-bar", {
         inner.toggleAttribute("inert", !desktopIsMobileSize);
       });
     };
-    this.sliderContainer = n$2(selectors$w.slider, this.container);
-    this.slides = t$2(selectors$w.slide, this.container);
-    this.navPrev = t$2(selectors$w.navPrev, this.container);
-    this.navNext = t$2(selectors$w.navNext, this.container);
+    this.sliderContainer = n$2(selectors$v.slider, this.container);
+    this.slides = t$2(selectors$v.slide, this.container);
+    this.navPrev = t$2(selectors$v.navPrev, this.container);
+    this.navNext = t$2(selectors$v.navNext, this.container);
     this.disableTabbingToInners();
     this.breakPointHandler = atBreakpointChange(720, () => {
       this.disableTabbingToInners();
@@ -8291,7 +8373,7 @@ register("announcement-bar", {
   }
 });
 
-const selectors$v = {
+const selectors$u = {
   item: "[data-input-item]",
   itemProperties: "[data-item-properties]",
   quantityInput: "[data-quantity-input]",
@@ -8301,30 +8383,30 @@ const selectors$v = {
 };
 function QuantityButtons(node) {
   const delegate = new Delegate(node);
-  delegate.on("click", selectors$v.quantitySubtract, (_, target) => {
-    const item = target.closest(selectors$v.item);
+  delegate.on("click", selectors$u.quantitySubtract, (_, target) => {
+    const item = target.closest(selectors$u.item);
     const {
       key
     } = item.dataset;
-    const qty = n$2(selectors$v.quantityInput, item).value;
+    const qty = n$2(selectors$u.quantityInput, item).value;
     r$1("quantity-update:subtract", null, {
       key
     });
     cart.updateItem(key, parseInt(qty) - 1);
   });
-  delegate.on("click", selectors$v.quantityAdd, (_, target) => {
-    const item = target.closest(selectors$v.item);
+  delegate.on("click", selectors$u.quantityAdd, (_, target) => {
+    const item = target.closest(selectors$u.item);
     const {
       key
     } = item.dataset;
-    const qty = n$2(selectors$v.quantityInput, item).value;
+    const qty = n$2(selectors$u.quantityInput, item).value;
     r$1("quantity-update:add", null, {
       key
     });
     cart.updateItem(key, parseInt(qty) + 1);
   });
-  delegate.on("click", selectors$v.removeItem, (_, target) => {
-    const item = target.closest(selectors$v.item);
+  delegate.on("click", selectors$u.removeItem, (_, target) => {
+    const item = target.closest(selectors$u.item);
     const {
       key
     } = item.dataset;
@@ -8346,7 +8428,7 @@ const {
     cart: strings$3
   }
 } = window.theme;
-const selectors$u = {
+const selectors$t = {
   cartNoteTrigger: "[data-order-note-trigger]",
   cartNoteTriggerText: "[data-cart-not-trigger-text]",
   cartNoteInputWrapper: "[cart-note-input]",
@@ -8355,21 +8437,21 @@ const selectors$u = {
 };
 function CartNoteToggle(node) {
   const delegate = new Delegate(node);
-  delegate.on("click", selectors$u.cartNoteTrigger, (_, target) => handleCartNoteTrigger(target));
+  delegate.on("click", selectors$t.cartNoteTrigger, (_, target) => handleCartNoteTrigger(target));
   function handleCartNoteTrigger(target) {
-    const inputWrapper = n$2(selectors$u.cartNoteInputWrapper, target.parentNode);
+    const inputWrapper = n$2(selectors$t.cartNoteInputWrapper, target.parentNode);
     const textInput = n$2("textarea", inputWrapper);
 
     // Handle icon change when open or close
-    const plusIcon = n$2(selectors$u.iconPlus, target);
-    const minusIcon = n$2(selectors$u.iconMinus, target);
+    const plusIcon = n$2(selectors$t.iconPlus, target);
+    const minusIcon = n$2(selectors$t.iconMinus, target);
     l([plusIcon, minusIcon], "hidden");
     if (isVisible(inputWrapper)) {
       slideStop(inputWrapper);
       slideUp(inputWrapper);
       inputWrapper.setAttribute("aria-expanded", false);
       inputWrapper.setAttribute("aria-hidden", true);
-      const inputTriggertext = n$2(selectors$u.cartNoteTriggerText, node);
+      const inputTriggertext = n$2(selectors$t.cartNoteTriggerText, node);
 
       // Update cart note trigger text
       if (textInput.value === "") {
@@ -8405,7 +8487,7 @@ function updateInnerHTML(selector, doc) {
   }
 }
 
-const selectors$t = {
+const selectors$s = {
   crossSellsSlider: "[data-cross-sells-slider]",
   quickViewTrigger: "[data-quick-view-trigger]",
   addToCartTrigger: "[data-add-item-id]"
@@ -8413,12 +8495,12 @@ const selectors$t = {
 function CrossSells(node) {
   const {
     crossSellsSlider
-  } = n$2(selectors$t.crossSellsSlider, node).dataset;
+  } = n$2(selectors$s.crossSellsSlider, node).dataset;
   let swiper = crossSellsSlider ? new Carousel(node, {
     slidesPerView: 1.15,
     spaceBetween: 8
   }) : null;
-  const events = [e$2(t$2(selectors$t.quickViewTrigger, node), "click", e => {
+  const events = [e$2(t$2(selectors$s.quickViewTrigger, node), "click", e => {
     const {
       productUrl
     } = e.target.dataset;
@@ -8426,7 +8508,7 @@ function CrossSells(node) {
     r$1("quick-view:open", null, {
       productUrl: productUrl
     });
-  }), e$2(t$2(selectors$t.addToCartTrigger, node), "click", e => {
+  }), e$2(t$2(selectors$s.addToCartTrigger, node), "click", e => {
     const {
       addItemId
     } = e.target.dataset;
@@ -8447,7 +8529,8 @@ function CrossSells(node) {
   };
 }
 
-const selectors$s = {
+var _window$flu$states;
+const selectors$r = {
   cartWrapper: ".quick-cart__wrapper",
   innerContainer: ".quick-cart__container",
   overlay: ".quick-cart__overlay",
@@ -8470,9 +8553,10 @@ const classes$c = {
   updatingQuantity: "has-quantity-update",
   removed: "is-removed"
 };
+const useCustomEvents = (_window$flu$states = window.flu.states) === null || _window$flu$states === void 0 ? void 0 : _window$flu$states.useCustomEvents;
 register("quick-cart", {
   onLoad() {
-    this.cartWrapper = n$2(selectors$s.cartWrapper, this.container);
+    this.cartWrapper = n$2(selectors$r.cartWrapper, this.container);
     this.cartTrap = createFocusTrap(this.container, {
       allowOutsideClick: true
     });
@@ -8506,10 +8590,10 @@ register("quick-cart", {
     // Delegate handles all click events due to rendering different content
     // within quick cart
     this.delegate = new Delegate(this.container);
-    this.delegate.on("click", selectors$s.overlay, () => this.close());
-    this.delegate.on("click", selectors$s.closeButton, () => this.close());
-    this.delegate.on("change", selectors$s.quantityInput, e => this.handleQuantityInputChange(e));
-    const freeShippingBar$1 = n$2(selectors$s.freeShippingBar, this.container);
+    this.delegate.on("click", selectors$r.overlay, () => this.close());
+    this.delegate.on("click", selectors$r.closeButton, () => this.close());
+    this.delegate.on("change", selectors$r.quantityInput, e => this.handleQuantityInputChange(e));
+    const freeShippingBar$1 = n$2(selectors$r.freeShippingBar, this.container);
     if (freeShippingBar$1) {
       freeShippingBar(freeShippingBar$1);
     }
@@ -8533,6 +8617,13 @@ register("quick-cart", {
       },
       reserveScrollBarGap: true
     });
+    if (useCustomEvents) {
+      cart.get().then(cart => {
+        dispatchCustomEvent("quick-cart:open", {
+          cart
+        });
+      });
+    }
   },
   refreshQuickCart() {
     const url = "".concat(theme.routes.cart.base, "?section_id=").concat(this.id);
@@ -8540,10 +8631,10 @@ register("quick-cart", {
       var _this$crossSells;
       let container = document.createElement("div");
       container.innerHTML = response;
-      const responseInnerContainer = n$2(selectors$s.innerContainer, container);
-      const cartHasItems = Boolean(n$2(selectors$s.items, this.container));
-      const responseHasItems = Boolean(n$2(selectors$s.items, container));
-      const freeShippingBar$1 = n$2(selectors$s.freeShippingBar, container);
+      const responseInnerContainer = n$2(selectors$r.innerContainer, container);
+      const cartHasItems = Boolean(n$2(selectors$r.items, this.container));
+      const responseHasItems = Boolean(n$2(selectors$r.items, container));
+      const freeShippingBar$1 = n$2(selectors$r.freeShippingBar, container);
       (_this$crossSells = this.crossSells) === null || _this$crossSells === void 0 ? void 0 : _this$crossSells.unload();
       if (freeShippingBar$1) {
         freeShippingBar(freeShippingBar$1);
@@ -8553,27 +8644,27 @@ register("quick-cart", {
       if (responseHasItems && cartHasItems) {
         var _this$animateQuickCar2;
         // Render cart items
-        updateInnerHTML("".concat(selectors$s.cartWrapper, " ").concat(selectors$s.items), container);
+        updateInnerHTML("".concat(selectors$r.cartWrapper, " ").concat(selectors$r.items), container);
         this.adjustItemPadding();
 
         // Render cart count
-        updateInnerHTML("".concat(selectors$s.cartWrapper, " ").concat(selectors$s.cartCount), container);
+        updateInnerHTML("".concat(selectors$r.cartWrapper, " ").concat(selectors$r.cartCount), container);
 
         // Render subtotal
-        updateInnerHTML("".concat(selectors$s.cartWrapper, " ").concat(selectors$s.subtotal), container);
+        updateInnerHTML("".concat(selectors$r.cartWrapper, " ").concat(selectors$r.subtotal), container);
 
         // Render promotions
-        updateInnerHTML("".concat(selectors$s.cartWrapper, " ").concat(selectors$s.discounts), container);
+        updateInnerHTML("".concat(selectors$r.cartWrapper, " ").concat(selectors$r.discounts), container);
 
         // Handle form scroll state
-        const form = n$2(selectors$s.form, this.container);
+        const form = n$2(selectors$r.form, this.container);
         const previousScrollPosition = form.scrollTop || 0;
         form.scrollTop = previousScrollPosition;
         (_this$animateQuickCar2 = this.animateQuickCart) === null || _this$animateQuickCar2 === void 0 ? void 0 : _this$animateQuickCar2.setup();
       } else {
         // Cart needs to render empty from having items, or needs to render
         // items from empty state
-        const innerContainer = n$2(selectors$s.innerContainer, this.container);
+        const innerContainer = n$2(selectors$r.innerContainer, this.container);
         innerContainer.innerHTML = responseInnerContainer.innerHTML;
       }
       this._initCrossSells();
@@ -8581,7 +8672,7 @@ register("quick-cart", {
   },
   handleErrorMessage(key) {
     const item = n$2("[data-key=\"".concat(key, "\"]"), this.container);
-    i$1(n$2(selectors$s.cartError, item), classes$c.hidden);
+    i$1(n$2(selectors$r.cartError, item), classes$c.hidden);
     i$1(item, classes$c.updatingQuantity);
   },
   handleQuantityUpdate(key) {
@@ -8597,7 +8688,7 @@ register("quick-cart", {
     let {
       target
     } = _ref4;
-    const item = target.closest(selectors$s.quantityItem);
+    const item = target.closest(selectors$r.quantityItem);
     const {
       key
     } = item.dataset;
@@ -8605,13 +8696,13 @@ register("quick-cart", {
     this.handleQuantityUpdate(key);
   },
   _initCrossSells() {
-    const crossSells = n$2(selectors$s.crossSells, this.container);
+    const crossSells = n$2(selectors$r.crossSells, this.container);
     if (crossSells) {
       this.crossSells = CrossSells(crossSells);
     }
   },
   scrollUpQuickCart() {
-    const form = n$2(selectors$s.form, this.container);
+    const form = n$2(selectors$r.form, this.container);
     const previousScrollPosition = 0;
     if (!form) return;
     // delay the scroll up to make it seem more 'fluid'
@@ -8620,11 +8711,11 @@ register("quick-cart", {
     }, 300);
   },
   adjustItemPadding() {
-    const items = n$2(selectors$s.items, this.container);
+    const items = n$2(selectors$r.items, this.container);
     if (!items) return;
 
     // Ensure cart items accounts for the height of cart footer
-    const footer = n$2(selectors$s.footer, this.container);
+    const footer = n$2(selectors$r.footer, this.container);
     items.style.paddingBottom = "".concat(footer.clientHeight, "px");
   },
   close() {
@@ -8636,6 +8727,9 @@ register("quick-cart", {
       document.body.setAttribute("data-fluorescent-overlay-open", "false");
       enableBodyScroll(this.container);
     }, 500);
+    if (useCustomEvents) {
+      dispatchCustomEvent("quick-cart:close");
+    }
   },
   onSelect() {
     this.openQuickCart();
@@ -8651,7 +8745,7 @@ register("quick-cart", {
   }
 });
 
-const selectors$r = {
+const selectors$q = {
   "settings": "[data-timer-settings]",
   "days": "[data-days]",
   "hours": "[data-hours]",
@@ -8664,7 +8758,7 @@ const classes$b = {
   "complete": "complete"
 };
 function CountdownTimer(container) {
-  const settings = n$2(selectors$r.settings, container);
+  const settings = n$2(selectors$q.settings, container);
   const {
     year,
     month,
@@ -8675,10 +8769,10 @@ function CountdownTimer(container) {
     timeZoneSelection,
     hideTimerOnComplete
   } = JSON.parse(settings.innerHTML);
-  const daysEl = n$2(selectors$r.days, container);
-  const hoursEl = n$2(selectors$r.hours, container);
-  const minutesEl = n$2(selectors$r.minutes, container);
-  const secondsEl = n$2(selectors$r.seconds, container);
+  const daysEl = n$2(selectors$q.days, container);
+  const hoursEl = n$2(selectors$q.hours, container);
+  const minutesEl = n$2(selectors$q.minutes, container);
+  const secondsEl = n$2(selectors$q.seconds, container);
   const timezoneString = timeZoneSelection === "shop" ? " GMT".concat(shopTimezone) : "";
   const countDownDate = new Date(Date.parse("".concat(month, " ").concat(day, ", ").concat(year, " ").concat(hour, ":").concat(minute).concat(timezoneString)));
   const countDownTime = countDownDate.getTime();
@@ -8726,7 +8820,7 @@ function CountdownTimer(container) {
   };
 }
 
-const selectors$q = {
+const selectors$p = {
   wash: ".popup__wash",
   dismissButtons: "[data-dismiss-popup]",
   tab: ".popup__tab",
@@ -8744,10 +8838,10 @@ function Popup(container) {
     allowOutsideClick: true
   });
   const popupAnimation = animatePopup(container);
-  const wash = n$2(selectors$q.wash, container);
-  const dismissButtons = t$2(selectors$q.dismissButtons, container);
-  const formSuccessMessage = n$2(selectors$q.formSuccessMessage, container);
-  const timer = n$2(selectors$q.timer, container);
+  const wash = n$2(selectors$p.wash, container);
+  const dismissButtons = t$2(selectors$p.dismissButtons, container);
+  const formSuccessMessage = n$2(selectors$p.formSuccessMessage, container);
+  const timer = n$2(selectors$p.timer, container);
   const {
     delayType,
     showOnExitIntent,
@@ -8755,7 +8849,7 @@ function Popup(container) {
     isSignup,
     popupType
   } = container.dataset;
-  const tab = n$2("".concat(selectors$q.tab, "[data-id=\"").concat(id, "\""));
+  const tab = n$2("".concat(selectors$p.tab, "[data-id=\"").concat(id, "\""));
   let {
     delayValue,
     hourFrequency
@@ -8795,14 +8889,14 @@ function Popup(container) {
     }));
   }
   if (isSignupPopup) {
-    const form = n$2(selectors$q.newsletterForm, container);
+    const form = n$2(selectors$p.newsletterForm, container);
     if (form) {
       events.push(e$2(form, "submit", onNewsletterSubmit));
     }
   }
   if (tab) {
-    const tabButton = n$2(selectors$q.tabButton, tab);
-    const tabDismiss = n$2(selectors$q.tabDismiss, tab);
+    const tabButton = n$2(selectors$p.tabButton, tab);
+    const tabDismiss = n$2(selectors$p.tabDismiss, tab);
     events.push(e$2(tabButton, "click", handleTabClick));
     events.push(e$2(tabDismiss, "click", hideTab));
   }
@@ -9020,12 +9114,12 @@ register("blog-posts", {
   }
 });
 
-const selectors$p = {
+const selectors$o = {
   itemTrigger: ".collapsible-row-list-item__trigger"
 };
 register("collapsible-row-list", {
   onLoad() {
-    this.items = t$2(selectors$p.itemTrigger, this.container);
+    this.items = t$2(selectors$o.itemTrigger, this.container);
     this.clickHandlers = e$2(this.items, "click", e => {
       e.preventDefault();
       const {
@@ -9060,7 +9154,7 @@ register("collapsible-row-list", {
     let {
       target
     } = _ref;
-    const label = n$2(selectors$p.itemTrigger, target);
+    const label = n$2(selectors$o.itemTrigger, target);
     const {
       parentNode: group,
       nextElementSibling: content
@@ -9118,12 +9212,12 @@ register("collection-list-slider", {
   }
 });
 
-const selectors$o = {
+const selectors$n = {
   "timer": "[data-countdown-timer]"
 };
 register("countdown-banner", {
   onLoad() {
-    const timers = t$2(selectors$o.timer, this.container);
+    const timers = t$2(selectors$n.timer, this.container);
     this.countdownTimers = [];
     timers.forEach(timer => {
       this.countdownTimers.push(CountdownTimer(timer));
@@ -9139,12 +9233,12 @@ register("countdown-banner", {
   }
 });
 
-const selectors$n = {
+const selectors$m = {
   "timer": "[data-countdown-timer]"
 };
 register("countdown-bar", {
   onLoad() {
-    const timers = t$2(selectors$n.timer, this.container);
+    const timers = t$2(selectors$m.timer, this.container);
     this.countdownTimers = [];
     timers.forEach(timer => {
       this.countdownTimers.push(CountdownTimer(timer));
@@ -9211,7 +9305,7 @@ register("featured-collection-grid", {
   }
 });
 
-const selectors$m = {
+const selectors$l = {
   navItems: ".featured-collection-slider__navigation-list-item",
   sliderContainer: ".carousel",
   navButtons: ".carousel__navigation-buttons"
@@ -9246,9 +9340,9 @@ register("featured-collection-slider", {
     // spaceBetween?
 
     this.productItem = ProductItem(this.container);
-    this.carouselsElements = t$2(selectors$m.sliderContainer, this.container);
-    this.navItems = t$2(selectors$m.navItems, this.container);
-    this.navigationButtons = t$2(selectors$m.navButtons, this.container);
+    this.carouselsElements = t$2(selectors$l.sliderContainer, this.container);
+    this.navItems = t$2(selectors$l.navItems, this.container);
+    this.navigationButtons = t$2(selectors$l.navButtons, this.container);
     this.navItems.forEach(button => this.events.push(e$2(button, "click", this._handleNavButton.bind(this))));
     this.carouselsElements.forEach((container, index) => {
       const navigationWrapper = n$2("[data-navigation=\"".concat(index, "\"]"), this.container);
@@ -9439,7 +9533,7 @@ register("gallery-carousel", {
   }
 });
 
-const selectors$l = {
+const selectors$k = {
   recentlyViewed: "[data-recently-viewed]",
   carousel: ".carousel",
   carouselSlide: ".carousel__slide",
@@ -9482,8 +9576,8 @@ register("recently-viewed-products", {
     const actions = productHandles.map(this._renderProductItem.bind(this));
     const results = Promise.all(actions);
     results.then(() => {
-      const content = n$2(selectors$l.recentlyViewed, this.container);
-      const carouselSlide = n$2(selectors$l.carouselSlide, this.container);
+      const content = n$2(selectors$k.recentlyViewed, this.container);
+      const carouselSlide = n$2(selectors$k.carouselSlide, this.container);
       this.productItem = ProductItem(this.container);
       if (shouldAnimate(this.container)) {
         this.animateListSlider = animateListSlider(this.container);
@@ -9537,7 +9631,7 @@ register("recently-viewed-products", {
   }
 });
 
-const selectors$k = {
+const selectors$j = {
   recommendations: "[data-recommendations]",
   carouselSlide: ".carousel__slide"
 };
@@ -9558,7 +9652,7 @@ register("recommended-products", {
     // to something like perViewSmall, perViewMedium, perViewLarge and same with
     // spaceBetween?
 
-    const content = n$2(selectors$k.recommendations, this.container);
+    const content = n$2(selectors$j.recommendations, this.container);
     if (!content) return;
     const requestUrl = "".concat(window.theme.routes.productRecommendations, "?section_id=").concat(sectionId, "&limit=").concat(limit, "&product_id=").concat(id);
     const request = new XMLHttpRequest();
@@ -9567,8 +9661,8 @@ register("recommended-products", {
       if (request.status >= 200 && request.status < 300) {
         let container = document.createElement("div");
         container.innerHTML = request.response;
-        content.innerHTML = n$2(selectors$k.recommendations, container).innerHTML;
-        const carousel = n$2(selectors$k.carouselSlide, content);
+        content.innerHTML = n$2(selectors$j.recommendations, container).innerHTML;
+        const carousel = n$2(selectors$j.carouselSlide, content);
         this.productItem = ProductItem(this.container);
         if (shouldAnimate(this.container)) {
           this.animateListSlider = animateListSlider(this.container);
@@ -9614,7 +9708,7 @@ const classes$8 = {
   activeDot: "slideshow-navigation__dot--active",
   navigationLoader: "slideshow-navigation__dot-loader"
 };
-const selectors$j = {
+const selectors$i = {
   slide: "[data-slide]",
   swiper: ".swiper",
   navigationPrev: ".slideshow-navigation__navigation-button--previous",
@@ -9630,13 +9724,13 @@ register("slideshow", {
     this.events = [];
     this.enableAutoplay = this.container.dataset.enableAutoplay;
     this.autoplayDuration = this.container.dataset.autoplay;
-    this.pageFooter = n$2(selectors$j.pageFooter, document);
+    this.pageFooter = n$2(selectors$i.pageFooter, document);
     this.slideshow = null;
-    this.slideshowContainer = n$2(selectors$j.swiper, this.container);
-    this.slides = t$2(selectors$j.slide, this.container);
+    this.slideshowContainer = n$2(selectors$i.swiper, this.container);
+    this.slides = t$2(selectors$i.slide, this.container);
     this.events.push(e$2(this.container, "focusin", () => this.handleFocus()));
     if (shouldAnimate(this.container)) {
-      this.slideAnimations = this.slides.map(slide => delayOffset(slide, [selectors$j.animatableItems], 3));
+      this.slideAnimations = this.slides.map(slide => delayOffset(slide, [selectors$i.animatableItems], 3));
       this.observer = intersectionWatcher(this.container);
     }
     if (this.slides.length > 1) {
@@ -9661,13 +9755,13 @@ register("slideshow", {
           watchSlidesProgress: true,
           loop: true,
           navigation: {
-            nextEl: selectors$j.navigationNext,
-            prevEl: selectors$j.navigationPrev
+            nextEl: selectors$i.navigationNext,
+            prevEl: selectors$i.navigationPrev
           },
           preloadImages: false,
           // if this is true, it negates benefits of lazyloading
           pagination: {
-            el: selectors$j.navigationDots,
+            el: selectors$i.navigationDots,
             clickable: true,
             bulletActiveClass: classes$8.activeDot,
             bulletClass: "slideshow-navigation__dot",
@@ -9741,7 +9835,7 @@ register("slideshow", {
           };
         }
         this.slideshow = new Swiper(this.slideshowContainer, swiperOptions);
-        this.navigationLoaderEls = t$2(selectors$j.navigationLoader, this.container);
+        this.navigationLoaderEls = t$2(selectors$i.navigationLoader, this.container);
         r$1("slideshow:initialized");
       });
     }
@@ -9775,7 +9869,7 @@ register("slideshow", {
     }
   },
   handleBulletLabels() {
-    const bullets = t$2(selectors$j.navigationDot, this.container);
+    const bullets = t$2(selectors$i.navigationDot, this.container);
     bullets.forEach((bullet, index) => {
       const associatedSlide = this.slides[index];
       const {
@@ -9871,7 +9965,7 @@ function loadVimeoAPI() {
   return loaded;
 }
 
-const selectors$i = {
+const selectors$h = {
   video: ".video__video",
   videoExternal: "[data-video-external-target]",
   image: ".video__image",
@@ -9885,12 +9979,12 @@ const classes$7 = {
 register("video", {
   onLoad() {
     this.events = [];
-    const playTrigger = n$2(selectors$i.playTrigger, this.container);
-    const video = n$2(selectors$i.video, this.container);
-    const videoExternal = n$2(selectors$i.videoExternal, this.container);
-    const image = n$2(selectors$i.image, this.container);
-    const overlay = n$2(selectors$i.overlay, this.container);
-    const text = n$2(selectors$i.text, this.container);
+    const playTrigger = n$2(selectors$h.playTrigger, this.container);
+    const video = n$2(selectors$h.video, this.container);
+    const videoExternal = n$2(selectors$h.videoExternal, this.container);
+    const image = n$2(selectors$h.image, this.container);
+    const overlay = n$2(selectors$h.overlay, this.container);
+    const text = n$2(selectors$h.text, this.container);
     if (videoExternal) {
       const {
         videoProvider,
@@ -9981,7 +10075,7 @@ register("video", {
   }
 });
 
-const selectors$h = {
+const selectors$g = {
   playButton: "[data-play-button-block]",
   playButtonVideoContainer: "[data-play-button-block-video-container]",
   photoSwipeElement: ".pswp",
@@ -9992,8 +10086,9 @@ const {
 } = window.theme;
 const playButton = node => {
   let photoSwipeInstance;
-  const playButton = n$2(selectors$h.playButton, node);
-  const videoHtml = n$2(selectors$h.playButtonVideoContainer, node).outerHTML;
+  const playButton = n$2(selectors$g.playButton, node);
+  const videoHtml = n$2(selectors$g.playButtonVideoContainer, node);
+  const videoType = videoHtml.dataset.videoType;
   import(flu.chunks.photoswipe); // Load this ahead of needing
 
   const events = [e$2(playButton, "click", () => {
@@ -10004,7 +10099,7 @@ const playButton = node => {
       } = _ref;
       photoSwipeInstance = new PhotoSwipeLightbox({
         dataSource: [{
-          html: videoHtml
+          html: videoHtml.outerHTML
         }],
         pswpModule: PhotoSwipe,
         mainClass: "pswp--video-lightbox",
@@ -10017,11 +10112,57 @@ const playButton = node => {
       photoSwipeInstance.init();
       photoSwipeInstance.loadAndOpen();
       photoSwipeInstance.on("bindEvents", () => {
-        const instanceVideo = n$2(selectors$h.video, photoSwipeInstance.pswp.container);
-        instanceVideo.play();
+        const instanceVideo = n$2(selectors$g.video, photoSwipeInstance.pswp.container);
+        if (videoType == "shopify") {
+          instanceVideo.play();
+        } else {
+          initExternalVideo(instanceVideo);
+        }
       });
     });
   })];
+  const initExternalVideo = video => {
+    const {
+      videoProvider,
+      videoId
+    } = video.dataset;
+    switch (videoProvider) {
+      case "youtube":
+        loadYouTubeAPI().then(() => {
+          const player = new window.YT.Player(video, {
+            videoId,
+            playerVars: {
+              autohide: 0,
+              cc_load_policy: 0,
+              controls: 1,
+              iv_load_policy: 3,
+              modestbranding: 1,
+              playsinline: 1,
+              rel: 0,
+              playlist: videoId
+            },
+            events: {
+              onReady: () => {
+                player.playVideo();
+                player.getIframe().tabIndex = "0";
+              }
+            }
+          });
+        });
+        break;
+      case "vimeo":
+        loadVimeoAPI().then(() => {
+          const player = new window.Vimeo.Player(video, {
+            id: videoId,
+            controls: true,
+            keyboard: false
+          });
+          player.play();
+          player.element.tabIndex = "0";
+        });
+        break;
+    }
+  };
   const unload = () => {
     events.forEach(unsubscribe => unsubscribe());
     photoSwipeInstance && photoSwipeInstance.destroy();
@@ -10047,32 +10188,72 @@ const checkAutoPlay = (video, mediaContainer) => {
   }
 };
 
-const selectors$g = {
+const selectors$f = {
   mediaContainer: ".video-hero__media-container",
   video: ".video-hero__video",
+  videoDefaultTemplate: "#default-video-template",
+  videoMobileTemplate: "#mobile-video-template",
+  currentVideoContainer: ".current-video-container",
   playButtonVideo: "[data-play-button-block-video]",
   playButtonBlock: ".play-button-block"
 };
 register("video-hero", {
   videoHandler: null,
   onLoad() {
-    const playButtonVideos = t$2(selectors$g.playButtonVideo, this.container);
-    const mediaContainer = n$2(selectors$g.mediaContainer, this.container);
-    const video = n$2(selectors$g.video, this.container);
+    const playButtonVideos = t$2(selectors$f.playButtonVideo, this.container);
+    this.mediaContainer = n$2(selectors$f.mediaContainer, this.container);
     if (playButtonVideos.length) {
-      this.playButtons = playButtonVideos.map(block => playButton(block.closest(selectors$g.playButtonBlock)));
+      this.playButtons = playButtonVideos.map(block => playButton(block.closest(selectors$f.playButtonBlock)));
     }
-    if (video) {
-      this.videoHandler = backgroundVideoHandler(this.container);
-      checkAutoPlay(video, mediaContainer);
-
-      // if video is still not ready, show the fallback image
-      if (video.paused) {
-        mediaContainer.dataset.videoLoading = "true";
+    const hasVideo = this.mediaContainer.dataset.hasVideo === "true";
+    const hasMobileVideo = this.mediaContainer.dataset.hasMobileVideo === "true";
+    if (hasMobileVideo) {
+      if (window.matchMedia(getMediaQuery("below-720")).matches) {
+        this._updateVideoTemplate("mobile");
+      } else {
+        this._updateVideoTemplate("default");
       }
+      atBreakpointChange(720, () => {
+        if (window.matchMedia(getMediaQuery("below-720")).matches) {
+          this._updateVideoTemplate("mobile");
+        } else {
+          this._updateVideoTemplate("default");
+        }
+      });
+    } else if (hasVideo) {
+      this._updateVideoTemplate("default");
     }
     if (shouldAnimate(this.container)) {
       this.animateVideoHero = animateVideoHero(this.container);
+    }
+  },
+  _updateVideoTemplate(videoType) {
+    const currentVideoContainer = n$2(selectors$f.currentVideoContainer, this.container);
+    const videoTemplateSelector = videoType === "mobile" ? selectors$f.videoMobileTemplate : selectors$f.videoDefaultTemplate;
+    const videoTemplate = n$2(videoTemplateSelector, this.mediaContainer);
+    const currentVideoTemplate = videoTemplate.content.cloneNode(true);
+    const currentVideoEl = n$2(selectors$f.video, currentVideoTemplate);
+
+    // Manual reset of mute attr required for most browsers to autoplay
+    if (currentVideoEl) {
+      currentVideoEl.muted = true;
+    }
+    currentVideoContainer.innerHTML = "";
+    currentVideoContainer.appendChild(currentVideoTemplate);
+    this._playVideo(currentVideoEl);
+  },
+  _playVideo(video) {
+    this.videoHandler = backgroundVideoHandler(this.container);
+
+    // play function is required for mobile & Safari or video will stay paused
+    if (video) {
+      video.play();
+      checkAutoPlay(video, this.mediaContainer);
+    }
+
+    // if video is still not ready, show the fallback image
+    if (video && video.paused) {
+      this.mediaContainer.dataset.videoLoading = "true";
     }
   },
   onUnload() {
@@ -10083,12 +10264,12 @@ register("video-hero", {
   }
 });
 
-const selectors$f = {
+const selectors$e = {
   dots: ".navigation-dot"
 };
 const navigationDots = function (container) {
   let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  const navigationDots = t$2(selectors$f.dots, container);
+  const navigationDots = t$2(selectors$e.dots, container);
   const events = [];
   navigationDots.forEach(dot => {
     events.push(e$2(dot, "click", e => _handleDotClick(e)));
@@ -10119,15 +10300,15 @@ const navigationDots = function (container) {
   };
 };
 
-const selectors$e = {
+const selectors$d = {
   slider: "[data-slider]",
   slide: "[data-slide]",
   logoNavButton: "[logo-nav-button]"
 };
 register("quote", {
   onLoad() {
-    const sliderContainer = n$2(selectors$e.slider, this.container);
-    const slides = t$2(selectors$e.slide, this.container);
+    const sliderContainer = n$2(selectors$d.slider, this.container);
+    const slides = t$2(selectors$d.slide, this.container);
     if (shouldAnimate(this.container)) {
       slides.forEach(slide => animateQuotes(slide));
       this.observer = intersectionWatcher(this.container);
@@ -10172,7 +10353,7 @@ register("quote", {
           }
         });
       } else if (paginationStyle === "logos") {
-        this.logoNavButtons = t$2(selectors$e.logoNavButton, this.container);
+        this.logoNavButtons = t$2(selectors$d.logoNavButton, this.container);
         u$1(this.logoNavButtons[0], "active");
         this.logoNavButtons.forEach(button => {
           this.events.push(e$2(button, "click", e => {
@@ -10215,7 +10396,7 @@ register("quote", {
   }
 });
 
-const selectors$d = {
+const selectors$c = {
   hotspotWrappers: ".shoppable-item",
   hotspots: ".shoppable-item__hotspot",
   productCard: ".shoppable-item__product-card",
@@ -10246,12 +10427,12 @@ const sliderTypes = {
 };
 register("shoppable", {
   onLoad() {
-    this.imageContainer = n$2(selectors$d.imageContainer, this.container);
+    this.imageContainer = n$2(selectors$c.imageContainer, this.container);
     this.showHotspotCards = this.container.dataset.showHotspotCards === "true";
-    this.productCards = t$2(selectors$d.productCard, this.container);
-    this.hotspotContainers = t$2(selectors$d.hotspotWrappers, this.container);
-    this.hotspots = t$2(selectors$d.hotspots, this.container);
-    this.mobileDrawer = n$2(selectors$d.mobileDrawer, this.container);
+    this.productCards = t$2(selectors$c.productCard, this.container);
+    this.hotspotContainers = t$2(selectors$c.hotspotWrappers, this.container);
+    this.hotspots = t$2(selectors$c.hotspots, this.container);
+    this.mobileDrawer = n$2(selectors$c.mobileDrawer, this.container);
 
     // Self terminating mouseenter events
     this.hotspotEvents = this.hotspots.map(hotspot => {
@@ -10268,7 +10449,7 @@ register("shoppable", {
         keyCode
       } = _ref;
       if (keyCode === 27) this._closeAll();
-    }), e$2(t$2(selectors$d.quickViewTrigger, this.container), "click", e => {
+    }), e$2(t$2(selectors$c.quickViewTrigger, this.container), "click", e => {
       const {
         productUrl
       } = e.target.dataset;
@@ -10318,7 +10499,7 @@ register("shoppable", {
     this._initPulseLoop();
   },
   _initPulseLoop() {
-    const hotspots = t$2(selectors$d.hotspots, this.container);
+    const hotspots = t$2(selectors$c.hotspots, this.container);
     let pulseIndex = 0;
     this.pulseInterval = setInterval(() => {
       i$1(hotspots, classes$6.pulse);
@@ -10339,15 +10520,15 @@ register("shoppable", {
       this.sliderType = sliderType;
       (_this$swiper = this.swiper) === null || _this$swiper === void 0 ? void 0 : _this$swiper.destroy();
       this.sliderInitalized = false;
-      const sliderContainerSelector = sliderType === sliderTypes.Desktop ? selectors$d.desktopSliderContainer : selectors$d.mobileDrawer;
+      const sliderContainerSelector = sliderType === sliderTypes.Desktop ? selectors$c.desktopSliderContainer : selectors$c.mobileDrawer;
       this.sliderContainer = n$2(sliderContainerSelector, this.container);
       if (this.sliderContainer === null) return;
-      this.slider = n$2(selectors$d.slider, this.sliderContainer);
-      this.slides = t$2(selectors$d.slide, this.sliderContainer);
-      this.sliderPagination = n$2(selectors$d.sliderPagination, this.sliderContainer);
-      this.sliderNavNext = n$2(selectors$d.sliderNavNext, this.sliderContainer);
-      this.sliderNavPrev = n$2(selectors$d.sliderNavPrev, this.sliderContainer);
-      this.sliderImages = t$2(selectors$d.sliderImages, this.sliderContainer);
+      this.slider = n$2(selectors$c.slider, this.sliderContainer);
+      this.slides = t$2(selectors$c.slide, this.sliderContainer);
+      this.sliderPagination = n$2(selectors$c.sliderPagination, this.sliderContainer);
+      this.sliderNavNext = n$2(selectors$c.sliderNavNext, this.sliderContainer);
+      this.sliderNavPrev = n$2(selectors$c.sliderNavPrev, this.sliderContainer);
+      this.sliderImages = t$2(selectors$c.sliderImages, this.sliderContainer);
       if (this.slides.length < 2) {
         return;
       }
@@ -10408,7 +10589,7 @@ register("shoppable", {
   },
   _activateHotspot(index) {
     const wrapper = n$2(".shoppable-item[data-index='".concat(index, "']"), this.container);
-    const card = n$2(selectors$d.productCard, wrapper);
+    const card = n$2(selectors$c.productCard, wrapper);
     if (card && !window.matchMedia(getMediaQuery("below-960")).matches) {
       if (a$1(card, "hidden")) {
         this._closeAll();
@@ -10451,8 +10632,8 @@ register("shoppable", {
   _setupDrawer() {
     // TODO: should this and open/close drawer functions be moved to their own file?
 
-    const drawerBackground = n$2(selectors$d.drawerBackground, this.container);
-    const drawerCloseButton = n$2(selectors$d.drawerCloseButton, this.container);
+    const drawerBackground = n$2(selectors$c.drawerBackground, this.container);
+    const drawerCloseButton = n$2(selectors$c.drawerCloseButton, this.container);
     this.events.push(e$2(drawerBackground, "click", () => this._closeAll()));
     this.events.push(e$2(drawerCloseButton, "click", () => this._closeAll()));
   },
@@ -10474,7 +10655,7 @@ register("shoppable", {
     this._activateHotspot(hotspotIndex);
   },
   _clickOutsideHandler(e) {
-    if (!e.target.closest(selectors$d.productCard) && !a$1(e.target, "shoppable-item__hotspot") && !window.matchMedia(getMediaQuery("below-960")).matches) {
+    if (!e.target.closest(selectors$c.productCard) && !a$1(e.target, "shoppable-item__hotspot") && !window.matchMedia(getMediaQuery("below-960")).matches) {
       this._closeAll();
     }
   },
@@ -10516,18 +10697,18 @@ register("shoppable", {
   }
 });
 
-const selectors$c = {
+const selectors$b = {
   video: "video",
   quickViewTrigger: "[data-quick-view-trigger]"
 };
 register("complete-the-look", {
   videoHandler: null,
   onLoad() {
-    const video = n$2(selectors$c.video, this.container);
+    const video = n$2(selectors$b.video, this.container);
     if (video) {
       this.videoHandler = backgroundVideoHandler(this.container);
     }
-    this.events = [e$2(t$2(selectors$c.quickViewTrigger, this.container), "click", e => {
+    this.events = [e$2(t$2(selectors$b.quickViewTrigger, this.container), "click", e => {
       const {
         productUrl
       } = e.target.dataset;
@@ -10548,15 +10729,15 @@ register("complete-the-look", {
   }
 });
 
-const selectors$b = {
+const selectors$a = {
   playButtonVideo: "[data-play-button-block-video]",
   playButtonBlock: ".play-button-block"
 };
 register("rich-text", {
   onLoad() {
-    const playButtonVideos = t$2(selectors$b.playButtonVideo, this.container);
+    const playButtonVideos = t$2(selectors$a.playButtonVideo, this.container);
     if (playButtonVideos.length) {
-      this.playButtons = playButtonVideos.map(block => playButton(block.closest(selectors$b.playButtonBlock)));
+      this.playButtons = playButtonVideos.map(block => playButton(block.closest(selectors$a.playButtonBlock)));
     }
     if (shouldAnimate(this.container)) {
       this.animateRichText = animateRichText(this.container);
@@ -10569,7 +10750,7 @@ register("rich-text", {
   }
 });
 
-const selectors$a = {
+const selectors$9 = {
   imageContainer: ".image-compare__image-container",
   labelContainer: ".image-compare__label-container",
   slider: ".image-compare__slider"
@@ -10583,9 +10764,9 @@ register("image-compare", {
     }
   },
   _initSliders() {
-    this.imageContainer = n$2(selectors$a.imageContainer, this.container);
-    this.labelContainers = t$2(selectors$a.labelContainer, this.container);
-    this.slider = n$2(selectors$a.slider, this.container);
+    this.imageContainer = n$2(selectors$9.imageContainer, this.container);
+    this.labelContainers = t$2(selectors$9.labelContainer, this.container);
+    this.slider = n$2(selectors$9.slider, this.container);
 
     // Check if slider exists (must be some blocks to exist)
     this.slider && this.events.push(e$2(this.slider, "input", e => this.imageContainer.style.setProperty("--position", "".concat(e.target.value, "%"))), e$2(this.slider, "mousedown", () => this.hideLabelContainers()), e$2(this.slider, "touchstart", () => this.hideLabelContainers()), e$2(this.slider, "mouseup", () => this.showLabelContainers()), e$2(this.slider, "touchend", () => this.showLabelContainers()));
@@ -10607,7 +10788,7 @@ register("image-compare", {
   }
 });
 
-const selectors$9 = {
+const selectors$8 = {
   playButtonVideo: "[data-play-button-block-video]",
   playButtonBlock: ".play-button-block"
 };
@@ -10616,9 +10797,9 @@ register("image-with-text", {
     if (shouldAnimate(this.container)) {
       this.animateImageWithText = animateImageWithText(this.container);
     }
-    const playButtonVideos = t$2(selectors$9.playButtonVideo, this.container);
+    const playButtonVideos = t$2(selectors$8.playButtonVideo, this.container);
     if (playButtonVideos.length) {
-      this.playButtons = playButtonVideos.map(block => playButton(block.closest(selectors$9.playButtonBlock)));
+      this.playButtons = playButtonVideos.map(block => playButton(block.closest(selectors$8.playButtonBlock)));
     }
   },
   onUnload() {
@@ -10628,15 +10809,15 @@ register("image-with-text", {
   }
 });
 
-const selectors$8 = {
+const selectors$7 = {
   playButtonVideo: "[data-play-button-block-video]",
   playButtonBlock: ".play-button-block"
 };
 register("image-with-text-split", {
   onLoad() {
-    const playButtonVideos = t$2(selectors$8.playButtonVideo, this.container);
+    const playButtonVideos = t$2(selectors$7.playButtonVideo, this.container);
     if (playButtonVideos.length) {
-      this.playButtons = playButtonVideos.map(block => playButton(block.closest(selectors$8.playButtonBlock)));
+      this.playButtons = playButtonVideos.map(block => playButton(block.closest(selectors$7.playButtonBlock)));
     }
     if (shouldAnimate(this.container)) {
       this.animateImageWithTextSplit = animateImageWithTextSplit(this.container);
@@ -10649,15 +10830,15 @@ register("image-with-text-split", {
   }
 });
 
-const selectors$7 = {
+const selectors$6 = {
   playButtonVideo: "[data-play-button-block-video]",
   playButtonBlock: ".play-button-block"
 };
 register("image-hero", {
   onLoad() {
-    const playButtonVideos = t$2(selectors$7.playButtonVideo, this.container);
+    const playButtonVideos = t$2(selectors$6.playButtonVideo, this.container);
     if (playButtonVideos.length) {
-      this.playButtons = playButtonVideos.map(block => playButton(block.closest(selectors$7.playButtonBlock)));
+      this.playButtons = playButtonVideos.map(block => playButton(block.closest(selectors$6.playButtonBlock)));
     }
     if (shouldAnimate(this.container)) {
       this.animateImageHero = animateImageHero(this.container);
@@ -10685,7 +10866,7 @@ register("image-hero-split", {
   }
 });
 
-const selectors$6 = {
+const selectors$5 = {
   item: ".testimonials__item",
   swiper: ".swiper",
   navigationNext: ".testimonials__navigation-button--next",
@@ -10695,8 +10876,8 @@ const selectors$6 = {
 register("testimonials", {
   onLoad() {
     this.events = [];
-    this.items = t$2(selectors$6.item, this.container);
-    this.itemsContainer = n$2(selectors$6.swiper, this.container);
+    this.items = t$2(selectors$5.item, this.container);
+    this.itemsContainer = n$2(selectors$5.swiper, this.container);
     if (shouldAnimate(this.container)) {
       this.itemAnimations = this.items.map(item => animateTestimonials(item));
       this.observer = intersectionWatcher(this.container);
@@ -10719,8 +10900,8 @@ register("testimonials", {
           },
           grabCursor: true,
           navigation: {
-            nextEl: selectors$6.navigationNext,
-            prevEl: selectors$6.navigationPrev
+            nextEl: selectors$5.navigationNext,
+            prevEl: selectors$5.navigationPrev
           },
           breakpoints: {
             720: {
@@ -10755,7 +10936,7 @@ register("testimonials", {
   },
   setMobileButtonOffset() {
     // Mobile paddles should vertically center on the image instead of the item
-    const firstImage = n$2(selectors$6.productImage, this.container);
+    const firstImage = n$2(selectors$5.productImage, this.container);
     const mobileButtonHeight = 34;
     const halfMobileButtonHeight = mobileButtonHeight / 2;
     const halfImageHeight = firstImage.offsetHeight / 2;
@@ -10884,7 +11065,7 @@ register("newsletter-compact", {
   }
 });
 
-const selectors$5 = {
+const selectors$4 = {
   listContainer: "[data-events-eventbrite-container]",
   skeletonList: ".events__list--skeleton"
 };
@@ -10928,8 +11109,8 @@ register("events", {
    * @param {array} events array of event objects
    */
   _renderEvents(events) {
-    const listContainer = n$2(selectors$5.listContainer, this.container);
-    const skeletonList = n$2(selectors$5.skeletonList, this.container);
+    const listContainer = n$2(selectors$4.listContainer, this.container);
+    const skeletonList = n$2(selectors$4.skeletonList, this.container);
 
     // Build a list of events
     let list = document.createElement("ul");
@@ -11038,7 +11219,7 @@ register("promo-banner", {
   }
 });
 
-const selectors$4 = {
+const selectors$3 = {
   tabLabels: "[data-tab-label]",
   tabItems: "[data-tab-item]",
   tabList: "[data-tab-list]",
@@ -11047,10 +11228,10 @@ const selectors$4 = {
 register("product-tabs", {
   onLoad() {
     this.accordions = [];
-    this.tabItems = t$2(selectors$4.tabItems, this.container);
-    this.tabLabels = t$2(selectors$4.tabLabels, this.container);
-    this.tabList = n$2(selectors$4.tabList, this.container);
-    this.activeTabItem = n$2(selectors$4.activeTabItem, this.container);
+    this.tabItems = t$2(selectors$3.tabItems, this.container);
+    this.tabLabels = t$2(selectors$3.tabLabels, this.container);
+    this.tabList = n$2(selectors$3.tabList, this.container);
+    this.activeTabItem = n$2(selectors$3.activeTabItem, this.container);
     if (this.activeTabItem) {
       this._setTabHeight(this.activeTabItem);
     }
@@ -11127,7 +11308,7 @@ register("apps", {
   }
 });
 
-const selectors$3 = {
+const selectors$2 = {
   cartError: ".cart__form-item-error",
   cartNoteTrigger: "[data-order-note-trigger]",
   cartUpdateButton: ".cart__update",
@@ -11142,8 +11323,8 @@ const classes$5 = {
 };
 register("cart", {
   onLoad() {
-    const cartNoteTrigger = n$2(selectors$3.cartNoteTrigger, this.container);
-    const freeShippingBar$1 = n$2(selectors$3.freeShippingBar, this.container);
+    const cartNoteTrigger = n$2(selectors$2.cartNoteTrigger, this.container);
+    const freeShippingBar$1 = n$2(selectors$2.freeShippingBar, this.container);
     if (freeShippingBar$1) {
       freeShippingBar(freeShippingBar$1);
     }
@@ -11173,10 +11354,10 @@ register("cart", {
     // Delegate handles all click events due to rendering different content
     // within cart
     this.delegate = new Delegate(this.container);
-    this.delegate.on("change", selectors$3.quantityInput, e => this.handleQuantityInputChange(e));
+    this.delegate.on("change", selectors$2.quantityInput, e => this.handleQuantityInputChange(e));
   },
   refreshCart() {
-    const url = "".concat(theme.routes.cart.base, "?section_id=main-cart");
+    const url = "".concat(theme.routes.cart.base, "?section_id=").concat(this.id);
     makeRequest("GET", url).then(response => {
       var _window$Shopify;
       let container = document.createElement("div");
@@ -11185,7 +11366,7 @@ register("cart", {
       if ((_window$Shopify = window.Shopify) !== null && _window$Shopify !== void 0 && _window$Shopify.StorefrontExpressButtons) {
         window.Shopify.StorefrontExpressButtons.initialize();
       }
-      const freeShippingBar$1 = n$2(selectors$3.freeShippingBar, this.container);
+      const freeShippingBar$1 = n$2(selectors$2.freeShippingBar, this.container);
       if (freeShippingBar$1) {
         freeShippingBar(freeShippingBar$1);
       }
@@ -11194,14 +11375,14 @@ register("cart", {
   },
   handleErrorMessage(key) {
     const item = n$2("[data-key=\"".concat(key, "\"]"), this.container);
-    i$1(n$2(selectors$3.cartError, item), "hidden");
+    i$1(n$2(selectors$2.cartError, item), "hidden");
     i$1(item, classes$5.updatingQuantity);
   },
   handleQuantityInputChange(_ref4) {
     let {
       target
     } = _ref4;
-    const item = target.closest(selectors$3.quantityItem);
+    const item = target.closest(selectors$2.quantityItem);
     const {
       key
     } = item.dataset;
@@ -11218,7 +11399,7 @@ register("cart", {
     u$1(item, classes$5.updatingQuantity);
   },
   _initCrossSells() {
-    const crossSells = n$2(selectors$3.crossSells, this.container);
+    const crossSells = n$2(selectors$2.crossSells, this.container);
     if (crossSells) {
       this.crossSells = CrossSells(crossSells);
     }
@@ -11887,7 +12068,7 @@ const filterDrawer = node => {
     }
     checkForActiveModalitems(filter);
     range && range.validateRange();
-    debounce(() => updateFilters(container), 1000)();
+    debounce()();
   }
   function sortChange(e) {
     checkForActiveModalitems(e.target);
@@ -12056,6 +12237,7 @@ const filterBar = node => {
   if (rangeContainer) {
     range = priceRange(rangeContainer);
   }
+  const filterDebounce = debounce();
   const events = [e$2(window, "click", clickHandler), e$2(container, "change", changeHandler), c("filters:filter-removed", () => syncActiveStates()), e$2(container, "keydown", _ref => {
     let {
       keyCode
@@ -12244,7 +12426,7 @@ const filterBar = node => {
     }
     checkForActiveFilters();
     range && range.validateRange();
-    debounce(() => updateFilters(container), 1000)();
+    filterDebounce(() => updateFilters(container), 1000);
   }
   function checkForActiveFilters() {
     const activeItems = containsCheckedInputs(t$2(sel$1.filterInputs, container)) || rangeInputsHaveValue();
@@ -12337,6 +12519,7 @@ const filterSidebar = node => {
   if (rangeContainer) {
     range = priceRange(rangeContainer);
   }
+  const filterDebounce = debounce();
   const events = [e$2(container, "change", changeHandler), e$2(n$2(sel.sidebarToggle, node), "click", clickSidebarToggle), e$2(t$2("".concat(sel.button, ", ").concat(sel.clearAll), container), "click", clickButton), e$2(rangeInputs, "change", rangeChanged)];
   function clickSidebarToggle(e) {
     e.preventDefault();
@@ -12373,7 +12556,7 @@ const filterSidebar = node => {
     }
     checkForActiveFilters();
     range && range.validateRange();
-    debounce(() => updateFilters(container), 1000)();
+    filterDebounce(() => updateFilters(container), 1000);
   }
   function rangeChanged(e) {
     const wrappingContainer = e.target.closest(sel.group);
@@ -12447,7 +12630,7 @@ const filterSidebar = node => {
   };
 };
 
-const selectors$2 = {
+const selectors$1 = {
   infiniteScrollContainer: ".collection__infinite-container",
   infiniteScrollTrigger: ".collection__infinite-trigger",
   partial: "[data-partial]",
@@ -12473,11 +12656,11 @@ register("collection", {
       paginationType
     } = this.container.dataset;
     if (!parseInt(collectionItemCount)) return;
-    this.filterDrawerEl = n$2(selectors$2.filterDrawer, this.container);
-    this.filterbarEl = n$2(selectors$2.filterBar, this.container);
-    this.paginationItemCount = n$2(selectors$2.paginationItemCount, this.container);
+    this.filterDrawerEl = n$2(selectors$1.filterDrawer, this.container);
+    this.filterbarEl = n$2(selectors$1.filterBar, this.container);
+    this.paginationItemCount = n$2(selectors$1.paginationItemCount, this.container);
     if (this.filterDrawerEl || this.filterbarEl) {
-      this.partial = n$2(selectors$2.partial, this.container);
+      this.partial = n$2(selectors$1.partial, this.container);
       this.filterDrawer = filterDrawer(this.container);
       this.filterBar = filterBar(this.container);
       this.filterSidebar = filterSidebar(this.container);
@@ -12497,7 +12680,7 @@ register("collection", {
     // Infinite scroll
     this.paginationType = paginationType;
     this.paginated = this.paginationType === "paginated";
-    this.infiniteScrollTrigger = n$2(selectors$2.infiniteScrollTrigger, this.container);
+    this.infiniteScrollTrigger = n$2(selectors$1.infiniteScrollTrigger, this.container);
     if (!this.paginated) {
       this._initInfiniteScroll();
     }
@@ -12518,8 +12701,8 @@ register("collection", {
   },
   _initInfiniteScroll() {
     const infiniteScrollOptions = {
-      container: selectors$2.infiniteScrollContainer,
-      pagination: selectors$2.infiniteScrollTrigger,
+      container: selectors$1.infiniteScrollContainer,
+      pagination: selectors$1.infiniteScrollTrigger,
       loadingText: "Loading...",
       callback: () => {
         var _this$animateCollecti;
@@ -12536,14 +12719,14 @@ register("collection", {
     this.infiniteScroll = new Ajaxinate(infiniteScrollOptions);
   },
   _updatePaginationCount() {
-    const productItemCount = t$2(selectors$2.productItems, this.container).length;
+    const productItemCount = t$2(selectors$1.productItems, this.container).length;
     const viewing = strings$1.pagination.viewing.replace("{{ of }}", "1-".concat(productItemCount)).replace("{{ total }}", this.partial.dataset.collectionProductsCount);
     this.paginationItemCount.innerHTML = "".concat(viewing, " ").concat(strings$1.pagination.products);
   },
   _renderView(searchParams) {
     let updateHistory = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
     const url = "".concat(window.location.pathname, "?section_id=").concat(this.container.dataset.sectionId, "&").concat(searchParams);
-    const loading = n$2(selectors$2.loader, this.container);
+    const loading = n$2(selectors$1.loader, this.container);
     u$1(this.partial, classes$1.hideProducts);
     u$1(loading, classes$1.active);
     fetch(url).then(res => res.text()).then(res => {
@@ -12552,7 +12735,7 @@ register("collection", {
         this._updateURLHash(searchParams);
       }
       const doc = new DOMParser().parseFromString(res, "text/html");
-      const updatedPartial = n$2(selectors$2.partial, doc);
+      const updatedPartial = n$2(selectors$1.partial, doc);
       this.partial.innerHTML = updatedPartial.innerHTML;
       this.partial.dataset.collectionProductsCount = updatedPartial.dataset.collectionProductsCount;
       (_this$animateCollecti2 = this.animateCollection) === null || _this$animateCollecti2 === void 0 ? void 0 : _this$animateCollecti2.updateContents();
@@ -12565,7 +12748,7 @@ register("collection", {
       this.filterSidebar && this.filterSidebar.renderFilters(doc);
       this.productItem && this.productItem.unload();
       this.productItem = ProductItem(this.container);
-      this.paginationItemCount = n$2(selectors$2.paginationItemCount, this.container);
+      this.paginationItemCount = n$2(selectors$1.paginationItemCount, this.container);
       i$1(loading, classes$1.active);
       r$1("collection:updated");
     });
@@ -12728,29 +12911,18 @@ register("password", {
   }
 });
 
-const selectors$1 = {
-  video: ".about__block-video"
-};
 register("page", {
   onLoad() {
-    const videos = t$2(selectors$1.video, this.container);
-    this.videoHandlers = [];
-    if (videos.length) {
-      videos.forEach(video => {
-        this.videoHandlers.push(backgroundVideoHandler(video.parentNode));
-      });
-    }
-    this.accordions = Accordions(t$2(".accordion", this.container));
-    wrapIframes(t$2("iframe", this.container));
-    wrapTables(t$2("table", this.container));
     if (shouldAnimate(this.container)) {
       this.animatePage = animatePage(this.container);
     }
+
+    // Required to properly style RTE content
+    wrapIframes(t$2("iframe", this.container));
+    wrapTables(t$2("table", this.container));
   },
   onUnload() {
     var _this$animatePage;
-    this.accordions.unload();
-    this.videoHandlers.forEach(handler => handler());
     (_this$animatePage = this.animatePage) === null || _this$animatePage === void 0 ? void 0 : _this$animatePage.destroy();
   }
 });
@@ -13031,7 +13203,7 @@ backToTop();
 
 // Make it easy to see exactly what theme version
 // this is by commit SHA
-window.SHA = "e69ef5fcf8";
+window.SHA = "7984e0181d";
 if (!sessionStorage.getItem("flu_stat_recorded") && !((_window$Shopify = window.Shopify) !== null && _window$Shopify !== void 0 && _window$Shopify.designMode)) {
   var _window$Shopify2, _window$Shopify3, _window$Shopify3$them;
   // eslint-disable-next-line no-process-env

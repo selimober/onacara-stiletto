@@ -23,11 +23,11 @@
           </h4>
 
           {% unless item.product.has_only_default_variant %}
-            <p class="purchase-confirmation-popup__product-variant fs-body-50 t-opacity-50">{{ item.variant.title }}</p>
+            <p class="purchase-confirmation-popup__product-variant fs-body-50 t-opacity-60">{{ item.variant.title }}</p>
           {% endunless %}
 
           {% if item.selling_plan_allocation %}
-            <p class="purchase-confirmation-popup__product-subscriptions fs-body-50 t-opacity-50">
+            <p class="purchase-confirmation-popup__product-subscriptions fs-body-50 t-opacity-60">
               {{ item.selling_plan_allocation.selling_plan.name }}
             </p>
           {% endif %}
@@ -56,7 +56,7 @@
 
           {% liquid
             assign show_price = true
-            assign show_price_content = 'price'
+            assign price_content_type = 'price'
 
             if item.original_price == 0
               if settings.zero_dollar_cart_price_display == 'hide'
@@ -65,14 +65,14 @@
 
               if show_price
                 if settings.zero_dollar_cart_price_display == 'replace'
-                  assign show_price_content = 'custom'
+                  assign price_content_type = 'custom'
                 endif
               endif
             endif
           %}
 
           {% if show_price %}
-            {% if show_price_content == 'price' or item.variant.compare_at_price > item.variant.price %}
+            {% if price_content_type == 'price' or item.variant.compare_at_price > item.variant.price %}
               <div class="purchase-confirmation-popup__product-price-wrapper fs-body-75">
                 {% if item.original_line_price > item.final_line_price %}
                   <s class="purchase-confirmation-popup__product-title-price">
@@ -89,7 +89,7 @@
                 {% render 'unit-price', item: item %}
               </div>
 
-            {% elsif show_price_content == 'custom' %}
+            {% elsif price_content_type == 'custom' %}
               <div class="purchase-confirmation-popup__product-price-wrapper fs-body-75">
                 <span class="purchase-confirmation-popup__product-title-price">
                   {{ 'products.inventory.zero_price_custom_label' | t }}

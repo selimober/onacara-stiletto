@@ -6,6 +6,28 @@
   assign current_variant = product.selected_or_first_available_variant
   assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media
   assign product_link = product.url | within: collection
+
+  assign price_content_type = 'price'
+
+  if current_variant.available
+    if current_variant.price == 0 and current_variant.compare_at_price == null
+      if settings.zero_dollar_product_price_display == 'hide'
+        assign price_content_type = 'hide'
+        assign custom_price_content = blank
+      elsif settings.zero_dollar_product_price_display == 'replace'
+        assign price_content_type = 'custom'
+        assign custom_price_content = 'products.inventory.zero_price_custom_label' | t
+      endif
+    endif
+  else
+    if settings.sold_out_product_price_display == 'hide'
+      assign price_content_type = 'hide'
+      assign custom_price_content = blank
+    elsif settings.sold_out_product_price_display == 'replace'
+      assign price_content_type = 'custom'
+      assign custom_price_content = 'products.inventory.sold_out_price_custom_label' | t
+    endif
+  endif
 -%}
 
 <div class="quick-product--background-spacer"></div>
@@ -16,6 +38,11 @@
     data-section-type="product"
     data-section-id="{{ section.id }}"
     data-is-quick-view="true"
+    data-zero-price-display="{{ settings.zero_dollar_product_price_display }}"
+    data-zero-price-custom-content="{{ 'products.inventory.zero_price_custom_label' | t }}"
+    data-sold-out-price-display="{{ settings.sold_out_product_price_display }}"
+    data-sold-out-price-custom-content="{{ 'products.inventory.sold_out_price_custom_label' | t }}"
+    data-price-display-type="{{ price_content_type }}"
   >
     <div class="quick-product--left">
       <div class="product__media">
@@ -55,7 +82,9 @@
               block_settings: section.settings,
               current_variant: current_variant,
               is_quick: true,
-              featured_media: featured_media
+              featured_media: featured_media,
+              price_content_type: price_content_type,
+              custom_price_content: custom_price_content
             -%}
           </div>
           {%-
@@ -63,8 +92,11 @@
             prod: product,
             blocks: section.blocks,
             is_quick: true,
+            is_featured: false,
             current_variant: current_variant,
-            featured_media: featured_media
+            featured_media: featured_media,
+            price_content_type: price_content_type,
+            custom_price_content: custom_price_content
           -%}
 
           {% if section.settings.enable_gift_card_recipient and product.gift_card? -%}
@@ -82,7 +114,9 @@
           block: block,
           blocks: section.blocks,
           current_variant: current_variant,
-          is_quick: true
+          is_quick: true,
+          price_content_type: price_content_type,
+          custom_price_content: custom_price_content
         -%}
       </div>
     </div>

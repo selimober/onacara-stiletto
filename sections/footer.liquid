@@ -103,6 +103,10 @@
                   </ul>
                 {% endif %}
               </div>
+            {%- elsif block.type == 'liquid' -%}
+              <div class="footer__liquid fs-body-100">
+                {{ block.settings.liquid }}
+              </div>
             {%- elsif block.type == 'newsletter' -%}
               {%- assign success_msg = 'general.newsletter_form.confirmation' | t -%}
 
@@ -161,8 +165,7 @@
     <div class="footer__bottom">
       <div class="footer__bottom-left">
         {%- if locale_selector or country_selector -%}
-          {%
-            render 'cross-border' with
+          {% render 'cross-border',
             show_locale: locale_selector,
             show_country: country_selector,
             id: 'footer',
@@ -398,6 +401,38 @@
           "label": "t:sections.footer.blocks.links.settings.link_list.label",
           "info": "t:sections.footer.blocks.links.settings.link_list.info",
           "default": "footer"
+        }
+      ]
+    },
+    {
+      "type": "liquid",
+      "name": "t:sections.footer.blocks.liquid.name",
+      "settings": [
+        {
+          "id": "desktop_width",
+          "type": "range",
+          "label": "t:sections.footer.blocks.shared.settings.desktop_width.label",
+          "info": "t:sections.footer.blocks.shared.settings.desktop_width.info",
+          "min": 10,
+          "max": 100,
+          "step": 1,
+          "default": 30,
+          "unit": "%"
+        },
+        {
+          "id": "desktop_padding",
+          "type": "range",
+          "label": "t:sections.footer.blocks.shared.settings.desktop_padding.label",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "default": 2,
+          "unit": "%"
+        },
+        {
+          "id": "liquid",
+          "type": "liquid",
+          "label": "t:sections.footer.blocks.liquid.settings.liquid.label"
         }
       ]
     },

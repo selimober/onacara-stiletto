@@ -13,6 +13,8 @@
   * media: custom media definition for `source`
   * aspect_ratio: necessary if the image is displayed at a non natural aspect ratio
   * fallback_alt: fall back alt text if non set on image in admin
+  * no_crop: { Boolean } If 'true', the image will be loaded in full, and then cropped in CSS (rather than
+      letting Shopify serve a cropped image).
   * src_set_type: optional parameter used to reduce the srcset generation to speed up page perf
       - 'grid'
       - 'full-width'
@@ -88,7 +90,7 @@
 
   {%- capture src_set_string -%}
     {%- if src_set_string.size > 0 -%}{{ src_set_string }},{{ ' ' }}{%- endif -%}
-    {%- if crop_height_ratio and focal_point != "image_presentation" -%}
+    {%- if crop_height_ratio and focal_point != "image_presentation" and no_crop != true -%}
       {{ image | image_url: width: width, height: crop_height, crop: image_crop }} {{width}}w
     {%- else -%}
       {{ image | image_url: width: width }} {{width}}w

@@ -167,14 +167,9 @@
                 {%-
                   render 'play-button-block' with
                   wrapper_class: 'image-hero__text-container-image-play-button section-blocks__video-button',
-                  shopify_attributes: block.shopify_attributes,
-                  poster_image: block.settings.poster_image,
-                  poster_aspect: block.settings.aspect_ratio,
-                  video_url: block.settings.video_url,
-                  label: block.settings.text,
+                  block: block,
                   button_alignment: text_position_modifier,
-                  button_alignment_mobile: text_position_modifier_mobile,
-                  icon_style: block.settings.icon_style
+                  button_alignment_mobile: text_position_modifier_mobile
                 -%}
               {%- when 'border' -%}
                 {%- render 'border-block' -%}
@@ -551,15 +546,44 @@
       "name": "t:shared.section_blocks.play_button.name",
       "settings": [
         {
-          "type": "url",
-          "id": "video_url",
-          "label": "Video link",
-          "label": "t:shared.section_blocks.play_button.settings.video_url.label",
-          "info": "t:shared.section_blocks.play_button.settings.video_url.info"
+          "id": "video_source",
+          "type": "radio",
+          "label": "t:shared.settings.video_source.label",
+          "options": [
+            {
+              "label": "t:shared.settings.video_source.option_1",
+              "value": "shopify"
+            },
+            {
+              "label": "t:shared.settings.video_source.option_2",
+              "value": "external"
+            }
+          ],
+          "default": "external"
         },
         {
+          "type": "video",
+          "id": "video",
+          "label": "t:shared.settings.video.label",
+          "info": "t:shared.settings.video.info"
+        },
+        {
+          "id": "video_url",
+          "type": "video_url",
+          "label": "t:shared.settings.external_video_url.label",
+          "accept": [
+            "youtube",
+            "vimeo"
+          ],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.video.blocks.play_button.name"
+        },
+        {
+          "id": "image",
           "type": "image_picker",
-          "id": "poster_image",
           "label": "t:shared.section_blocks.play_button.settings.poster_image.label"
         },
         {

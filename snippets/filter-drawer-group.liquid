@@ -48,11 +48,16 @@
     {%- case filter.type -%}
       {%- when 'boolean', 'list' -%}
         {%- liquid
-          assign group_name = filter.label | handleize
+          assign group_name = filter.label | downcase
+          assign has_swatches = false
+          assign has_chips = false
           assign list_modifiers = ''
-          if swatch_options contains group_name and show_swatch_filters == true
+
+          if filter.presentation == 'swatch' or swatch_options contains group_name and show_swatch_filters == true
+            assign has_swatches = true
             assign list_modifiers = list_modifiers | append: ' has-swatch'
           elsif chip_options contains group_name and show_chip_filters == true
+            assign has_chips = true
             assign list_modifiers = list_modifiers | append: ' filter-drawer__list--chips'
           endif
         -%}
@@ -63,15 +68,21 @@
             data-layout="{{ chip_layout }}"
           {% endif %}
         >
-          {%- for filter_value in filter.values -%}
-            {%- if swatch_options contains group_name and show_swatch_filters == true -%}
-              {% render 'filter-item', type: 'swatch', filter_value: filter_value, scope: scope %}
-            {%- elsif chip_options contains group_name and show_chip_filters == true -%}
-              {% render 'filter-item', type: 'chip', filter_value: filter_value, scope: scope %}
-            {%- else -%}
-              {% render 'filter-item', type: 'checkbox', filter_value: filter_value, scope: scope %}
-            {%- endif -%}
-          {%- endfor -%}
+          {%- liquid
+            for filter_value in filter.values
+              capture item_type
+                if has_swatches
+                  echo 'swatch'
+                elsif has_chips
+                  echo 'chip'
+                else
+                  echo 'checkbox'
+                endif
+              endcapture
+
+              render 'filter-item', type: item_type, filter_value: filter_value, scope: scope
+            endfor
+          -%}
         </ul>
       {%- when 'price_range' -%}
         {% liquid

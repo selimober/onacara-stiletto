@@ -36,11 +36,11 @@
                     </h4>
 
                     {% unless item.product.has_only_default_variant %}
-                      <p class="cart__form-item-variant fs-body-50 t-opacity-50">{{ item.variant.title }}</p>
+                      <p class="cart__form-item-variant fs-body-50 t-opacity-60">{{ item.variant.title }}</p>
                     {% endunless %}
 
                     {% if item.selling_plan_allocation %}
-                      <p class="cart__form-item-subscriptions fs-body-50 t-opacity-50">
+                      <p class="cart__form-item-subscriptions fs-body-50 t-opacity-60">
                         {{ item.selling_plan_allocation.selling_plan.name }}
                       </p>
                     {% endif %}
@@ -83,7 +83,7 @@
 
                   {% liquid
                     assign show_price = true
-                    assign show_price_content = 'price'
+                    assign price_content_type = 'price'
 
                     if item.original_price == 0
                       if settings.zero_dollar_cart_price_display == 'hide'
@@ -92,14 +92,14 @@
 
                       if show_price
                         if settings.zero_dollar_cart_price_display == 'replace'
-                          assign show_price_content = 'custom'
+                          assign price_content_type = 'custom'
                         endif
                       endif
                     endif
                   %}
 
                   {% if show_price %}
-                    {% if show_price_content == 'price' or item.variant.compare_at_price > item.variant.price %}
+                    {% if price_content_type == 'price' or item.variant.compare_at_price > item.variant.price %}
                       <div class="cart__form-item-price-wrapper fs-body-75">
                         {% if item.original_line_price > item.final_line_price %}
                           <s class="cart__form-item-price">
@@ -116,7 +116,7 @@
                         {% render 'unit-price', item: item %}
                       </div>
 
-                    {% elsif show_price_content == 'custom' %}
+                    {% elsif price_content_type == 'custom' %}
                       <div class="cart__form-item-price-wrapper fs-body-75">
                         <span class="cart__form-item-price">
                           {{ 'products.inventory.zero_price_custom_label' | t }}

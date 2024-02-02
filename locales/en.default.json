@@ -404,6 +404,7 @@
       "in_stock": "In stock, and ready to ship",
       "low_stock": "Only {{count}} left. Order soon!",
       "sold_out": "Out of stock",
+      "sold_out_price_custom_label": "Sold out",
       "unavailable": "Unavailable",
       "zero_price_custom_label": "Free"
     },

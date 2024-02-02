@@ -1,7 +1,7 @@
 {
   "current": {
     "color_background_body": "#f4f4f4",
-    "color_text_link": "#d8b892",
+    "color_text_link": "#e0ae74",
     "color_text": "#342b25",
     "color_border": "#ded8ce",
     "color_header_text": "#342b25",
@@ -40,22 +40,23 @@
     "custom_product_badge_group_3_color": "#000000",
     "custom_product_badge_group_4_tag_names": "",
     "uppercase_badges": true,
-    "product_listing_show_vendor": true,
+    "product_listing_show_vendor": false,
     "enable_quick_view": true,
-    "product_listing_aspect_ratio": "portrait",
+    "product_listing_aspect_ratio": "square",
     "product_listing_show_discount": false,
     "product_listing_discount_format": "sale_text",
     "product_listing_show_custom_badges": true,
+    "enable_confirmation_popup": false,
     "cart_item_aspect_ratio": "natural",
     "enable_free_shipping_bar": false,
     "free_shipping_threshold": "250",
     "quick_search_product_style": "columns",
     "quick_search_show_vendor": false,
     "quick_search_suggested_heading": "Popular collections",
-    "social_facebook_link": "#",
-    "social_instagram_link": "#",
-    "social_tiktok_link": "#",
-    "social_twitter_link": "#",
+    "social_facebook_link": "",
+    "social_instagram_link": "https:\/\/www.instagram.com\/onacara_london\/",
+    "social_tiktok_link": "",
+    "social_twitter_link": "",
     "content_for_index": [
 
     ]

@@ -1,17 +1,19 @@
-{%- capture close_icon -%}
-  {% render 'icon' with icon: 'close' %}
-{%- endcapture -%}
+{%- liquid
+  capture close_icon
+    render 'icon', icon: 'close'
+  endcapture
 
-{%- capture chevron_icon -%}
-  {% render 'icon' with icon: 'chevron' %}
-{%- endcapture -%}
+  capture chevron_icon
+    render 'icon', icon: 'chevron'
+  endcapture
 
-{%- capture zoom_icon -%}
-  {% render 'icon' with icon: 'zoom' %}
-{%- endcapture -%}
+  capture zoom_icon
+    render 'icon', icon: 'zoom'
+  endcapture
+-%}
 
 <script>
-  console.log('Stiletto v2.4.0 by Fluorescent');
+  console.log('Stiletto v3.0.0 by Fluorescent');
 
   document.documentElement.className = document.documentElement.className.replace('no-js', '');
   if (window.matchMedia(`(prefers-reduced-motion: reduce)`) === true || window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true) {
@@ -21,7 +23,7 @@
   }
 
   window.theme = {
-    version: 'v2.4.0',
+    version: 'v3.0.0',
     themeName: 'Stiletto',
     moneyFormat: {{ shop.money_format | json }},
     strings: {
@@ -79,9 +81,38 @@
     },
     coreData: {
       n: "Stiletto",
-      v: "v2.4.0",
+      v: "v3.0.0",
     }
   }
+
+  {% liquid
+    assign searchable_fields = 'author, body, product_type, tag, title, variant_barcode, variant_sku, variant_title, vendor' | split: ', '
+
+    capture searchable_field_params
+      for field in searchable_fields
+        capture field_key
+          echo 'searchable_fields_' | append: field
+        endcapture
+
+        if settings[field_key]
+          case field
+            when 'variant_barcode'
+              echo 'variants.barcode,'
+            when 'variant_sku'
+              echo 'variants.sku,'
+            when 'variant_title'
+              echo 'variants.title,'
+            else
+              echo field | append: ','
+          endcase
+        endif
+      endfor
+    endcapture
+  -%}
+
+  {% if searchable_field_params != blank -%}
+    window.theme.searchableFields = "{{ searchable_field_params | remove_last: ',' }}";
+  {%- endif %}
 
   {% if template.directory == 'customers' or template == 'product' %}
     window.theme.allCountryOptionTags = {{ all_country_option_tags | json }};

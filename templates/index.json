@@ -6,76 +6,49 @@
         "d0cd2366-7930-4809-80d7-2b38d2d4fb07": {
           "type": "heading",
           "settings": {
+            "title": "Elevate your home",
             "heading_font_class": "fs-heading-display-2"
           }
         },
         "8a49de45-4784-4f5d-adcf-b87e81e76548": {
           "type": "subheading",
           "settings": {
+            "subheading": "Enjoy a 15% discount and free shipping on all Bouclé sets.",
             "subheading_font_class": "fs-heading-5-base"
           }
         },
         "d525a297-b0ac-4079-a90c-68d26f07aae7": {
           "type": "button",
           "settings": {
-            "link": "",
+            "link": "shopify:\/\/collections\/boucle",
+            "link_text": "SHOP NOW",
             "button_style": "btn--primary"
-          }
-        },
-        "15c58a65-cec7-4639-8936-8e3534462aff": {
-          "type": "button",
-          "settings": {
-            "link": "",
-            "button_style": "btn--secondary"
           }
         }
       },
       "block_order": [
         "d0cd2366-7930-4809-80d7-2b38d2d4fb07",
         "8a49de45-4784-4f5d-adcf-b87e81e76548",
-        "d525a297-b0ac-4079-a90c-68d26f07aae7",
-        "15c58a65-cec7-4639-8936-8e3534462aff"
+        "d525a297-b0ac-4079-a90c-68d26f07aae7"
       ],
       "settings": {
         "image_aspect": "custom",
         "desktop_height": 70,
         "mobile_height": 50,
+        "image": "shopify:\/\/shop_images\/WhatsApp_Image_2024-02-01_at_21.56.16.jpg",
+        "image_mobile": "shopify:\/\/shop_images\/WhatsAppImage2022-10-25at12.32.27_1_df489437-8b64-47c6-b0f6-96712435f0b5.jpg",
         "focal_point": "image_presentation",
         "mobile_focal_point": "image_presentation",
         "media_link": "",
         "text_position": "center_center",
+        "text_position_mobile": "center_center",
         "text_color": "#ffffff",
         "button_background_color": "#ffffff",
         "button_text_color": "#000000",
         "color_overlay": "#000000",
         "color_overlay_gradient": "",
         "overlay_opacity": 51,
-        "section_padding": "section--vertical-padding-none"
-      }
-    },
-    "1655855477ee9538e0": {
-      "type": "countdown-bar",
-      "settings": {
-        "min_height": 60,
-        "min_height_mobile": 60,
-        "year": 2023,
-        "month": "january",
-        "day": "1",
-        "hour": "0",
-        "minute": "0",
-        "hide_timer_on_complete": false,
-        "timer_complete_message": "",
-        "button_style": "btn--secondary",
-        "focal_point": "image_presentation",
-        "mobile_focal_point": "image_presentation",
-        "text_color": "#ffffff",
-        "button_background_color": "#ffffff",
-        "button_text_color": "#000000",
-        "background_color": "#c51c26",
-        "color_overlay": "#000000",
-        "color_overlay_gradient": "",
-        "overlay_opacity": 0,
-        "full_width": true,
+        "enable_animation": true,
         "section_padding": "section--vertical-padding-none"
       }
     },
@@ -88,11 +61,15 @@
             "width": "33",
             "height": 500,
             "mobile_height": 360,
+            "image": "shopify:\/\/shop_images\/IMG-20231213-WA0058_2943854f-945e-42ce-b6a2-8539098b5565.jpg",
             "media_fit": "cover",
             "focal_point": "image_presentation",
             "mobile_focal_point": "image_presentation",
             "text_position": "flex-start_flex-end",
             "accent": "",
+            "title": "Styled with Ease",
+            "heading_font_class": "fs-heading-2-base",
+            "subheading": "<p>Expert-curated cushions for effortless style.<\/p>",
             "subheading_font_class": "fs-heading-6-base",
             "text": "",
             "text_font_class": "fs-body-100",
@@ -114,12 +91,15 @@
             "width": "33",
             "height": 500,
             "mobile_height": 360,
+            "image": "shopify:\/\/shop_images\/OnacaraAralik2023-7184-Edit_fbc68d64-bb0e-4863-9125-868a82e1e5ad.jpg",
             "media_fit": "cover",
             "focal_point": "image_presentation",
             "mobile_focal_point": "image_presentation",
             "text_position": "flex-start_flex-end",
             "accent": "",
-            "title": "Grid item",
+            "title": "Luxury Without the Price Tag",
+            "heading_font_class": "fs-heading-2-base",
+            "subheading": "<p>Beautiful spaces made affordable for all<\/p>",
             "subheading_font_class": "fs-heading-6-base",
             "text": "",
             "text_font_class": "fs-body-100",
@@ -141,15 +121,21 @@
             "width": "33",
             "height": 600,
             "mobile_height": 360,
+            "image": "shopify:\/\/shop_images\/OnacaraAralik2023-7132-Edit_a8967c75-5eb8-4925-843c-345c1c67f718.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/PXL_20231213_134059499_981cae9f-59a2-4b90-9ad7-9fb85aef3847.jpg",
             "media_fit": "cover",
             "focal_point": "image_presentation",
             "mobile_focal_point": "image_presentation",
             "text_position": "flex-start_flex-end",
             "accent": "",
+            "title": "For A Season or A Lifetime",
+            "heading_font_class": "fs-heading-2-base",
+            "subheading": "<p>Top-quality, durable products you can trust<\/p>",
             "subheading_font_class": "fs-heading-6-base",
             "text": "",
             "text_font_class": "fs-body-100",
             "link": "",
+            "link_text": "",
             "button_style": "btn--callout",
             "background_color": "",
             "text_color": "#ffffff",
@@ -167,34 +153,39 @@
         "165487802257d72399-0"
       ],
       "settings": {
-        "divider_style": "solid"
+        "heading": "",
+        "subheading": "",
+        "content_alignment": "left",
+        "enable_animation": true,
+        "full_width": false,
+        "spacing": 24,
+        "divider_style": "solid",
+        "section_padding": "section--vertical-padding-top-bottom"
       }
     },
-    "16549177944ec2347e": {
-      "type": "rich-text",
+    "quote_gDYF6G": {
+      "type": "quote",
       "blocks": {
-        "1654917794cdc0bc3c-0": {
-          "type": "heading",
+        "quote_MFQnLK": {
+          "type": "quote",
           "settings": {
-            "heading_font_class": "fs-heading-3-base"
-          }
-        },
-        "1654917794cdc0bc3c-1": {
-          "type": "text",
-          "settings": {
-            "text_font_class": "fs-body-100"
+            "quote": "<p>\"Absolutely delighted with my cushions from Onacara.<br\/>The quality of the fabric and finishing is perfect!\"<\/p>",
+            "title": "ANNE HUGNES",
+            "font_size": "small"
           }
         }
       },
       "block_order": [
-        "1654917794cdc0bc3c-0",
-        "1654917794cdc0bc3c-1"
+        "quote_MFQnLK"
       ],
       "settings": {
-        "alignment": "center_center",
-        "divider_style": "solid",
-        "content_width": "custom",
-        "custom_content_width": 650
+        "autoplay_enabled": true,
+        "autoplay_delay": 7,
+        "pagination_style": "dots",
+        "font_choice": "heading",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom"
       }
     },
     "1655855558c1ac2348": {
@@ -204,57 +195,23 @@
           "type": "collection",
           "settings": {
             "show_view_all": true,
-            "collection": "",
-            "collection_name": "First collection"
-          }
-        },
-        "16558555587b915de6-1": {
-          "type": "collection",
-          "settings": {
-            "show_view_all": true,
-            "collection": "",
-            "collection_name": "Second collection"
+            "collection": "boucle",
+            "collection_name": "BOUCLÉ"
           }
         }
       },
       "block_order": [
-        "16558555587b915de6-0",
-        "16558555587b915de6-1"
+        "16558555587b915de6-0"
       ],
       "settings": {
-        "heading": "Featured collection",
+        "heading": "BEST SELLERS",
         "subheading": "",
         "link": "",
         "link_text": "",
         "maximum_products": 8,
         "columns": "4",
         "mobile_columns": "2",
-        "divider_style": "solid",
-        "section_padding": "section--vertical-padding-top-bottom"
-      }
-    },
-    "16548772614c49ba39": {
-      "type": "featured-collection-slider",
-      "blocks": {
-        "767ac6c0-8826-4284-bd74-6eb8a441d7bc": {
-          "type": "collection",
-          "settings": {
-            "show_view_all": true,
-            "collection": "",
-            "collection_name": "Collection"
-          }
-        }
-      },
-      "block_order": [
-        "767ac6c0-8826-4284-bd74-6eb8a441d7bc"
-      ],
-      "settings": {
-        "subheading": "",
-        "link": "",
-        "link_text": "View all products",
-        "maximum_products": 8,
-        "columns": "4",
-        "mobile_columns": "2",
+        "enable_animation": true,
         "divider_style": "solid",
         "section_padding": "section--vertical-padding-top-bottom"
       }
@@ -265,23 +222,33 @@
         "min_height": 300,
         "min_height_mobile": 500,
         "sale_type": "up to",
-        "sale_amount": "60",
+        "sale_amount": "25",
         "sale_unit": "percent_off",
+        "terms_and_conditions": "",
+        "terms_vertical_offset": 0,
         "sale_font_size": 150,
         "sale_font_size_mobile": 150,
         "currency_symbol_position": "before",
+        "heading": "OPEN A TRADE ACCOUNT",
         "heading_font_class": "fs-heading-3-base",
+        "text": "<p>Unlock exclusive trade benefits today!<\/p>",
+        "link": "shopify:\/\/pages\/trade",
+        "link_text": "APPLY",
         "button_style": "btn--secondary",
+        "link_2": "shopify:\/\/collections",
+        "link_text_2": "",
         "button_style_2": "btn--secondary",
         "focal_point": "image_presentation",
         "mobile_focal_point": "image_presentation",
-        "text_color": "#FFFFFF",
-        "button_background_color": "#FFFFFF",
+        "text_color": "#ffffff",
+        "button_background_color": "#ffffff",
         "button_text_color": "#000000",
-        "background_color": "#C51C26",
-        "color_overlay": "#000",
+        "background_color": "#d8b892",
+        "color_overlay": "#000000",
         "color_overlay_gradient": "",
         "overlay_opacity": 0,
+        "layout": "two-columns",
+        "enable_animation": true,
         "show_frame": true,
         "full_width": false,
         "section_padding": "section--vertical-padding-top-only"
@@ -301,16 +268,20 @@
             "mobile_focal_point": "image_presentation",
             "text_position": "center_center",
             "accent": "",
+            "title": "Grid item",
+            "heading_font_class": "fs-heading-2-base",
+            "subheading": "<p>Perfect for lookbooks and editorial photography<\/p>",
             "subheading_font_class": "fs-heading-5-base",
             "text": "",
             "text_font_class": "fs-body-100",
             "link": "",
+            "link_text": "",
             "button_style": "btn--primary",
             "background_color": "",
-            "text_color": "#FFFFFF",
-            "button_background_color": "#FFFFFF",
+            "text_color": "#ffffff",
+            "button_background_color": "#ffffff",
             "button_text_color": "#000000",
-            "color_overlay": "#000",
+            "color_overlay": "#000000",
             "color_overlay_gradient": "",
             "overlay_opacity": 30
           }
@@ -326,6 +297,9 @@
             "mobile_focal_point": "image_presentation",
             "text_position": "center_center",
             "accent": "",
+            "title": "Grid item",
+            "heading_font_class": "fs-heading-2-base",
+            "subheading": "<p>Perfect for lookbooks and editorial photography<\/p>",
             "subheading_font_class": "fs-heading-5-base",
             "text": "",
             "text_font_class": "fs-body-100",
@@ -333,10 +307,10 @@
             "link_text": "",
             "button_style": "btn--primary",
             "background_color": "",
-            "text_color": "#FFFFFF",
-            "button_background_color": "#FFFFFF",
+            "text_color": "#ffffff",
+            "button_background_color": "#ffffff",
             "button_text_color": "#000000",
-            "color_overlay": "#000",
+            "color_overlay": "#000000",
             "color_overlay_gradient": "",
             "overlay_opacity": 30
           }
@@ -352,6 +326,9 @@
             "mobile_focal_point": "image_presentation",
             "text_position": "center_center",
             "accent": "",
+            "title": "Grid item",
+            "heading_font_class": "fs-heading-2-base",
+            "subheading": "<p>Perfect for lookbooks and editorial photography<\/p>",
             "subheading_font_class": "fs-heading-5-base",
             "text": "",
             "text_font_class": "fs-body-100",
@@ -359,10 +336,10 @@
             "link_text": "",
             "button_style": "btn--primary",
             "background_color": "",
-            "text_color": "#FFFFFF",
-            "button_background_color": "#FFFFFF",
+            "text_color": "#ffffff",
+            "button_background_color": "#ffffff",
             "button_text_color": "#000000",
-            "color_overlay": "#000",
+            "color_overlay": "#000000",
             "color_overlay_gradient": "",
             "overlay_opacity": 30
           }
@@ -378,6 +355,9 @@
             "mobile_focal_point": "image_presentation",
             "text_position": "center_center",
             "accent": "",
+            "title": "Grid item",
+            "heading_font_class": "fs-heading-2-base",
+            "subheading": "<p>Perfect for lookbooks and editorial photography<\/p>",
             "subheading_font_class": "fs-heading-5-base",
             "text": "",
             "text_font_class": "fs-body-100",
@@ -385,10 +365,10 @@
             "link_text": "",
             "button_style": "btn--primary",
             "background_color": "",
-            "text_color": "#FFFFFF",
-            "button_background_color": "#FFFFFF",
+            "text_color": "#ffffff",
+            "button_background_color": "#ffffff",
             "button_text_color": "#000000",
-            "color_overlay": "#000",
+            "color_overlay": "#000000",
             "color_overlay_gradient": "",
             "overlay_opacity": 30
           }
@@ -404,6 +384,9 @@
             "mobile_focal_point": "image_presentation",
             "text_position": "center_center",
             "accent": "",
+            "title": "Grid item",
+            "heading_font_class": "fs-heading-2-base",
+            "subheading": "<p>Perfect for lookbooks and editorial photography<\/p>",
             "subheading_font_class": "fs-heading-5-base",
             "text": "",
             "text_font_class": "fs-body-100",
@@ -411,10 +394,10 @@
             "link_text": "",
             "button_style": "btn--primary",
             "background_color": "",
-            "text_color": "#FFFFFF",
-            "button_background_color": "#FFFFFF",
+            "text_color": "#ffffff",
+            "button_background_color": "#ffffff",
             "button_text_color": "#000000",
-            "color_overlay": "#000",
+            "color_overlay": "#000000",
             "color_overlay_gradient": "",
             "overlay_opacity": 30
           }
@@ -430,6 +413,9 @@
             "mobile_focal_point": "image_presentation",
             "text_position": "center_center",
             "accent": "",
+            "title": "Grid item",
+            "heading_font_class": "fs-heading-2-base",
+            "subheading": "<p>Perfect for lookbooks and editorial photography<\/p>",
             "subheading_font_class": "fs-heading-5-base",
             "text": "",
             "text_font_class": "fs-body-100",
@@ -437,10 +423,10 @@
             "link_text": "",
             "button_style": "btn--primary",
             "background_color": "",
-            "text_color": "#FFFFFF",
-            "button_background_color": "#FFFFFF",
+            "text_color": "#ffffff",
+            "button_background_color": "#ffffff",
             "button_text_color": "#000000",
-            "color_overlay": "#000",
+            "color_overlay": "#000000",
             "color_overlay_gradient": "",
             "overlay_opacity": 30
           }
@@ -455,7 +441,14 @@
         "48a4e426-4325-412e-a437-c11aa5b4edf2"
       ],
       "settings": {
-        "divider_style": "none"
+        "heading": "",
+        "subheading": "",
+        "content_alignment": "left",
+        "enable_animation": true,
+        "full_width": false,
+        "spacing": 24,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom"
       }
     },
     "165488047346f59e49": {
@@ -463,6 +456,8 @@
       "settings": {
         "heading": "Collection list",
         "subheading": "",
+        "link": "shopify:\/\/collections",
+        "link_text": "View all collections",
         "columns": "5",
         "mobile_columns": "2",
         "collection_list": [
@@ -473,6 +468,7 @@
         "overlay_title_background_style": "gradient",
         "overlay_text_color": "#ffffff",
         "overlay_title_background": "#000000",
+        "enable_animation": true,
         "divider_style": "solid",
         "section_padding": "section--vertical-padding-top-bottom"
       }
@@ -483,17 +479,20 @@
         "1654913893d03d0b33-0": {
           "type": "accent",
           "settings": {
+            "accent": "Accent"
           }
         },
         "1654913893d03d0b33-1": {
           "type": "heading",
           "settings": {
+            "title": "Image with text split",
             "heading_font_class": "fs-heading-1-base"
           }
         },
         "1654913893d03d0b33-2": {
           "type": "subheading",
           "settings": {
+            "subheading": "Use these sections to promote a particular feature with editorial photography.",
             "subheading_font_class": "fs-heading-5-base"
           }
         },
@@ -508,6 +507,7 @@
           "type": "button",
           "settings": {
             "link": "",
+            "link_text": "Read more",
             "button_style": "btn--secondary"
           }
         }
@@ -530,6 +530,7 @@
         "text_color": "#ffffff",
         "button_background_color": "#ffffff",
         "button_text_color": "#ffffff",
+        "enable_animation": true,
         "section_padding": "section--vertical-padding-top-bottom"
       }
     },
@@ -539,12 +540,14 @@
         "1654899804e4fc48ec-0": {
           "type": "heading",
           "settings": {
+            "title": "Image with text",
             "heading_font_class": "fs-heading-display-3"
           }
         },
         "1654899804e4fc48ec-1": {
           "type": "subheading",
           "settings": {
+            "subheading": "Use these sections to promote a particular feature with editorial photography",
             "subheading_font_class": "fs-heading-5-base"
           }
         },
@@ -552,6 +555,7 @@
           "type": "button",
           "settings": {
             "link": "",
+            "link_text": "Read more",
             "button_style": "btn--primary"
           }
         }
@@ -574,6 +578,7 @@
         "text_color": "#000000",
         "button_background_color": "#000000",
         "button_text_color": "#ffffff",
+        "enable_animation": true,
         "divider_style": "solid",
         "section_padding": "section--vertical-padding-top-bottom"
       }
@@ -584,12 +589,14 @@
         "16548804264c48a1d9-0": {
           "type": "heading",
           "settings": {
+            "title": "Image with text",
             "heading_font_class": "fs-heading-display-3"
           }
         },
         "16548804264c48a1d9-1": {
           "type": "subheading",
           "settings": {
+            "subheading": "Use these sections to promote a particular feature with editorial photography",
             "subheading_font_class": "fs-heading-5-base"
           }
         },
@@ -597,6 +604,7 @@
           "type": "button",
           "settings": {
             "link": "",
+            "link_text": "Read more",
             "button_style": "btn--primary"
           }
         }
@@ -619,6 +627,7 @@
         "text_color": "#000000",
         "button_background_color": "#000000",
         "button_text_color": "#ffffff",
+        "enable_animation": true,
         "divider_style": "none",
         "section_padding": "section--vertical-padding-top-bottom"
       }
@@ -634,7 +643,9 @@
             "aspect_ratio": "square",
             "focal_point": "image_presentation",
             "show_rating": true,
-            "rating": 5
+            "rating": 5,
+            "quote": "\"Add customer reviews and testimonials to showcase your store’s happy customers.\"",
+            "author": "– Author's name"
           }
         },
         "1655856194e7b43695-1": {
@@ -645,7 +656,9 @@
             "aspect_ratio": "square",
             "focal_point": "image_presentation",
             "show_rating": true,
-            "rating": 4.5
+            "rating": 4.5,
+            "quote": "\"Add customer reviews and testimonials to showcase your store’s happy customers.\"",
+            "author": "– Author's name"
           }
         },
         "1655856194e7b43695-2": {
@@ -656,7 +669,9 @@
             "aspect_ratio": "square",
             "focal_point": "image_presentation",
             "show_rating": true,
-            "rating": 5
+            "rating": 5,
+            "quote": "\"Add customer reviews and testimonials to showcase your store’s happy customers.\"",
+            "author": "– Author's name"
           }
         }
       },
@@ -670,6 +685,7 @@
         "quote_font": "heading",
         "background_color": "#000000",
         "text_color": "#ffffff",
+        "enable_animation": true,
         "divider_style": "none",
         "section_padding": "section--vertical-padding-top-bottom"
       }
@@ -711,9 +727,14 @@
         "image_position": "left",
         "image_size": 50,
         "aspect_ratio": "portrait_alt",
+        "heading": "Shoppable image - editorial",
+        "subheading": "<p>Use this section to highlight different products within an image with an integrated carousel<\/p>",
         "link": "",
+        "link_text": "Shop now",
         "button_style": "btn--callout",
+        "enable_animation": true,
         "divider_style": "solid",
+        "section_padding": "section--vertical-padding-top-bottom",
         "content_position_desktop": "inside"
       }
     },
@@ -723,17 +744,20 @@
         "1654916105bea353be-0": {
           "type": "accent",
           "settings": {
+            "accent": "Accent"
           }
         },
         "1654916105bea353be-1": {
           "type": "heading",
           "settings": {
+            "title": "Video hero",
             "heading_font_class": "fs-heading-display-3"
           }
         },
         "535519ef-68f5-42dd-8ad6-15ab68afaa95": {
           "type": "subheading",
           "settings": {
+            "subheading": "Use this section to promote a particular feature with editorial video.",
             "subheading_font_class": "fs-heading-5-base"
           }
         },
@@ -742,6 +766,7 @@
           "settings": {
             "video_url": "",
             "aspect_ratio": "landscape",
+            "text": "Watch now",
             "icon_style": "light"
           }
         }
@@ -756,16 +781,17 @@
         "image_aspect": "custom",
         "desktop_height": 65,
         "mobile_height": 50,
-        "video_url": "",
         "media_link": "",
         "focal_point": "image_presentation",
         "text_position": "center_flex-end",
+        "text_position_mobile": "center_center",
         "text_color": "#ffffff",
         "button_background_color": "#ffffff",
         "button_text_color": "#000000",
         "color_overlay": "#000000",
         "color_overlay_gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0.24) 38%, rgba(0, 0, 0, 1) 100%)",
         "overlay_opacity": 67,
+        "enable_animation": true,
         "section_padding": "section--vertical-padding-none"
       }
     },
@@ -775,6 +801,7 @@
         "heading": "Blog posts",
         "subheading": "",
         "button_link": "",
+        "link_text": "View all posts",
         "display_type": "all",
         "blog": "news",
         "max_articles": 2,
@@ -784,6 +811,7 @@
         "show_excerpt": true,
         "show_featured_image": true,
         "aspect_ratio": "landscape",
+        "enable_animation": true,
         "divider_style": "solid",
         "section_padding": "section--vertical-padding-top-bottom"
       }
@@ -794,6 +822,7 @@
         "1655748276a16c587f-0": {
           "type": "heading",
           "settings": {
+            "title": "Image with text",
             "heading_font_class": "fs-heading-1-base"
           }
         },
@@ -805,12 +834,14 @@
         "1655748276a16c587f-1": {
           "type": "subheading",
           "settings": {
+            "subheading": "Use these sections to promote a particular feature with editorial photography",
             "subheading_font_class": "fs-heading-5-base"
           }
         },
         "2c5ae3e6-0766-4bad-aff5-a724000e1ddd": {
           "type": "text",
           "settings": {
+            "text": "<p>Use these sections to promote a particular feature with editorial photography<\/p>",
             "text_font_class": "fs-body-75"
           }
         },
@@ -822,12 +853,14 @@
         "737ce2a8-7a79-4050-901a-b48412cad79e": {
           "type": "subheading",
           "settings": {
+            "subheading": "Use these sections to promote a particular feature with editorial photography",
             "subheading_font_class": "fs-heading-5-base"
           }
         },
         "78b87e77-53f6-4b58-828a-36ba7eeaa4f1": {
           "type": "text",
           "settings": {
+            "text": "<p>Use these sections to promote a particular feature with editorial photography<\/p>",
             "text_font_class": "fs-body-75"
           }
         },
@@ -835,6 +868,7 @@
           "type": "button",
           "settings": {
             "link": "",
+            "link_text": "Read more",
             "button_style": "btn--secondary"
           }
         }
@@ -862,6 +896,7 @@
         "text_color": "#000000",
         "button_background_color": "#000000",
         "button_text_color": "#ffffff",
+        "enable_animation": true,
         "divider_style": "solid",
         "section_padding": "section--vertical-padding-top-bottom"
       }
@@ -879,12 +914,14 @@
         "da0d8502-d1a9-42c4-946f-f3143ddb712c": {
           "type": "heading",
           "settings": {
+            "title": "Image with text split",
             "heading_font_class": "fs-heading-1-base"
           }
         },
         "16548927896be1844d-2": {
           "type": "subheading",
           "settings": {
+            "subheading": "Use these sections to promote a particular feature with editorial photography.",
             "subheading_font_class": "fs-heading-5-base"
           }
         },
@@ -892,6 +929,7 @@
           "type": "button",
           "settings": {
             "link": "",
+            "link_text": "Read more",
             "button_style": "btn--callout"
           }
         },
@@ -899,6 +937,7 @@
           "type": "button",
           "settings": {
             "link": "",
+            "link_text": "Read more",
             "button_style": "btn--callout"
           }
         }
@@ -921,6 +960,7 @@
         "text_color": "#d1d8c0",
         "button_background_color": "#d1d8c0",
         "button_text_color": "#ffffff",
+        "enable_animation": true,
         "section_padding": "section--vertical-padding-top-only"
       }
     },
@@ -958,10 +998,10 @@
         "background_color": "#f5f5f5",
         "text_color": "#000000",
         "input_color": "#000000",
-        "input_background": "#fff",
+        "input_background": "#ffffff",
         "button_background_color": "#000000",
-        "button_text_color": "#FFFFFF",
-        "color_overlay": "#000",
+        "button_text_color": "#ffffff",
+        "color_overlay": "#000000",
         "color_overlay_gradient": "",
         "overlay_opacity": 0,
         "enable_animation": true,
@@ -972,11 +1012,9 @@
   },
   "order": [
     "16558445044f80743b",
-    "1655855477ee9538e0",
     "1654878022d8e24a9a",
-    "16549177944ec2347e",
+    "quote_gDYF6G",
     "1655855558c1ac2348",
-    "16548772614c49ba39",
     "16558561315f6147d3",
     "1655747757d7226f15",
     "165488047346f59e49",
