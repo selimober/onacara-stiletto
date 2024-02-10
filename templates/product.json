@@ -48,7 +48,7 @@
           "type": "information_popup",
           "settings": {
             "popup_icon": "cotton",
-            "popup_text": "How to choose your insert?",
+            "popup_text": "Insert details",
             "popup_page": "popup-how-to-chose-insert"
           }
         },
