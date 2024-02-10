@@ -12,29 +12,15 @@
     "rich-text-1": {
       "type": "rich-text",
       "blocks": {
-        "block-0": {
-          "type": "heading",
-          "settings": {
-            "title": "Contact us",
-            "heading_font_class": "fs-heading-1-base"
-          }
-        },
-        "block-1": {
-          "type": "spacer",
-          "settings": {
-            "space": 12
-          }
-        },
         "block-2": {
           "type": "text",
           "settings": {
-            "text_font_class": "fs-body-100"
+            "text": "<p>Got questions, comments, or bright ideas? <\/p><p>We'd love to hear from you! At Onacara, we're always on the lookout for ways to serve you better. Contact us anytime!<\/p>",
+            "text_font_class": "fs-body-200"
           }
         }
       },
       "block_order": [
-        "block-0",
-        "block-1",
         "block-2"
       ],
       "settings": {
@@ -103,7 +89,7 @@
         "heading": "Contact us",
         "heading_font_class": "fs-heading-2-base",
         "text": "",
-        "show_recaptcha_terms": true,
+        "show_recaptcha_terms": false,
         "enable_animation": true,
         "divider_style": "none",
         "section_padding": "section--vertical-padding-top-bottom",
@@ -125,7 +111,7 @@
           "type": "text",
           "settings": {
             "text": "<p>Below are some of are common questions:<\/p>",
-            "text_font_class": "fs-body-100"
+            "text_font_class": "fs-body-200"
           }
         }
       },
@@ -141,71 +127,12 @@
         "content_width": "custom",
         "custom_content_width": 700
       }
-    },
-    "collapsible-row-list": {
-      "type": "collapsible-row-list",
-      "blocks": {
-        "block-0": {
-          "type": "item",
-          "settings": {
-            "expand_by_default": false,
-            "icon": "none",
-            "title": "How do I know if my order is confirmed?",
-            "text": "<p>This is an example of a response that you might give. It's good to be as thorough as possible in responses as that has a tendency to improve trust overall.<\/p>"
-          }
-        },
-        "block-1": {
-          "type": "item",
-          "settings": {
-            "expand_by_default": false,
-            "icon": "none",
-            "title": "Can I change my shipping address after my order is placed?",
-            "text": "<p>This is an example of a response that you might give. It's good to be as thorough as possible in responses as that has a tendency to improve trust overall.<\/p>"
-          }
-        },
-        "block-2": {
-          "type": "item",
-          "settings": {
-            "expand_by_default": false,
-            "icon": "none",
-            "title": "Do you ship internationally?",
-            "text": "<p>This is an example of a response that you might give. It's good to be as thorough as possible in responses as that has a tendency to improve trust overall.<\/p>"
-          }
-        },
-        "block-3": {
-          "type": "item",
-          "settings": {
-            "expand_by_default": false,
-            "icon": "none",
-            "title": "How long will it take until I receive my order?",
-            "text": "<p>This is an example of a response that you might give. It's good to be as thorough as possible in responses as that has a tendency to improve trust overall.<\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "block-0",
-        "block-1",
-        "block-2",
-        "block-3"
-      ],
-      "settings": {
-        "title": "",
-        "heading_font_class": "fs-heading-3-base",
-        "heading_alignment": "left",
-        "item_heading_font": "body",
-        "enable_animation": true,
-        "divider_style": "none",
-        "section_padding": "section--vertical-padding-bottom-only",
-        "content_width": "custom",
-        "custom_content_width": 850
-      }
     }
   },
   "order": [
     "main",
     "rich-text-1",
     "contact-form",
-    "rich-text-2",
-    "collapsible-row-list"
+    "rich-text-2"
   ]
 }

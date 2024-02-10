@@ -44,6 +44,14 @@
             "chip_layout": "3col"
           }
         },
+        "information_popup_QVREtR": {
+          "type": "information_popup",
+          "settings": {
+            "popup_icon": "cotton",
+            "popup_text": "How to choose your insert?",
+            "popup_page": "popup-how-to-chose-insert"
+          }
+        },
         "inventory_counter": {
           "type": "inventory-counter",
           "settings": {
@@ -76,7 +84,7 @@
             "add_box": false,
             "add_dividers": true,
             "icon_1": "leaf",
-            "text_1": "<p>Your order ships carbon neutral<\/p>",
+            "text_1": "<p>Sustainable packaging<\/p>",
             "icon_2": "none",
             "text_2": "",
             "icon_3": "none",
@@ -98,13 +106,13 @@
             "add_box": true,
             "add_dividers": true,
             "icon_1": "measuring-tape",
-            "text_1": "<p>Sizing or Dimensions<\/p>",
+            "text_1": "",
             "icon_2": "cotton",
-            "text_2": "<p>Fabric Composition<\/p>",
+            "text_2": "",
             "icon_3": "chat",
-            "text_3": "<p>Have questions? Contact us<\/p>",
+            "text_3": "<p>Let us help you decide. <a href=\"\/pages\/get-in-touch\" title=\"Get in touch\">Contact us<\/a><\/p>",
             "icon_4": "moving-truck",
-            "text_4": "<p>Free shipping on orders over $250<\/p>",
+            "text_4": "<p>Free shipping on orders over £90<\/p>",
             "icon_5": "padlock",
             "text_5": "<p>Secure payment<\/p>",
             "icon_6": "none",
@@ -128,13 +136,24 @@
             "expand_by_default": true
           }
         },
+        "accordion_3b8wtw": {
+          "type": "accordion",
+          "settings": {
+            "expand_by_default": false,
+            "column_placement": "left",
+            "heading": "Specification",
+            "content": "{{ product.metafields.product.specification | metafield_tag }}",
+            "page_for_content": "",
+            "custom_liquid": ""
+          }
+        },
         "accordion-1": {
           "type": "accordion",
           "settings": {
             "expand_by_default": false,
             "column_placement": "left",
-            "heading": "Collapsible row",
-            "content": "<p>Add your collapsible row content here.<\/p>",
+            "heading": "Delivery and Returns",
+            "content": "<p><strong>Delivery in the UK<\/strong> <br\/><br\/>We offer free delivery on orders over £90 within Mainland UK. <br\/>You'll receive your tracking number once your products are on the way.<br\/><br\/>For items in stock, please allow 3-4 days for delivery to the UK and Mainland.<br\/><br\/>Please note that cushions not in stock may take between two and three weeks to make and deliver.<br\/><br\/><strong>International Delivery<\/strong><br\/><br\/>We can deliver our products within the Europe. See our delivery and return page  for more info. <br\/><br\/><strong>Return<\/strong><br\/><br\/>We offer 14 day returns. See <a href=\"\/pages\/cushions-delivery-and-returns\" target=\"_blank\" title=\"Delivery and Returns\">our delivery and return page<\/a>  for more info.<\/p>",
             "page_for_content": "",
             "custom_liquid": ""
           }
@@ -144,29 +163,10 @@
           "settings": {
             "expand_by_default": false,
             "column_placement": "left",
-            "heading": "Collapsible row",
-            "content": "<p>Add your collapsible row content here.<\/p>",
+            "heading": "About Onacara",
+            "content": "<p>London-based Onacara brings interior design to your fingertips with our luxurious indoor cushion sets. Enjoy effortless style, guided sizing, and unmatched quality to elevate your home’s comfort and aesthetics.<br\/><br\/>Onacara is a small business that takes great pride in achieving a \"no complaints\" record for our deliveries in our first years of operation. We are proud of our commitment to quality and customer service.<\/p>",
             "page_for_content": "",
             "custom_liquid": ""
-          }
-        },
-        "accordion-3": {
-          "type": "accordion",
-          "settings": {
-            "expand_by_default": false,
-            "column_placement": "left",
-            "heading": "Collapsible row",
-            "content": "<p>Add your collapsible row content here.<\/p>",
-            "page_for_content": "",
-            "custom_liquid": ""
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text_font_class": "fs-body-100",
-            "text": "<p>Add some text to tell customers more about your product.<\/p>",
-            "column_placement": "left"
           }
         },
         "featured_products_MRkXwQ": {
@@ -204,6 +204,7 @@
         "product_header",
         "product_callouts_mini",
         "variant_picker",
+        "information_popup_QVREtR",
         "inventory_counter",
         "quantity_selector",
         "buy_buttons",
@@ -211,12 +212,14 @@
         "product_callouts-2",
         "share",
         "description",
+        "accordion_3b8wtw",
         "accordion-1",
         "accordion-2",
-        "accordion-3",
-        "text",
         "featured_products_MRkXwQ",
         "secure_payment_CHKhVx"
+      ],
+      "custom_css": [
+        ".product__policies {display: none;}"
       ],
       "settings": {
         "enable_sticky_product_details": true,
