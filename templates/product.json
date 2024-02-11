@@ -312,40 +312,42 @@
         "block-0": {
           "type": "testimonial",
           "settings": {
-            "product": "",
+            "product": "caramel-anise-boucle-trio",
             "image_position": "right",
+            "image": "shopify:\/\/shop_images\/QjCMXdpaTp_mid.jpg",
             "aspect_ratio": "square",
             "focal_point": "image_presentation",
             "show_rating": true,
             "rating": 5,
-            "quote": "\"Add customer reviews and testimonials to showcase your store’s happy customers.\"",
-            "author": "– Author's name"
+            "quote": "\"Obsessed with my cushions!! Definitely making another purchase they're too good.\"",
+            "author": "– Emms e."
           }
         },
         "block-1": {
           "type": "testimonial",
           "settings": {
-            "product": "",
+            "product": "amber-boucle-duo",
             "image_position": "left",
+            "image": "shopify:\/\/shop_images\/SCR-20240204-mqbn.jpg",
             "aspect_ratio": "square",
             "focal_point": "image_presentation",
             "show_rating": true,
             "rating": 5,
-            "quote": "\"Add customer reviews and testimonials to showcase your store’s happy customers.\"",
-            "author": "– Author's name"
+            "quote": "\"These cushions are pure luxury! They fit perfectly and bring so much elegance and joy to my living room. Thank yoy very much!!.\"",
+            "author": "– Rosa B."
           }
         },
         "block-2": {
           "type": "testimonial",
           "settings": {
-            "product": "",
+            "product": "bay-cushion",
             "image_position": "right",
             "aspect_ratio": "square",
             "focal_point": "image_presentation",
             "show_rating": true,
             "rating": 5,
-            "quote": "\"Add customer reviews and testimonials to showcase your store’s happy customers.\"",
-            "author": "– Author's name"
+            "quote": "\"Love the contrasting fabric on the back, easy to switch up the look.\"",
+            "author": "– Tabitha F."
           }
         }
       },
