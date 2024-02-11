@@ -19,6 +19,19 @@
       >
         {{ success_message }}
       </span>
+      {%- if page_title == 'Trade' -%}
+        <script>
+          var ready = (callback) => {
+            if (document.readyState != 'loading') callback();
+            else document.addEventListener('DOMContentLoaded', callback);
+          };
+
+          ready(() => {
+            console.log('Trade event sent');
+            fbq('track', 'CompleteRegistration', { content_name: 'Trade Form' });
+          });
+        </script>
+      {%- endif -%}
     {%- endif -%}
 
     {% comment %} We need to add this so the errors are output in the right order {% endcomment %}
