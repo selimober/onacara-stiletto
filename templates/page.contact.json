@@ -119,6 +119,7 @@
         "block-0",
         "block-1"
       ],
+      "disabled": true,
       "settings": {
         "alignment": "center_center",
         "enable_animation": true,

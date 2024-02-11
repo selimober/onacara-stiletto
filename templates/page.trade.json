@@ -9,122 +9,55 @@
         "custom_content_width": 700
       }
     },
-    "image_with_text_split_EbeEiN": {
-      "type": "image-with-text-split",
+    "image_with_text_VeqXjQ": {
+      "type": "image-with-text",
       "blocks": {
-        "heading_HdjNM9": {
+        "heading_pVikKM": {
           "type": "heading",
           "settings": {
             "title": "Trade Professionals",
             "heading_font_class": "fs-heading-display-3"
           }
         },
-        "subheading_Xg3nhF": {
+        "subheading_4H6nNW": {
           "type": "subheading",
           "settings": {
-            "subheading": "Let us help you with your latest project.",
+            "subheading": "Let us help you with your latest project",
             "subheading_font_class": "fs-heading-5-base"
+          }
+        },
+        "button_kNqBrJ": {
+          "type": "button",
+          "settings": {
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--primary"
           }
         }
       },
       "block_order": [
-        "heading_HdjNM9",
-        "subheading_Xg3nhF"
+        "heading_pVikKM",
+        "subheading_4H6nNW",
+        "button_kNqBrJ"
       ],
       "settings": {
         "image_position": "right",
-        "image_mobile_position": "above-content",
-        "image_padding": "none",
-        "image": "shopify:\/\/shop_images\/WhatsAppImage2022-11-23at11.09.18_49a60d82-5c5b-4f9f-85d9-57fbfa0b2974.jpg",
+        "text_alignment": "center",
+        "image": "shopify:\/\/shop_images\/The_Two_Seater_Sofa_Approximately_170cm_wide_2.png",
         "aspect_ratio": "square",
         "focal_point": "image_presentation",
-        "content_alignment": "left",
-        "background_color": "#D9A49C",
-        "text_color": "#000000",
+        "image_caption": "",
+        "show_small_image": true,
+        "image_small": "shopify:\/\/shop_images\/CopyofNewproduct_4.png",
+        "image_small_aspect_ratio": "square",
+        "image_small_focal_point": "image_presentation",
+        "background_color": "#604d38",
+        "text_color": "#f4f4f4",
         "button_background_color": "#000000",
-        "button_text_color": "#FFFFFF",
-        "enable_animation": true,
-        "section_padding": "section--vertical-padding-none"
-      }
-    },
-    "collapsible_row_list_XLNDdQ": {
-      "type": "collapsible-row-list",
-      "blocks": {
-        "item_H6UqVr": {
-          "type": "item",
-          "settings": {
-            "expand_by_default": true,
-            "icon": "bill",
-            "title": "Personalized Cushions",
-            "text": "<p>Some of our cushions are customisable, please let us help you create the perfect, unique cushion.<\/p>"
-          }
-        },
-        "item_mLyFFQ": {
-          "type": "item",
-          "settings": {
-            "expand_by_default": true,
-            "icon": "stopwatch",
-            "title": "Lead Time",
-            "text": "<p>This is an example of a response that you might give. It's good to be as thorough as possible in responses as that has a tendency to improve trust overall.<\/p>"
-          }
-        },
-        "item_kPQMfb": {
-          "type": "item",
-          "settings": {
-            "expand_by_default": true,
-            "icon": "moving-truck",
-            "title": "Order Quantity",
-            "text": "<p>We can accommodate larger quantities.<\/p>"
-          }
-        },
-        "item_FyYA4X": {
-          "type": "item",
-          "settings": {
-            "expand_by_default": true,
-            "icon": "cotton",
-            "title": "Free Fabric Pack",
-            "text": "<p>We can send you a comprehensive range of our fabric samples for your review.<\/p>"
-          }
-        },
-        "item_ktD3N8": {
-          "type": "item",
-          "settings": {
-            "expand_by_default": true,
-            "icon": "model-silhouette",
-            "title": "Consultation",
-            "text": "<p>Whether you seek advice or ideas, we are happy to suggest colours, styles and size.<\/p>"
-          }
-        },
-        "item_qHDd68": {
-          "type": "item",
-          "settings": {
-            "expand_by_default": true,
-            "icon": "paper-airplane",
-            "title": "Upcoming Products",
-            "text": "<p>We will always keep you informed about our upcoming products before launching.<\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "item_H6UqVr",
-        "item_mLyFFQ",
-        "item_kPQMfb",
-        "item_FyYA4X",
-        "item_ktD3N8",
-        "item_qHDd68"
-      ],
-      "settings": {
-        "title": "Our services",
-        "heading_font_class": "fs-heading-4-base",
-        "subheading": "",
-        "subheading_font_class": "fs-heading-5-base",
-        "heading_alignment": "left",
-        "item_heading_font": "heading",
+        "button_text_color": "#ffffff",
         "enable_animation": true,
         "divider_style": "none",
-        "section_padding": "section--vertical-padding-top-bottom",
-        "content_width": "custom",
-        "custom_content_width": 700
+        "section_padding": "section--vertical-padding-top-bottom"
       }
     },
     "contact_form_rHJKFr": {
@@ -192,6 +125,86 @@
         "custom_content_width": 700
       }
     },
+    "collapsible_row_list_XLNDdQ": {
+      "type": "collapsible-row-list",
+      "blocks": {
+        "item_H6UqVr": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": true,
+            "icon": "bill",
+            "title": "Personalized Cushions",
+            "text": "<p>Some of our cushions are customisable, please let us help you create the perfect, unique cushion.<\/p>"
+          }
+        },
+        "item_mLyFFQ": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": true,
+            "icon": "stopwatch",
+            "title": "Lead Time",
+            "text": "<p>If you order from our current stock, the delivery time is 3-4 days in the UK.<\/p>"
+          }
+        },
+        "item_kPQMfb": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": true,
+            "icon": "moving-truck",
+            "title": "Order Quantity",
+            "text": "<p>We can accommodate larger quantities.<\/p>"
+          }
+        },
+        "item_FyYA4X": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": true,
+            "icon": "cotton",
+            "title": "Free Fabric Pack",
+            "text": "<p>We can send you a comprehensive range of our fabric samples for your review.<\/p>"
+          }
+        },
+        "item_ktD3N8": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": true,
+            "icon": "model-silhouette",
+            "title": "Consultation",
+            "text": "<p>Whether you seek advice or ideas, we are happy to suggest colours, styles and size.<\/p>"
+          }
+        },
+        "item_qHDd68": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": true,
+            "icon": "paper-airplane",
+            "title": "Upcoming Products",
+            "text": "<p>We will always keep you informed about our upcoming products before launching.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_H6UqVr",
+        "item_mLyFFQ",
+        "item_kPQMfb",
+        "item_FyYA4X",
+        "item_ktD3N8",
+        "item_qHDd68"
+      ],
+      "settings": {
+        "title": "Our services",
+        "heading_font_class": "fs-heading-4-base",
+        "subheading": "",
+        "subheading_font_class": "fs-heading-5-base",
+        "heading_alignment": "left",
+        "item_heading_font": "heading",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "custom",
+        "custom_content_width": 700
+      }
+    },
     "rich_text_inHp6Q": {
       "type": "rich-text",
       "blocks": {
@@ -218,9 +231,9 @@
   },
   "order": [
     "main",
-    "image_with_text_split_EbeEiN",
-    "collapsible_row_list_XLNDdQ",
+    "image_with_text_VeqXjQ",
     "contact_form_rHJKFr",
+    "collapsible_row_list_XLNDdQ",
     "rich_text_inHp6Q"
   ]
 }

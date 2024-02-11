@@ -20,7 +20,7 @@
           "type": "product_callouts_mini",
           "settings": {
             "icon_1": "moving-truck",
-            "text_1": "Fast Shipping",
+            "text_1": "",
             "icon_2": "padlock",
             "text_2": "Secure payment",
             "icon_3": "chat",
@@ -57,7 +57,7 @@
           "settings": {
             "label": "Availability",
             "inventory_max": "50",
-            "low_inventory_threshold": "10",
+            "low_inventory_threshold": "5",
             "show_status_bar": true,
             "show_untracked_quantity": false
           }
@@ -83,8 +83,8 @@
             "title": "",
             "add_box": false,
             "add_dividers": true,
-            "icon_1": "leaf",
-            "text_1": "<p>Sustainable packaging<\/p>",
+            "icon_1": "ruler",
+            "text_1": "<p>Custom size available. <a href=\"\/pages\/get-in-touch\" title=\"Get in touch\">Contact us<\/a><\/p>",
             "icon_2": "none",
             "text_2": "",
             "icon_3": "none",
@@ -107,12 +107,12 @@
             "add_dividers": true,
             "icon_1": "measuring-tape",
             "text_1": "",
-            "icon_2": "cotton",
-            "text_2": "",
+            "icon_2": "moving-truck",
+            "text_2": "<p>Free shipping on orders over £90<\/p>",
             "icon_3": "chat",
             "text_3": "<p>Let us help you decide. <a href=\"\/pages\/get-in-touch\" title=\"Get in touch\">Contact us<\/a><\/p>",
             "icon_4": "moving-truck",
-            "text_4": "<p>Free shipping on orders over £90<\/p>",
+            "text_4": "",
             "icon_5": "padlock",
             "text_5": "<p>Secure payment<\/p>",
             "icon_6": "none",
@@ -264,7 +264,7 @@
         "block-2": {
           "type": "text",
           "settings": {
-            "text": "<p>Transform Your Space with Exquisite Decor That Speaks to Your Style—All Within Your Budget.<\/p>",
+            "text": "<p>Transform your space with exquisite decor that speaks to your style — All within your budget.<\/p>",
             "text_font_class": "fs-body-100"
           }
         }
