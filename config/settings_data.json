@@ -16,12 +16,12 @@
     "capitalize_logo": true,
     "logo_letter_spacing": -25,
     "logo_base_size": 36,
-    "font_heading": "georgia_pro_n3",
+    "font_heading": "frutiger_serif_n4",
     "capitalize_headings": false,
     "heading_letter_spacing": 0,
     "heading_base_size": 60,
     "heading_mobile_base_scale": 80,
-    "font_body": "neuzeit_s_n4",
+    "font_body": "assistant_n4",
     "body_letter_spacing": 0,
     "body_base_size": 17,
     "body_mobile_base_scale": 95,
@@ -59,6 +59,7 @@
     "social_instagram_link": "https:\/\/www.instagram.com\/onacara_london\/",
     "social_tiktok_link": "",
     "social_twitter_link": "",
+    "favicon": "shopify:\/\/shop_images\/SCR-20240215-llxt.png",
     "content_for_index": [
 
     ]

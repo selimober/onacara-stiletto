@@ -22,8 +22,8 @@
         "subheading_4H6nNW": {
           "type": "subheading",
           "settings": {
-            "subheading": "Let us help you with your latest project",
-            "subheading_font_class": "fs-heading-5-base"
+            "subheading": "Let us help you with your latest project.",
+            "subheading_font_class": "fs-heading-6-base"
           }
         },
         "button_kNqBrJ": {
@@ -43,15 +43,15 @@
       "settings": {
         "image_position": "right",
         "text_alignment": "center",
-        "image": "shopify:\/\/shop_images\/The_Two_Seater_Sofa_Approximately_170cm_wide_2.png",
+        "image": "shopify:\/\/shop_images\/001JH_f0e1eee3-1f52-4c5c-81f0-93ab1fe51245.jpg",
         "aspect_ratio": "square",
         "focal_point": "image_presentation",
         "image_caption": "",
-        "show_small_image": true,
-        "image_small": "shopify:\/\/shop_images\/CopyofNewproduct_4.png",
+        "show_small_image": false,
+        "image_small": "shopify:\/\/shop_images\/PXL_20221215_135415915_1.jpg",
         "image_small_aspect_ratio": "square",
         "image_small_focal_point": "image_presentation",
-        "background_color": "#604d38",
+        "background_color": "#94806d",
         "text_color": "#f4f4f4",
         "button_background_color": "#000000",
         "button_text_color": "#ffffff",
@@ -78,10 +78,18 @@
             "width": "half"
           }
         },
-        "telephone_jqHWFw": {
-          "type": "telephone",
+        "text_rPeYQr": {
+          "type": "text",
           "settings": {
-            "title": "Phone",
+            "title": "Company Name",
+            "required": true,
+            "width": "full"
+          }
+        },
+        "text_WB4Nqp": {
+          "type": "text",
+          "settings": {
+            "title": "Address for sample pack",
             "required": true,
             "width": "full"
           }
@@ -108,7 +116,8 @@
       "block_order": [
         "text_UE7VpJ",
         "email_BJatPX",
-        "telephone_jqHWFw",
+        "text_rPeYQr",
+        "text_WB4Nqp",
         "text_area_fpzrHH",
         "checkbox_FMtRPP"
       ],
@@ -128,6 +137,15 @@
     "collapsible_row_list_XLNDdQ": {
       "type": "collapsible-row-list",
       "blocks": {
+        "item_EHwbft": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": true,
+            "icon": "moving-truck",
+            "title": "High quality luxury cushions",
+            "text": "<p>Whether you're tackling a major client project or staging a house for sale, our exquisite cushions are here to elevate your space. We take pride in offering high-quality, affordable luxury with our cushions. We're confident that our cushions will make a significant impact on your projects.<\/p>"
+          }
+        },
         "item_H6UqVr": {
           "type": "item",
           "settings": {
@@ -152,7 +170,7 @@
             "expand_by_default": true,
             "icon": "moving-truck",
             "title": "Order Quantity",
-            "text": "<p>We can accommodate larger quantities.<\/p>"
+            "text": "<p>We do not require minimum orders for a trade account. We can accommodate larger quantities. <\/p>"
           }
         },
         "item_FyYA4X": {
@@ -184,6 +202,7 @@
         }
       },
       "block_order": [
+        "item_EHwbft",
         "item_H6UqVr",
         "item_mLyFFQ",
         "item_kPQMfb",

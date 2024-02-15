@@ -139,7 +139,7 @@
         "accordion_3b8wtw": {
           "type": "accordion",
           "settings": {
-            "expand_by_default": false,
+            "expand_by_default": true,
             "column_placement": "left",
             "heading": "Specification",
             "content": "{{ product.metafields.product.specification | metafield_tag }}",
