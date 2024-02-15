@@ -12002,6 +12002,7 @@ const filterDrawer = node => {
   if (rangeContainer) {
     range = priceRange(rangeContainer);
   }
+  const filterDrawerDebounce = debounce();
   const events = [e$2(t$2(sel$2.filterTarget, node), "click", clickFlyoutTrigger), e$2(container, "change", changeHandler), e$2(wash, "click", clickWash), e$2(t$2("".concat(sel$2.button, ", ").concat(sel$2.clearAll), container), "click", clickButton), e$2(t$2(sel$2.close, container), "click", clickWash), e$2(container, "keydown", _ref => {
     let {
       keyCode
@@ -12068,7 +12069,7 @@ const filterDrawer = node => {
     }
     checkForActiveModalitems(filter);
     range && range.validateRange();
-    debounce()();
+    filterDrawerDebounce(() => updateFilters(container), 1000);
   }
   function sortChange(e) {
     checkForActiveModalitems(e.target);
@@ -13203,7 +13204,7 @@ backToTop();
 
 // Make it easy to see exactly what theme version
 // this is by commit SHA
-window.SHA = "7984e0181d";
+window.SHA = "e5278ca5b9";
 if (!sessionStorage.getItem("flu_stat_recorded") && !((_window$Shopify = window.Shopify) !== null && _window$Shopify !== void 0 && _window$Shopify.designMode)) {
   var _window$Shopify2, _window$Shopify3, _window$Shopify3$them;
   // eslint-disable-next-line no-process-env
