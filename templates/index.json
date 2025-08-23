@@ -1,0 +1,448 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "16558445044f80743b": {
+      "type": "image-hero",
+      "blocks": {
+        "d0cd2366-7930-4809-80d7-2b38d2d4fb07": {
+          "type": "heading",
+          "settings": {
+            "title": "Looking for new cushions?",
+            "heading_font_class": "fs-heading-display-3"
+          }
+        },
+        "d525a297-b0ac-4079-a90c-68d26f07aae7": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://collections/outdoor-all-single-cushions",
+            "link_text": "SHOP NOW",
+            "button_style": "btn--primary"
+          }
+        }
+      },
+      "block_order": [
+        "d0cd2366-7930-4809-80d7-2b38d2d4fb07",
+        "d525a297-b0ac-4079-a90c-68d26f07aae7"
+      ],
+      "settings": {
+        "image_aspect": "custom",
+        "desktop_height": 70,
+        "mobile_height": 70,
+        "image": "shopify://shop_images/IMG_0710.heic",
+        "image_mobile": "shopify://shop_images/IMG_0674_e50a3465-c55a-4e7b-a827-bb605940fe9f.heic",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "shopify://collections/single-cushions",
+        "text_position": "flex-end_center",
+        "text_position_mobile": "flex-end_flex-start",
+        "text_color": "#ffffff",
+        "button_background_color": "#b0642c",
+        "button_text_color": "#f4f4f4",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 5,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none"
+      }
+    },
+    "rich_text_3wkMBA": {
+      "type": "rich-text",
+      "blocks": {
+        "text_TdPKPx": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Onacara's luxury cushions, paired with exquisite accessories can transform your living space. Expertly curated to reflect the latest trends in interiors, our preselected cushion sets make restyling effortless.</p>",
+            "text_font_class": "fs-body-200"
+          }
+        }
+      },
+      "block_order": [
+        "text_TdPKPx"
+      ],
+      "settings": {
+        "alignment": "left_left",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "custom",
+        "custom_content_width": 700
+      }
+    },
+    "1654878022d8e24a9a": {
+      "type": "grid",
+      "blocks": {
+        "165487802257d72399-2": {
+          "type": "item",
+          "settings": {
+            "width": "33",
+            "height": 500,
+            "mobile_height": 360,
+            "image": "shopify://shop_images/IMG-20231213-WA0058_2943854f-945e-42ce-b6a2-8539098b5565.jpg",
+            "media_fit": "cover",
+            "focal_point": "image_presentation",
+            "mobile_focal_point": "image_presentation",
+            "text_position": "flex-start_flex-end",
+            "accent": "",
+            "title": "Fast-delivery",
+            "heading_font_class": "fs-heading-2-base",
+            "subheading": "<p>Lead-time in 3–4 business days.<br/><br/></p>",
+            "subheading_font_class": "fs-heading-6-base",
+            "text": "",
+            "text_font_class": "fs-body-100",
+            "link": "shopify://collections/single-cushions",
+            "link_text": "Shop now",
+            "button_style": "btn--callout",
+            "background_color": "",
+            "text_color": "#ffffff",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000",
+            "color_overlay": "#000000",
+            "color_overlay_gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0.1) 52%, rgba(0, 0, 0, 1) 100%)",
+            "overlay_opacity": 50
+          }
+        },
+        "165487802257d72399-1": {
+          "type": "item",
+          "settings": {
+            "width": "33",
+            "height": 500,
+            "mobile_height": 360,
+            "image": "shopify://shop_images/OnacaraAralik2023-7184-Edit_fbc68d64-bb0e-4863-9125-868a82e1e5ad.jpg",
+            "media_fit": "cover",
+            "focal_point": "image_presentation",
+            "mobile_focal_point": "image_presentation",
+            "text_position": "flex-start_flex-end",
+            "accent": "",
+            "title": "Luxury Without the Price Tag",
+            "heading_font_class": "fs-heading-2-base",
+            "subheading": "<p>Beautiful spaces made affordable for all</p>",
+            "subheading_font_class": "fs-heading-6-base",
+            "text": "",
+            "text_font_class": "fs-body-100",
+            "link": "shopify://collections/cushion-sets",
+            "link_text": "Shop now",
+            "button_style": "btn--callout",
+            "background_color": "",
+            "text_color": "#ffffff",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000",
+            "color_overlay": "#000000",
+            "color_overlay_gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0.1) 52%, rgba(0, 0, 0, 1) 100%)",
+            "overlay_opacity": 50
+          }
+        },
+        "165487802257d72399-0": {
+          "type": "item",
+          "settings": {
+            "width": "33",
+            "height": 600,
+            "mobile_height": 360,
+            "image": "shopify://shop_images/OnacaraAralik2023-7132-Edit_a8967c75-5eb8-4925-843c-345c1c67f718.jpg",
+            "mobile_image": "shopify://shop_images/PXL_20231213_134059499_981cae9f-59a2-4b90-9ad7-9fb85aef3847.jpg",
+            "media_fit": "cover",
+            "focal_point": "image_presentation",
+            "mobile_focal_point": "image_presentation",
+            "text_position": "flex-start_flex-end",
+            "accent": "",
+            "title": "Bespoke Service",
+            "heading_font_class": "fs-heading-2-base",
+            "subheading": "<p>Custom sizes, fabrics, or your own — made to fit your vision.</p>",
+            "subheading_font_class": "fs-heading-6-base",
+            "text": "",
+            "text_font_class": "fs-body-100",
+            "link": "shopify://pages/bespoke-service",
+            "link_text": "Shop now",
+            "button_style": "btn--callout",
+            "background_color": "",
+            "text_color": "#ffffff",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000",
+            "color_overlay": "#000000",
+            "color_overlay_gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0.1) 43%, rgba(0, 0, 0, 1) 100%)",
+            "overlay_opacity": 50
+          }
+        }
+      },
+      "block_order": [
+        "165487802257d72399-2",
+        "165487802257d72399-1",
+        "165487802257d72399-0"
+      ],
+      "settings": {
+        "heading": "Our difference",
+        "subheading": "",
+        "content_alignment": "left",
+        "enable_animation": true,
+        "full_width": false,
+        "spacing": 24,
+        "divider_style": "solid",
+        "section_padding": "section--vertical-padding-top-bottom"
+      }
+    },
+    "image_with_text_hVqYTH": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_jj9VVK": {
+          "type": "heading",
+          "settings": {
+            "title": "Meet us at Decorex 24!",
+            "heading_font_class": "fs-heading-1-base"
+          }
+        },
+        "subheading_LDjgFj": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "We're exhibiting at Decorex 24. Visit us at Stand A61 and see our new collection.",
+            "subheading_font_class": "fs-heading-6-base"
+          }
+        },
+        "button_NMpGn7": {
+          "type": "button",
+          "settings": {
+            "link": "https://www.decorex.com/en/visit/features.html",
+            "link_text": "Read more about Decorex",
+            "button_style": "btn--primary"
+          }
+        }
+      },
+      "block_order": [
+        "heading_jj9VVK",
+        "subheading_LDjgFj",
+        "button_NMpGn7"
+      ],
+      "disabled": true,
+      "settings": {
+        "image_position": "right",
+        "image": "shopify://shop_images/ONACARA_WEB-5.jpg",
+        "aspect_ratio": "square",
+        "focal_point": "image_presentation",
+        "image_caption": "",
+        "text_alignment": "center",
+        "show_small_image": false,
+        "image_small_focal_point": "image_presentation",
+        "background_color": "",
+        "text_color": "#000000",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom"
+      }
+    },
+    "shoppable_image_kXV3Gc": {
+      "type": "shoppable-image",
+      "blocks": {
+        "hotspot_HTYPpK": {
+          "type": "hotspot",
+          "settings": {
+            "product_item": "isla-plum-pearl-trio",
+            "horizontal_position": 50,
+            "vertical_position": 50
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_HTYPpK"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/Copy_of_FESTIVE03_ADS_-_Square_-_Festive_24_1.jpg",
+        "aspect_ratio": "landscape",
+        "heading": "New Festive Collection",
+        "subheading": "<p>We couldn’t resist joining in with the latest colour trends with our most recent cushion launch. </p><p>Our new signature cushions have been designed in the trendiest of colour-ways, Plum, Petrol Blue and Bracken. </p><p>Plum, neither warm nor cool, oozes luxury and depth.  Petrol, contrasts perfectly with our gold fringe, creating an on trend combination and Bracken is both soft and sophisticated. Each of these new cushion lines has been carefully curated with complimentary pairings in mind.  Our Pearl cushion has proven so popular, we couldn’t resist mixing it up and offering contrasting piping in these new colour-ways.  </p><p>We hope you enjoy our latest launch as much as we do.  </p>",
+        "link": "shopify://collections/festive-collection",
+        "link_text": "Discover Now",
+        "button_style": "btn--primary",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom"
+      }
+    },
+    "image_with_text_Yr44Gm": {
+      "type": "image-with-text",
+      "blocks": {
+        "subheading_NDq9Rz": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Struggling to Find the Perfect Cushion Set-Up? Book your FREE Cushion Consultation today with our in-house interior designer. We can’t wait to help you!",
+            "subheading_font_class": "fs-heading-5-base"
+          }
+        },
+        "button_nQQ7Wd": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://pages/need-advice",
+            "link_text": "Book your Free Cushion Consultation",
+            "button_style": "btn--primary"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_NDq9Rz",
+        "button_nQQ7Wd"
+      ],
+      "settings": {
+        "image_position": "right",
+        "image": "shopify://shop_images/Oncara_39_1.jpg",
+        "aspect_ratio": "square",
+        "focal_point": "image_presentation",
+        "image_caption": "",
+        "text_alignment": "center",
+        "show_small_image": false,
+        "image_small": "shopify://shop_images/WhatsApp_Image_2024-09-26_at_21.45.00.jpg",
+        "image_small_focal_point": "image_presentation",
+        "background_color": "",
+        "text_color": "#000000",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom"
+      }
+    },
+    "1655855558c1ac2348": {
+      "type": "featured-collection-slider",
+      "blocks": {
+        "16558555587b915de6-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "boucle",
+            "collection_name": "BOUCLÉ",
+            "show_view_all": true
+          }
+        }
+      },
+      "block_order": [
+        "16558555587b915de6-0"
+      ],
+      "settings": {
+        "heading": "Best sellers",
+        "subheading": "",
+        "link": "",
+        "link_text": "",
+        "maximum_products": 8,
+        "columns": "4",
+        "mobile_columns": "2",
+        "enable_animation": true,
+        "divider_style": "solid",
+        "section_padding": "section--vertical-padding-top-bottom"
+      }
+    },
+    "165489980473ecbf41": {
+      "type": "image-with-text",
+      "blocks": {
+        "1654899804e4fc48ec-0": {
+          "type": "heading",
+          "settings": {
+            "title": "How we pack your cushions?",
+            "heading_font_class": "fs-heading-display-3"
+          }
+        },
+        "subheading_LndXX4": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Sustainable and elegant",
+            "subheading_font_class": "fs-heading-5-base"
+          }
+        },
+        "text_gEYnAK": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We believe in packaging that protects your cushions and the planet. 🌎♻️ Our sustainable packaging choices reflect our dedication to minimizing waste and reducing our ecological footprint. Together, we can make a difference.</p>",
+            "text_font_class": "fs-body-100"
+          }
+        },
+        "1654899804e4fc48ec-2": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://collections/cushion-sets",
+            "link_text": "Discover our collection",
+            "button_style": "btn--primary"
+          }
+        }
+      },
+      "block_order": [
+        "1654899804e4fc48ec-0",
+        "subheading_LndXX4",
+        "text_gEYnAK",
+        "1654899804e4fc48ec-2"
+      ],
+      "settings": {
+        "image_position": "right",
+        "image": "shopify://shop_images/Oncara_23.jpg",
+        "aspect_ratio": "natural",
+        "focal_point": "image_presentation",
+        "image_caption": "",
+        "text_alignment": "center",
+        "show_small_image": false,
+        "image_small": "shopify://shop_images/Boucle-3_1e3509d1-e1fd-49d6-b5c9-a3b9bb39bf4f.jpg",
+        "image_small_focal_point": "center",
+        "background_color": "#f4f4f4",
+        "text_color": "#000000",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "solid",
+        "section_padding": "section--vertical-padding-top-bottom"
+      }
+    },
+    "16548801325228c324": {
+      "type": "blog-posts",
+      "blocks": {
+        "article_cRccUi": {
+          "type": "article",
+          "settings": {
+            "article": "inspirations/howmanycushions"
+          }
+        },
+        "article_W44hxK": {
+          "type": "article",
+          "settings": {
+            "article": "inspirations/how-to-pick-the-right-insert"
+          }
+        }
+      },
+      "block_order": [
+        "article_cRccUi",
+        "article_W44hxK"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Blog posts",
+        "subheading": "",
+        "link_text": "View all posts",
+        "display_type": "selected",
+        "blog": "inspirations",
+        "max_articles": 2,
+        "show_tags": true,
+        "show_author": false,
+        "show_date": true,
+        "show_excerpt": true,
+        "show_featured_image": true,
+        "aspect_ratio": "landscape",
+        "enable_animation": true,
+        "divider_style": "solid",
+        "section_padding": "section--vertical-padding-top-bottom"
+      }
+    }
+  },
+  "order": [
+    "16558445044f80743b",
+    "rich_text_3wkMBA",
+    "1654878022d8e24a9a",
+    "image_with_text_hVqYTH",
+    "shoppable_image_kXV3Gc",
+    "image_with_text_Yr44Gm",
+    "1655855558c1ac2348",
+    "165489980473ecbf41",
+    "16548801325228c324"
+  ]
+}
