@@ -2501,7 +2501,7 @@
               }
             },
             "tab_heading": {
-              "default": "Ficha de una columna"
+              "default": "Pestaña de tres columnas"
             },
             "third_column": {
               "header": {
@@ -2533,7 +2533,7 @@
               }
             },
             "tab_heading": {
-              "default": "Ficha de una columna"
+              "default": "Pestaña de dos columnas"
             }
           }
         }
@@ -4456,6 +4456,22 @@
           "collection": {
             "label": "Colección"
           },
+          "cross_sells_display": {
+            "drawer": {
+              "label": "Visualización rápida del carrito",
+              "options": {
+                "slider": "Control deslizante",
+                "stacked": "Apilado"
+              }
+            },
+            "page": {
+              "label": "Visualización de la página del carrito",
+              "options": {
+                "slider": "Control deslizante",
+                "stacked": "Apilado"
+              }
+            }
+          },
           "cross_sells_heading": {
             "default": "Los clientes también compraron",
             "label": "Título"
@@ -4985,13 +5001,29 @@
         "header": {
           "content": "Enlaces a cuentas"
         },
+        "social_bluesky_link": {
+          "info": "https://bsky.app/profile/shopify.bsky.social",
+          "label": "Enlace de Bluesky"
+        },
+        "social_discord_link": {
+          "info": "https://discord.gg/Shopify",
+          "label": "Enlace de Discord"
+        },
         "social_facebook_link": {
           "info": "https://facebook.com/shopify",
           "label": "Enlace de Facebook"
         },
+        "social_houzz_link": {
+          "info": "https://houzz.com/shopify",
+          "label": "Enlace de Houzz"
+        },
         "social_instagram_link": {
           "info": "https://www.instagram.com/shopify/",
           "label": "Enlace a Instagram"
+        },
+        "social_line_link": {
+          "info": "https://line.me/ti/p/Shopify",
+          "label": "Enlace LINE"
         },
         "social_linkedin_link": {
           "info": "https://linkedin.com/company/shopify",
@@ -5000,6 +5032,10 @@
         "social_pinterest_link": {
           "info": "https://pinterest.com/shopify",
           "label": "Enlace a Pinterest"
+        },
+        "social_rednote_link": {
+          "info": "https://www.xiaohongshu.com/user/profile/shopify",
+          "label": "Enlace de Rednote"
         },
         "social_snapchat_link": {
           "info": "https://snapchat.com/add/shopify",
@@ -5020,6 +5056,10 @@
         "social_vimeo_link": {
           "info": "https://vimeo.com/shopify",
           "label": "Enlace a Vimeo"
+        },
+        "social_wechat_link": {
+          "info": "weixin://dl/chat?{toID}",
+          "label": "Enlace de WeChat"
         },
         "social_whatsapp_link": {
           "info": "https://wa.me/1XXXXXXXXXX",
@@ -5066,6 +5106,10 @@
         "portrait": "Retrato (2:3)",
         "portrait_alt": "Retrato (4:5)",
         "square": "Cuadrado (1:1)"
+      },
+      "enable_collect_customer_name": {
+        "info": "Si está habilitado, los campos de nombre serán obligatorios.",
+        "label": "Recopilar el nombre del cliente"
       },
       "focal_point": {
         "bottom": "Inferior",
@@ -5313,6 +5357,29 @@
       "aspect_ratio": {
         "label": "Relación de aspecto de la imagen"
       },
+      "background_image": {
+        "header": {
+          "content": "Imagen de fondo"
+        },
+        "image": {
+          "label": "Imagen"
+        },
+        "mobile_image": {
+          "label": "Imagen móvil"
+        }
+      },
+      "background_video": {
+        "header": {
+          "content": "Vídeo de fondo"
+        },
+        "video": {
+          "label": "Video"
+        },
+        "video_mobile": {
+          "info": "Sólo se aplicará si se ha seleccionado un vídeo de escritorio.",
+          "label": "Vídeo móvil"
+        }
+      },
       "badges": {
         "header": {
           "content": "Insignias de productos"
@@ -5525,6 +5592,22 @@
         "label": "Ajuste de los medios de comunicación",
         "option_contain": "Contiene",
         "option_cover": "Rellenar"
+      },
+      "media_type": {
+        "color_paragraph": {
+          "content": "Se utilizará el color \"Fondo\", de la configuración \"Color\" que aparece a continuación."
+        },
+        "header": {
+          "content": "Fondo"
+        },
+        "media_type": {
+          "label": "Tipo de fondo",
+          "options": {
+            "color": "Color",
+            "image": "Imagen",
+            "video": "Video"
+          }
+        }
       },
       "overlay": {
         "overlay": {

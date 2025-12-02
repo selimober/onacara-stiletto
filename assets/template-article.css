@@ -87,6 +87,7 @@
   --delay-small:33ms;
   --delay-normal:67ms;
   --delay-long:133ms;
+  --aspect-ratio-natural:unset;
   --aspect-ratio-square:1;
   --aspect-ratio-portrait:2 / 3;
   --aspect-ratio-portrait-alt:4 / 5;

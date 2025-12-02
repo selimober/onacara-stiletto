@@ -5,13 +5,15 @@
     Required parameters:
       - prod: { Object } The product that the swatches are associated with.
       - option_name: { String } The option name whose values should display as swatches. Is downcased and has newlines stripped.
+      - custom_color_key_map: { Object } An array of custom swatch color keys (names).
+      - custom_color_value_map: { Object } An array of custom swatch color values (HEX values).
 
     Optional parameters:
       - show_sibling_swatches: { Boolean } Whether sibling swatches are enabled.
       - sibling_products: { Object } A list of sibling products.
   endcomment
 
-  case settings.product_card_swatch_size
+  case settings.swatch_size
     when 'large'
       assign max_items = 3
       assign width_multiplier = 2
@@ -54,7 +56,9 @@
           swatch_image_width: swatch_image_width,
           option_index: prod.options_by_name[option_name].position,
           option_name: option_name,
-          option_value: value
+          option_value: value,
+          custom_color_key_map: custom_color_key_map,
+          custom_color_value_map: custom_color_value_map
         %}
       {%- endfor -%}
     {% else %}
@@ -67,7 +71,9 @@
           swatch_image_width: swatch_image_width,
           sibling_product: sibling_product,
           option_name: settings.siblings_option_name,
-          option_value: sibling_product.metafields.stiletto.sibling_option_name
+          option_value: sibling_product.metafields.stiletto.sibling_option_name,
+          custom_color_key_map: custom_color_key_map,
+          custom_color_value_map: custom_color_value_map
         %}
       {%- endfor -%}
     {% endif %}

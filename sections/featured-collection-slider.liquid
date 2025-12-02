@@ -1,5 +1,12 @@
 {%- liquid
   assign max_products = section.settings.maximum_products
+
+  capture custom_swatch_color_maps
+    render 'get-custom-swatch-color-maps'
+  endcapture
+
+  assign custom_color_key_map = custom_swatch_color_maps | split: ' | ' | first | split: ','
+  assign custom_color_value_map = custom_swatch_color_maps | split: ' | ' | last | split: ','
 -%}
 
 {%- for block in section.blocks -%}
@@ -51,12 +58,25 @@
       <div class="featured-collection-slider__products carousel__wrapper swiper-wrapper">
         {%- for product in featured_collection_products limit: max_products -%}
           <div class="featured-collection-slider__product carousel__slide swiper-slide">
-            {% render 'product-item', prod: product, collection: block.settings.collection, aspect_ratio: settings.product_listing_aspect_ratio, product_columns: section.settings.columns %}
+            {% render 'product-item',
+              prod: product,
+              collection: block.settings.collection,
+              aspect_ratio: settings.product_listing_aspect_ratio,
+              product_columns: section.settings.columns,
+              custom_color_key_map: custom_color_key_map,
+              custom_color_value_map: custom_color_value_map
+            %}
           </div>
         {%- else -%}
           {%- for i in (1..max_products) -%}
             <div class="featured-collection-slider__product carousel__slide swiper-slide">
-              {% render 'product-item', aspect_ratio: settings.product_listing_aspect_ratio, product_columns: section.settings.columns, placeholder: true %}
+              {% render 'product-item',
+                aspect_ratio: settings.product_listing_aspect_ratio,
+                product_columns: section.settings.columns,
+                placeholder: true,
+                custom_color_key_map: custom_color_key_map,
+                custom_color_value_map: custom_color_value_map
+              %}
             </div>
           {%- endfor -%}
         {%- endfor -%}
@@ -130,7 +150,13 @@
         {{ navigation_buttons }}
       {%- elsif section.blocks.size > 1 -%}
         <div class="featured-collection-slider__meta-controls">
-          <ul class="featured-collection-slider__navigation-list animation--controls">
+          <ul
+            class="
+              featured-collection-slider__navigation-list
+              featured-collection-slider__navigation-list--mobile-display-{{ section.settings.collection_tabs_mobile_display }}
+              animation--controls
+            "
+          >
             {{ navigation_list_items }}
           </ul>
           {{ navigation_buttons }}
@@ -229,6 +255,25 @@
         }
       ],
       "default": "btn--callout"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.featured_collection_slider.settings.collection_tabs.header.content"
+    },
+    {
+      "type": "select",
+      "label": "t:sections.featured_collection_slider.settings.collection_tabs.mobile_display.label",
+      "id": "collection_tabs_mobile_display",
+      "options": [
+        {
+          "value": "rows",
+          "label": "t:sections.featured_collection_slider.settings.collection_tabs.mobile_display.options.rows"
+        },
+        {
+          "value": "slider",
+          "label": "t:sections.featured_collection_slider.settings.collection_tabs.mobile_display.options.slider"
+        }
+      ]
     },
     {
       "type": "header",
@@ -335,7 +380,6 @@
     {
       "type": "collection",
       "name": "t:sections.featured_collection_slider.blocks.collection.name",
-      "limit": 3,
       "settings": [
         {
           "type": "collection",
@@ -360,7 +404,6 @@
     {
       "type": "product_list",
       "name": "t:sections.featured_collection_slider.blocks.product_list.name",
-      "limit": 3,
       "settings": [
         {
           "type": "product_list",
@@ -376,6 +419,7 @@
       ]
     }
   ],
+  "max_blocks": 6,
   "presets": [
     {
       "name": "t:sections.featured_collection_slider.presets.name",

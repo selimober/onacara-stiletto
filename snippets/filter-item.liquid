@@ -4,24 +4,6 @@
   if scope
     assign scope = scope | prepend: '--'
   endif
-
-  if type == 'swatch'
-    # custom swatch colors
-    assign custom_colors = settings.custom_swatch_colors | newline_to_br | split: '<br />'
-    assign custom_color_key_map = ''
-    assign custom_color_value_map = ''
-
-    for color_value in custom_colors
-      assign custom_color_key = color_value | split: ':' | first | strip
-      assign custom_color_value = color_value | split: ':' | last | strip
-
-      assign custom_color_key_map = custom_color_key_map | append: ',' | append: custom_color_key
-      assign custom_color_value_map = custom_color_value_map | append: ',' | append: custom_color_value
-    endfor
-
-    assign custom_color_key_map = custom_color_key_map | remove_first: ',' | split: ','
-    assign custom_color_value_map = custom_color_value_map | remove_first: ',' | split: ','
-  endif
 -%}
 
 <li
@@ -42,6 +24,7 @@
       class="filter-item__checkbox visually-hidden"
       data-filter-item-input
       data-filter="{{ filter_value.param_name }}={{ filter_value.value }}"
+      data-name-escaped="{{ filter_value.param_name | url_encode }}"
       data-value-escaped="{{ filter_value.value | url_escape }}"
       id="filter--{{ filter_value.param_name | url_escape }}--{{ filter_value.label | url_escape }}{{ scope }}"
       {% if filter_value.active -%}
@@ -58,49 +41,46 @@
     <div class="filter-item__content-inner">
       {%- if type == 'swatch' -%}
         {%- liquid
-          assign custom_swatch_image = filter_value.label | handle | append: '.' | append: file_extension
+          capture filter_swatch_style
+            assign downcased_label = filter_value.label | downcase
 
-          if filter_value.display
-            if filter_value.display.type == 'colors'
-              assign angle = 0
-              assign angle_increment = 360 | divided_by: filter_value.display.value.size
-
-              capture conic_gradient
-                for color in filter_value.display.value
-                  echo '[[c]] [[a]]deg' | replace: '[[c]]', color | replace: '[[a]]', angle
-                  assign angle = angle | plus: angle_increment
-                  echo ' [[a]]deg' | replace: '[[a]]', angle
-
-                  unless forloop.last
-                    echo ', '
-                  endunless
+            # Color
+            if filter_value.swatch and filter_value.swatch.color
+              echo 'background-color: [[bc]];' | replace: '[[bc]]', filter_value.swatch.color
+            else
+              if custom_color_key_map contains downcased_label
+                for color_name in custom_color_key_map
+                  if color_name == downcased_label
+                    echo 'background-color: [[bc]];' | replace: '[[bc]]', custom_color_value_map[forloop.index0]
+                    break
+                  endif
                 endfor
-              endcapture
+              else
+                assign color_value = filter_value.label | downcase | replace: ' ', ''
 
-              assign filter_swatch_style = 'background: conic-gradient([[cg]]);' | replace: '[[cg]]', conic_gradient
+                echo 'background-color: [[bc]];' | replace: '[[bc]]', color_value
+              endif
+            endif
+
+            # Image
+            #
+            # Width of 72 to account for largest swatch display
+            if filter_value.swatch and filter_value.swatch.image
+              assign swatch_image_url = filter_value.swatch.image | image_url: width: 72
+            elsif filter_value.image
+              assign swatch_image_url = filter_value.image | image_url: width: 72
             else
-              assign image_url = filter_value.display.value | image_url: width: 24
-              assign filter_swatch_style = filter_swatch_style | append: ' background-image: url([[csi]]);' | replace: '[[csi]]', image_url
-            endif
-          else
-            assign custom_swatch_image = filter_value.label | handle | append: '.png'
+              assign custom_swatch_image = filter_value.label | handle | append: '.' | append: file_extension
 
-            if custom_color_key_map contains filter_value.label
-              for color_name in custom_color_key_map
-                if color_name == filter_value.label
-                  assign filter_swatch_style = 'background-color: [[bc]];' | replace: '[[bc]]', custom_color_value_map[forloop.index0]
-                endif
-              endfor
-            else
-              assign color_value = filter_value.label | downcase | replace: ' ', ''
-              assign filter_swatch_style = 'background-color: [[bc]];' | replace: '[[bc]]', color_value
+              if images[custom_swatch_image] != blank
+                assign swatch_image_url = custom_swatch_image | file_img_url: 'small'
+              endif
             endif
 
-            if images[custom_swatch_image] != blank
-              assign image_url = custom_swatch_image | file_url
-              assign filter_swatch_style = filter_swatch_style | append: ' background-image: url([[csi]]);' | replace: '[[csi]]', image_url
+            if swatch_image_url != blank
+              echo ' background-image: url([[siu]]);' | replace: '[[siu]]', swatch_image_url
             endif
-          endif
+          endcapture
         -%}
 
         <div

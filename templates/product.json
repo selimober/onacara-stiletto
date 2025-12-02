@@ -29,6 +29,7 @@
           "type": "description",
           "settings": {
             "title": "Description",
+            "title_tag": "h3",
             "text_font_class": "fs-body-100",
             "column_placement": "left",
             "display_as_collapsible_row": true,
@@ -100,6 +101,7 @@
           "type": "product_callouts",
           "settings": {
             "title": "",
+            "title_tag": "h3",
             "add_box": false,
             "add_dividers": true,
             "icon_1": "ruler",
@@ -122,6 +124,7 @@
           "type": "product_callouts",
           "settings": {
             "title": "",
+            "title_tag": "h3",
             "add_box": true,
             "add_dividers": true,
             "icon_1": "measuring-tape",
@@ -150,6 +153,7 @@
             "expand_by_default": true,
             "column_placement": "left",
             "heading": "Details",
+            "heading_tag": "h3",
             "content": "{{ product.metafields.product.specification | metafield_tag }}",
             "page_for_content": "",
             "custom_liquid": ""
@@ -161,6 +165,7 @@
             "expand_by_default": false,
             "column_placement": "left",
             "heading": "Delivery and Returns",
+            "heading_tag": "h3",
             "content": "<p><strong>Delivery in the UK</strong> <br/> <br/>You'll receive your tracking number once your products are on the way.<br/><br/>For items in stock, please allow 3-4 days for delivery to the UK and Mainland.<br/><br/>Please note that cushions not in stock may take between two and three weeks to make and deliver.<br/><br/><strong>International Delivery</strong><br/><br/>We can deliver our products within the Europe. See our delivery and return page  for more info. <br/><br/><strong>Return</strong><br/><br/>We offer 14 day returns. See <a href=\"/pages/cushions-delivery-and-returns\" target=\"_blank\" title=\"Delivery and Returns\">our delivery and return page</a>  for more info.</p>",
             "page_for_content": "",
             "custom_liquid": ""
@@ -172,6 +177,7 @@
             "expand_by_default": false,
             "column_placement": "left",
             "heading": "About Onacara",
+            "heading_tag": "h3",
             "content": "<p>London-based Onacara brings interior design to your fingertips with our luxurious indoor cushion sets. Enjoy effortless style, guided sizing, and unmatched quality to elevate your home’s comfort and aesthetics.<br/><br/>Onacara is a small business that takes great pride in achieving a \"no complaints\" record for our deliveries in our first years of operation. We are proud of our commitment to quality and customer service.</p>",
             "page_for_content": "",
             "custom_liquid": ""
@@ -181,6 +187,7 @@
           "type": "featured_products",
           "settings": {
             "heading": "Pairs well with",
+            "heading_tag": "h3",
             "column_placement": "right",
             "max_products": 3,
             "product_source": "custom-product-list",
@@ -204,7 +211,8 @@
             "trust_image_size": 100,
             "display_as_collapsible_row": false,
             "expand_by_default": true,
-            "collapsible_row_title": "Payments & Security"
+            "collapsible_row_title": "Payments & Security",
+            "title_tag": "h3"
           }
         }
       },
@@ -233,6 +241,7 @@
         "enable_sticky_product_details": true,
         "show_breadcrumbs": false,
         "show_navigation_buttons": false,
+        "show_featured_media_first": false,
         "gallery_style": "thumbnails",
         "gallery_style_mobile": "carousel",
         "gallery_size": "large",
@@ -242,6 +251,8 @@
         "image_aspect_ratio": "square",
         "enable_multiple_variant_media": false,
         "enable_mobile_carousel_looping": false,
+        "show_mobile_carousel_images_full_width": false,
+        "hide_mobile_carousel_dots": false,
         "enable_gift_card_recipient": true,
         "enable_animation": true
       }
@@ -250,6 +261,7 @@
       "type": "recommended-products",
       "settings": {
         "title": "Recommended Products",
+        "heading_tag": "h2",
         "subheading": "",
         "maximum_products": 8,
         "columns": "4",
@@ -259,52 +271,11 @@
         "section_padding": "section--vertical-padding-top-bottom"
       }
     },
-    "image-hero": {
-      "type": "image-hero",
-      "blocks": {
-        "block-1": {
-          "type": "heading",
-          "settings": {
-            "title": "{{ product.title }}",
-            "heading_font_class": "fs-heading-display-2"
-          }
-        },
-        "block-2": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Transform your space with exquisite decor that speaks to your style — All within your budget.</p>",
-            "text_font_class": "fs-body-100"
-          }
-        }
-      },
-      "block_order": [
-        "block-1",
-        "block-2"
-      ],
-      "settings": {
-        "image_aspect": "custom",
-        "desktop_height": 70,
-        "mobile_height": 70,
-        "image": "{{ product.metafields.custom.hero_image.value }}",
-        "focal_point": "image_presentation",
-        "mobile_focal_point": "image_presentation",
-        "media_link": "",
-        "text_position": "center_center",
-        "text_position_mobile": "center_center",
-        "text_color": "#ffffff",
-        "button_background_color": "#ffffff",
-        "button_text_color": "#000000",
-        "color_overlay": "#000000",
-        "color_overlay_gradient": "",
-        "overlay_opacity": 40,
-        "enable_animation": true,
-        "section_padding": "section--vertical-padding-top-bottom"
-      }
-    },
     "recently-viewed-products": {
       "type": "recently-viewed-products",
       "settings": {
         "title": "Recently viewed",
+        "heading_tag": "h2",
         "subheading": "",
         "maximum_products": 8,
         "columns": "4",
@@ -378,7 +349,6 @@
   "order": [
     "main",
     "recommendations",
-    "image-hero",
     "recently-viewed-products",
     "testimonials"
   ]

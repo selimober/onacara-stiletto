@@ -1,5 +1,6 @@
 {%- liquid
   assign results_count = 0
+
   if results.products_count != blank
     assign results_count = results.products_count
   elsif results.results_count != blank
@@ -40,13 +41,25 @@
       {%- liquid
         assign filters_active = false
         assign active_filter_count = 0
+
         for filter in results.filters
           if filter.active_values.size > 0
             assign filters_active = true
+
+            for active_value in filter.active_values
+              assign active_filter_count = active_filter_count | plus: 1
+            endfor
+          elsif filter.type == 'price_range'
+            if filter.min_value.value > 0
+              assign filters_active = true
+              assign active_filter_count = active_filter_count | plus: 1
+            endif
+
+            if filter.max_value.value < filter.range_max
+              assign filters_active = true
+              assign active_filter_count = active_filter_count | plus: 1
+            endif
           endif
-          for active_value in filter.active_values
-            assign active_filter_count = active_filter_count | plus: 1
-          endfor
         endfor
       -%}
 
@@ -58,6 +71,7 @@
           animation--filter-drawer
         "
         data-filter-modal="__tags"
+        data-filter-drawer-panel
         aria-labelledby="modal-{{ 'filters.title' | t }}"
         aria-modal="true"
         aria-hidden="true"
@@ -95,14 +109,16 @@
               swatch_options: swatch_options,
               show_chip_filters: show_chip_filters,
               chip_options: chip_options,
-              chip_layout: chip_layout
+              chip_layout: chip_layout,
+              custom_color_key_map: custom_color_key_map,
+              custom_color_value_map: custom_color_value_map
             %}
           {% endfor %}
         </div>
 
         <div class="filter-drawer__footer animation--filter-drawer-item">
           <div class="filter-drawer__footer-active-filters" data-scroll-lock-ignore>
-            {%- render 'active-filters' with results: results, show_swatch_filters: show_swatch_filters -%}
+            {%- render 'active-filters' with results: results, show_swatch_filters: show_swatch_filters, custom_color_key_map: custom_color_key_map, custom_color_value_map: custom_color_value_map -%}
           </div>
 
           <div class="filter-drawer__footer-buttons">
@@ -158,10 +174,14 @@
           <div class="filter-drawer__group animation--filter-drawer-item">
             <ul class="filter-drawer__list">
               {%- for option in results.sort_options -%}
-                {%- assign is_active = false -%}
-                {%- if option.value == results.sort_by -%}
-                  {%- assign is_active = true -%}
-                {%- endif -%}
+                {%- liquid
+                  if option.value == results.sort_by
+                    assign is_active = true
+                  else
+                    assign is_active = false
+                  endif
+                -%}
+
                 <li class="filter-item">
                   <label data-sort for="filter-{{ option.name | handleize }}--mobile" class="filter-item__content">
                     <input
@@ -174,12 +194,14 @@
                       data-value-escaped="{{ option.value | url_escape }}"
                       id="filter-{{ option.name | escape | handleize }}--mobile"
                       class="filter-item__radio visually-hidden"
+                      data-sort-item-input
                     >
 
                     <div class="filter-item__content-inner">
                       <div class="filter-input__input">
                         <div class="indicator"></div>
                       </div>
+
                       <span class="filter-item__label">{{ option.name }}</span>
                     </div>
                   </label>
@@ -188,6 +210,7 @@
             </ul>
           </div>
         </div>
+
         <div class="filter-drawer__footer animation--filter-drawer-item">
           <div class="filter-drawer__footer-buttons">
             <button type="button" class="filter-drawer__button-apply btn btn--primary" data-button="close">

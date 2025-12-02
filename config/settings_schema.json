@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "Stiletto",
-    "theme_version": "5.0.1",
+    "theme_version": "5.2.0",
     "theme_author": "Fluorescent Design Inc.",
     "theme_documentation_url": "https://help.fluorescent.co/v/stiletto",
     "theme_support_url": "https://fluorescent.co/help/contact"
@@ -413,6 +413,7 @@
             "label": "t:shared.settings.media_fit.option_contain"
           }
         ],
+        "default": "contain",
         "info": "t:settings_schema.product.settings.swatches.swatch_image_fit.info"
       },
       {
@@ -442,20 +443,10 @@
         "default": true
       },
       {
-        "type": "select",
+        "type": "checkbox",
         "id": "product_show_siblings_product_image",
         "label": "t:settings_schema.shared.settings.sibling_swatches.swatch_image_source.label",
-        "options": [
-          {
-            "value": "image",
-            "label": "t:settings_schema.shared.settings.sibling_swatches.swatch_image_source.options.image"
-          },
-          {
-            "value": "custom",
-            "label": "t:settings_schema.shared.settings.sibling_swatches.swatch_image_source.options.color"
-          }
-        ],
-        "default": "image",
+        "default": true,
         "info": "t:settings_schema.shared.settings.sibling_swatches.swatch_image_source.info"
       },
       {
@@ -749,20 +740,10 @@
         "default": true
       },
       {
-        "type": "select",
+        "type": "checkbox",
         "id": "product_listing_show_siblings_product_image",
         "label": "t:settings_schema.shared.settings.sibling_swatches.swatch_image_source.label",
-        "options": [
-          {
-            "value": "image",
-            "label": "t:settings_schema.shared.settings.sibling_swatches.swatch_image_source.options.image"
-          },
-          {
-            "value": "custom",
-            "label": "t:settings_schema.shared.settings.sibling_swatches.swatch_image_source.options.color"
-          }
-        ],
-        "default": "image",
+        "default": true,
         "info": "t:settings_schema.shared.settings.sibling_swatches.swatch_image_source.info"
       },
       {
@@ -831,6 +812,7 @@
             "label": "t:shared.settings.media_fit.option_contain"
           }
         ],
+        "default": "cover",
         "info": "t:shared.settings.media_fit.info"
       },
       {
@@ -1107,6 +1089,36 @@
         "default": true
       },
       {
+        "type": "select",
+        "id": "quick_cart_cross_sells_display",
+        "label": "t:settings_schema.cart.settings.cross_sells.cross_sells_display.drawer.label",
+        "options": [
+          {
+            "label": "t:settings_schema.cart.settings.cross_sells.cross_sells_display.drawer.options.stacked",
+            "value": "stacked"
+          },
+          {
+            "label": "t:settings_schema.cart.settings.cross_sells.cross_sells_display.drawer.options.slider",
+            "value": "slider"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "cart_page_cross_sells_display",
+        "label": "t:settings_schema.cart.settings.cross_sells.cross_sells_display.page.label",
+        "options": [
+          {
+            "label": "t:settings_schema.cart.settings.cross_sells.cross_sells_display.page.options.stacked",
+            "value": "stacked"
+          },
+          {
+            "label": "t:settings_schema.cart.settings.cross_sells.cross_sells_display.page.options.slider",
+            "value": "slider"
+          }
+        ]
+      },
+      {
         "type": "range",
         "id": "cross_sells_max_products",
         "label": "t:settings_schema.cart.settings.cross_sells.cross_sells_max_products.label",
@@ -1339,6 +1351,42 @@
         "id": "social_youtube_link",
         "label": "t:settings_schema.social_media.settings.social_youtube_link.label",
         "info": "t:settings_schema.social_media.settings.social_youtube_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_discord_link",
+        "label": "t:settings_schema.social_media.settings.social_discord_link.label",
+        "info": "t:settings_schema.social_media.settings.social_discord_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_houzz_link",
+        "label": "t:settings_schema.social_media.settings.social_houzz_link.label",
+        "info": "t:settings_schema.social_media.settings.social_houzz_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_wechat_link",
+        "label": "t:settings_schema.social_media.settings.social_wechat_link.label",
+        "info": "t:settings_schema.social_media.settings.social_wechat_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_bluesky_link",
+        "label": "t:settings_schema.social_media.settings.social_bluesky_link.label",
+        "info": "t:settings_schema.social_media.settings.social_bluesky_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_rednote_link",
+        "label": "t:settings_schema.social_media.settings.social_rednote_link.label",
+        "info": "t:settings_schema.social_media.settings.social_rednote_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_line_link",
+        "label": "t:settings_schema.social_media.settings.social_line_link.label",
+        "info": "t:settings_schema.social_media.settings.social_line_link.info"
       }
     ]
   },

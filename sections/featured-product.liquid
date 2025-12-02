@@ -47,6 +47,13 @@
   capture product_url
     echo shop.url | append: featured_product.url
   endcapture
+
+  capture custom_swatch_color_maps
+    render 'get-custom-swatch-color-maps'
+  endcapture
+
+  assign custom_color_key_map = custom_swatch_color_maps | split: ' | ' | first | split: ','
+  assign custom_color_value_map = custom_swatch_color_maps | split: ' | ' | last | split: ','
 -%}
 
 {% comment %}account for gutter between columns and page outer space{% endcomment %}
@@ -193,7 +200,9 @@
           column: 'left',
           featured_media: product_featured_image_url,
           price_content_type: price_content_type,
-          custom_price_content: custom_price_content
+          custom_price_content: custom_price_content,
+          custom_color_key_map: custom_color_key_map,
+          custom_color_value_map: custom_color_value_map
         -%}
       {% endcapture %}
 
@@ -215,7 +224,9 @@
           current_variant: current_variant,
           featured_media: featured_media,
           price_content_type: price_content_type,
-          custom_price_content: custom_price_content
+          custom_price_content: custom_price_content,
+          custom_color_key_map: custom_color_key_map,
+          custom_color_value_map: custom_color_value_map
         -%}
 
         {% # Render a dummy product form if buy buttons are absent -%}

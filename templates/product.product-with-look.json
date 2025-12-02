@@ -324,7 +324,13 @@
           }
         }
       },
-      "block_order": ["heading", "accent", "subheading", "text", "image"],
+      "block_order": [
+        "heading",
+        "accent",
+        "subheading",
+        "text",
+        "image"
+      ],
       "settings": {
         "image_position": "left",
         "image_mobile_position": "above-content",
@@ -368,7 +374,12 @@
           }
         }
       },
-      "block_order": ["product-1", "product-2", "product-3", "product-4"],
+      "block_order": [
+        "product-1",
+        "product-2",
+        "product-3",
+        "product-4"
+      ],
       "settings": {
         "video_loop": true,
         "video_controls": false,
@@ -435,12 +446,16 @@
           }
         }
       },
-      "block_order": ["column-1", "column-2", "column-3"],
+      "block_order": [
+        "column-1",
+        "column-2",
+        "column-3"
+      ],
       "settings": {
         "title": "",
         "heading_tag": "h2",
-        "subheading": "",
         "heading_font_class": "fs-heading-3-base",
+        "subheading": "",
         "heading_alignment": "left",
         "content_vertical_alignment": "center",
         "content_background_padding": "large",
@@ -506,7 +521,11 @@
           }
         }
       },
-      "block_order": ["testimonial-1", "testimonial-2", "testimonial-3"],
+      "block_order": [
+        "testimonial-1",
+        "testimonial-2",
+        "testimonial-3"
+      ],
       "settings": {
         "image_size": "large",
         "quote_font": "body",
@@ -535,7 +554,10 @@
           }
         }
       },
-      "block_order": ["accent", "heading"],
+      "block_order": [
+        "accent",
+        "heading"
+      ],
       "settings": {
         "image_aspect": "custom",
         "desktop_height": 70,
@@ -603,7 +625,12 @@
           }
         }
       },
-      "block_order": ["text-1", "image-1", "text-2", "image-2"],
+      "block_order": [
+        "text-1",
+        "image-1",
+        "text-2",
+        "image-2"
+      ],
       "settings": {
         "font_choice": "ff-heading",
         "text_font_class": "fs-heading-2-base",
@@ -613,8 +640,8 @@
         "padding_top": 5,
         "padding_bottom": 5,
         "borders": "none",
-        "text_color": "#111111",
         "background_color": "rgba(0,0,0,0)",
+        "text_color": "#111111",
         "border_color": "#aaaaaa",
         "enable_animation": true,
         "divider_style": "none",

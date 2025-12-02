@@ -9,21 +9,87 @@
  */
 {
   "sections": {
+    "video_hero_X8T4AP": {
+      "type": "video-hero",
+      "blocks": {
+        "accent_axj8yP": {
+          "type": "accent",
+          "disabled": true,
+          "settings": {
+            "accent": "Accent"
+          }
+        },
+        "heading_RKtCAB": {
+          "type": "heading",
+          "settings": {
+            "title": "BLACK FRIDAY",
+            "heading_tag": "h2",
+            "heading_font_class": "fs-heading-display-2"
+          }
+        },
+        "text_djRTUJ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>25% OFF WITH CODE FRIDAY25</p>",
+            "text_font_class": "fs-body-100"
+          }
+        },
+        "play_button_P38HWE": {
+          "type": "play-button",
+          "disabled": true,
+          "settings": {
+            "video_source": "shopify",
+            "video_url": "",
+            "aspect_ratio": "square",
+            "text": "Discover now",
+            "icon_style": "outline"
+          }
+        }
+      },
+      "block_order": [
+        "accent_axj8yP",
+        "heading_RKtCAB",
+        "text_djRTUJ",
+        "play_button_P38HWE"
+      ],
+      "disabled": true,
+      "name": "t:sections.video_hero.presets.name",
+      "settings": {
+        "image_aspect": "custom",
+        "desktop_height": 100,
+        "mobile_height": 100,
+        "video": "shopify://files/videos/Make_a_360_202510121426_osohl.mp4",
+        "media_link": "shopify://collections/the-aurora",
+        "focal_point": "center",
+        "focal_point_mobile": "top",
+        "text_position": "center_flex-start",
+        "text_position_mobile": "center_flex-start",
+        "text_color": "#000000",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
+        "color_overlay": "#342b25",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 11,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none"
+      }
+    },
     "16558445044f80743b": {
       "type": "image-hero",
       "blocks": {
         "d0cd2366-7930-4809-80d7-2b38d2d4fb07": {
           "type": "heading",
           "settings": {
-            "title": "Looking for new cushions?",
-            "heading_font_class": "fs-heading-display-3"
+            "title": "Festive Cushion Live",
+            "heading_tag": "h2",
+            "heading_font_class": "fs-heading-display-2"
           }
         },
         "d525a297-b0ac-4079-a90c-68d26f07aae7": {
           "type": "button",
           "settings": {
-            "link": "shopify://collections/outdoor-all-single-cushions",
-            "link_text": "SHOP NOW",
+            "link": "shopify://collections/the-aurora",
+            "link_text": "Discover Now",
             "button_style": "btn--primary"
           }
         }
@@ -34,17 +100,17 @@
       ],
       "settings": {
         "image_aspect": "custom",
-        "desktop_height": 70,
-        "mobile_height": 70,
-        "image": "shopify://shop_images/IMG_0710.heic",
-        "image_mobile": "shopify://shop_images/IMG_0674_e50a3465-c55a-4e7b-a827-bb605940fe9f.heic",
+        "desktop_height": 90,
+        "mobile_height": 60,
+        "image": "shopify://shop_images/1_e6d4d2ef-56e0-47df-8b63-e0e77fa4ffa0.jpg",
+        "image_mobile": "shopify://shop_images/Onacara_16.06.2025-28305-Edit_1.jpg",
         "focal_point": "image_presentation",
         "mobile_focal_point": "image_presentation",
-        "media_link": "shopify://collections/single-cushions",
-        "text_position": "flex-end_center",
-        "text_position_mobile": "flex-end_flex-start",
-        "text_color": "#ffffff",
-        "button_background_color": "#b0642c",
+        "media_link": "shopify://collections/festive-collection",
+        "text_position": "center_flex-start",
+        "text_position_mobile": "flex-start_flex-start",
+        "text_color": "#342b25",
+        "button_background_color": "#000000",
         "button_text_color": "#f4f4f4",
         "color_overlay": "#000000",
         "color_overlay_gradient": "",
@@ -85,15 +151,20 @@
             "width": "33",
             "height": 500,
             "mobile_height": 360,
+            "media_type": "image",
             "image": "shopify://shop_images/IMG-20231213-WA0058_2943854f-945e-42ce-b6a2-8539098b5565.jpg",
-            "media_fit": "cover",
             "focal_point": "image_presentation",
             "mobile_focal_point": "image_presentation",
+            "video_focal_point": "center",
+            "mobile_video_focal_point": "center",
+            "media_fit": "cover",
             "text_position": "flex-start_flex-end",
             "accent": "",
             "title": "Fast-delivery",
+            "heading_tag": "h3",
             "heading_font_class": "fs-heading-2-base",
             "subheading": "<p>Lead-time in 3–4 business days.<br/><br/></p>",
+            "subheading_tag": "h4",
             "subheading_font_class": "fs-heading-6-base",
             "text": "",
             "text_font_class": "fs-body-100",
@@ -115,15 +186,20 @@
             "width": "33",
             "height": 500,
             "mobile_height": 360,
+            "media_type": "image",
             "image": "shopify://shop_images/OnacaraAralik2023-7184-Edit_fbc68d64-bb0e-4863-9125-868a82e1e5ad.jpg",
-            "media_fit": "cover",
             "focal_point": "image_presentation",
             "mobile_focal_point": "image_presentation",
+            "video_focal_point": "center",
+            "mobile_video_focal_point": "center",
+            "media_fit": "cover",
             "text_position": "flex-start_flex-end",
             "accent": "",
             "title": "Luxury Without the Price Tag",
+            "heading_tag": "h3",
             "heading_font_class": "fs-heading-2-base",
             "subheading": "<p>Beautiful spaces made affordable for all</p>",
+            "subheading_tag": "h4",
             "subheading_font_class": "fs-heading-6-base",
             "text": "",
             "text_font_class": "fs-body-100",
@@ -145,16 +221,21 @@
             "width": "33",
             "height": 600,
             "mobile_height": 360,
+            "media_type": "image",
             "image": "shopify://shop_images/OnacaraAralik2023-7132-Edit_a8967c75-5eb8-4925-843c-345c1c67f718.jpg",
             "mobile_image": "shopify://shop_images/PXL_20231213_134059499_981cae9f-59a2-4b90-9ad7-9fb85aef3847.jpg",
-            "media_fit": "cover",
             "focal_point": "image_presentation",
             "mobile_focal_point": "image_presentation",
+            "video_focal_point": "center",
+            "mobile_video_focal_point": "center",
+            "media_fit": "cover",
             "text_position": "flex-start_flex-end",
             "accent": "",
             "title": "Bespoke Service",
+            "heading_tag": "h3",
             "heading_font_class": "fs-heading-2-base",
             "subheading": "<p>Custom sizes, fabrics, or your own — made to fit your vision.</p>",
+            "subheading_tag": "h4",
             "subheading_font_class": "fs-heading-6-base",
             "text": "",
             "text_font_class": "fs-body-100",
@@ -178,6 +259,7 @@
       ],
       "settings": {
         "heading": "Our difference",
+        "heading_tag": "h2",
         "subheading": "",
         "content_alignment": "left",
         "enable_animation": true,
@@ -194,6 +276,7 @@
           "type": "heading",
           "settings": {
             "title": "Meet us at Decorex 24!",
+            "heading_tag": "h2",
             "heading_font_class": "fs-heading-1-base"
           }
         },
@@ -201,6 +284,7 @@
           "type": "subheading",
           "settings": {
             "subheading": "We're exhibiting at Decorex 24. Visit us at Stand A61 and see our new collection.",
+            "subheading_tag": "h3",
             "subheading_font_class": "fs-heading-6-base"
           }
         },
@@ -227,6 +311,7 @@
         "image_caption": "",
         "text_alignment": "center",
         "show_small_image": false,
+        "image_small_aspect": "square",
         "image_small_focal_point": "image_presentation",
         "background_color": "",
         "text_color": "#000000",
@@ -240,29 +325,81 @@
     "shoppable_image_kXV3Gc": {
       "type": "shoppable-image",
       "blocks": {
-        "hotspot_HTYPpK": {
+        "hotspot_WJL6c6": {
           "type": "hotspot",
           "settings": {
-            "product_item": "isla-plum-pearl-trio",
+            "product_item": "new-isla-ochre-with-petrol-with-fringe-50cm-trio",
             "horizontal_position": 50,
             "vertical_position": 50
           }
         }
       },
       "block_order": [
-        "hotspot_HTYPpK"
+        "hotspot_WJL6c6"
       ],
-      "disabled": true,
       "settings": {
-        "image": "shopify://shop_images/Copy_of_FESTIVE03_ADS_-_Square_-_Festive_24_1.jpg",
+        "image": "shopify://shop_images/IMG_0707.heic",
         "aspect_ratio": "landscape",
-        "heading": "New Festive Collection",
-        "subheading": "<p>We couldn’t resist joining in with the latest colour trends with our most recent cushion launch. </p><p>Our new signature cushions have been designed in the trendiest of colour-ways, Plum, Petrol Blue and Bracken. </p><p>Plum, neither warm nor cool, oozes luxury and depth.  Petrol, contrasts perfectly with our gold fringe, creating an on trend combination and Bracken is both soft and sophisticated. Each of these new cushion lines has been carefully curated with complimentary pairings in mind.  Our Pearl cushion has proven so popular, we couldn’t resist mixing it up and offering contrasting piping in these new colour-ways.  </p><p>We hope you enjoy our latest launch as much as we do.  </p>",
-        "link": "shopify://collections/festive-collection",
+        "heading": "Autumn Collection",
+        "heading_tag": "h2",
+        "subheading": "<p>Introducing our Autumn '25 Collection! We've focused on incorporating on-trend patterns and the latest colour palettes, all while continuing to feature our best-selling staple cushions.</p><p>From bold geometric designs to subtle textures, our collection offers a range of options to complement any style. We hope you love it as much as we do!</p>",
+        "link": "shopify://collections/autumn-25-collection",
         "link_text": "Discover Now",
         "button_style": "btn--primary",
         "enable_animation": true,
         "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom"
+      }
+    },
+    "video_JmNnT3": {
+      "type": "video",
+      "blocks": {
+        "heading_RTrzHX": {
+          "type": "heading",
+          "settings": {
+            "title": "Autumn 25",
+            "heading_tag": "h2",
+            "heading_font_class": "fs-heading-display-2"
+          }
+        },
+        "text_cJLMtz": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Discover our newest Aurora Collection 25!</p>",
+            "text_font_class": "fs-body-100"
+          }
+        },
+        "play_button_mWaFfn": {
+          "type": "play-button",
+          "settings": {
+            "text": "Watch now",
+            "button_layout": "full",
+            "icon_style": "outline"
+          }
+        }
+      },
+      "block_order": [
+        "heading_RTrzHX",
+        "text_cJLMtz",
+        "play_button_mWaFfn"
+      ],
+      "disabled": true,
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "video_source": "shopify",
+        "video": "shopify://files/videos/Make_a_360_202510121426_osohl.mp4",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "loop": false,
+        "media_aspect_ratio": "landscape_wide_alt",
+        "focal_point": "center",
+        "text_position": "center_center",
+        "text_position_mobile": "center",
+        "button_background_color": "#ffffff",
+        "color_overlay": "#000000",
+        "color_overlay_text": "#ffffff",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 40,
+        "enable_animation": true,
         "section_padding": "section--vertical-padding-top-bottom"
       }
     },
@@ -273,6 +410,7 @@
           "type": "subheading",
           "settings": {
             "subheading": "Struggling to Find the Perfect Cushion Set-Up? Book your FREE Cushion Consultation today with our in-house interior designer. We can’t wait to help you!",
+            "subheading_tag": "h3",
             "subheading_font_class": "fs-heading-5-base"
           }
         },
@@ -298,6 +436,7 @@
         "text_alignment": "center",
         "show_small_image": false,
         "image_small": "shopify://shop_images/WhatsApp_Image_2024-09-26_at_21.45.00.jpg",
+        "image_small_aspect": "square",
         "image_small_focal_point": "image_presentation",
         "background_color": "",
         "text_color": "#000000",
@@ -325,9 +464,12 @@
       ],
       "settings": {
         "heading": "Best sellers",
+        "heading_tag": "h2",
         "subheading": "",
         "link": "",
         "link_text": "",
+        "button_style": "btn--callout",
+        "collection_tabs_mobile_display": "rows",
         "maximum_products": 8,
         "columns": "4",
         "mobile_columns": "2",
@@ -343,6 +485,7 @@
           "type": "heading",
           "settings": {
             "title": "How we pack your cushions?",
+            "heading_tag": "h2",
             "heading_font_class": "fs-heading-display-3"
           }
         },
@@ -350,6 +493,7 @@
           "type": "subheading",
           "settings": {
             "subheading": "Sustainable and elegant",
+            "subheading_tag": "h3",
             "subheading_font_class": "fs-heading-5-base"
           }
         },
@@ -384,6 +528,7 @@
         "text_alignment": "center",
         "show_small_image": false,
         "image_small": "shopify://shop_images/Boucle-3_1e3509d1-e1fd-49d6-b5c9-a3b9bb39bf4f.jpg",
+        "image_small_aspect": "square",
         "image_small_focal_point": "center",
         "background_color": "#f4f4f4",
         "text_color": "#000000",
@@ -417,8 +562,11 @@
       "disabled": true,
       "settings": {
         "heading": "Blog posts",
+        "heading_tag": "h2",
         "subheading": "",
+        "link": "",
         "link_text": "View all posts",
+        "button_style": "btn--callout",
         "display_type": "selected",
         "blog": "inspirations",
         "max_articles": 2,
@@ -435,11 +583,13 @@
     }
   },
   "order": [
+    "video_hero_X8T4AP",
     "16558445044f80743b",
     "rich_text_3wkMBA",
     "1654878022d8e24a9a",
     "image_with_text_hVqYTH",
     "shoppable_image_kXV3Gc",
+    "video_JmNnT3",
     "image_with_text_Yr44Gm",
     "1655855558c1ac2348",
     "165489980473ecbf41",

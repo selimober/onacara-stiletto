@@ -231,12 +231,16 @@
           }
         }
       },
-      "block_order": ["image_column-1", "image_column-2", "image_column-3"],
+      "block_order": [
+        "image_column-1",
+        "image_column-2",
+        "image_column-3"
+      ],
       "settings": {
         "title": "What you'll leave with",
         "heading_tag": "h2",
-        "subheading": "",
         "heading_font_class": "fs-heading-3-base",
+        "subheading": "",
         "heading_alignment": "center",
         "content_vertical_alignment": "top",
         "content_background_padding": "medium",
@@ -308,15 +312,21 @@
           }
         }
       },
-      "block_order": ["item-1", "item-2", "item-3", "item-4", "item-5"],
+      "block_order": [
+        "item-1",
+        "item-2",
+        "item-3",
+        "item-4",
+        "item-5"
+      ],
       "settings": {
         "title": "FAQ",
         "heading_tag": "h2",
         "heading_font_class": "fs-heading-3-base",
+        "heading_alignment": "left",
         "subheading": "",
         "subheading_tag": "h3",
         "subheading_font_class": "fs-heading-5-base",
-        "heading_alignment": "left",
         "item_heading_font": "heading",
         "enable_animation": true,
         "divider_style": "none",
@@ -367,7 +377,12 @@
           }
         }
       },
-      "block_order": ["product-1", "product-2", "product-3", "product-4"],
+      "block_order": [
+        "product-1",
+        "product-2",
+        "product-3",
+        "product-4"
+      ],
       "disabled": true,
       "settings": {
         "video_loop": true,
@@ -429,7 +444,13 @@
           }
         }
       },
-      "block_order": ["accent", "heading", "text", "subheading", "button"],
+      "block_order": [
+        "accent",
+        "heading",
+        "text",
+        "subheading",
+        "button"
+      ],
       "settings": {
         "image_position": "right",
         "image_mobile_position": "above-content",

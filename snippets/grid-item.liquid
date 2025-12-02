@@ -34,6 +34,7 @@
     grid-item
     grid-item--width-{{ block.settings.width }}
     grid-item--text-{{ text_position_modifier }}
+    grid-item--media-fit-{{ block.settings.media_fit }}
   "
   style="
     --height: {{ block.settings.height }}px;
@@ -65,31 +66,40 @@
     {{ wrapping_attributes }}
     class="grid-item__inner"
   >
-    {%- if block.settings.mobile_image != blank -%}
-      {%- render 'image',
-        wrapper_class: 'grid-item__image grid-item__image--mobile',
-        focal_point: block.settings.focal_point,
-        image: block.settings.mobile_image,
-        sizes: '100vw',
-        animate: true
-      -%}
-    {%- endif -%}
+    {%- case block.settings.media_type -%}
+      {%- when 'image' -%}
+        {%- if block.settings.mobile_image != blank -%}
+          {%- render 'image',
+            wrapper_class: 'grid-item__image grid-item__image--mobile',
+            focal_point: block.settings.mobile_focal_point,
+            image: block.settings.mobile_image,
+            sizes: '100vw',
+            animate: true
+          -%}
+        {% endif %}
 
-    {%- if block.settings.image != blank -%}
-      {%- render 'image',
-        wrapper_class: 'grid-item__image',
-        focal_point: block.settings.focal_point,
-        image: block.settings.image,
-        sizes: image_sizes,
-        animate: true
-      -%}
-    {%- elsif has_background_color == false -%}
-      {%- render 'placeholder-image',
-        wrapper_class: 'grid-item__image',
-        placeholder_name: 'lifestyle-1',
-        natural_fallback_ratio: 'natural'
-      -%}
-    {%- endif -%}
+        {%- render 'image',
+          wrapper_class: 'grid-item__image',
+          focal_point: block.settings.focal_point,
+          image: block.settings.image,
+          sizes: image_sizes,
+          animate: true,
+          include_placeholder: true,
+          placeholder_name: 'lifestyle-1',
+          placeholder_natural_fallback_ratio: 'natural'
+        -%}
+
+      {%- when 'video' -%}
+        {%- render 'background-video',
+          video: block.settings.background_video,
+          enable_mobile_video: true,
+          mobile_video: block.settings.mobile_background_video,
+          focal_point: block.settings.video_focal_point,
+          focal_point_mobile: block.settings.mobile_video_focal_point,
+          class: 'grid-item__video',
+          placeholder_name: 'image'
+        -%}
+    {%- endcase -%}
 
     <div class="grid-item__overlay"></div>
 

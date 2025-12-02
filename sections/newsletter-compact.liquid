@@ -84,40 +84,13 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'newsletter_signup' -%}
-            {%- assign success_msg = 'general.newsletter_form.confirmation' | t -%}
-
             <div class="newsletter-compact__signup newsletter-compact__block-item section-blocks__newsletter-signup">
-              {% form 'customer', class: 'newsletter-compact__signup-form', id: 'newsletter-subscribe' %}
-                {% render 'form-status', form: form, form_id: 'newsletter-subscribe', success_message: success_msg %}
-
-                {%- unless form.posted_successfully? -%}
-                  <div class="newsletter-compact__signup-inner">
-                    <input type="hidden" name="contact[tags]" value="newsletter">
-                    <label for="newsletter-subscribe-email" class="visually-hidden">
-                      {{- 'general.newsletter_form.email_placeholder' | t -}}
-                    </label>
-                    <input
-                      type="email"
-                      class="input newsletter-compact__signup-input"
-                      name="contact[email]"
-                      id="newsletter-subscribe-email"
-                      value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
-                      placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
-                      autocorrect="off"
-                      autocapitalize="off"
-                      required
-                    >
-                    {%- render 'button-block',
-                      wrapper_class: 'newsletter-compact__signup-button',
-                      label: block.settings.signup_link_text,
-                      is_full: true,
-                      is_overlay: true,
-                      allow_linkless: true,
-                      type: 'submit'
-                    -%}
-                  </div>
-                {%- endunless -%}
-              {% endform %}
+              {% render 'newsletter-form',
+                form_id: 'newsletter-compact-subscribe',
+                base_class: 'newsletter-compact__signup',
+                button_label: block.settings.signup_link_text,
+                enable_collect_customer_name: block.settings.enable_collect_customer_name
+              %}
 
               {%- unless block.settings.footer_text == blank -%}
                 <div class="newsletter-compact__signup-footer ff-body fs-body-50 rte">
@@ -422,6 +395,13 @@
       "name": "t:sections.shared.newsletter.blocks.newsletter_signup.name",
       "limit": 1,
       "settings": [
+        {
+          "type": "checkbox",
+          "id": "enable_collect_customer_name",
+          "label": "t:shared.options.enable_collect_customer_name.label",
+          "info": "t:shared.options.enable_collect_customer_name.info",
+          "default": false
+        },
         {
           "type": "text",
           "id": "signup_link_text",

@@ -173,7 +173,7 @@
             </div>
           {%- endfor -%}
           {%- if section.settings.cross_sells_position == 'below-line-items' -%}
-            {%- render 'cross-sells', cart: cart, cart_items: cart.items -%}
+            {%- render 'cross-sells', cart: cart, display: settings.cart_page_cross_sells_display -%}
           {%- endif -%}
         </div>
 
@@ -276,8 +276,8 @@
             {%- if section.settings.cross_sells_position == 'below-subtotal' -%}
               {%- render 'cross-sells',
                 cart: cart,
-                cart_items: cart.items,
-                position: section.settings.cross_sells_position
+                position: section.settings.cross_sells_position,
+                display: settings.cart_page_cross_sells_display
               -%}
             {%- endif -%}
           </div>

@@ -221,6 +221,13 @@
   unless show_mobile_carousel_images_full_width
     assign hide_mobile_carousel_dots = section.settings.hide_mobile_carousel_dots
   endunless
+
+  capture custom_swatch_color_maps
+    render 'get-custom-swatch-color-maps'
+  endcapture
+
+  assign custom_color_key_map = custom_swatch_color_maps | split: ' | ' | first | split: ','
+  assign custom_color_value_map = custom_swatch_color_maps | split: ' | ' | last | split: ','
 -%}
 
 <div
@@ -534,7 +541,9 @@
           is_featured: false,
           column: 'left',
           price_content_type: price_content_type,
-          custom_price_content: custom_price_content
+          custom_price_content: custom_price_content,
+          custom_color_key_map: custom_color_key_map,
+          custom_color_value_map: custom_color_value_map
         -%}
       {%- endcapture %}
 
@@ -557,7 +566,9 @@
           featured_media: featured_media,
           aspect_ratio: image_aspect_ratio,
           price_content_type: price_content_type,
-          custom_price_content: custom_price_content
+          custom_price_content: custom_price_content,
+          custom_color_key_map: custom_color_key_map,
+          custom_color_value_map: custom_color_value_map
         %}
 
         {% comment -%}

@@ -2501,7 +2501,7 @@
               }
             },
             "tab_heading": {
-              "default": "Einspaltige Registerkarte"
+              "default": "Dreispaltige Registerkarte"
             },
             "third_column": {
               "header": {
@@ -2533,7 +2533,7 @@
               }
             },
             "tab_heading": {
-              "default": "Einspaltige Registerkarte"
+              "default": "Zweispaltige Registerkarte"
             }
           }
         }
@@ -4456,6 +4456,22 @@
           "collection": {
             "label": "Kategorie"
           },
+          "cross_sells_display": {
+            "drawer": {
+              "label": "Schnelle Warenkorbanzeige",
+              "options": {
+                "slider": "Schieberegler",
+                "stacked": "Gestapelt"
+              }
+            },
+            "page": {
+              "label": "Warenkorbseitenanzeige",
+              "options": {
+                "slider": "Schieberegler",
+                "stacked": "Gestapelt"
+              }
+            }
+          },
           "cross_sells_heading": {
             "default": "Kunden kauften auch",
             "label": "Überschrift"
@@ -4985,13 +5001,29 @@
         "header": {
           "content": "Konto-Links"
         },
+        "social_bluesky_link": {
+          "info": "https://bsky.app/profile/shopify.bsky.social",
+          "label": "Bluesky-Link"
+        },
+        "social_discord_link": {
+          "info": "https://discord.gg/Shopify",
+          "label": "Discord-Link"
+        },
         "social_facebook_link": {
           "info": "https://facebook.com/shopify",
           "label": "Facebook-Link"
         },
+        "social_houzz_link": {
+          "info": "https://houzz.com/shopify",
+          "label": "Houzz-Link"
+        },
         "social_instagram_link": {
           "info": "https://www.instagram.com/shopify/",
           "label": "Instagram-Link"
+        },
+        "social_line_link": {
+          "info": "https://line.me/ti/p/Shopify",
+          "label": "LINE-Link"
         },
         "social_linkedin_link": {
           "info": "https://linkedin.com/company/shopify",
@@ -5000,6 +5032,10 @@
         "social_pinterest_link": {
           "info": "https://pinterest.com/shopify",
           "label": "Pinterest-Link"
+        },
+        "social_rednote_link": {
+          "info": "https://www.xiaohongshu.com/user/profile/shopify",
+          "label": "Rednote-Link"
         },
         "social_snapchat_link": {
           "info": "https://snapchat.com/add/shopify",
@@ -5020,6 +5056,10 @@
         "social_vimeo_link": {
           "info": "https://vimeo.com/shopify",
           "label": "Vimeo-Link"
+        },
+        "social_wechat_link": {
+          "info": "weixin://dl/chat?{toID}",
+          "label": "WeChat-Link"
         },
         "social_whatsapp_link": {
           "info": "https://wa.me/1XXXXXXXXXX",
@@ -5066,6 +5106,10 @@
         "portrait": "Porträt (2:3)",
         "portrait_alt": "Porträt (4:5)",
         "square": "Quadratisch (1:1)"
+      },
+      "enable_collect_customer_name": {
+        "info": "Wenn aktiviert, sind die Namensfelder Pflichtfelder.",
+        "label": "Kundennamen erfassen"
       },
       "focal_point": {
         "bottom": "Unten",
@@ -5313,6 +5357,29 @@
       "aspect_ratio": {
         "label": "Bildseitenverhältnis"
       },
+      "background_image": {
+        "header": {
+          "content": "Hintergrundbild"
+        },
+        "image": {
+          "label": "Bild"
+        },
+        "mobile_image": {
+          "label": "Mobiles Bild"
+        }
+      },
+      "background_video": {
+        "header": {
+          "content": "Hintergrundvideo"
+        },
+        "video": {
+          "label": "Video"
+        },
+        "video_mobile": {
+          "info": "Gilt nur, wenn ein Desktop-Video ausgewählt wurde.",
+          "label": "Mobiles Video"
+        }
+      },
       "badges": {
         "header": {
           "content": "Produktplaketten"
@@ -5525,6 +5592,22 @@
         "label": "Medienanpassung",
         "option_contain": "Enthält",
         "option_cover": "Füllen"
+      },
+      "media_type": {
+        "color_paragraph": {
+          "content": "Es wird die „Hintergrundfarbe“ aus den unten stehenden „Farbeinstellungen“ verwendet."
+        },
+        "header": {
+          "content": "Hintergrund"
+        },
+        "media_type": {
+          "label": "Hintergrundtyp",
+          "options": {
+            "color": "Farbe",
+            "image": "Bild",
+            "video": "Video"
+          }
+        }
       },
       "overlay": {
         "overlay": {

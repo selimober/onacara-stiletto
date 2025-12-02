@@ -16,6 +16,7 @@
       "settings": {
         "enable_quick_cart": true,
         "show_product_currency": true,
+        "continue_shopping_link": "shopify://collections",
         "promotion_text": "<p>Check out these collections.</p>",
         "collection_list": [],
         "collection_list_button_style": "btn--secondary"
@@ -33,6 +34,7 @@
             "disable_for_account_holders": true,
             "show_on_specific_page": false,
             "target_page": "",
+            "enable_collect_customer_name": false,
             "accent": "Get 10% off",
             "heading": "Join us",
             "heading_font_class": "fs-heading-2-base",

@@ -195,21 +195,24 @@
         "collection-1": {
           "type": "collection",
           "settings": {
-            "show_view_all": true,
             "collection": "",
-            "collection_name": "Plates & Bowls"
+            "collection_name": "Plates & Bowls",
+            "show_view_all": true
           }
         },
         "collection-2": {
           "type": "collection",
           "settings": {
-            "show_view_all": true,
             "collection": "",
-            "collection_name": "Mugs & Cups"
+            "collection_name": "Mugs & Cups",
+            "show_view_all": true
           }
         }
       },
-      "block_order": ["collection-1", "collection-2"],
+      "block_order": [
+        "collection-1",
+        "collection-2"
+      ],
       "settings": {
         "heading": "The Full Range",
         "heading_tag": "h2",
@@ -225,5 +228,8 @@
       }
     }
   },
-  "order": ["main", "featured-collection-slider"]
+  "order": [
+    "main",
+    "featured-collection-slider"
+  ]
 }

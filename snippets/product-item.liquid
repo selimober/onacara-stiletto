@@ -3,6 +3,8 @@
     pass in :
 
     * prod (product but avoiding collision with globally scoped product)
+    - custom_color_key_map: { Object } An array of custom swatch color keys (names).
+    - custom_color_value_map: { Object } An array of custom swatch color values (HEX values).
   endcomment
 
   assign show_multiple_images = false
@@ -386,7 +388,9 @@
               prod: prod,
               option_name: first_swatchified_option,
               show_sibling_swatches: show_sibling_swatches,
-              sibling_products: sibling_products
+              sibling_products: sibling_products,
+              custom_color_key_map: custom_color_key_map,
+              custom_color_value_map: custom_color_value_map
             -%}
           {%- endif -%}
 

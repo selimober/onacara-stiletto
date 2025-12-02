@@ -2852,7 +2852,9 @@ var animateCollectionBanner = (node => {
 });
 
 const selectors$1t = {
+  stickyAnnouncement: ".announcement-bar:not([data-enable-sticky-announcement-bar='never'])",
   stickyHeader: ".header[data-enable-sticky-header='true']",
+  divider: ".collection__divider",
   partial: "[data-partial]",
   filterBar: "[data-filter-bar]",
   mobileFilterBar: "[data-mobile-filters]",
@@ -2864,15 +2866,17 @@ const classes$E = {
   stickyFilterBar: "filter-bar--sticky"
 };
 var animateCollection = (node => {
+  const stickyAnnouncement = n$2(selectors$1t.stickyAnnouncement, document);
   const stickyHeader = n$2(selectors$1t.stickyHeader, document);
+  const divider = n$2(selectors$1t.divider, document);
   const partial = n$2(selectors$1t.partial, node);
   const filterbarEl = n$2(selectors$1t.filterBar, node);
   const mobileFilterBarEl = n$2(selectors$1t.mobileFilterBar, node);
   let filterbarObserver = null;
+  let mobileFilterBarObserver = null;
   if (filterbarEl) {
     filterbarObserver = intersectionWatcher(filterbarEl, true);
   }
-  let mobileFilterBarObserver = null;
   if (mobileFilterBarEl) {
     mobileFilterBarObserver = intersectionWatcher(mobileFilterBarEl, true);
   }
@@ -2888,8 +2892,15 @@ var animateCollection = (node => {
   // Scroll to top of collection grid after applying filters
   // to show the newly filtered list of products
   function _scrollIntoView() {
-    const stickyHeaderHeight = stickyHeader ? stickyHeader.getBoundingClientRect().height / 2 : 0;
-    const y = node.getBoundingClientRect().top + window.pageYOffset - stickyHeaderHeight;
+    const dividerHeight = divider ? 1 : 0;
+    let stickyAnnouncementHeight = 0;
+    if (stickyAnnouncement) {
+      if (window.matchMedia(getMediaQuery("below-960")).matches && stickyAnnouncement.getAttribute("data-enable-sticky-announcement-bar").includes("mobile") || stickyAnnouncement.getAttribute("data-enable-sticky-announcement-bar").includes("desktop")) {
+        stickyAnnouncementHeight = stickyAnnouncement.getBoundingClientRect().height;
+      }
+    }
+    const stickyHeaderHeight = stickyHeader ? stickyHeader.getBoundingClientRect().height : 0;
+    const y = node.getBoundingClientRect().top + window.scrollY + dividerHeight - stickyAnnouncementHeight - stickyHeaderHeight;
     window.scrollTo({
       top: y,
       behavior: "smooth"
@@ -2897,7 +2908,6 @@ var animateCollection = (node => {
   }
   function updateContents() {
     setupProductItem();
-    // Remove the fade out class
     i$1(partial, classes$E.hideProducts);
     _scrollIntoView();
   }
@@ -3366,24 +3376,29 @@ var animateContactForm = (node => {
 });
 
 const selectors$16 = {
+  divider: ".search__divider",
   partial: "[data-partial]",
   filterBar: "[data-filter-bar]",
   mobileFilterBar: "[data-mobile-filters]",
-  productItems: ".animation--item:not(.animation--item-revealed)"
+  productItems: ".animation--item:not(.animation--item-revealed)",
+  stickyAnnouncement: ".announcement-bar:not([data-enable-sticky-announcement-bar='never'])",
+  stickyHeader: ".header[data-enable-sticky-header='true']"
 };
 const classes$w = {
   hideProducts: "animation--search-products-hide",
   itemRevealed: "animation--item-revealed"
 };
 var animateSearch = (node => {
+  const stickyAnnouncement = n$2(selectors$16.stickyAnnouncement);
+  const stickyHeader = n$2(selectors$16.stickyHeader, document);
   const partial = n$2(selectors$16.partial, node);
   const filterbarEl = n$2(selectors$16.filterBar, node);
   const mobileFilterBarEl = n$2(selectors$16.mobileFilterBar, node);
   let filterbarObserver = null;
+  let mobileFilterBarObserver = null;
   if (filterbarEl) {
     filterbarObserver = intersectionWatcher(filterbarEl, true);
   }
-  let mobileFilterBarObserver = null;
   if (mobileFilterBarEl) {
     mobileFilterBarObserver = intersectionWatcher(mobileFilterBarEl, true);
   }
@@ -3399,7 +3414,16 @@ var animateSearch = (node => {
   // Scroll to top of search grid after applying filters
   // to show the newly filtered list of products
   function _scrollIntoView() {
-    const y = partial.getBoundingClientRect().top + window.pageYOffset - filterbarEl.getBoundingClientRect().height;
+    const divider = n$2(selectors$16.divider, node);
+    const dividerHeight = divider ? 1 : 0;
+    let stickyAnnouncementHeight = 0;
+    const stickyHeaderHeight = stickyHeader ? stickyHeader.getBoundingClientRect().height : 0;
+    if (stickyAnnouncement) {
+      if (window.matchMedia(getMediaQuery("below-960")).matches && stickyAnnouncement.getAttribute("data-enable-sticky-announcement-bar").includes("mobile") || stickyAnnouncement.getAttribute("data-enable-sticky-announcement-bar").includes("desktop")) {
+        stickyAnnouncementHeight = stickyAnnouncement.getBoundingClientRect().height;
+      }
+    }
+    const y = partial.getBoundingClientRect().top + window.scrollY + dividerHeight - stickyAnnouncementHeight - stickyHeaderHeight - filterbarEl.getBoundingClientRect().height;
     window.scrollTo({
       top: y,
       behavior: "smooth"
@@ -3593,6 +3617,37 @@ var animateApps = (node => {
   return {
     destroy() {
       observer === null || observer === void 0 || observer.destroy();
+    }
+  };
+});
+
+var videoIntersectionWatcher = (function (node) {
+  let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
+    instant: false,
+    callback: false
+  };
+  const margin = window.matchMedia(getMediaQuery("above-720")).matches ? 200 : 100;
+  let threshold = 0;
+  if (!options.instant) {
+    threshold = Math.min(margin / node.offsetHeight, 0.5);
+  }
+  const observer = new IntersectionObserver(_ref => {
+    let [{
+      isIntersecting: visible
+    }] = _ref;
+    if (options.callback) {
+      options.callback(visible);
+    } else if (visible) {
+      u$1(node, "is-visible");
+      observer.disconnect();
+    }
+  }, {
+    threshold: threshold
+  });
+  observer.observe(node);
+  return {
+    destroy() {
+      observer === null || observer === void 0 || observer.disconnect();
     }
   };
 });
@@ -4801,6 +4856,32 @@ function Accordions(elements) {
   };
 }
 
+let loaded$2 = null;
+function loadMediaFeatures() {
+  if (loaded$2 !== null) return loaded$2;
+  loaded$2 = new Promise(resolve => {
+    window.Shopify.loadFeatures([{
+      name: "model-viewer-ui",
+      version: "1.0"
+    }, {
+      name: "shopify-xr",
+      version: "1.0"
+    }, {
+      name: "video-ui",
+      version: "1.0"
+    }], () => {
+      if ("YT" in window && Boolean(YT.loaded)) {
+        resolve();
+      } else {
+        window.onYouTubeIframeAPIReady = function () {
+          resolve();
+        };
+      }
+    });
+  });
+  return loaded$2;
+}
+
 function Media(node) {
   if (!node) return;
   const {
@@ -4814,7 +4895,6 @@ function Media(node) {
   if (!elements.length) return;
   const acceptedTypes = ["video", "model", "external_video"];
   let activeMedia = null;
-  let featuresLoaded = false;
   let instances = {};
   const selectors = {
     mediaContainer: ".media",
@@ -4828,28 +4908,7 @@ function Media(node) {
       return;
     }
   });
-  if (featuresLoaded) {
-    elements.forEach(initElement);
-  }
-  window.Shopify.loadFeatures([{
-    name: "model-viewer-ui",
-    version: "1.0"
-  }, {
-    name: "shopify-xr",
-    version: "1.0"
-  }, {
-    name: "video-ui",
-    version: "1.0"
-  }], () => {
-    featuresLoaded = true;
-    if ("YT" in window && Boolean(YT.loaded)) {
-      elements.forEach(initElement);
-    } else {
-      window.onYouTubeIframeAPIReady = function () {
-        elements.forEach(initElement);
-      };
-    }
-  });
+  elements.forEach(initElement);
   function initElement(el) {
     const {
       mediaId,
@@ -6590,7 +6649,9 @@ class Product {
     if (this.isFullProduct && this.productHandle) {
       updateRecentProducts(this.productHandle);
     }
-    this._loadMedia();
+    loadMediaFeatures().then(() => {
+      this._loadMedia();
+    });
     this._initEvents();
 
     // Handle dynamic variant options
@@ -6727,17 +6788,20 @@ class Product {
     (_this$mediaContainers3 = this.mediaContainers) === null || _this$mediaContainers3 === void 0 || _this$mediaContainers3.pauseActiveMedia();
     const mediaContainers = t$2(".product__media-container", this.container);
     mediaContainers.forEach(mediaContainer => {
-      var _mediaContainer$query;
-      // Remove active class from thumbnails
-      mediaContainer.querySelectorAll(selectors$G.thumbActive).forEach(thumb => {
-        thumb.classList.remove("active");
-      });
+      const galleryStyle = mediaContainer.getAttribute("data-gallery-style");
+      if (galleryStyle === "thumbnails") {
+        var _mediaContainer$query;
+        // Remove active class from thumbnails
+        mediaContainer.querySelectorAll(selectors$G.thumbActive).forEach(thumb => {
+          thumb.classList.remove("active");
+        });
 
-      // Add active class to thumbnail
-      (_mediaContainer$query = mediaContainer.querySelector(selectors$G.thumbById(id))) === null || _mediaContainer$query === void 0 || _mediaContainer$query.classList.add("active");
+        // Add active class to thumbnail
+        (_mediaContainer$query = mediaContainer.querySelector(selectors$G.thumbById(id))) === null || _mediaContainer$query === void 0 || _mediaContainer$query.classList.add("active");
 
-      // Swap main image
-      switchImage(mediaContainer.querySelector(".product__media"), id, viewInYourSpaceEl);
+        // Swap main image
+        switchImage(mediaContainer.querySelector(".product__media"), id, viewInYourSpaceEl);
+      }
     });
   }
   _refreshOverviewWithVariant(variant_id) {
@@ -6860,9 +6924,9 @@ class Product {
               if (this.isFeaturedProduct) {
                 this._switchCurrentImage(variant.featured_media.id);
               } else {
-                const targetImage = n$2(".product__media-container.above-mobile [data-media-id=\"".concat(variant.featured_media.id, "\"]"));
-                const moreMediaButton = n$2(selectors$G.moreMediaButton, this.container);
-                const productMedia = n$2(selectors$G.productMedia, this.container);
+                const targetImage = n$2("[data-media-id=\"".concat(variant.featured_media.id, "\"]"), imagesWrap);
+                const moreMediaButton = n$2(selectors$G.moreMediaButton, imagesWrap);
+                const productMedia = n$2(selectors$G.productMedia, imagesWrap);
                 let visibleVariantImage = true;
                 if (moreMediaButton) {
                   const mediaLimit = parseInt(productMedia.dataset.mediaLimit);
@@ -6875,7 +6939,11 @@ class Product {
                     inline: "nearest"
                   });
                 } else if (!visibleVariantImage) {
-                  this.desktopMoreMedia.open(targetImage, true);
+                  if (imagesWrap.classList.contains("below-mobile")) {
+                    this.mobileMoreMedia.open(targetImage, true);
+                  } else {
+                    this.desktopMoreMedia.open(targetImage, true);
+                  }
                 }
               }
             }
@@ -8647,7 +8715,7 @@ function CrossSells(node) {
   const {
     crossSellsSlider
   } = n$2(selectors$u.crossSellsSlider, node).dataset;
-  let swiper = crossSellsSlider ? new Carousel(node, {
+  let swiper = crossSellsSlider === "true" ? new Carousel(node, {
     slidesPerView: 1.15,
     spaceBetween: 8
   }) : null;
@@ -11314,6 +11382,152 @@ register("promotion-bar", {
   }
 });
 
+function _assertClassBrand(e, t, n) {
+  if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n;
+  throw new TypeError("Private element is not present on this object");
+}
+function _checkPrivateRedeclaration(obj, privateCollection) {
+  if (privateCollection.has(obj)) {
+    throw new TypeError("Cannot initialize the same private elements twice on an object");
+  }
+}
+function _classPrivateMethodInitSpec(obj, privateSet) {
+  _checkPrivateRedeclaration(obj, privateSet);
+  privateSet.add(obj);
+}
+
+/**
+ * Extracts background videos from 'template's to be added to the DOM, and controls pause/play state through
+ * a11y triggers and an intersection observer.
+ * If two videos are enabled for desktop and mobile, update video templates by screen size.
+ */
+var _BackgroundVideo_brand = /*#__PURE__*/new WeakSet();
+class BackgroundVideo extends HTMLElement {
+  constructor() {
+    super(...arguments);
+    _classPrivateMethodInitSpec(this, _BackgroundVideo_brand);
+  }
+  connectedCallback() {
+    const videoTemplate = this.querySelector("[js-background-video-template]");
+    const hasVideo = this.dataset.hasVideo === "true";
+    const hasMobileVideo = this.dataset.hasMobileVideo === "true";
+    if (hasVideo && !hasMobileVideo) {
+      _assertClassBrand(_BackgroundVideo_brand, this, _setVideoTemplate).call(this, videoTemplate, this);
+    } else if (hasVideo & hasMobileVideo) {
+      const videoMobileTemplate = this.querySelector("[js-mobile-background-video-template]");
+      _assertClassBrand(_BackgroundVideo_brand, this, _initResponsiveVideoTemplate).call(this, this, videoTemplate, videoMobileTemplate);
+    }
+  }
+  disconnectedCallback() {
+    this.removeEventListener("toggle", this.handleToggle, true);
+  }
+}
+function _initResponsiveVideoTemplate(container, videoTemplate, videoMobileTemplate) {
+  const setTemplateByWidth = () => {
+    if (window.matchMedia(getMediaQuery("above-720")).matches) {
+      _assertClassBrand(_BackgroundVideo_brand, this, _setVideoTemplate).call(this, videoTemplate, container);
+    } else {
+      _assertClassBrand(_BackgroundVideo_brand, this, _setVideoTemplate).call(this, videoMobileTemplate, container);
+    }
+  };
+  setTemplateByWidth();
+  atBreakpointChange(720, setTemplateByWidth);
+}
+function _setVideoTemplate(videoTemplate, container) {
+  const pauseBtn = container.querySelector("[js-video-pause-button]");
+  const currentVideoContainer = container.querySelector("[js-current-background-video-container]");
+  const currentVideoTemplate = videoTemplate.content.cloneNode(true);
+  const currentVideoEl = currentVideoTemplate.querySelector("[data-background-video]");
+  if (currentVideoEl) {
+    currentVideoEl.muted = true;
+  }
+  currentVideoContainer.innerHTML = "";
+  currentVideoContainer.appendChild(currentVideoTemplate);
+
+  // Callback for intersectionWatcher helps leverage context from this file without needing to pass it
+  const videoWatcherCallback = visible => _assertClassBrand(_BackgroundVideo_brand, this, _visibleVideoWatcher).call(this, currentVideoEl, pauseBtn, visible);
+  _assertClassBrand(_BackgroundVideo_brand, this, _setPlayPause).call(this, currentVideoEl, pauseBtn, "pause");
+  _assertClassBrand(_BackgroundVideo_brand, this, _videoA11yHandler).call(this, currentVideoEl, pauseBtn);
+  videoIntersectionWatcher(currentVideoEl, {
+    callback: videoWatcherCallback
+  });
+}
+function _videoA11yHandler(video, pauseBtn) {
+  if (!pauseBtn || !video) return;
+
+  // Play/pause button will show when tabbing
+  const togglePlayPause = e => {
+    e.preventDefault();
+
+    // Pausing via a11y tabbing is respected as priority state by the intersection observer
+    if (video.paused) {
+      _assertClassBrand(_BackgroundVideo_brand, this, _setPlayPause).call(this, video, pauseBtn, "play");
+      video.dataset.a11yPriorityPause = false;
+    } else {
+      _assertClassBrand(_BackgroundVideo_brand, this, _setPlayPause).call(this, video, pauseBtn, "pause");
+      video.dataset.a11yPriorityPause = true;
+    }
+  };
+
+  // Mouse
+  pauseBtn.addEventListener("click", e => togglePlayPause(e));
+
+  // Keyboard
+  pauseBtn.addEventListener("keydown", e => {
+    if (e.key === "Enter") togglePlayPause(e);
+  });
+  pauseBtn.addEventListener("keyup", e => {
+    if (e.key === " ") togglePlayPause(e);
+  });
+}
+function _visibleVideoWatcher(video, pauseBtn, visible) {
+  // Prioritize browser and device settings
+  if (prefersReducedMotion()) {
+    return;
+  }
+  if (visible && video.paused) {
+    // Fade in video from poster for smooth transition, only on first entry
+    if (video.dataset.videoLoaded === "false") {
+      video.classList.add("background-video-fade-in");
+      video.dataset.videoLoaded = "true";
+    }
+
+    // Play via intersection entry should only apply when paused state not from a11y tabbing
+    if (video.dataset.a11yPriorityPause === "false") {
+      _assertClassBrand(_BackgroundVideo_brand, this, _setPlayPause).call(this, video, pauseBtn, "play");
+    }
+  }
+  if (!visible && !video.paused) {
+    _assertClassBrand(_BackgroundVideo_brand, this, _setPlayPause).call(this, video, pauseBtn, "pause");
+  }
+}
+function _setPlayPause(video, pauseBtn, state) {
+  const {
+    strings: {
+      accessibility: strings
+    },
+    icons
+  } = window.theme;
+  if (state === "pause") {
+    video.pause();
+    if (pauseBtn.dataset.pauseButtonContent === "icon") {
+      pauseBtn.innerHTML = icons.play;
+    } else {
+      pauseBtn.innerText = strings.play_video;
+    }
+  } else {
+    video.play();
+    if (pauseBtn.dataset.pauseButtonContent === "icon") {
+      pauseBtn.innerHTML = icons.pause;
+    } else {
+      pauseBtn.innerText = strings.pause_video;
+    }
+  }
+}
+if (!customElements.get("background-video")) {
+  customElements.define("background-video", BackgroundVideo);
+}
+
 register("grid", {
   onLoad() {
     if (shouldAnimate(this.container)) {
@@ -12083,49 +12297,22 @@ const filtering = container => {
     if (!target) return;
     const targetInputs = t$2("[data-filter-item-input]", target);
     targetInputs.forEach(targetInput => {
+      const {
+        nameEscaped,
+        valueEscaped
+      } = targetInput.dataset;
       if (targetInput.type === "checkbox" || targetInput.type === "radio") {
-        const {
-          valueEscaped
-        } = targetInput.dataset;
-        const items = t$2("input[name='".concat(escapeQuotes(targetInput.name), "'][data-value-escaped='").concat(escapeQuotes(valueEscaped), "']"));
+        const items = t$2("input[data-name-escaped='".concat(nameEscaped, "'][data-value-escaped='").concat(valueEscaped, "']"));
         items.forEach(input => {
           input.checked = targetInput.checked;
         });
       } else {
-        const items = t$2("input[name='".concat(targetInput.name, "']"));
+        const items = t$2("input[data-name-escaped='".concat(nameEscaped, "']"));
         items.forEach(input => {
           input.value = targetInput.value;
         });
       }
     });
-  }
-
-  // When filters are removed, set the checked attribute to false
-  // for all filter inputs for that filter.
-  // Can accept multiple filters
-  // @param {Array} targets Array of inputs
-  function uncheckFilters(targets) {
-    if (!targets) return;
-    let selector;
-    targets.forEach(target => {
-      selector = selector ? ", ".concat(selector) : "";
-      const {
-        name,
-        valueEscaped
-      } = target.dataset;
-      selector = "input[name='".concat(escapeQuotes(name), "'][data-value-escaped='").concat(escapeQuotes(valueEscaped), "']").concat(selector);
-    });
-    const inputs = t$2(selector, container);
-    inputs.forEach(input => {
-      input.checked = false;
-    });
-  }
-  function escapeQuotes(str) {
-    const escapeMap = {
-      '"': '\\"',
-      "'": "\\'"
-    };
-    return str.replace(/"|'/g, m => escapeMap[m]);
   }
   function clearRangeInputs() {
     const rangeInputs = t$2("[data-range-input]", container);
@@ -12151,10 +12338,10 @@ const filtering = container => {
       return cb(this.getState());
     },
     removeFilters(target, cb) {
-      uncheckFilters(target);
-      setParams();
       r$1("filters:filter-removed");
-      return cb(this.getState());
+      return cb({
+        url: target[0].getAttribute("data-url-to-remove")
+      });
     },
     removeRange(cb) {
       clearRangeInputs();
@@ -12170,7 +12357,6 @@ const filtering = container => {
 };
 
 const FILTERS_REMOVE = "collection:filters:remove";
-const RANGE_REMOVE = "collection:range:remove";
 const EVERYTHING_CLEAR = "collection:clear";
 const FILTERS_UPDATE = "collection:filters:update";
 const updateFilters = target => r$1(FILTERS_UPDATE, null, {
@@ -12182,7 +12368,6 @@ const removeFilters = target => r$1(FILTERS_REMOVE, null, {
 const filtersUpdated = cb => c(FILTERS_UPDATE, cb);
 const filtersRemoved = cb => c(FILTERS_REMOVE, cb);
 const everythingCleared = cb => c(EVERYTHING_CLEAR, cb);
-const rangeRemoved = cb => c(RANGE_REMOVE, cb);
 
 const filterHandler = _ref => {
   let {
@@ -12204,11 +12389,6 @@ const filterHandler = _ref => {
       renderCB(data.url);
       o$1(data)();
     });
-  }), rangeRemoved(() => {
-    filters.removeRange(data => {
-      renderCB(data.url);
-      o$1(data)();
-    });
   }), filtersUpdated((_, _ref3) => {
     let {
       target
@@ -12224,7 +12404,7 @@ const filterHandler = _ref => {
     });
   })];
   delegate = new Delegate(container);
-  delegate.on("click", "[data-remove-filter]", e => {
+  delegate.on("click", "[data-remove-filter], [data-remove-range]", e => {
     e.preventDefault();
     removeFilters([e.target]);
   });
@@ -12360,12 +12540,15 @@ const sel$2 = {
   drawer: "[data-filter-drawer]",
   drawerTitle: "[data-filter-drawer-title]",
   filter: "[data-filter]",
+  filterDrawerPanel: "[data-filter-drawer-panel]",
+  filterInput: "[data-filter-item-input]",
   filterItem: "[data-filter-item]",
   filterTarget: "[data-filter-drawer-target]",
-  flyouts: "[data-filter-modal]",
+  flyout: "[data-filter-modal]",
   button: "[data-button]",
   wash: "[data-drawer-wash]",
   sort: "[data-sort]",
+  sortInput: "[data-sort-item-input]",
   close: "[data-close-icon]",
   group: ".filter-drawer__group",
   groupToggle: "[data-drawer-group-toggle]",
@@ -12373,7 +12556,7 @@ const sel$2 = {
   panel: ".filter-drawer__panel",
   flyoutWrapper: "[data-filter-modal-wrapper]",
   priceRange: "[data-price-range]",
-  removeRange: "[data-remove-range]",
+  rangeInput: "[data-range-input]",
   resultsCount: "[data-results-count]",
   activeFilters: "[data-active-filters]",
   activeFilterCount: "[data-active-filter-count]"
@@ -12392,31 +12575,44 @@ const filterDrawer = node => {
   if (!container) {
     return false;
   }
-  const flyouts = t$2(sel$2.flyouts, container);
-  const wash = n$2(sel$2.wash, container);
-  const rangeInputs = t$2("[data-range-input]", container);
-  let focusTrap = null;
-  let range = null;
   let filterDrawerAnimation = null;
   if (shouldAnimate(node)) {
     filterDrawerAnimation = animateFilterDrawer(container);
   }
-  const rangeContainer = n$2(sel$2.priceRange, container);
-  if (rangeContainer) {
-    range = priceRange(rangeContainer);
-  }
+  const flyouts = t$2(sel$2.flyout, container);
+  const wash = n$2(sel$2.wash, container);
+  let rangeInputs = t$2(sel$2.rangeInput, container);
+  let focusTrap = null;
+  let range = null;
+  let rangeContainer = n$2(sel$2.priceRange, container);
   const filterDrawerDebounce = debounce();
-  const events = [e$2(window, "click", clickHandler), e$2(t$2(sel$2.filterTarget, node), "click", clickFlyoutTrigger), e$2(container, "change", changeHandler), e$2(wash, "click", clickWash), e$2(t$2("".concat(sel$2.button), container), "click", clickButton), e$2(t$2(sel$2.close, container), "click", clickWash), e$2(container, "keydown", _ref => {
-    let {
-      keyCode
-    } = _ref;
-    if (keyCode === 27) clickWash();
-  }), e$2(rangeInputs, "change", rangeChanged), c("filters:filter-removed", () => syncActiveStates())];
+  const events = [];
+  initPriceRange(rangeContainer);
+  initEvents();
+  function initEvents() {
+    events.push(e$2(t$2(sel$2.filterTarget, node), "click", clickFlyoutTrigger), e$2(container, "change", changeHandler), e$2(wash, "click", clickWash), e$2(t$2("".concat(sel$2.button), container), "click", clickButton), e$2(t$2(sel$2.close, container), "click", clickWash), e$2(container, "keydown", _ref => {
+      let {
+        keyCode
+      } = _ref;
+      if (keyCode === 27) clickWash();
+    }), e$2(rangeInputs, "change", rangeChanged));
+  }
+  function initPriceRange(rangeContainer) {
+    if (rangeContainer) {
+      range = priceRange(rangeContainer);
+    }
+  }
+
+  // Elements are replaced when filters are re-rendered, so we need to get
+  // up-to-date copies of these elements.
+  function refreshElements() {
+    rangeInputs = t$2(sel$2.rangeInput, container);
+    rangeContainer = n$2(sel$2.priceRange, container);
+  }
   function changeHandler(e) {
-    if (e.target.classList.contains("filter-item__checkbox")) {
-      filterChange(e.target);
-    } else if (e.target.classList.contains("filter-item__radio")) {
-      sortChange(e);
+    const filterInput = e.target.closest("".concat(sel$2.filterInput, ", ").concat(sel$2.rangeInput, ", ").concat(sel$2.sortInput));
+    if (filterInput) {
+      filterChange(filterInput);
     }
   }
   function clickFlyoutTrigger(e) {
@@ -12467,37 +12663,31 @@ const filterDrawer = node => {
     }, 500);
   }
   function filterChange(filter) {
+    var _range;
     if (filter.classList.contains(classes$4.filterDisabled)) {
       return;
     }
     checkForActiveModalitems(filter);
-    range && range.validateRange();
-    filterDrawerDebounce(() => updateFilters(container), 1000);
-  }
-  function sortChange(e) {
-    checkForActiveModalitems(e.target);
-    range && range.validateRange();
-    updateFilters(container);
+    (_range = range) === null || _range === void 0 || _range.validateRange();
+
+    // Update results immediately for price filters and sort change
+    if (filter.hasAttribute("data-range-input") || filter.hasAttribute("data-sort-item-input")) {
+      updateFilters(container);
+    } else {
+      filterDrawerDebounce(() => updateFilters(container), 1000);
+    }
   }
   function rangeChanged(e) {
     checkForActiveModalitems(e.currentTarget);
     const wrappingContainer = e.target.closest(sel$2.group);
     wrappingContainer && l(wrappingContainer, classes$4.activeFilters, rangeInputsHaveValue());
-    updateFilters(container);
-  }
-  function clickHandler(e) {
-    const removeRange = e.target.closest(sel$2.removeRange);
-    if (removeRange) {
-      range && range.reset();
-      updateFilters(container);
-    }
   }
   function clickButton(e) {
     e.preventDefault();
     const {
       button
     } = e.currentTarget.dataset;
-    const scope = e.currentTarget.closest(sel$2.flyouts);
+    const scope = e.currentTarget.closest(sel$2.flyout);
     const {
       filterModal
     } = scope.dataset;
@@ -12559,39 +12749,40 @@ const filterDrawer = node => {
     const activeItems = containsCheckedInputs(t$2("input", panel)) || rangeInputsHaveValue();
     l(panel, classes$4.activeFilters, activeItems);
   }
-  function syncActiveStates() {
-    const panels = t$2(sel$2.panel, container);
-    panels.forEach(panel => {
-      let activeItems = false;
-      const rangeInputs = n$2("[data-range-input]", panel);
-      if (containsCheckedInputs(t$2("input", panel))) {
-        activeItems = true;
-      }
-      if (rangeInputs && rangeInputsHaveValue()) {
-        activeItems = true;
-      }
-      l(panel, classes$4.activeFilters, activeItems);
-    });
-  }
   function renderFilters(updatedDoc) {
-    // This updates the contents of the filter groups, we omit the price
-    // group because it doesn't change in liquid and there is a JS slider
-    const updatedGroupContents = t$2("".concat(sel$2.drawer, " ").concat(sel$2.groupContents, ":not(#drawer-group-price)"), updatedDoc);
-    updatedGroupContents.forEach(element => {
-      updateInnerHTML("".concat(sel$2.drawer, " ").concat(sel$2.groupContents, "#").concat(element.id), updatedDoc);
+    const currentDrawerPanel = n$2(sel$2.filterDrawerPanel);
+    const updatedDrawerPanel = n$2(sel$2.filterDrawerPanel, updatedDoc);
+    const updatedGroupToggles = t$2(sel$2.groupToggle, updatedDrawerPanel);
+
+    // We're going to replace the current drawer content with the updated content, so we need to
+    // loop through the current content to maintain the state of group toggles.
+    updatedGroupToggles.forEach(groupToggle => {
+      const currentGroupToggle = n$2("[data-drawer-group-toggle=\"".concat(groupToggle.getAttribute("data-drawer-group-toggle"), "\"]"), currentDrawerPanel);
+      if (currentGroupToggle) {
+        const currentGroupContent = n$2(sel$2.groupContents, currentGroupToggle.parentElement);
+        const groupContent = n$2(sel$2.groupContents, groupToggle.parentElement);
+        groupToggle.setAttribute("aria-expanded", currentGroupToggle.getAttribute("aria-expanded"));
+        groupContent.setAttribute("aria-hidden", currentGroupContent.getAttribute("aria-hidden"));
+      }
     });
-    const updatedGroupToggles = t$2("".concat(sel$2.drawer, " ").concat(sel$2.groupToggle), updatedDoc);
-    updatedGroupToggles.forEach(element => {
-      updateInnerHTML("".concat(sel$2.drawer, " [data-drawer-group-toggle=\"").concat(element.getAttribute("data-drawer-group-toggle"), "\"]"), updatedDoc);
-    });
+
+    // We need to unload before we replace all of the content
+    unload();
+    currentDrawerPanel.innerHTML = updatedDrawerPanel.innerHTML;
+
+    // Now that we've replaced the content, we need to re-init
+    refreshElements();
+    initEvents();
+    initPriceRange(rangeContainer);
     updateInnerHTML("".concat(sel$2.drawer, " ").concat(sel$2.resultsCount), updatedDoc);
     updateInnerHTML("".concat(sel$2.drawer, " ").concat(sel$2.activeFilters), updatedDoc);
     updateInnerHTML("".concat(sel$2.drawer, " ").concat(sel$2.drawerTitle), updatedDoc);
     updateInnerHTML("[data-mobile-filters] [data-mobile-filters-toggle]", updatedDoc);
   }
   function unload() {
+    var _range2;
     events.forEach(unsubscribe => unsubscribe());
-    range && range.unload();
+    (_range2 = range) === null || _range2 === void 0 || _range2.unload();
   }
   return {
     renderFilters,
@@ -12604,15 +12795,16 @@ const sel$1 = {
   filterItem: "[data-filter-item]",
   dropdownToggle: "[data-dropdown-toggle]",
   group: "[data-filter-group]",
-  groupLabels: "[data-filter-group-label]",
+  groupLabel: "[data-filter-group-label]",
   groupValues: "[data-filter-group-values]",
   groupReset: "[data-filter-group-reset]",
   groupHeader: "[data-group-values-header]",
   priceRange: "[data-price-range]",
   rangeInput: "[data-range-input]",
-  removeRange: "[data-remove-range]",
-  filterInputs: "[data-filter-item-input]",
-  sortInputs: "[data-sort-item-input]",
+  filterInput: "[data-filter-item-input]",
+  sortToggle: "[data-sort-toggle]",
+  sortValues: "[data-sort-values]",
+  sortInput: "[data-sort-item-input]",
   resultsCount: "[data-results-count]",
   activeFilters: "[data-active-filters]",
   clearAll: "[data-clear-all-filters]"
@@ -12641,21 +12833,36 @@ const filterBar = node => {
   // Using `container` here as the filter bar container to keep filter bar
   // and filter drawer DOM scope separate.
   const container = n$2(sel$1.bar, node);
-  const groupLabels = t$2(sel$1.groupLabels, container);
-  const rangeInputs = t$2(sel$1.rangeInput, container);
-  const rangeContainer = n$2(sel$1.priceRange, container);
+  let groupLabels = t$2(sel$1.groupLabel, container);
+  let rangeInputs = t$2(sel$1.rangeInput, container);
+  let rangeContainer = n$2(sel$1.priceRange, container);
   let focusTrap = null;
   let range = null;
-  if (rangeContainer) {
-    range = priceRange(rangeContainer);
-  }
   const filterDebounce = debounce();
-  const events = [e$2(window, "click", clickHandler), e$2(container, "change", changeHandler), c("filters:filter-removed", () => syncActiveStates()), e$2(container, "keydown", _ref => {
-    let {
-      keyCode
-    } = _ref;
-    if (keyCode === 27) closeGroups();
-  })];
+  const events = [];
+  initPriceRange(rangeContainer);
+  initEvents();
+  function initEvents() {
+    events.push(e$2(window, "click", clickHandler), e$2(container, "change", changeHandler), e$2(container, "keydown", _ref => {
+      let {
+        keyCode
+      } = _ref;
+      if (keyCode === 27) closeGroups();
+    }));
+  }
+  function initPriceRange(rangeContainer) {
+    if (rangeContainer) {
+      range = priceRange(rangeContainer);
+    }
+  }
+
+  // Elements are replaced when filters are re-rendered, so we need to get
+  // up-to-date copies of these elements.
+  function refreshElements() {
+    groupLabels = t$2(sel$1.groupLabel, container);
+    rangeInputs = t$2(sel$1.rangeInput, container);
+    rangeContainer = n$2(sel$1.priceRange, container);
+  }
 
   // eslint-disable-next-line valid-jsdoc
   /**
@@ -12666,7 +12873,6 @@ const filterBar = node => {
     const group = e.target.closest(sel$1.group);
     const dropdownToggle = e.target.closest(sel$1.dropdownToggle);
     const groupReset = e.target.closest(sel$1.groupReset);
-    const removeRange = e.target.closest(sel$1.removeRange);
     const clearAll = e.target.closest(sel$1.clearAll);
 
     // If the click happened outside of a filter group
@@ -12680,18 +12886,15 @@ const filterBar = node => {
     if (groupReset) {
       handleGroupReset(groupReset);
     }
-    if (removeRange) {
-      e.preventDefault();
-      priceRangeRemove();
-    }
     if (clearAll) {
       e.preventDefault();
       clearAllFilters();
     }
   }
   function clearAllFilters() {
-    range && range.reset();
-    t$2("".concat(sel$1.filterInputs), container).forEach(input => {
+    var _range;
+    (_range = range) === null || _range === void 0 || _range.reset();
+    t$2("".concat(sel$1.filterInput), container).forEach(input => {
       input.checked = false;
     });
     updateFilters(container);
@@ -12704,14 +12907,15 @@ const filterBar = node => {
     if (filterType === "price_range") {
       priceRangeRemove();
     } else {
-      t$2(sel$1.filterInputs, group).forEach(input => {
+      t$2(sel$1.filterInput, group).forEach(input => {
         input.checked = false;
       });
       updateFilters(container);
     }
   }
   function priceRangeRemove() {
-    range && range.reset();
+    var _range2;
+    (_range2 = range) === null || _range2 === void 0 || _range2.reset();
     checkForActiveFilters();
     updateFilters(container);
   }
@@ -12722,14 +12926,9 @@ const filterBar = node => {
    * @param {event} e change event
    */
   function changeHandler(e) {
-    const filterInput = e.target.closest("".concat(sel$1.bar, " ").concat(sel$1.filterInputs, ", ").concat(sel$1.bar, " ").concat(sel$1.sortInputs));
-    const rangeInput = e.target.closest("".concat(sel$1.bar, " ").concat(sel$1.rangeInput));
+    const filterInput = e.target.closest("".concat(sel$1.filterInput, ", ").concat(sel$1.sortInput, ", ").concat(sel$1.rangeInput));
     if (filterInput) {
-      checkForActiveFilters();
       filterChange(filterInput);
-    } else if (rangeInput) {
-      checkForActiveFilters();
-      filterChange(rangeInput);
     }
   }
   function closeGroups() {
@@ -12749,11 +12948,11 @@ const filterBar = node => {
   }
   function showDropdown(button) {
     const group = button.closest(sel$1.group);
-    button.setAttribute("aria-expanded", true);
     const dropdown = n$2("#".concat(button.getAttribute("aria-controls")), container);
     const {
       dropdownToggle
     } = button.dataset;
+    button.setAttribute("aria-expanded", true);
     if (dropdown) {
       if (dropdownToggle === "filter-bar-filters") {
         slideStop(dropdown);
@@ -12833,15 +13032,22 @@ const filterBar = node => {
     });
   }
   function filterChange(filter) {
+    var _range3;
     if (filter.classList.contains(classes$3.filterDisabled)) {
       return;
     }
     checkForActiveFilters();
-    range && range.validateRange();
-    filterDebounce(() => updateFilters(container), 1000);
+    (_range3 = range) === null || _range3 === void 0 || _range3.validateRange();
+
+    // Update results immediately for price filters and sort change
+    if (filter.hasAttribute("data-range-input") || filter.hasAttribute("data-sort-item-input")) {
+      updateFilters(container);
+    } else {
+      filterDebounce(() => updateFilters(container), 1000);
+    }
   }
   function checkForActiveFilters() {
-    const activeItems = containsCheckedInputs(t$2(sel$1.filterInputs, container)) || rangeInputsHaveValue();
+    const activeItems = containsCheckedInputs(t$2(sel$1.filterInput, container)) || rangeInputsHaveValue();
     l(container, classes$3.activeFilters, activeItems);
   }
   function rangeInputsHaveValue() {
@@ -12850,39 +13056,46 @@ const filterBar = node => {
   function containsCheckedInputs(items) {
     return items.some(input => input.checked);
   }
-  function syncActiveStates() {
-    let activeItems = false;
-    if (rangeInputs && rangeInputsHaveValue() || containsCheckedInputs(t$2(sel$1.filterInputs, container))) {
-      activeItems = true;
-    }
-    l(container, classes$3.activeFilters, activeItems);
-  }
   function renderFilters(updatedDoc) {
-    // This updates the contents of the filter groups, we omit the price
-    // group because it doesn't change in liquid and there is a JS slider
-    const updatedGroupContents = t$2("".concat(sel$1.bar, " ").concat(sel$1.groupValues, ":not([data-filter-type=\"price_range\"])"), updatedDoc);
-    updatedGroupContents.forEach(element => {
-      updateInnerHTML("".concat(sel$1.bar, " ").concat(sel$1.groupValues, "#").concat(element.id), updatedDoc);
+    const currentBar = n$2(sel$1.bar);
+    const updatedBar = n$2(sel$1.bar, updatedDoc);
+    const updatedGroupLabels = t$2("".concat(sel$1.groupLabel, ":not(").concat(sel$1.sortToggle, ")"), updatedBar);
+    const updatedSortToggle = n$2(sel$1.sortToggle, updatedBar);
+
+    // We're going to replace the current bar with the updated content, so we need to
+    // loop through the current content to maintain the state of any toggles.
+    updatedGroupLabels.forEach(groupLabel => {
+      const currentGroupLabel = n$2("[data-dropdown-toggle=\"".concat(groupLabel.getAttribute("data-dropdown-toggle"), "\"]"), currentBar);
+      if (currentGroupLabel) {
+        const currentGroupValues = n$2(sel$1.groupValues, currentGroupLabel.parentElement);
+        const groupValues = n$2(sel$1.groupValues, groupLabel.parentElement);
+        groupLabel.setAttribute("aria-expanded", currentGroupLabel.getAttribute("aria-expanded"));
+        groupValues.setAttribute("aria-hidden", currentGroupValues.getAttribute("aria-hidden"));
+      }
     });
-    updateInnerHTML("".concat(sel$1.bar, " ").concat(sel$1.resultsCount), updatedDoc);
-    updateInnerHTML("".concat(sel$1.bar, " ").concat(sel$1.activeFilters), updatedDoc);
-    updateInnerHTML("".concat(sel$1.bar, " ").concat(sel$1.groupHeader), updatedDoc);
-    const updatedDropdownToggles = t$2("".concat(sel$1.bar, " ").concat(sel$1.dropdownToggle), updatedDoc);
-    if (updatedDropdownToggles.length > 0) {
-      updatedDropdownToggles.forEach(updated => {
-        updateInnerHTML("".concat(sel$1.bar, " [data-dropdown-toggle=\"").concat(updated.getAttribute("data-dropdown-toggle"), "\"]"), updatedDoc);
-      });
+    if (updatedSortToggle) {
+      const updatedSortValues = n$2(sel$1.sortValues, updatedSortToggle.parentElement);
+      const currentSortToggle = n$2(sel$1.sortToggle, currentBar);
+      const currentSortValues = n$2(sel$1.sortValues, currentSortToggle.parentElement);
+      updatedSortToggle.setAttribute("aria-expanded", currentSortToggle.getAttribute("aria-expanded"));
+      updatedSortValues.setAttribute("aria-hidden", currentSortValues.getAttribute("aria-hidden"));
     }
-    const updatedGroupHeader = t$2("".concat(sel$1.bar, " ").concat(sel$1.groupHeader), updatedDoc);
-    updatedGroupHeader.forEach(element => {
-      updateInnerHTML("".concat(sel$1.bar, " [data-group-values-header=\"").concat(element.getAttribute("data-group-values-header"), "\"]"), updatedDoc);
-    });
+
+    // We need to unload before we replace all of the content
+    unload();
+    currentBar.innerHTML = updatedBar.innerHTML;
+
+    // Now that we've replaced the content, we need to re-init
+    refreshElements();
+    initEvents();
+    initPriceRange(rangeContainer);
     updateGroupPositions();
   }
   function unload() {
+    var _range4, _focusTrap;
     events.forEach(unsubscribe => unsubscribe());
-    range && range.unload();
-    focusTrap && focusTrap.deactivate();
+    (_range4 = range) === null || _range4 === void 0 || _range4.unload();
+    (_focusTrap = focusTrap) === null || _focusTrap === void 0 || _focusTrap.deactivate();
   }
   return {
     renderFilters,
@@ -12896,15 +13109,15 @@ const sel = {
   sidebarToggleText: ".filter-bar__button-text",
   filterBar: "[data-filter-bar]",
   filterBarClearAll: "[data-clear-all-filters]",
-  filterBarRemoveRange: "[data-remove-range]",
   filter: "[data-filter]",
   filterItem: "[data-filter-item]",
-  filterInputs: "[data-filter-item-input]",
+  filterInput: "[data-filter-item-input]",
   button: "[data-button]",
   group: ".filter-drawer__group",
   groupToggle: "[data-drawer-group-toggle]",
   groupContents: ".filter-drawer__group-filter-wrapper",
-  priceRange: "[data-price-range]"
+  priceRange: "[data-price-range]",
+  rangeInput: "[data-range-input]"
 };
 const classes$2 = {
   active: "active",
@@ -12929,14 +13142,28 @@ const filterSidebar = node => {
     }
   }
   const filterBar = n$2(sel.filterBar, node);
-  const rangeInputs = t$2("[data-range-input]", container);
-  const rangeContainer = n$2(sel.priceRange, container);
+  let rangeInputs = t$2(sel.rangeInput, container);
+  let rangeContainer = n$2(sel.priceRange, container);
   let range = null;
-  if (rangeContainer) {
-    range = priceRange(rangeContainer);
-  }
   const filterDebounce = debounce();
-  const events = [e$2(window, "click", clickHandler), e$2(container, "change", changeHandler), e$2(n$2(sel.sidebarToggle, node), "click", clickSidebarToggle), e$2(t$2("".concat(sel.button), container), "click", clickButton), e$2(rangeInputs, "change", rangeChanged)];
+  const events = [];
+  initPriceRange(rangeContainer);
+  initEvents();
+  function initEvents() {
+    events.push(e$2(window, "click", clickHandler), e$2(container, "change", changeHandler), e$2(n$2(sel.sidebarToggle, node), "click", clickSidebarToggle), e$2(t$2("".concat(sel.button), container), "click", clickButton));
+  }
+  function initPriceRange(rangeContainer) {
+    if (rangeContainer) {
+      range = priceRange(rangeContainer);
+    }
+  }
+
+  // Elements are replaced when filters are re-rendered, so we need to get
+  // up-to-date copies of these elements.
+  function refreshElements() {
+    rangeInputs = t$2(sel.rangeInput, container);
+    rangeContainer = n$2(sel.priceRange, container);
+  }
   function clickSidebarToggle(e) {
     e.preventDefault();
     const sidebarToggle = e.currentTarget;
@@ -12964,26 +13191,29 @@ const filterSidebar = node => {
     }
   }
   function changeHandler(e) {
-    filterChange(e.target);
+    const filterInput = e.target.closest("".concat(sel.filterInput, ", ").concat(sel.sortInput, ", ").concat(sel.rangeInput));
+    if (filterInput) {
+      filterChange(filterInput);
+    }
   }
   function filterChange(filter) {
+    var _range;
     if (filter.classList.contains(classes$2.filterDisabled)) {
       return;
     }
     checkForActiveFilters();
-    range && range.validateRange();
-    filterDebounce(() => updateFilters(container), 1000);
-  }
-  function rangeChanged(e) {
-    const wrappingContainer = e.target.closest(sel.group);
-    wrappingContainer && l(wrappingContainer, classes$2.activeFilters, rangeInputsHaveValue());
-    updateFilters(container);
+    (_range = range) === null || _range === void 0 || _range.validateRange();
+
+    // Update results immediately for price filters and sort change
+    if (filter.hasAttribute("data-range-input") || filter.hasAttribute("data-sort-item-input")) {
+      updateFilters(container);
+    } else {
+      filterDebounce(() => updateFilters(container), 1000);
+    }
   }
   function clickHandler(e) {
-    const removeRange = e.target.closest(sel.filterBarRemoveRange);
     const clearAll = e.target.closest(sel.filterBarClearAll);
-    if (removeRange || clearAll) {
-      range && range.reset();
+    if (clearAll) {
       updateFilters(container);
     }
   }
@@ -12993,10 +13223,11 @@ const filterSidebar = node => {
       button
     } = e.currentTarget.dataset;
     if (button === "clear-all") {
+      var _range2;
       t$2("input", container).forEach(input => {
         input.checked = false;
       });
-      range && range.reset();
+      (_range2 = range) === null || _range2 === void 0 || _range2.reset();
       updateFilters(container);
     }
     if (button === "group_toggle") {
@@ -13021,7 +13252,7 @@ const filterSidebar = node => {
     group.setAttribute("aria-hidden", true);
   }
   function checkForActiveFilters() {
-    const activeItems = containsCheckedInputs(t$2(sel.filterInputs, container)) || rangeInputsHaveValue();
+    const activeItems = containsCheckedInputs(t$2(sel.filterInput, container)) || rangeInputsHaveValue();
     l(filterBar, classes$2.activeFilters, activeItems);
   }
   function rangeInputsHaveValue() {
@@ -13031,25 +13262,38 @@ const filterSidebar = node => {
     return items.some(input => input.checked);
   }
   function renderFilters(updatedDoc) {
-    // This updates the contents of the filter groups, we omit the price
-    // group because it doesn't change in liquid and there is a JS slider
-    const updatedGroupContents = t$2("".concat(sel.sidebar, " ").concat(sel.groupContents, ":not([data-filter-type=\"price_range\"])"), updatedDoc);
-    updatedGroupContents.forEach(element => {
-      updateInnerHTML("".concat(sel.sidebar, " ").concat(sel.groupContents, "#").concat(element.id), updatedDoc);
+    const currentSidebar = n$2(sel.sidebar);
+    const updatedSidebar = n$2(sel.sidebar, updatedDoc);
+    const updatedGroupToggles = t$2(sel.groupToggle, updatedSidebar);
+
+    // We're going to replace the current sidebar with the updated content, so we need to
+    // loop through the current content to maintain the state of group toggles.
+    updatedGroupToggles.forEach(groupToggle => {
+      const currentGroupToggle = n$2("[data-drawer-group-toggle=\"".concat(groupToggle.getAttribute("data-drawer-group-toggle"), "\"]"), currentSidebar);
+      if (currentGroupToggle) {
+        const currentGroupContent = n$2(sel.groupContents, currentGroupToggle.parentElement);
+        const groupContent = n$2(sel.groupContents, groupToggle.parentElement);
+        groupToggle.setAttribute("aria-expanded", currentGroupToggle.getAttribute("aria-expanded"));
+        groupContent.setAttribute("aria-hidden", currentGroupContent.getAttribute("aria-hidden"));
+      }
     });
 
-    // This updates the counts and labels, without changing the toggled state
-    const updatedGroupToggles = t$2("".concat(sel.sidebar, " ").concat(sel.groupToggle), updatedDoc);
-    updatedGroupToggles.forEach(element => {
-      updateInnerHTML("".concat(sel.sidebar, " [data-drawer-group-toggle=\"").concat(element.getAttribute("data-drawer-group-toggle"), "\"]"), updatedDoc);
-    });
+    // We need to unload before we replace all of the content
+    unload();
+    currentSidebar.innerHTML = updatedSidebar.innerHTML;
+
+    // Now that we've replaced the content, we need to re-init
+    refreshElements();
+    initEvents();
+    initPriceRange(rangeContainer);
     updateInnerHTML("".concat(sel.filterBar, " ").concat(sel.resultsCount), updatedDoc);
     updateInnerHTML("".concat(sel.filterBar, " ").concat(sel.activeFilters), updatedDoc);
     updateInnerHTML("".concat(sel.filterBar, " ").concat(sel.sidebarToggle), updatedDoc);
   }
   function unload() {
+    var _range3;
     events.forEach(unsubscribe => unsubscribe());
-    range && range.unload();
+    (_range3 = range) === null || _range3 === void 0 || _range3.unload();
   }
   return {
     renderFilters,
@@ -13382,10 +13626,8 @@ register("search", {
       this.animateSearchBanner = animateSearchBanner(this.searchBannerEl);
     }
     const {
-      searchItemCount,
       paginationType
     } = this.container.dataset;
-    if (!parseInt(searchItemCount)) return;
     this.searchSectionEl = n$2(selectors.searchSection, this.container);
     this.filterDrawerEl = n$2(selectors.filterDrawer, this.container);
     this.filterBarEl = n$2(selectors.filterBar, this.container);
@@ -13630,7 +13872,7 @@ backToTop();
 
 // Make it easy to see exactly what theme version
 // this is by commit SHA
-window.SHA = "b3f9b13b85";
+window.SHA = "c7e203cca8";
 if (!sessionStorage.getItem("flu_stat_recorded") && !((_window$Shopify = window.Shopify) !== null && _window$Shopify !== void 0 && _window$Shopify.designMode)) {
   var _window$Shopify2, _window$Shopify3;
   // eslint-disable-next-line no-process-env

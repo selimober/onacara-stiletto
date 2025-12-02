@@ -62,7 +62,9 @@
             swatch_image_width: swatch_image_width,
             sibling_product: sibling_product,
             option_name: settings.siblings_option_name,
-            option_value: sibling_product.metafields.stiletto.sibling_option_name
+            option_value: sibling_product.metafields.stiletto.sibling_option_name,
+            custom_color_key_map: custom_color_key_map,
+            custom_color_value_map: custom_color_value_map
           %}
         {%- endfor -%}
       </div>
@@ -173,7 +175,9 @@
                   option_index: option.position,
                   option_name: option_name,
                   option_value: value,
-                  selected_value: option.selected_value
+                  selected_value: option.selected_value,
+                  custom_color_key_map: custom_color_key_map,
+                  custom_color_value_map: custom_color_value_map
                 %}
               {%- endfor -%}
 

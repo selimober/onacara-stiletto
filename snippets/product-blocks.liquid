@@ -10,6 +10,8 @@
   - column (optional): "left" or "right" to filter by "column_placement"
   - price_content_type: "price" or "custom" or "hide" after checking both $0 and sold out pricing display settings
   - custom_price_content: the translation to populate price if sold out or free, depending on logic checks and settings
+  - custom_color_key_map: { Object } An array of custom swatch color keys (names).
+  - custom_color_value_map: { Object } An array of custom swatch color values (HEX values).
 {%- endcomment -%}
 {%- capture product_url -%}{{ shop.url | append: prod.url }}{%- endcapture -%}
 
@@ -52,14 +54,15 @@
 
       {%- when 'variant_picker' -%}
         {%- if prod != blank -%}
-          {%-
-            render 'product-block-variant-picker',
+          {%- render 'product-block-variant-picker',
             product: prod,
             block: block,
             block_settings: block.settings,
             current_variant: current_variant,
             use_variant_images: settings.use_variant_image_swatches,
-            show_siblings: settings.enable_product_sibling_swatches
+            show_siblings: settings.enable_product_sibling_swatches,
+            custom_color_key_map: custom_color_key_map,
+            custom_color_value_map: custom_color_value_map
           -%}
         {%- endif -%}
 
@@ -74,11 +77,7 @@
         {%- endif -%}
 
       {%- when 'custom_option' -%}
-        {%-
-          render 'product-block-custom-option',
-          block: block,
-          field_type: block.settings.field_type,
-        -%}
+        {%- render 'product-block-custom-option', block: block, field_type: block.settings.field_type -%}
 
       {%- when 'buy_buttons' -%}
         {%- if prod != blank -%}
@@ -165,12 +164,11 @@
         {%- endif -%}
 
       {%- when 'accordion' -%}
-        {%-
-          render 'product-block-accordion',
+        {%- render 'product-block-accordion',
           block: block,
           block_settings: block.settings,
           heading: block.settings.heading,
-          content: block.settings.content,
+          content: block.settings.content
         -%}
 
       {%- when 'custom_liquid' -%}
@@ -218,12 +216,7 @@
         </div>
 
       {%- when 'secure_payment' -%}
-        {%-
-          render 'product-block-secure-payment',
-          product: prod,
-          block: block,
-          block_settings: block.settings,
-        -%}
+        {%- render 'product-block-secure-payment', product: prod, block: block, block_settings: block.settings -%}
     {%- endcase -%}
   {% endif %}
 {%- endfor -%}

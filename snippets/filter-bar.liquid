@@ -1,17 +1,30 @@
 {%- liquid
   assign filters_valid = false
+
   if results.filters != empty and show_filters
     assign filters_valid = true
   endif
 
   assign active_filter_count = 0
+
   for filter in results.filters
-    for active_value in filter.active_values
-      assign active_filter_count = active_filter_count | plus: 1
-    endfor
+    if filter.active_values.size > 0
+      for active_value in filter.active_values
+        assign active_filter_count = active_filter_count | plus: 1
+      endfor
+    elsif filter.type == 'price_range'
+      if filter.min_value.value > 0
+        assign active_filter_count = active_filter_count | plus: 1
+      endif
+
+      if filter.max_value.value < filter.range_max
+        assign active_filter_count = active_filter_count | plus: 1
+      endif
+    endif
   endfor
 
   assign results_count = 0
+
   if results.products_count != blank
     assign results_count = results.products_count
   elsif results.results_count != blank
@@ -19,6 +32,7 @@
   endif
 
   assign filter_bar_enabled = false
+
   if show_item_count or filters_valid or show_sort
     assign filter_bar_enabled = true
   endif
@@ -35,18 +49,18 @@
   data-filter-form
   data-filter-bar
 >
-  {%- comment -%} Keep search term within form {%- endcomment -%}
+  {%- # Keep search term within form -%}
   {%- if results.terms -%}
     <input type="hidden" name="q" value="{{ results.terms | escape }}">
     <input name="options[prefix]" type="hidden" value="last">
   {%- endif -%}
 
-  {%- comment -%} Keep product type within form {%- endcomment -%}
+  {%- # Keep product type within form -%}
   {%- if results.current_type -%}
     <input type="hidden" name="q" value="{{ results.current_type | escape }}">
   {%- endif -%}
 
-  {%- comment -%} Keep product vendor within form {%- endcomment -%}
+  {%- # Keep product vendor within form -%}
   {%- if results.current_vendor -%}
     <input type="hidden" name="q" value="{{ results.current_vendor | escape }}">
   {%- endif -%}
@@ -72,20 +86,24 @@
           {% render 'icon' with icon: 'filter' %}
 
           <span class="filter-bar__button-text">
-            {%- if collapse_filter_bar %}
-              {{ 'filters.title' | t }}
-            {%- else -%}
-              {{ 'filters.hide_title' | t }}
-            {%- endif -%}
+            {%- liquid
+              if collapse_filter_bar
+                echo 'filters.title' | t
+              else
+                echo 'filters.hide_title' | t
+              endif
+            -%}
           </span>
 
           {%- if active_filter_count > 0 -%}
             <span class="filter-bar__button-count" data-active-filter-count>{{ active_filter_count }}</span>
           {%- endif -%}
 
-          {%- unless filter_location == 'sidebar' -%}
-            {% render 'icon' with icon: 'chevron-small' %}
-          {%- endunless -%}
+          {%- liquid
+            unless filter_location == 'sidebar'
+              render 'icon' with icon: 'chevron-small'
+            endunless
+          -%}
         </button>
 
         {%- if filter_location == 'sidebar' -%}
@@ -116,6 +134,7 @@
         <div class="filter-bar__sort-group" data-filter-group>
           {%- liquid
             assign sort_by = results.sort_by | default: results.default_sort_by
+
             for option in results.sort_options
               if option.value == sort_by
                 assign sort_by = option.name
@@ -127,6 +146,7 @@
             type="button"
             class="filter-bar__button filter-bar__button--sort"
             data-filter-group-label
+            data-sort-toggle
             data-dropdown-toggle="filter-bar-sort"
             aria-expanded="false"
             aria-controls="filter-bar-sort"
@@ -139,12 +159,14 @@
             id="filter-bar-sort"
             class="filter-group__values"
             data-dropdown="filter-bar-sort"
+            data-sort-values
             aria-hidden="true"
           >
             <ul class="filter-group__list filter-group__list--sort">
               {%- for option in results.sort_options -%}
                 {%- liquid
                   assign is_active = false
+
                   if results.sort_by != blank
                     if option.value == results.sort_by
                       assign is_active = true
@@ -153,6 +175,7 @@
                     assign is_active = true
                   endif
                 -%}
+
                 <li class="filter-item">
                   <label data-sort for="filter-{{ option.name | handleize }}" class="filter-item__content">
                     <input
@@ -172,6 +195,7 @@
                       <div class="filter-input__input">
                         <div class="indicator"></div>
                       </div>
+
                       <span class="filter-item__label">{{ option.name }}</span>
                     </div>
                   </label>
@@ -204,12 +228,12 @@
           {%- for filter in results.filters -%}
             {%- liquid
               assign group_active_filters = blank
+
               if filter.active_values
                 assign group_active_filters = filter.active_values | map: 'label' | join: ', '
               endif
 
               assign max_price_amount = filter.range_max | money | strip_html | escape
-
               assign group_active_count = 0
 
               if filter.type == 'list' or filter.type == 'boolean'
@@ -219,6 +243,7 @@
               endif
 
               assign price_range_changed = false
+
               if filter.type == 'price_range'
                 if filter.max_value.value or filter.min_value.value
                   assign price_range_changed = true
@@ -235,22 +260,34 @@
                 aria-expanded="false"
                 aria-controls="{{ filter.label | handle }}"
               >
+                {%- liquid
+                  assign has_active_value = false
+
+                  capture count_content
+                    case filter.type
+                      when 'list', 'boolean'
+                        if group_active_count > 0
+                          assign has_active_value = true
+                          echo group_active_count
+                        endif
+                      when 'price_range'
+                        if filter.min_value.value > 0 or filter.max_value.value < filter.range_max
+                          assign has_active_value = true
+                          render 'currency-symbol'
+                        endif
+                    endcase
+                  endcapture
+                -%}
+
                 {{ filter.label }}
 
-                {%- if filter.type == 'list' or filter.type == 'boolean' -%}
-                  {%- if group_active_count > 0 -%}
-                    <span class="filter-group__label-count" data-group-active-count>{{ group_active_count }}</span>
-                  {%- endif -%}
-                {%- elsif filter.type == 'price_range' -%}
-                  {%- if filter.min_value.value > 0 or filter.max_value.value < filter.range_max -%}
-                    <span class="filter-group__label-count" data-group-active-count>
-                      {%- render 'currency-symbol' -%}
-                    </span>
-                  {%- endif -%}
+                {%- if has_active_value -%}
+                  <span class="filter-group__label-count" data-group-active-count>{{ count_content }}</span>
                 {%- endif -%}
 
                 {% render 'icon' with icon: 'chevron-small' %}
               </button>
+
               <div
                 id="{{ filter.label | handle }}"
                 class="filter-group__values"
@@ -261,16 +298,18 @@
               >
                 <div class="filter-group__values-header" data-group-values-header="{{ filter.label | url_escape }}">
                   <span class="filter-group__values-active-values fs-body-50">
-                    {%- case filter.type -%}
-                      {%- when 'boolean', 'list' -%}
-                        {%- if group_active_count > 0 -%}
-                          {{ group_active_filters }}
-                        {%- else -%}
-                          {{ 'filters.zero_selected' | t }}
-                        {%- endif -%}
-                      {%- when 'price_range' -%}
-                        {{ 'filters.max_price' | t: price: max_price_amount }}
-                    {%- endcase -%}
+                    {%- liquid
+                      case filter.type
+                        when 'boolean', 'list'
+                          if group_active_count > 0
+                            echo group_active_filters
+                          else
+                            echo 'filters.zero_selected' | t
+                          endif
+                        when 'price_range'
+                          echo 'filters.max_price' | t: price: max_price_amount
+                      endcase
+                    -%}
                   </span>
 
                   <button
@@ -281,6 +320,7 @@
                     {{ 'filters.clear' | t }}
                   </button>
                 </div>
+
                 {%- case filter.type -%}
                   {%- when 'boolean', 'list' -%}
                     {%- liquid
@@ -316,7 +356,7 @@
                             endif
                           endcapture
 
-                          render 'filter-item', type: item_type, filter_value: filter_value, scope: 'top-bar'
+                          render 'filter-item', type: item_type, filter_value: filter_value, scope: 'top-bar', custom_color_key_map: custom_color_key_map, custom_color_value_map: custom_color_value_map
                         endfor
                       -%}
                     </ul>
@@ -325,6 +365,7 @@
                       <div class="filter-drawer__price-range-input-wrapper">
                         <div class="filter-drawer__price-range-input">
                           <span class="filter-drawer__price-range-currency">{{ cart.currency.symbol }}</span>
+
                           <input
                             data-min-range-input
                             data-range-input
@@ -332,13 +373,14 @@
                             name="{{ filter.min_value.param_name }}"
                             id="filter-bar-{{ filter.label | escape }}-{{ filter.min_value.param_name | escape }}"
                             {%- if filter.min_value.value -%}
-                              value="{{ filter.min_value.value | divided_by: 100 }}"
+                              value="{{ filter.min_value.value | divided_by: 100.00 }}"
                             {%- endif -%}
                             type="number"
                             placeholder="0"
                             min="0"
-                            max="{{ filter.range_max | divided_by: 100 | ceil }}"
+                            max="{{ filter.range_max | divided_by: 100.00 | ceil }}"
                           >
+
                           <label
                             class="filter-drawer__price-range-label visually-hidden"
                             for="filter-bar-{{ filter.label | escape }}-{{ filter.min_value.param_name | escape }}"
@@ -346,9 +388,12 @@
                             {{- 'filters.from' | t -}}
                           </label>
                         </div>
+
                         <span class="filter-drawer__price-range-separator">&ndash;</span>
+
                         <div class="filter-drawer__price-range-input">
                           <span class="filter-drawer__price-range-currency">{{ cart.currency.symbol }}</span>
+
                           <input
                             data-max-range-input
                             data-range-input
@@ -356,12 +401,12 @@
                             name="{{ filter.max_value.param_name }}"
                             id="filter-bar-{{ filter.label | escape }}-{{ filter.max_value.param_name | escape }}"
                             {%- if filter.max_value.value -%}
-                              value="{{ filter.max_value.value | divided_by: 100 }}"
+                              value="{{ filter.max_value.value | divided_by: 100.00 }}"
                             {%- endif -%}
                             type="number"
-                            placeholder="{{ filter.range_max | divided_by: 100 | ceil }}"
+                            placeholder="{{ filter.range_max | divided_by: 100.00 | ceil }}"
                             min="0"
-                            max="{{ filter.range_max | divided_by: 100 | ceil }}"
+                            max="{{ filter.range_max | divided_by: 100.00 | ceil }}"
                           >
                           <label
                             class="filter-drawer__price-range-label visually-hidden"
@@ -383,7 +428,7 @@
     {%- endif -%}
 
     <div class="filter-bar__active-filters">
-      {%- render 'active-filters' with results: results, show_swatch_filters: show_swatch_filters -%}
+      {%- render 'active-filters' with results: results, show_swatch_filters: show_swatch_filters, custom_color_key_map: custom_color_key_map, custom_color_value_map: custom_color_value_map -%}
     </div>
   {%- endif -%}
 </form>

@@ -1,18 +1,31 @@
 {%- liquid
   assign filters_valid = false
+
   if results.filters != empty and show_filters
     assign filters_valid = true
   endif
 
   assign filters_active = false
   assign active_filter_count = 0
+
   for filter in results.filters
     if filter.active_values.size > 0
       assign filters_active = true
+
+      for active_value in filter.active_values
+        assign active_filter_count = active_filter_count | plus: 1
+      endfor
+    elsif filter.type == 'price_range'
+      if filter.min_value.value > 0
+        assign filters_active = true
+        assign active_filter_count = active_filter_count | plus: 1
+      endif
+
+      if filter.max_value.value < filter.range_max
+        assign filters_active = true
+        assign active_filter_count = active_filter_count | plus: 1
+      endif
     endif
-    for active_value in filter.active_values
-      assign active_filter_count = active_filter_count | plus: 1
-    endfor
   endfor
 -%}
 

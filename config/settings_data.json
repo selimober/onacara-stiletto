@@ -71,7 +71,14 @@
     "social_twitter_link": "",
     "favicon": "shopify://shop_images/SCR-20240215-llxt.png",
     "capitalize_headings": false,
-    "content_for_index": []
+    "content_for_index": [],
+    "blocks": {
+      "6279071938380501511": {
+        "type": "shopify://apps/powerful-form-builder/blocks/app-embed/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+        "disabled": false,
+        "settings": {}
+      }
+    }
   },
   "presets": {
     "Stiletto": {

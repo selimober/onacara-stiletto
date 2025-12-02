@@ -1,5 +1,12 @@
 {%- liquid
   assign max_products = section.settings.maximum_products
+
+  capture custom_swatch_color_maps
+    render 'get-custom-swatch-color-maps'
+  endcapture
+
+  assign custom_color_key_map = custom_swatch_color_maps | split: ' | ' | first | split: ','
+  assign custom_color_value_map = custom_swatch_color_maps | split: ' | ' | last | split: ','
 -%}
 
 <div
@@ -50,7 +57,9 @@
               {% render 'product-item',
                 prod: product,
                 product_columns: section.settings.columns,
-                aspect_ratio: settings.product_listing_aspect_ratio
+                aspect_ratio: settings.product_listing_aspect_ratio,
+                custom_color_key_map: custom_color_key_map,
+                custom_color_value_map: custom_color_value_map
               %}
             </div>
           {%- endfor -%}

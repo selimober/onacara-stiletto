@@ -673,6 +673,18 @@
       "settings": {
         "heading": {
           "default": "Featured collection"
+        },
+        "collection_tabs": {
+          "header": {
+            "content": "Collection tabs"
+          },
+          "mobile_display": {
+            "label": "Mobile display",
+            "options": {
+              "rows": "Rows",
+              "slider": "Slider"
+            }
+          }
         }
       }
     },
@@ -905,17 +917,6 @@
             },
             "height": {
               "label": "Height"
-            },
-            "image": {
-              "header": {
-                "content": "Background image"
-              },
-              "image": {
-                "label": "Image"
-              },
-              "mobile_image": {
-                "label": "Mobile image"
-              }
             },
             "mobile_height": {
               "label": "Mobile height"
@@ -2501,7 +2502,7 @@
               }
             },
             "tab_heading": {
-              "default": "One column tab"
+              "default": "Three column tab"
             },
             "third_column": {
               "header": {
@@ -2533,7 +2534,7 @@
               }
             },
             "tab_heading": {
-              "default": "One column tab"
+              "default": "Two column tab"
             }
           }
         }
@@ -4456,6 +4457,22 @@
           "collection": {
             "label": "Collection"
           },
+          "cross_sells_display": {
+            "drawer": {
+              "label": "Quick cart display",
+              "options": {
+                "slider": "Slider",
+                "stacked": "Stacked"
+              }
+            },
+            "page": {
+              "label": "Cart page display",
+              "options": {
+                "slider": "Slider",
+                "stacked": "Stacked"
+              }
+            }
+          },
           "cross_sells_heading": {
             "default": "Customers also bought",
             "label": "Heading"
@@ -4958,15 +4975,11 @@
             "content": "Display similar products as swatches. Set up \"sibling\" collections to group separate variant products using metafields. [Learn more](https://help.fluorescent.co/v/stiletto/product-pages/variant-options/sibling-product-swatches)"
           },
           "show_sibling_swatches": {
-            "label": "Show sibling swtaches"
+            "label": "Show sibling swatches"
           },
           "swatch_image_source": {
             "info": "Product colors can be customized. [Learn more](https://help.fluorescent.co/v/stiletto/product-pages/variant-options/variant-swatches/use-custom-colors)",
-            "label": "Swatch source",
-            "options": {
-              "color": "Product color",
-              "image": "Product image"
-            }
+            "label": "Use product images as swatches"
           }
         },
         "swatches": {
@@ -4985,13 +4998,29 @@
         "header": {
           "content": "Account links"
         },
+        "social_bluesky_link": {
+          "info": "https://bsky.app/profile/shopify.bsky.social",
+          "label": "Bluesky link"
+        },
+        "social_discord_link": {
+          "info": "https://discord.gg/Shopify",
+          "label": "Discord link"
+        },
         "social_facebook_link": {
           "info": "https://facebook.com/shopify",
           "label": "Facebook link"
         },
+        "social_houzz_link": {
+          "info": "https://houzz.com/shopify",
+          "label": "Houzz link"
+        },
         "social_instagram_link": {
           "info": "https://www.instagram.com/shopify/",
           "label": "Instagram link"
+        },
+        "social_line_link": {
+          "info": "https://line.me/ti/p/Shopify",
+          "label": "LINE link"
         },
         "social_linkedin_link": {
           "info": "https://linkedin.com/company/shopify",
@@ -5000,6 +5029,10 @@
         "social_pinterest_link": {
           "info": "https://pinterest.com/shopify",
           "label": "Pinterest link"
+        },
+        "social_rednote_link": {
+          "info": "https://www.xiaohongshu.com/user/profile/shopify",
+          "label": "Rednote link"
         },
         "social_snapchat_link": {
           "info": "https://snapchat.com/add/shopify",
@@ -5020,6 +5053,10 @@
         "social_vimeo_link": {
           "info": "https://vimeo.com/shopify",
           "label": "Vimeo link"
+        },
+        "social_wechat_link": {
+          "info": "weixin://dl/chat?{toID}",
+          "label": "WeChat link"
         },
         "social_whatsapp_link": {
           "info": "https://wa.me/1XXXXXXXXXX",
@@ -5066,6 +5103,10 @@
         "portrait": "Portrait (2:3)",
         "portrait_alt": "Portrait (4:5)",
         "square": "Square (1:1)"
+      },
+      "enable_collect_customer_name": {
+        "info": "If enabled, then the name fields will be required.",
+        "label": "Collect customer name"
       },
       "focal_point": {
         "bottom": "Bottom",
@@ -5313,6 +5354,29 @@
       "aspect_ratio": {
         "label": "Image aspect ratio"
       },
+      "background_image": {
+        "header": {
+          "content": "Background image"
+        },
+        "image": {
+          "label": "Image"
+        },
+        "mobile_image": {
+          "label": "Mobile image"
+        }
+      },
+      "background_video": {
+        "header": {
+          "content": "Background video"
+        },
+        "video": {
+          "label": "Video"
+        },
+        "video_mobile": {
+          "info": "Will only apply if a desktop video has been selected.",
+          "label": "Mobile video"
+        }
+      },
       "badges": {
         "header": {
           "content": "Product badges"
@@ -5525,6 +5589,22 @@
         "label": "Media fit",
         "option_contain": "Contain",
         "option_cover": "Fill"
+      },
+      "media_type": {
+        "color_paragraph": {
+          "content": "The \"Background\" color, from the \"Color\" settings below, will be used."
+        },
+        "header": {
+          "content": "Background"
+        },
+        "media_type": {
+          "label": "Background type",
+          "options": {
+            "color": "Color",
+            "image": "Image",
+            "video": "Video"
+          }
+        }
       },
       "overlay": {
         "overlay": {

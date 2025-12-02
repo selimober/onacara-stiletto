@@ -44,7 +44,11 @@
           }
         }
       },
-      "block_order": ["accent", "heading", "text"],
+      "block_order": [
+        "accent",
+        "heading",
+        "text"
+      ],
       "settings": {
         "image_aspect": "custom",
         "desktop_height": 55,
@@ -201,8 +205,8 @@
       "settings": {
         "title": "Online",
         "heading_tag": "h2",
-        "subheading": "",
         "heading_font_class": "fs-heading-3-base",
+        "subheading": "",
         "heading_alignment": "left",
         "content_vertical_alignment": "top",
         "content_background_padding": "small",
@@ -295,12 +299,16 @@
           }
         }
       },
-      "block_order": ["image_column-1", "image_column-2", "image_column-3"],
+      "block_order": [
+        "image_column-1",
+        "image_column-2",
+        "image_column-3"
+      ],
       "settings": {
         "title": "Retail stores",
         "heading_tag": "h2",
-        "subheading": "",
         "heading_font_class": "fs-heading-3-base",
+        "subheading": "",
         "heading_alignment": "left",
         "content_vertical_alignment": "top",
         "content_background_padding": "medium",
@@ -386,12 +394,16 @@
           }
         }
       },
-      "block_order": ["image_column-1", "image_column-2", "column"],
+      "block_order": [
+        "image_column-1",
+        "image_column-2",
+        "column"
+      ],
       "settings": {
         "title": "Main studio",
         "heading_tag": "h2",
-        "subheading": "",
         "heading_font_class": "fs-heading-3-base",
+        "subheading": "",
         "heading_alignment": "left",
         "content_vertical_alignment": "center",
         "content_background_padding": "medium",

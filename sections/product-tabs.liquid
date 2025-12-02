@@ -1,27 +1,31 @@
 {%- liquid
-  assign has_background_color = false
   if section.settings.background_color != blank and section.settings.background_color != 'rgba(0,0,0,0)'
     assign has_background_color = true
+  else
+    assign has_background_color = false
   endif
+
+  capture section_classes
+    echo 'section [[sp]]' | replace: '[[sp]]', section.settings.section_padding
+  endcapture
+
+  assign mobile_items = ''
+  assign tab_buttons = ''
+  assign tab_content = ''
 -%}
 
-{%- capture section_classes -%}
-  section
-  {{ section.settings.section_padding }}
-{%- endcapture -%}
-
-{%- assign mobile_items = '' -%}
-{%- assign tab_buttons = '' -%}
-{%- assign tab_content = '' -%}
 {%- for block in section.blocks -%}
-  {%- assign open = false -%}
-  {%- if forloop.first -%}
-    {%- assign open = true -%}
-  {%- endif -%}
+  {%- liquid
+    assign open = false
 
-  {%- capture block_content -%}
-    {% render 'product-tabs-item', block: block %}
-  {%- endcapture -%}
+    if forloop.first
+      assign open = true
+    endif
+
+    capture block_content
+      render 'product-tabs-item', block: block
+    endcapture
+  -%}
 
   {%- capture mobile_items -%}
     {{ mobile_items }}
@@ -39,36 +43,40 @@
 
   {%- capture tab_buttons -%}
     {{ tab_buttons }}
-    <li>
-      <button
-        type="button"
-        class="product-tabs__tab-button"
-        aria-expanded="{% if open %}true{% else %}false{% endif %}"
-        aria-controls="product-tab--{{ block.id }}"
-        data-tab-label
-        {{ block.shopify_attributes }}
-      >
-        <span class="{{ section.settings.font_choice }} {{ section.settings.tab_font_size }}">
-          {{- block.settings.tab_heading -}}
-        </span>
-        <span class="indicator"></span>
-      </button>
-    </li>
+
+    {%- if block_content != blank -%}
+      <li>
+        <button
+          type="button"
+          class="product-tabs__tab-button"
+          aria-expanded="{%- if open -%}true{%- else -%}false{%- endif -%}"
+          aria-controls="product-tab--{{ block.id }}"
+          data-tab-label
+          {{ block.shopify_attributes }}
+        >
+          <span class="{{ section.settings.font_choice }} {{ section.settings.tab_font_size }}">
+            {{- block.settings.tab_heading -}}
+          </span>
+
+          <span class="indicator"></span>
+        </button>
+      </li>
+    {%- endif -%}
   {%- endcapture -%}
 
   {%- capture tab_content -%}
     {{ tab_content }}
-    <li
-      id="product-tab--{{ block.id }}"
-      class="
-        product-tabs__tab-item
-        {% if open %}active{% endif %}
-      "
-      aria-hidden="{% if open %}false{% else %}true{% endif %}"
-      data-tab-item
-    >
-      {{ block_content }}
-    </li>
+
+    {%- if block_content != blank -%}
+      <li
+        id="product-tab--{{ block.id }}"
+        class="product-tabs__tab-item {%- if open %} active{%- endif -%}"
+        aria-hidden="{%- if open -%}false{%- else -%}true{%- endif -%}"
+        data-tab-item
+      >
+        {{ block_content }}
+      </li>
+    {%- endif -%}
   {%- endcapture -%}
 {%- endfor -%}
 
@@ -76,13 +84,13 @@
   class="
     product-tabs
     product-tabs--{{ section.settings.tab_alignment }}
-    {% unless has_background_color %}
+    {% unless has_background_color -%}
       {{ section_classes }}
-    {% endunless %}
-    {% if settings.enable_section_animations and section.settings.enable_animation %}
+    {%- endunless %}
+    {% if settings.enable_section_animations and section.settings.enable_animation -%}
       animation
       animation--product-tabs
-    {% endif %}
+    {%- endif -%}
   "
   data-section-id="{{ section.id }}"
   data-section-type="product-tabs"
@@ -97,19 +105,21 @@
   <div
     class="
       product-tabs__inner
-      {% if has_background_color %}
+      {% if has_background_color -%}
         {{ section_classes }}
-      {% endif %}
+      {%- endif -%}
     "
   >
     <div class="product-tabs__tab-buttons">
       {{ tab_buttons }}
     </div>
+
     <div class="product-tabs__tab-list-wrapper">
       <ul class="product-tabs__tab-list" data-tab-list>
         {{ tab_content }}
       </ul>
     </div>
+
     <div class="product-tabs__mobile-accordions">{{ mobile_items }}</div>
   </div>
 </div>

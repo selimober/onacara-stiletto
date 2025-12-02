@@ -12,6 +12,13 @@
 
   assign swatch_options = settings.swatch_options | downcase | split: ', '
   assign chip_options = settings.chip_options | downcase | split: ', '
+
+  capture custom_swatch_color_maps
+    render 'get-custom-swatch-color-maps'
+  endcapture
+
+  assign custom_color_key_map = custom_swatch_color_maps | split: ' | ' | first | split: ','
+  assign custom_color_value_map = custom_swatch_color_maps | split: ' | ' | last | split: ','
 -%}
 
 <section
@@ -76,7 +83,9 @@
               chip_options: chip_options,
               enable_sticky_filter_bar: section.settings.enable_sticky_filter_bar,
               collapse_filter_bar: section.settings.collapse_filter_bar,
-              chip_layout: section.settings.chip_layout
+              chip_layout: section.settings.chip_layout,
+              custom_color_key_map: custom_color_key_map,
+              custom_color_value_map: custom_color_value_map
             %}
 
             {% render 'mobile-filters',
@@ -97,7 +106,9 @@
                   swatch_options: swatch_options,
                   show_chip_filters: section.settings.show_chip_filters,
                   chip_options: chip_options,
-                  chip_layout: section.settings.chip_layout
+                  chip_layout: section.settings.chip_layout,
+                  custom_color_key_map: custom_color_key_map,
+                  custom_color_value_map: custom_color_value_map
                 %}
               {%- endif -%}
 
@@ -127,7 +138,9 @@
                         product_columns_desktop: section.settings.columns_desktop,
                         product_columns_mobile: section.settings.columns_mobile,
                         aspect_ratio: settings.product_listing_aspect_ratio,
-                        has_grid_reveal: true
+                        has_grid_reveal: true,
+                        custom_color_key_map: custom_color_key_map,
+                        custom_color_value_map: custom_color_value_map
                       %}
                     {% else %}
                       <div class="collection__empty">
@@ -189,7 +202,9 @@
         show_chip_filters: section.settings.show_chip_filters,
         chip_options: chip_options,
         chip_layout: section.settings.chip_layout,
-        collapse_filter_groups: section.settings.collapse_filter_groups_mobile
+        collapse_filter_groups: section.settings.collapse_filter_groups_mobile,
+        custom_color_key_map: custom_color_key_map,
+        custom_color_value_map: custom_color_value_map
       %}
     {%- else -%}
       <div class="collection__empty ta-c">

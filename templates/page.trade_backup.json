@@ -18,94 +18,81 @@
         "custom_content_width": 700
       }
     },
-    "grid_w4zqtF": {
-      "type": "grid",
+    "image_with_text_VeqXjQ": {
+      "type": "image-with-text",
       "blocks": {
-        "item_dtUbgQ": {
-          "type": "item",
+        "heading_pVikKM": {
+          "type": "heading",
           "settings": {
-            "width": "50",
-            "height": 300,
-            "mobile_height": 300,
-            "media_type": "color",
-            "focal_point": "image_presentation",
-            "mobile_focal_point": "image_presentation",
-            "video_focal_point": "center",
-            "mobile_video_focal_point": "center",
-            "media_fit": "cover",
-            "text_position": "flex-start_center",
-            "accent": "",
-            "title": "End your styling headaches once and for all",
-            "heading_tag": "h3",
-            "heading_font_class": "fs-heading-3-base",
-            "subheading": "<p>Partner with Onacara to make every project’s final phase effortless with high-end cushions, fast delivery, and trade only perks.</p>",
-            "subheading_tag": "h4",
-            "subheading_font_class": "fs-heading-6-base",
-            "text": "",
-            "text_font_class": "fs-body-100",
-            "link": "",
-            "link_text": "",
-            "button_style": "btn--primary",
-            "background_color": "#f4f4f4",
-            "text_color": "#342b25",
-            "button_background_color": "#342b25",
-            "button_text_color": "#ffffff",
-            "color_overlay": "#000000",
-            "color_overlay_gradient": "",
-            "overlay_opacity": 0
+            "title": "Trade Professionals",
+            "heading_tag": "h2",
+            "heading_font_class": "fs-heading-display-3"
           }
         },
-        "item_NMNGWp": {
-          "type": "item",
+        "subheading_4H6nNW": {
+          "type": "subheading",
           "settings": {
-            "width": "50",
-            "height": 500,
-            "mobile_height": 300,
-            "media_type": "image",
-            "image": "shopify://shop_images/ONACARAYastiklarBanner-5.png",
-            "focal_point": "image_presentation",
-            "mobile_focal_point": "image_presentation",
-            "video_focal_point": "center",
-            "mobile_video_focal_point": "center",
-            "media_fit": "contain",
-            "text_position": "center_flex-end",
-            "accent": "",
-            "title": "",
-            "heading_tag": "h3",
-            "heading_font_class": "fs-heading-2-base",
-            "subheading": "",
-            "subheading_tag": "h4",
-            "subheading_font_class": "fs-heading-5-base",
-            "text": "",
-            "text_font_class": "fs-body-100",
+            "subheading": "Let us help you with your latest project.",
+            "subheading_tag": "h3",
+            "subheading_font_class": "fs-heading-6-base"
+          }
+        },
+        "button_kNqBrJ": {
+          "type": "button",
+          "settings": {
             "link": "",
             "link_text": "",
-            "button_style": "btn--primary",
-            "background_color": "",
-            "text_color": "#ffffff",
-            "button_background_color": "#000000",
-            "button_text_color": "#ffffff",
-            "color_overlay": "#000000",
-            "color_overlay_gradient": "",
-            "overlay_opacity": 0
+            "button_style": "btn--primary"
           }
         }
       },
       "block_order": [
-        "item_dtUbgQ",
-        "item_NMNGWp"
+        "heading_pVikKM",
+        "subheading_4H6nNW",
+        "button_kNqBrJ"
       ],
-      "name": "t:sections.grid.presets.name",
       "settings": {
-        "heading": "",
-        "heading_tag": "h2",
-        "subheading": "",
-        "content_alignment": "left",
+        "image_position": "right",
+        "image": "shopify://shop_images/image_1.png",
+        "aspect_ratio": "square",
+        "focal_point": "image_presentation",
+        "image_caption": "",
+        "text_alignment": "center",
+        "show_small_image": false,
+        "image_small": "shopify://shop_images/PXL_20221215_135415915_1.jpg",
+        "image_small_aspect": "square",
+        "image_small_focal_point": "image_presentation",
+        "background_color": "#8b8072",
+        "text_color": "#f4f4f4",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
         "enable_animation": true,
-        "full_width": false,
-        "spacing": 24,
         "divider_style": "none",
         "section_padding": "section--vertical-padding-top-bottom"
+      }
+    },
+    "rich_text_gqXQCD": {
+      "type": "rich-text",
+      "blocks": {
+        "text_qkjNEf": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Whether you're tackling a major client project or staging a house for sale, our exquisite cushions are here to elevate your space. We take pride in offering high-quality, affordable luxury with our cushions. We're confident that our cushions will make a significant impact on your projects.</p>",
+            "text_font_class": "fs-body-200"
+          }
+        }
+      },
+      "block_order": [
+        "text_qkjNEf"
+      ],
+      "name": "t:sections.rich_text.presets.name",
+      "settings": {
+        "alignment": "center_center",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "custom",
+        "custom_content_width": 700
       }
     },
     "rich_text_4EjWGW": {
@@ -147,9 +134,8 @@
         "powerful_form_builder_app_block_9WydnH"
       ],
       "custom_css": [
-        ".globo-form-app .globo-list-control .checkbox-wrapper {box-shadow: none;}",
-        ".globo-form-app .gfb__footer {text-align: center;}",
-        ".gfb__footer button {font-family: var(--font-heading); border-radius: 0; font-size: var(--font-size-button); text-transform: var(--font-button-text-transform); line-height: var(--line-height-button); letter-spacing: var(--button-letter-spacing); font-family: var(--font-body); font-weight: var(--font-body-weight); font-style: var(--font-body-style);}"
+        "form.g-container h3 {display: none; font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-style: var(--font-heading-style); letter-spacing: var(--font-heading-base-letter-spacing); text-transform: var(--font-heading-text-transform);}",
+        "form.description.globo-description {display: none;}"
       ],
       "settings": {
         "heading": "",
@@ -299,7 +285,8 @@
   },
   "order": [
     "main",
-    "grid_w4zqtF",
+    "image_with_text_VeqXjQ",
+    "rich_text_gqXQCD",
     "rich_text_4EjWGW",
     "17560318375681b5b2",
     "collapsible_row_list_XLNDdQ",

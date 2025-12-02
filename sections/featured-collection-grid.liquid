@@ -1,5 +1,12 @@
 {%- liquid
   assign max_products = section.settings.maximum_products
+
+  capture custom_swatch_color_maps
+    render 'get-custom-swatch-color-maps'
+  endcapture
+
+  assign custom_color_key_map = custom_swatch_color_maps | split: ' | ' | first | split: ','
+  assign custom_color_value_map = custom_swatch_color_maps | split: ' | ' | last | split: ','
 -%}
 
 <div
@@ -66,7 +73,9 @@
                 prod: product,
                 collection: block.settings.collection,
                 aspect_ratio: settings.product_listing_aspect_ratio,
-                product_columns: section.settings.columns
+                product_columns: section.settings.columns,
+                custom_color_key_map: custom_color_key_map,
+                custom_color_value_map: custom_color_value_map
               %}
             </div>
           {%- else -%}
@@ -75,7 +84,9 @@
                 {% render 'product-item',
                   aspect_ratio: settings.product_listing_aspect_ratio,
                   product_columns: section.settings.columns,
-                  placeholder: true
+                  placeholder: true,
+                  custom_color_key_map: custom_color_key_map,
+                  custom_color_value_map: custom_color_value_map
                 %}
               </div>
             {%- endfor -%}
@@ -86,7 +97,9 @@
               {% render 'product-item',
                 aspect_ratio: settings.product_listing_aspect_ratio,
                 product_columns: section.settings.columns,
-                placeholder: true
+                placeholder: true,
+                custom_color_key_map: custom_color_key_map,
+                custom_color_value_map: custom_color_value_map
               %}
             </div>
           {%- endfor -%}
