@@ -77,10 +77,18 @@
     "16558445044f80743b": {
       "type": "image-hero",
       "blocks": {
+        "text_WVj6QH": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Use these sections to promote a particular feature with editorial photography.</p>",
+            "text_font_class": "fs-body-100"
+          }
+        },
         "d0cd2366-7930-4809-80d7-2b38d2d4fb07": {
           "type": "heading",
           "settings": {
-            "title": "Festive Cushion Live",
+            "title": "Festive Collection",
             "heading_tag": "h2",
             "heading_font_class": "fs-heading-display-2"
           }
@@ -88,29 +96,30 @@
         "d525a297-b0ac-4079-a90c-68d26f07aae7": {
           "type": "button",
           "settings": {
-            "link": "shopify://collections/the-aurora",
+            "link": "shopify://collections/festive-collection",
             "link_text": "Discover Now",
             "button_style": "btn--primary"
           }
         }
       },
       "block_order": [
+        "text_WVj6QH",
         "d0cd2366-7930-4809-80d7-2b38d2d4fb07",
         "d525a297-b0ac-4079-a90c-68d26f07aae7"
       ],
       "settings": {
         "image_aspect": "custom",
-        "desktop_height": 90,
+        "desktop_height": 75,
         "mobile_height": 60,
-        "image": "shopify://shop_images/1_e6d4d2ef-56e0-47df-8b63-e0e77fa4ffa0.jpg",
-        "image_mobile": "shopify://shop_images/Onacara_16.06.2025-28305-Edit_1.jpg",
+        "image": "shopify://shop_images/image00008_967cb027-13b7-493b-a044-71662c46a694.jpg",
+        "image_mobile": "shopify://shop_images/image00010.jpg",
         "focal_point": "image_presentation",
         "mobile_focal_point": "image_presentation",
         "media_link": "shopify://collections/festive-collection",
-        "text_position": "center_flex-start",
-        "text_position_mobile": "flex-start_flex-start",
-        "text_color": "#342b25",
-        "button_background_color": "#000000",
+        "text_position": "flex-end_flex-start",
+        "text_position_mobile": "flex-end_flex-start",
+        "text_color": "#f4f4f4",
+        "button_background_color": "#18351a",
         "button_text_color": "#f4f4f4",
         "color_overlay": "#000000",
         "color_overlay_gradient": "",
@@ -125,7 +134,7 @@
         "text_TdPKPx": {
           "type": "text",
           "settings": {
-            "text": "<p>Onacara's luxury cushions, paired with exquisite accessories can transform your living space. Expertly curated to reflect the latest trends in interiors, our preselected cushion sets make restyling effortless.</p>",
+            "text": "<p>Onacara's luxury cushions, paired with exquisite accessories, can transform your living space this festive season. Expertly curated to reflect the latest interior trends, our preselected cushion sets make restyling effortless. <br/><br/>As the year comes to a close, order now to ensure your home is ready in time for Christmas!</p>",
             "text_font_class": "fs-body-200"
           }
         }

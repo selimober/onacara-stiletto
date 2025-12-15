@@ -16,6 +16,7 @@
       "blocks": {
         "announcement_cmjDXK": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "title": "<p>BLACK FRIDAY SALE! Enjoy 25% off our entire Collection with code FRIDAY25 at checkout. Limited stock only. </p>",
             "title_mobile": "<p>BLACK FRIDAY SALE! Enjoy 25% off our entire Collection with code FRIDAY25 at checkout. Limited stock only. </p>",
@@ -24,7 +25,6 @@
         },
         "announcement_93aDM4": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
             "title": "<p>Enjoy 10% off orders over £200 with code OVER200 | 15% off over £300 with code OVER300</p>",
             "title_mobile": "<p>Enjoy 10% off orders over £200 with code OVER200 | 15% off over £300 with code OVER300</p>",
@@ -33,10 +33,9 @@
         },
         "announcement_ixx7BP": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
-            "title": "<p>Order by December 18th for Christmas delivery. Later orders arrive in early January.</p>",
-            "title_mobile": "<p>Order by December 18th for Christmas delivery. Later orders arrive in early January.</p>",
+            "title": "<p>🎄 Christmas Delivery Cut-Off: Order by 2 PM on 21st December for Christmas arrival 🎄</p>",
+            "title_mobile": "<p>🎄 Christmas Delivery Cut-Off: Order by 2 PM on 21st December for Christmas arrival 🎄</p>",
             "link": ""
           }
         }
@@ -46,11 +45,10 @@
         "announcement_93aDM4",
         "announcement_ixx7BP"
       ],
-      "disabled": true,
       "settings": {
         "enable_sticky_announcement_bar": "never",
         "autoplay_enabled": false,
-        "autoplay_delay": 4,
+        "autoplay_delay": 6,
         "color_background": "#000000",
         "color_text": "#ffffff"
       }
