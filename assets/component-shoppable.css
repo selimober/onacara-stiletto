@@ -205,6 +205,7 @@
 }
 .shoppable-feature__carousel-outer .shoppable-feature__carousel{
     border:1px solid var(--color-text);
+    z-index:0;
   }
 .shoppable-feature__carousel-outer .shoppable-feature__carousel:not(.swiper-initialized) .shoppable-feature__carousel-inner{
         margin:0 auto;
@@ -215,6 +216,7 @@
   }
 .shoppable-feature__carousel-outer .swiper-pagination-fraction{
     bottom:0;
+    z-index:0;
   }
 .shoppable-feature__carousel-outer .slider-nav-button{
     position:absolute;

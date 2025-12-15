@@ -56,7 +56,10 @@
     --text-align: {{ section.settings.content_alignment }};
     --video-focal-alignment-horizontal: {{ section.settings.focal_point }};
     --video-focal-alignment-horizontal-mobile: {{ section.settings.focal_point_mobile }};
-    {% render 'overlay-button-vars' with color_button_text: section.settings.button_text_color, color_button_background: section.settings.button_background_color %}
+    {% render 'overlay-button-vars',
+      color_button_text: section.settings.button_text_color,
+      color_button_background: section.settings.button_background_color
+    -%}
   "
 >
   <div
@@ -738,7 +741,8 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:shared.section_blocks.play_button.settings.play_button.image.label"
+          "label": "t:shared.section_blocks.play_button.settings.play_button.image.label",
+          "info": "t:shared.section_blocks.play_button.settings.play_button.image.info"
         },
         {
           "type": "select",

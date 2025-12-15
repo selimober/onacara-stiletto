@@ -43,9 +43,8 @@
         </div>
       {%- endunless -%}
 
-      {%-
-        render 'button-block' with
-        wrapper_class: "featured-collection-grid__button section-introduction__button",
+      {%- render 'button-block',
+        wrapper_class: 'featured-collection-grid__button section-introduction__button',
         link: section.settings.link,
         label: section.settings.link_text,
         button_style: section.settings.button_style

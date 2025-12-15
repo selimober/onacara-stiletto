@@ -23,8 +23,7 @@
       </div>
     {%- endunless -%}
     {%- if section.settings.link_text -%}
-      {%-
-        render 'button-block' with
+      {%- render 'button-block',
         wrapper_class: "blog-posts__header-button section-introduction__button",
         link: button_link,
         label: section.settings.link_text,
@@ -55,8 +54,7 @@
     {%- if section.settings.display_type == 'selected' and section.blocks.size > 0 -%}
       {%- for block in section.blocks -%}
         {%- if block.settings.article != blank -%}
-          {%
-            render 'article-item' with
+          {% render 'article-item',
             blog_article: block.settings.article,
             aspect_ratio: section.settings.aspect_ratio,
             show_author: section.settings.show_author,
@@ -66,13 +64,12 @@
             show_featured_image: section.settings.show_featured_image
           %}
         {%- else -%}
-          {% render 'article-item' with aspect_ratio: section.settings.aspect_ratio %}
+          {% render 'article-item', aspect_ratio: section.settings.aspect_ratio %}
         {%- endif -%}
       {%- endfor -%}
     {%- elsif section.settings.display_type == 'all' and blog != blank and blog.articles.size > 0 -%}
       {%- for blog_article in blog.articles limit: section.settings.max_articles -%}
-        {%
-          render 'article-item' with
+        {% render 'article-item',
           blog_article: blog_article,
           blog: blog,
           aspect_ratio: section.settings.aspect_ratio,

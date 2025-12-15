@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "Stiletto",
-    "theme_version": "5.2.0",
+    "theme_version": "5.2.1",
     "theme_author": "Fluorescent Design Inc.",
     "theme_documentation_url": "https://help.fluorescent.co/v/stiletto",
     "theme_support_url": "https://fluorescent.co/help/contact"
@@ -195,7 +195,7 @@
       },
       {
         "type": "checkbox",
-        "id": "capitalize_heading",
+        "id": "capitalize_headings",
         "label": "t:shared.settings.typography.uppercase.label",
         "default": false
       },

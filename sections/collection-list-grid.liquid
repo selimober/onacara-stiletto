@@ -34,19 +34,17 @@
         </div>
       {%- endunless -%}
 
-      {%-
-        render 'button-block' with
-        wrapper_class: "collection-list-grid__button section-introduction__button",
+      {%- render 'button-block',
+        wrapper_class: 'collection-list-grid__button section-introduction__button',
         link: section.settings.link,
         label: section.settings.link_text,
-        button_style: section.settings.button_style,
+        button_style: section.settings.button_style
       -%}
     </div>
 
     <div class="collection-list-grid__collections section-blocks__content">
       {%- for collection in section.settings.collection_list -%}
-        {%
-          render 'collection-item' with
+        {% render 'collection-item',
           collection: collection,
           aspect_ratio: section.settings.collection_listing_aspect_ratio,
           label_style: section.settings.label_style,
@@ -58,8 +56,7 @@
       {%- else -%}
         {%- assign placeholder_items = section.settings.columns | times: 2 -%}
         {%- for i in (1..placeholder_items) -%}
-          {%
-            render 'collection-item' with
+          {% render 'collection-item',
             aspect_ratio: section.settings.collection_listing_aspect_ratio,
             label_style: section.settings.label_style,
             overlay_text_color: section.settings.overlay_text_color,

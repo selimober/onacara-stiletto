@@ -154,6 +154,10 @@
       },
       "settings": {
         "items": {
+          "auto_collapse_rows": {
+            "info": "Lorsque cette option est activée, les lignes se replient automatiquement lors de l'ouverture d'une nouvelle ligne.",
+            "label": "Réduction automatique des lignes"
+          },
           "header": {
             "content": "Éléments de la liste"
           },
@@ -671,6 +675,18 @@
         "name": "Curseur de collection en vedette"
       },
       "settings": {
+        "collection_tabs": {
+          "header": {
+            "content": "Onglets de collection"
+          },
+          "mobile_display": {
+            "label": "Écran mobile",
+            "options": {
+              "rows": "Lignes",
+              "slider": "Carrousel"
+            }
+          }
+        },
         "heading": {
           "default": "Le collection en vedette"
         }
@@ -908,13 +924,13 @@
             },
             "image": {
               "header": {
-                "content": "Image de fond"
+                "content": ""
               },
               "image": {
-                "label": "Image"
+                "label": ""
               },
               "mobile_image": {
-                "label": "Image mobile"
+                "label": ""
               }
             },
             "mobile_height": {
@@ -1642,6 +1658,10 @@
       },
       "name": "Aperçu du produit",
       "settings": {
+        "auto_collapse_rows": {
+          "info": "Lorsque cette option est activée, les lignes se replient automatiquement lors de l'ouverture d'une nouvelle ligne.",
+          "label": "Réduction automatique des lignes"
+        },
         "enable_sticky_product_details": {
           "label": "Activez les détails de produit collants"
         },
@@ -2543,6 +2563,15 @@
         "name": "Onglets produits"
       },
       "settings": {
+        "auto_collapse_rows": {
+          "header": {
+            "content": "Lignes d'onglets mobiles"
+          },
+          "settings": {
+            "info": "Lorsque cette option est activée, les onglets se replient automatiquement sur mobile lors de l'ouverture d'une nouvelle ligne.",
+            "label": "Réduction automatique des onglets"
+          }
+        },
         "tab_layout": {
           "header": {
             "content": "Disposition des onglets"
@@ -3352,6 +3381,9 @@
                 "default": "Ajoutez le contenu de votre ligne réductible ici.",
                 "label": "Contenu"
               },
+              "custom_icon_image": {
+                "label": "Image d'icône personnalisée"
+              },
               "custom_liquid": {
                 "info": "Cela remplacera les paramètres « Contenu » et « Page de contenu » ci-dessus.",
                 "label": "Liquide personnalisé"
@@ -3363,6 +3395,9 @@
                 "default": "Ligne rétractable",
                 "info": "Incluez un titre qui explique le contenu.",
                 "label": "Titre"
+              },
+              "icon": {
+                "label": "Nom de l'icône"
               },
               "page_for_content": {
                 "info": "Cela remplacera le paramètre « Contenu » ci-dessus.",
@@ -3760,6 +3795,9 @@
                   "default": "Appels",
                   "label": "Titre de la rangée rétractable"
                 },
+                "custom_icon_image": {
+                  "label": "Image d'icône personnalisée"
+                },
                 "display_as_collapsible_row": {
                   "label": "Afficher en tant que rangée pliable"
                 },
@@ -3768,6 +3806,9 @@
                 },
                 "header": {
                   "content": "Ligne rétractable"
+                },
+                "icon": {
+                  "label": "Nom de l'icône"
                 }
               },
               "column_placement": {
@@ -4082,7 +4123,7 @@
     },
     "slideshow": {
       "blocks": {
-        "slide": {
+        "image": {
           "name": "Diapositive",
           "settings": {
             "background_image": {
@@ -4099,44 +4140,64 @@
                 "label": "Lien d'image"
               }
             },
-            "button_1": {
-              "header": {
-                "content": "Bouton 1"
+            "content": {
+              "title": {
+                "default": "Diapositive"
               }
+            }
+          }
+        },
+        "shared_settings": {
+          "button_1": {
+            "header": {
+              "content": "Bouton 1"
+            }
+          },
+          "button_2": {
+            "header": {
+              "content": "Bouton 2"
+            }
+          },
+          "content": {
+            "accent": {
+              "label": "Accent"
             },
-            "button_2": {
-              "header": {
-                "content": "Bouton 2"
+            "header": {
+              "content": "Contenu"
+            },
+            "subheading": {
+              "label": "Sous-titre"
+            },
+            "text": {
+              "default": "<p>Utilisez cette section pour faire une déclaration audacieuse</p>",
+              "label": "Texte"
+            },
+            "text_position": {
+              "label": "Emplacement du texte"
+            },
+            "text_position_mobile": {
+              "label": "Position du texte mobile"
+            },
+            "title": {
+              "default": "Diapositive",
+              "label": "Titre"
+            }
+          },
+          "link_text": {
+            "default": "En savoir plus"
+          }
+        },
+        "video": {
+          "name": "Diaporama vidéo",
+          "settings": {
+            "background_video": {
+              "media_link": {
+                "label": "Lien vidéo"
               }
             },
             "content": {
-              "accent": {
-                "label": "Accent"
-              },
-              "header": {
-                "content": "Contenu"
-              },
-              "subheading": {
-                "label": "Sous-titre"
-              },
-              "text": {
-                "default": "<p>Utilisez cette section pour faire une déclaration audacieuse</p>",
-                "label": "Texte"
-              },
-              "text_position": {
-                "label": "Emplacement du texte"
-              },
-              "text_position_mobile": {
-                "label": "Position du texte mobile"
-              },
               "title": {
-                "default": "Diapositive",
-                "label": "Titre"
-              }
-            },
-            "shared": {
-              "link_text": {
-                "default": "En savoir plus"
+                "default": "Diaporama vidéo"
               }
             }
           }
@@ -4980,8 +5041,8 @@
             "info": "Les couleurs des produits peuvent être personnalisées. [En savoir plus](https://help.fluorescent.co/v/stiletto/product-pages/variant-options/variant-swatches/use-custom-colors)",
             "label": "Source d'échantillon",
             "options": {
-              "color": "Couleur du produit",
-              "image": "Image du produit"
+              "color": "",
+              "image": ""
             }
           }
         },
@@ -5283,6 +5344,7 @@
               }
             },
             "image": {
+              "info": "Ceci ne concerne que les vidéos YouTube et Vimeo. Pour les vidéos Shopify, cliquez sur l'icône « Modifier » dans les paramètres de la vidéo pour ajouter une image miniature.",
               "label": "Image de prévisualisation de la vidéo"
             },
             "text": {
@@ -5729,7 +5791,7 @@
         }
       },
       "video": {
-        "info": "L'image de couverture de la vidéo Shopify sera affichée comme solution de secours en cas d'échec de chargement.",
+        "info": "L'image miniature de la vidéo Shopify sera affichée comme solution de secours en cas d'échec de chargement.",
         "label": "Vidéo Shopify",
         "label_mobile": "Vidéo Shopify mobile"
       },

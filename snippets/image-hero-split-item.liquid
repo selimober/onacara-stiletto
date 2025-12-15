@@ -26,11 +26,10 @@
 >
   <div class="image-hero-split-item__image-container">
     {%- if block.settings.image_mobile != blank -%}
-      {%-
-        render 'image' with
-        wrapper_class: "image-hero-split-item__image image-hero-split-item__image--mobile",
+      {%- render 'image',
+        wrapper_class: 'image-hero-split-item__image image-hero-split-item__image--mobile',
         image: block.settings.image_mobile,
-        sizes: "100vw",
+        sizes: '100vw',
         focal_point: block.settings.mobile_focal_point,
         animate: true
       -%}
@@ -44,11 +43,10 @@
       endif
     -%}
 
-    {%-
-      render 'image' with
-      wrapper_class: "image-hero-split-item__image",
+    {%- render 'image',
+      wrapper_class: 'image-hero-split-item__image',
       image: block.settings.image,
-      sizes: "(max-width: 45em) 100vw, (max-width: 45em) 50vw",
+      sizes: '(max-width: 45em) 100vw, (max-width: 45em) 50vw',
       focal_point: block.settings.focal_point,
       include_placeholder: true,
       placeholder_natural_fallback_ratio: placeholder_aspect_ratio,
@@ -71,9 +69,8 @@
       {%- endunless -%}
 
       {% if block.settings.link_text != blank and block.settings.link != blank %}
-        {%-
-          render 'button-block' with
-          wrapper_class: "image-hero-split-item__button-container section-blocks__button",
+        {%- render 'button-block',
+          wrapper_class: 'image-hero-split-item__button-container section-blocks__button',
           link: block.settings.link,
           label: block.settings.link_text,
           is_overlay: true,

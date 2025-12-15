@@ -89,14 +89,13 @@
   {% endcapture %}
 
   {% if block.settings.display_as_collapsible_row %}
-    {%-
-      render 'product-block-accordion' with
+    {%- render 'product-block-accordion',
       block: block,
       block_settings: block.settings,
       classes: 'product__block-featured-products',
       heading: block.settings.heading,
       disable_rte: true,
-      content: content,
+      content: content
     -%}
   {% else %}
     <div

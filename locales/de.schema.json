@@ -154,6 +154,10 @@
       },
       "settings": {
         "items": {
+          "auto_collapse_rows": {
+            "info": "Wenn diese Option aktiviert ist, werden Zeilen beim Öffnen einer neuen Zeile automatisch ausgeblendet.",
+            "label": "Zeilen automatisch ausblenden"
+          },
           "header": {
             "content": "Artikel auflisten"
           },
@@ -671,6 +675,18 @@
         "name": "Slider für vorgestellte Kollektion"
       },
       "settings": {
+        "collection_tabs": {
+          "header": {
+            "content": "Sammlungsregisterkarten"
+          },
+          "mobile_display": {
+            "label": "Mobiles Display",
+            "options": {
+              "rows": "Reihen",
+              "slider": "Schieberegler"
+            }
+          }
+        },
         "heading": {
           "default": "Ausgewählte Sammlung"
         }
@@ -908,13 +924,13 @@
             },
             "image": {
               "header": {
-                "content": "Hintergrundbild"
+                "content": ""
               },
               "image": {
-                "label": "Bild"
+                "label": ""
               },
               "mobile_image": {
-                "label": "Mobiles Bild"
+                "label": ""
               }
             },
             "mobile_height": {
@@ -1642,6 +1658,10 @@
       },
       "name": "Produktübersicht",
       "settings": {
+        "auto_collapse_rows": {
+          "info": "Wenn diese Option aktiviert ist, werden Zeilen beim Öffnen einer neuen Zeile automatisch ausgeblendet.",
+          "label": "Zeilen automatisch ausblenden"
+        },
         "enable_sticky_product_details": {
           "label": "Sticky-Produktdetails aktivieren"
         },
@@ -2543,6 +2563,15 @@
         "name": "Produktregisterkarten"
       },
       "settings": {
+        "auto_collapse_rows": {
+          "header": {
+            "content": "Mobile Tab-Zeilen"
+          },
+          "settings": {
+            "info": "Wenn diese Funktion aktiviert ist, werden die Tab-Zeilen auf Mobilgeräten beim Öffnen einer neuen Zeile automatisch ausgeblendet.",
+            "label": "Registerkartenzeilen automatisch ausblenden"
+          }
+        },
         "tab_layout": {
           "header": {
             "content": "Tab-Layout"
@@ -3352,6 +3381,9 @@
                 "default": "Fügen Sie hier Ihren ausblendbaren Zeileninhalt hinzu.",
                 "label": "Inhalt"
               },
+              "custom_icon_image": {
+                "label": "Benutzerdefiniertes Symbolbild"
+              },
               "custom_liquid": {
                 "info": "Dadurch werden die oben stehenden Einstellungen „Inhalt“ und „Seite für Inhalt“ überschrieben.",
                 "label": "Benutzerdefiniertes Liquid"
@@ -3363,6 +3395,9 @@
                 "default": "Ausklappbare Zeile",
                 "info": "Überschrift einfügen, die den Inhalt erklärt.",
                 "label": "Überschrift"
+              },
+              "icon": {
+                "label": "Icon-Name"
               },
               "page_for_content": {
                 "info": "Dadurch wird die obige Einstellung „Inhalt“ überschrieben.",
@@ -3760,6 +3795,9 @@
                   "default": "Beschriftungen",
                   "label": "Titel der klappbaren Zeile"
                 },
+                "custom_icon_image": {
+                  "label": "Benutzerdefiniertes Symbolbild"
+                },
                 "display_as_collapsible_row": {
                   "label": "Anzeige als ausklappbare Zeile"
                 },
@@ -3768,6 +3806,9 @@
                 },
                 "header": {
                   "content": "Ausklappbare Zeile"
+                },
+                "icon": {
+                  "label": "Icon-Name"
                 }
               },
               "column_placement": {
@@ -4082,7 +4123,7 @@
     },
     "slideshow": {
       "blocks": {
-        "slide": {
+        "image": {
           "name": "Dia",
           "settings": {
             "background_image": {
@@ -4099,44 +4140,64 @@
                 "label": "Bild-Link"
               }
             },
-            "button_1": {
-              "header": {
-                "content": "Taste 1"
+            "content": {
+              "title": {
+                "default": "Bildfolie"
               }
+            }
+          }
+        },
+        "shared_settings": {
+          "button_1": {
+            "header": {
+              "content": "Taste 1"
+            }
+          },
+          "button_2": {
+            "header": {
+              "content": "Taste 2"
+            }
+          },
+          "content": {
+            "accent": {
+              "label": "Akzent"
             },
-            "button_2": {
-              "header": {
-                "content": "Taste 2"
+            "header": {
+              "content": "Inhalt"
+            },
+            "subheading": {
+              "label": "Unterüberschrift"
+            },
+            "text": {
+              "default": "<p>Nutzen Sie diesen Abschnitt, um eine mutige Aussage zu machen</p>",
+              "label": "Text"
+            },
+            "text_position": {
+              "label": "Textposition"
+            },
+            "text_position_mobile": {
+              "label": "Mobile Textposition"
+            },
+            "title": {
+              "default": "Dia",
+              "label": "Überschrift"
+            }
+          },
+          "link_text": {
+            "default": "Mehr lesen"
+          }
+        },
+        "video": {
+          "name": "Video-Folie",
+          "settings": {
+            "background_video": {
+              "media_link": {
+                "label": "Video-Link"
               }
             },
             "content": {
-              "accent": {
-                "label": "Akzent"
-              },
-              "header": {
-                "content": "Inhalt"
-              },
-              "subheading": {
-                "label": "Unterüberschrift"
-              },
-              "text": {
-                "default": "<p>Nutzen Sie diesen Abschnitt, um eine mutige Aussage zu machen</p>",
-                "label": "Text"
-              },
-              "text_position": {
-                "label": "Textposition"
-              },
-              "text_position_mobile": {
-                "label": "Mobile Textposition"
-              },
               "title": {
-                "default": "Dia",
-                "label": "Überschrift"
-              }
-            },
-            "shared": {
-              "link_text": {
-                "default": "Mehr lesen"
+                "default": "Video-Folie"
               }
             }
           }
@@ -4980,8 +5041,8 @@
             "info": "Produktfarben können individuell angepasst werden. [Erfahren Sie mehr](https://help.fluorescent.co/v/stiletto/product-pages/variant-options/variant-swatches/use-custom-colors)",
             "label": "Swatch-Quelle",
             "options": {
-              "color": "Produktfarbe",
-              "image": "Produktabbildung"
+              "color": "",
+              "image": ""
             }
           }
         },
@@ -5283,6 +5344,7 @@
               }
             },
             "image": {
+              "info": "Gilt nur für YouTube- und Vimeo-Videos. Bei Shopify-Videos klicken Sie in den Videoeinstellungen auf das Symbol „Bearbeiten“, um ein Vorschaubild hinzuzufügen.",
               "label": "Video-Vorschaubild"
             },
             "text": {
@@ -5729,7 +5791,7 @@
         }
       },
       "video": {
-        "info": "Das Titelbild des Shopify-Videos wird als Ersatz für den Fall angezeigt, dass es nicht geladen werden kann.",
+        "info": "Das Miniaturbild des Shopify-Videos wird als Ersatz für den Fall angezeigt, dass es nicht geladen werden kann.",
         "label": "Shopify-Video",
         "label_mobile": "Mobiles Shopify-Video"
       },

@@ -27,7 +27,8 @@
 
   assign button_wrapper_class = base_class | append: '-button'
   assign form_tags = form_tags | default: 'newsletter'
-  assign success_msg = success_msg | default: 'general.newsletter_form.confirmation' | t
+  assign default_success_msg = 'general.newsletter_form.confirmation' | t
+  assign success_msg = success_msg | default: default_success_msg
 %}
 
 {% form 'customer', class: form_class, id: form_id %}

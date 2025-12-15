@@ -22,7 +22,7 @@
     {%- capture badges -%}
       {{ badges }}
       <div class="product-badge product-badge--sale">
-        {%- render "get-display-discount" with prod: prod, format: settings.sale_badge_format -%}
+        {%- render "get-display-discount", prod: prod, format: settings.sale_badge_format -%}
       </div>
       {{ badges }}
     {%- endcapture -%}

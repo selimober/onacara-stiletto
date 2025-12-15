@@ -20,8 +20,7 @@
   {{ shopify_attributes }}
 >
   <div class="image-block__inner">
-    {%-
-      render 'image' with
+    {%- render 'image',
       image: image,
       sizes: sizes,
       include_placeholder: true,

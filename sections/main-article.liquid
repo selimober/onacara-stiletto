@@ -121,14 +121,13 @@
                 {{ block.shopify_attributes }}
               >
                 <div class="article__image-container">
-                  {%-
-                    render 'image' with
-                    wrapper_class: "article__image-inner",
+                  {%- render 'image',
+                    wrapper_class: 'article__image-inner',
                     image: article.image,
-                    sizes: "100vw",
+                    sizes: '100vw',
                     focal_point: block.settings.focal_point,
                     placeholder_natural_fallback_ratio: placeholder_aspect_ratio,
-                    animate: true
+                    animate: true,
                     prioritize_loading: true
                   -%}
                 </div>

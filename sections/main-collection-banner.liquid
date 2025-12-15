@@ -96,11 +96,10 @@
   <div class="collection-banner__inner">
     {%- if collection_image != blank -%}
       <div class="collection-banner__image-container">
-        {%-
-          render 'image' with
-          wrapper_class: "collection-banner__image",
+        {%- render 'image',
+          wrapper_class: 'collection-banner__image',
           image: collection_image,
-          sizes: "100vw",
+          sizes: '100vw',
           focal_point: section.settings.focal_point,
           include_placeholder: false,
           placeholder_natural_fallback_ratio: placeholder_aspect_ratio,

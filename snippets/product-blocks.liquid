@@ -14,26 +14,39 @@
   - custom_color_value_map: { Object } An array of custom swatch color values (HEX values).
 {%- endcomment -%}
 {%- capture product_url -%}{{ shop.url | append: prod.url }}{%- endcapture -%}
+{%- assign in_accordion_group = false -%}
 
 {%- for block in blocks -%}
-  {% assign renderBlock = false %}
-  {% if column == block.settings.column_placement
-    or column == 'right'
-    and block.settings.column_placement == blank
-    or column == blank
+  {% liquid
+    assign renderBlock = false
+
+    if column == block.settings.column_placement or column == 'right' and block.settings.column_placement == blank or column == blank
+      assign renderBlock = true
+    endif
+
+    assign is_collapsible_row = false
+
+    if block.type == 'accordion' or block.settings.display_as_collapsible_row
+      assign is_collapsible_row = true
+    endif
   %}
-    {% assign renderBlock = true %}
-  {% endif %}
 
   {% if renderBlock == true %}
+    {%- if is_collapsible_row and in_accordion_group == false -%}
+      <div class="product-accordion-group" data-auto-collapse="{{ section.settings.auto_collapse_rows }}">
+        {%- assign in_accordion_group = true -%}
+    {%- elsif in_accordion_group and is_collapsible_row == false -%}
+      </div>
+      {%- assign in_accordion_group = false -%}
+    {%- endif -%}
+
     {%- case block.type -%}
       {%- when '@app' -%}
         {% render block %}
 
       {%- when 'product_header' -%}
         {% if is_quick %}<div class="quick-product--header-block-wrap">{% endif %}
-        {%-
-          render 'product-block-header' with
+        {%- render 'product-block-header',
           product: prod,
           block: block,
           block_settings: block.settings,
@@ -68,12 +81,7 @@
 
       {%- when 'quantity_selector' -%}
         {%- if prod != blank -%}
-          {%-
-            render 'product-block-quantity-selector' with
-            product: prod,
-            block: block,
-            block_settings: block.settings,
-          -%}
+          {%- render 'product-block-quantity-selector', product: prod, block: block, block_settings: block.settings -%}
         {%- endif -%}
 
       {%- when 'custom_option' -%}
@@ -81,8 +89,7 @@
 
       {%- when 'buy_buttons' -%}
         {%- if prod != blank -%}
-          {%-
-            render 'product-block-buy-buttons' with
+          {%- render 'product-block-buy-buttons',
             prod: prod,
             block: block,
             blocks: blocks,
@@ -111,26 +118,16 @@
         {%- endif -%}
 
       {%- when 'description' -%}
-        {%-
-          render 'product-block-description' with
-          product: prod,
-          block: block,
-          block_settings: block.settings,
-        -%}
+        {%- render 'product-block-description', product: prod, block: block, block_settings: block.settings -%}
 
       {%- when 'product_callouts' -%}
-        {%- render 'product-block-callouts' with block: block, block_settings: block.settings %}
+        {%- render 'product-block-callouts', block: block, block_settings: block.settings %}
 
       {%- when 'product_callouts_mini' -%}
-        {%- render 'product-block-callouts-mini' with block: block, block_settings: block.settings %}
+        {%- render 'product-block-callouts-mini', block: block, block_settings: block.settings %}
 
       {%- when 'text' -%}
-        {%
-          render 'product-block-text' with
-          content: block.settings.text,
-          block_settings: block.settings,
-          block: block,
-        %}
+        {% render 'product-block-text', content: block.settings.text, block_settings: block.settings, block: block %}
 
       {%- when 'share' -%}
         {%- if prod != blank -%}
@@ -154,12 +151,11 @@
 
       {%- when 'inventory-counter' -%}
         {%- if prod != blank -%}
-          {%-
-            render 'inventory-counter' with
+          {%- render 'inventory-counter',
             product: prod,
             block: block,
             block_settings: block.settings,
-            current_variant: current_variant,
+            current_variant: current_variant
           -%}
         {%- endif -%}
 
@@ -182,8 +178,7 @@
         {%- assign popup_modal_page = pages[block.settings.popup_page] -%}
 
         {%- if block.settings.popup_text != blank and popup_modal_page.content != blank -%}
-          {%
-            render 'product-block-information-popup' with
+          {% render 'product-block-information-popup',
             block: block,
             popup_page_target: block.settings.popup_page,
             popup_page: popup_modal_page,
@@ -203,15 +198,14 @@
             product__block--medium
           "
         >
-          {%-
-            render 'image-block' with
+          {%- render 'image-block',
             shopify_attributes: block.shopify_attributes,
             wrapper_class: 'product-block-image__text-container-image  section-blocks__image',
             image: block.settings.image,
             width: block.settings.image_size,
             mobile_width: block.settings.image_size_mobile,
             break_to_mobile_at: '720',
-            align: block.settings.alignment,
+            align: block.settings.alignment
           -%}
         </div>
 
@@ -220,3 +214,7 @@
     {%- endcase -%}
   {% endif %}
 {%- endfor -%}
+
+{%- if in_accordion_group -%}
+  </div>
+{%- endif -%}

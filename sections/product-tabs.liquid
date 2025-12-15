@@ -120,7 +120,13 @@
       </ul>
     </div>
 
-    <div class="product-tabs__mobile-accordions">{{ mobile_items }}</div>
+    <div class="product-tabs__mobile-accordions" data-auto-collapse="{{ section.settings.auto_collapse_rows }}">
+      {%- if section.settings.auto_collapse_rows == true -%}
+        <div class="product-tabs-accordion-group">{{ mobile_items }}</div>
+      {%- else -%}
+        {{ mobile_items }}
+      {%- endif -%}
+    </div>
   </div>
 </div>
 
@@ -203,6 +209,17 @@
         }
       ],
       "default": "fs-body-150"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.product_tabs.settings.auto_collapse_rows.header.content"
+    },
+    {
+      "id": "auto_collapse_rows",
+      "type": "checkbox",
+      "label": "t:sections.product_tabs.settings.auto_collapse_rows.settings.label",
+      "default": false,
+      "info": "t:sections.product_tabs.settings.auto_collapse_rows.settings.info"
     },
     {
       "type": "header",

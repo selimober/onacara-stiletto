@@ -80,9 +80,8 @@
           {%- endunless -%}
 
           {%- if section.settings.link and section.settings.link_text -%}
-            {%-
-              render 'button-block' with
-              wrapper_class: "events__header-button section-introduction__button",
+            {%- render 'button-block',
+              wrapper_class: 'events__header-button section-introduction__button',
               link: section.settings.link,
               label: section.settings.link_text,
               button_style: section.settings.button_style,

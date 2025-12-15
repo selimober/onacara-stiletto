@@ -81,7 +81,7 @@
           >
           <input type="hidden" name="options[prefix]" value="last">
           <button type="submit" class="search-form__submit" aria-label="{{ 'search.search' | t }}">
-            {% render 'icon' with icon: 'search' %}
+            {% render 'icon', icon: 'search' %}
           </button>
         </div>
       </form>
@@ -117,8 +117,7 @@
         <div class="search__container">
           <div class="search__content">
             {%- if search.results_count > 0 or active_filter_count > 0 -%}
-              {%
-                render 'filter-bar' with
+              {% render 'filter-bar',
                 results: search,
                 show_item_count: section.settings.show_item_count,
                 show_sort: section.settings.show_sort,
@@ -135,8 +134,7 @@
                 custom_color_value_map: custom_color_value_map
               %}
 
-              {%
-                render 'mobile-filters' with
+              {% render 'mobile-filters',
                 results: search,
                 show_sort: section.settings.show_sort,
                 show_filters: section.settings.show_filters,
@@ -195,8 +193,7 @@
                               custom_color_value_map: custom_color_value_map
                             %}
                           {%- else -%}
-                            {%
-                              render 'search-item' with
+                            {% render 'search-item',
                               item: item,
                               columns_desktop: section.settings.columns_desktop,
                               columns_mobile: section.settings.columns_mobile,
@@ -224,8 +221,7 @@
                     {%- if search.results_count > 0 -%}
                       {% unless paginated %}
                         <div>
-                          {%
-                            render 'pagination' with
+                          {% render 'pagination',
                             paginate: paginate,
                             type: 'general.pagination.results',
                             display_paginate_item_count_only: true
@@ -243,15 +239,13 @@
                       {% if paginated %}
                         <div>
                           {% if paginate.pages > 1 %}
-                            {%
-                              render 'pagination' with
+                            {% render 'pagination',
                               paginate: paginate,
                               type: 'general.pagination.results',
                               show_item_count: true
                             %}
                           {% else %}
-                            {%
-                              render 'pagination' with
+                            {% render 'pagination',
                               paginate: paginate,
                               type: 'general.pagination.results',
                               display_paginate_item_count_only: true
@@ -268,8 +262,7 @@
         </div>
       {% endpaginate %}
 
-      {%
-        render 'filter-drawer' with
+      {% render 'filter-drawer',
         results: search,
         show_sort: section.settings.show_sort,
         show_filters: section.settings.show_filters,

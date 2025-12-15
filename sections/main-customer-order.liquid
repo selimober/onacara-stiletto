@@ -61,10 +61,9 @@
                 <td scope="row" data-label="{{ 'customer.order.product' | t }}">
                   <div class="order__product">
                     <div class="order__image">
-                      {%-
-                        render 'image' with
+                      {%- render 'image',
                         image: line_item.product.featured_media,
-                        sizes: "100px",
+                        sizes: '100px',
                         aspect_ratio: 'square',
                         include_placeholder: true
                       -%}

@@ -14,14 +14,13 @@
               data-media-item-id="{{ media.id }}"
               data-product-media-wrapper
             >
-              {%
-                render 'media' with
+              {% render 'media',
                 media: media,
                 fallback_alt: product.title,
                 enable_product_lightbox: section.settings.enable_product_lightbox,
                 loop_video: section.settings.enable_video_looping,
                 aspect_ratio: section.settings.image_aspect_ratio,
-                sizes: "122px",
+                sizes: '122px',
                 within_carousel: false
               %}
             </div>
@@ -47,8 +46,7 @@
     %}
     {%- if product != blank -%}
       {%- if block_settings.show_sale_badge or block_settings.show_custom_badges -%}
-        {%-
-          render 'product-badges' with
+        {%- render 'product-badges',
           prod: product,
           show_sale_badge: block_settings.show_sale_badge,
           show_custom_badges: block_settings.show_custom_badges,
@@ -114,9 +112,8 @@
 
           {%- if block_settings.show_discount -%}
             <span data-discount-display class="product__price-displayed-discount fs-body-50">
-              {%-
-                render "get-display-discount"
-                with product: product,
+              {%- render 'get-display-discount',
+                product: product,
                 variant: current_variant,
                 format: block_settings.discount_format
               -%}
@@ -138,8 +135,7 @@
       {%- comment -%}weird hack but we need to be able to access these dynamically {%- endcomment -%}
       {%- for variant in product.variants -%}
         <div hidden class="visually-hidden" variant-discount-display variant-id="{{ variant.id }}">
-          {%-
-            render "get-display-discount" with
+          {%- render 'get-display-discount',
             product: product,
             variant: variant,
             format: block_settings.discount_format

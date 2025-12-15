@@ -74,8 +74,7 @@
       {%- if object_fit != blank and aspect_ratio != 'natural' -%}--object-fit: {{ object_fit }};{%- endif -%}
     "
   >
-    {%
-      render 'responsive-image' with
+    {% render 'responsive-image',
       image: image,
       sizes: sizes,
       prioritize_loading: prioritize_loading,
@@ -91,8 +90,7 @@
 {%- elsif include_placeholder -%}
   {%- assign natural_fallback = placeholder_natural_fallback_ratio | default: 'square' -%}
 
-  {%-
-    render 'placeholder-image' with
+  {%- render 'placeholder-image',
     wrapper_class: wrapper_class,
     placeholder_name: placeholder_name,
     aspect_ratio: aspect_ratio,

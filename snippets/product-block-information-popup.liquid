@@ -5,14 +5,13 @@
   href="{{ popup_page.url }}"
 >
   {%- if custom_icon_image != blank -%}
-    {%-
-      render 'image' with
-      wrapper_class: "product__information-popup-custom-icon",
+    {%- render 'image',
+      wrapper_class: 'product__information-popup-custom-icon',
       image: custom_icon_image,
-      sizes: "32px",
+      sizes: '32px'
     -%}
   {%- else -%}
-    {%- if icon != 'none' -%}{% render 'icon-editorial' with icon: icon %}{%- endif -%}
+    {%- if icon != 'none' -%}{% render 'icon-editorial', icon: icon %}{%- endif -%}
   {%- endif -%}
   {{ text }}
 </a>

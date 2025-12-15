@@ -16,7 +16,7 @@
   <div class="quote__item-inner">
     {%- unless pagination_style == 'logos' and has_multiple_blocks -%}
       <div class="quote__item-logo-wrapper">
-        {%- render 'quote-item-logo' with logo: logo, class: "quote__item-logo" -%}
+        {%- render 'quote-item-logo', logo: logo, class: 'quote__item-logo' -%}
       </div>
     {%- endunless -%}
 

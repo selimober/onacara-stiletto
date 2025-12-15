@@ -34,7 +34,7 @@
           {%- endif -%}
         </span>
         <span class="collection-item__icon">
-          {%- render 'icon' with icon: 'arrow-short' -%}
+          {%- render 'icon', icon: 'arrow-short' -%}
         </span>
       {%- else -%}
         {%- if placeholder -%}
@@ -72,15 +72,14 @@
     {{ wrapping_attributes }}
     class="collection-item__image-wrapper hover"
   >
-    {%
-      render 'image' with
+    {% render 'image',
       image: collection.featured_image,
       wrapper_class: 'collection-item__image',
       aspect_ratio: aspect_ratio,
       placeholder_name: 'collection-1',
       include_placeholder: true,
       sizes: image_sizes,
-      src_set_type: "grid"
+      src_set_type: 'grid'
     %}
 
     {%- if label_is_overlay -%}

@@ -1,7 +1,7 @@
 {% assign label_classes = 'fs-body-100' %}
 
 {%- unless block.settings.show_labels -%}
-  {% assign label_classes =  label_classes | append: ' visually-hidden' %}
+  {% assign label_classes = label_classes | append: ' visually-hidden' %}
 {%- endunless -%}
 
 <div
@@ -14,6 +14,6 @@
     </label>
   </div>
   <div class="product__item">
-    {% render 'quantity-input' with id: product.id, initial_value: '1' %}
+    {% render 'quantity-input', id: product.id, initial_value: '1' %}
   </div>
 </div>

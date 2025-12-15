@@ -97,8 +97,7 @@
               {% assign placeholder_name = 'collection-4' %}
               <div class="image-compare__image-after" {{ block.shopify_attributes }}>
             {%- endif -%}
-              {%
-                render 'image' with
+              {% render 'image',
                 image: block.settings.image,
                 wrapper_class: 'image-compare__image',
                 aspect_ratio: section.settings.aspect_ratio,
@@ -139,8 +138,8 @@
         <div class="image-compare__slider-line" aria-hidden="true"></div>
         <div class="image-compare__slider-button" aria-hidden="true">
           <div class="image-compare__slider-button-arrows">
-            <div class="image-compare__slider-button-arrow image-compare__slider-button-arrow-before">{% render 'icon' with icon: 'chevron-small' %}</div>
-            <div class="image-compare__slider-button-arrow image-compare__slider-button-arrow-after">{% render 'icon' with icon: 'chevron-small' %}</div>
+            <div class="image-compare__slider-button-arrow image-compare__slider-button-arrow-before">{% render 'icon', icon: 'chevron-small' %}</div>
+            <div class="image-compare__slider-button-arrow image-compare__slider-button-arrow-after">{% render 'icon', icon: 'chevron-small' %}</div>
           </div>
         </div>
       {%- endif -%}

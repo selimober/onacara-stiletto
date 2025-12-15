@@ -66,12 +66,13 @@
       {% assign option_values_count = sibling_products.size %}
 
       {%- for sibling_product in sibling_products limit: max_items -%}
-        {% render 'product-swatch',
+        {% render 'product-sibling-swatch',
           context: 'product-item',
           swatch_image_width: swatch_image_width,
+          forloop_index: forloop.index,
           sibling_product: sibling_product,
-          option_name: settings.siblings_option_name,
-          option_value: sibling_product.metafields.stiletto.sibling_option_name,
+          sibling_label_name: settings.siblings_option_name,
+          sibling_option_name: sibling_product.metafields.stiletto.sibling_option_name,
           custom_color_key_map: custom_color_key_map,
           custom_color_value_map: custom_color_value_map
         %}

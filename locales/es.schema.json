@@ -154,6 +154,10 @@
       },
       "settings": {
         "items": {
+          "auto_collapse_rows": {
+            "info": "Cuando esté habilitada, las filas se contraerán automáticamente al abrir una nueva fila.",
+            "label": "Contracción automática de filas"
+          },
           "header": {
             "content": "Lista de articulos"
           },
@@ -671,6 +675,18 @@
         "name": "Deslizador de la colección destacada"
       },
       "settings": {
+        "collection_tabs": {
+          "header": {
+            "content": "Pestañas de colección"
+          },
+          "mobile_display": {
+            "label": "Pantalla móvil",
+            "options": {
+              "rows": "Filas",
+              "slider": "Control deslizante"
+            }
+          }
+        },
         "heading": {
           "default": "La colección destacada"
         }
@@ -908,13 +924,13 @@
             },
             "image": {
               "header": {
-                "content": "Imagen de fondo"
+                "content": ""
               },
               "image": {
-                "label": "Imagen"
+                "label": ""
               },
               "mobile_image": {
-                "label": "Imagen móvil"
+                "label": ""
               }
             },
             "mobile_height": {
@@ -1642,6 +1658,10 @@
       },
       "name": "Resumen del producto",
       "settings": {
+        "auto_collapse_rows": {
+          "info": "Cuando esté habilitada, las filas se contraerán automáticamente al abrir una nueva fila.",
+          "label": "Contracción automática de filas"
+        },
         "enable_sticky_product_details": {
           "label": "Habilitar los detalles de los productos pegajosos"
         },
@@ -2543,6 +2563,15 @@
         "name": "Pestañas de productos"
       },
       "settings": {
+        "auto_collapse_rows": {
+          "header": {
+            "content": "Filas de pestañas móviles"
+          },
+          "settings": {
+            "info": "Cuando esté habilitada, las filas de pestañas en dispositivos móviles se contraerán automáticamente al abrir una nueva fila.",
+            "label": "Contracción automática de filas de pestañas"
+          }
+        },
         "tab_layout": {
           "header": {
             "content": "Diseño de pestañas"
@@ -3352,6 +3381,9 @@
                 "default": "Añade aquí el contenido de tu fila plegable.",
                 "label": "Contenido"
               },
+              "custom_icon_image": {
+                "label": "Imagen de icono personalizada"
+              },
               "custom_liquid": {
                 "info": "Esto anulará las configuraciones de \"Contenido\" y \"Página para contenido\" anteriores.",
                 "label": "Líquido personalizado"
@@ -3363,6 +3395,9 @@
                 "default": "Fila plegable",
                 "info": "Incluye un título que explique el contenido.",
                 "label": "Título"
+              },
+              "icon": {
+                "label": "Nombre del icono"
               },
               "page_for_content": {
                 "info": "Esto anulará la configuración de \"Contenido\" anterior.",
@@ -3760,6 +3795,9 @@
                   "default": "Llamadas",
                   "label": "Título de la fila plegable"
                 },
+                "custom_icon_image": {
+                  "label": "Imagen de icono personalizada"
+                },
                 "display_as_collapsible_row": {
                   "label": "Mostrar como fila plegable"
                 },
@@ -3768,6 +3806,9 @@
                 },
                 "header": {
                   "content": "Fila plegable"
+                },
+                "icon": {
+                  "label": "Nombre del icono"
                 }
               },
               "column_placement": {
@@ -4082,7 +4123,7 @@
     },
     "slideshow": {
       "blocks": {
-        "slide": {
+        "image": {
           "name": "Diapositiva",
           "settings": {
             "background_image": {
@@ -4099,44 +4140,64 @@
                 "label": "Enlace de imagen"
               }
             },
-            "button_1": {
-              "header": {
-                "content": "Botón 1"
+            "content": {
+              "title": {
+                "default": "Diapositiva de imagen"
               }
+            }
+          }
+        },
+        "shared_settings": {
+          "button_1": {
+            "header": {
+              "content": "Botón 1"
+            }
+          },
+          "button_2": {
+            "header": {
+              "content": "Botón 2"
+            }
+          },
+          "content": {
+            "accent": {
+              "label": "Acento"
             },
-            "button_2": {
-              "header": {
-                "content": "Botón 2"
+            "header": {
+              "content": "Contenido"
+            },
+            "subheading": {
+              "label": "Subtítulo"
+            },
+            "text": {
+              "default": "<p>Utilice esta sección para hacer una declaración contundente</p>",
+              "label": "Texto"
+            },
+            "text_position": {
+              "label": "Posición del texto"
+            },
+            "text_position_mobile": {
+              "label": "Posición del texto móvil"
+            },
+            "title": {
+              "default": "Deslizar",
+              "label": "Título"
+            }
+          },
+          "link_text": {
+            "default": "Leer más"
+          }
+        },
+        "video": {
+          "name": "Diapositiva de vídeo",
+          "settings": {
+            "background_video": {
+              "media_link": {
+                "label": "Enlace de vídeo"
               }
             },
             "content": {
-              "accent": {
-                "label": "Acento"
-              },
-              "header": {
-                "content": "Contenido"
-              },
-              "subheading": {
-                "label": "Subtitular"
-              },
-              "text": {
-                "default": "<p>Utilice esta sección para hacer una declaración contundente</p>",
-                "label": "Texto"
-              },
-              "text_position": {
-                "label": "Posición del texto"
-              },
-              "text_position_mobile": {
-                "label": "Posición de texto móvil"
-              },
               "title": {
-                "default": "Diapositiva",
-                "label": "Título"
-              }
-            },
-            "shared": {
-              "link_text": {
-                "default": "Leer más"
+                "default": "Diapositiva de vídeo"
               }
             }
           }
@@ -4980,8 +5041,8 @@
             "info": "Los colores del producto se pueden personalizar. [Más información](https://help.fluorescent.co/v/stiletto/product-pages/variant-options/variant-swatches/use-custom-colors)",
             "label": "Fuente de muestra",
             "options": {
-              "color": "Color del producto",
-              "image": "Imagen del producto"
+              "color": "",
+              "image": ""
             }
           }
         },
@@ -5283,6 +5344,7 @@
               }
             },
             "image": {
+              "info": "Solo se aplica a vídeos de YouTube y Vimeo. Para vídeos de Shopify, haz clic en el icono \"Editar\" en la configuración del vídeo para añadir una imagen en miniatura.",
               "label": "Imagen de vista previa del vídeo"
             },
             "text": {
@@ -5729,7 +5791,7 @@
         }
       },
       "video": {
-        "info": "La imagen de portada del vídeo de Shopify se mostrará como alternativa en caso de que no se cargue.",
+        "info": "La imagen en miniatura del vídeo de Shopify se mostrará como alternativa en caso de que no se cargue.",
         "label": "Vídeo de Shopify",
         "label_mobile": "Vídeo de Shopify móvil"
       },

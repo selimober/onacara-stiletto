@@ -154,6 +154,10 @@
       },
       "settings": {
         "items": {
+          "auto_collapse_rows": {
+            "info": "When enabled, rows will automatically collapse when opening a new row.",
+            "label": "Auto collapse rows"
+          },
           "header": {
             "content": "List items"
           },
@@ -671,9 +675,6 @@
         "name": "Featured collection slider"
       },
       "settings": {
-        "heading": {
-          "default": "Featured collection"
-        },
         "collection_tabs": {
           "header": {
             "content": "Collection tabs"
@@ -685,6 +686,9 @@
               "slider": "Slider"
             }
           }
+        },
+        "heading": {
+          "default": "Featured collection"
         }
       }
     },
@@ -917,6 +921,17 @@
             },
             "height": {
               "label": "Height"
+            },
+            "image": {
+              "header": {
+                "content": ""
+              },
+              "image": {
+                "label": ""
+              },
+              "mobile_image": {
+                "label": ""
+              }
             },
             "mobile_height": {
               "label": "Mobile height"
@@ -1643,6 +1658,10 @@
       },
       "name": "Product overview",
       "settings": {
+        "auto_collapse_rows": {
+          "info": "When enabled, rows will automatically collapse when opening a new row.",
+          "label": "Auto collapse rows"
+        },
         "enable_sticky_product_details": {
           "label": "Enable sticky product details"
         },
@@ -2544,6 +2563,15 @@
         "name": "Product tabs"
       },
       "settings": {
+        "auto_collapse_rows": {
+          "header": {
+            "content": "Mobile tab rows"
+          },
+          "settings": {
+            "info": "When enabled, tab rows on mobile will automatically collapse when opening a new row.",
+            "label": "Auto collapse tab rows"
+          }
+        },
         "tab_layout": {
           "header": {
             "content": "Tab layout"
@@ -3353,6 +3381,9 @@
                 "default": "Add your collapsible row content here.",
                 "label": "Content"
               },
+              "custom_icon_image": {
+                "label": "Custom icon image"
+              },
               "custom_liquid": {
                 "info": "This will override the \"Content\" and \"Page for content\" settings above.",
                 "label": "Custom Liquid"
@@ -3364,6 +3395,9 @@
                 "default": "Collapsible row",
                 "info": "Include a heading that explains the content.",
                 "label": "Heading"
+              },
+              "icon": {
+                "label": "Icon"
               },
               "page_for_content": {
                 "info": "This will override the \"Content\" setting above.",
@@ -3761,6 +3795,9 @@
                   "default": "Callouts",
                   "label": "Collapsible row title"
                 },
+                "custom_icon_image": {
+                  "label": "Custom icon image"
+                },
                 "display_as_collapsible_row": {
                   "label": "Display as collapsible row"
                 },
@@ -3769,6 +3806,9 @@
                 },
                 "header": {
                   "content": "Collapsible row"
+                },
+                "icon": {
+                  "label": "Icon"
                 }
               },
               "column_placement": {
@@ -4083,8 +4123,8 @@
     },
     "slideshow": {
       "blocks": {
-        "slide": {
-          "name": "Slide",
+        "image": {
+          "name": "Image slide",
           "settings": {
             "background_image": {
               "header": {
@@ -4100,44 +4140,64 @@
                 "label": "Image link"
               }
             },
-            "button_1": {
-              "header": {
-                "content": "Button 1"
+            "content": {
+              "title": {
+                "default": "Image slide"
               }
+            }
+          }
+        },
+        "shared_settings": {
+          "button_1": {
+            "header": {
+              "content": "Button 1"
+            }
+          },
+          "button_2": {
+            "header": {
+              "content": "Button 2"
+            }
+          },
+          "content": {
+            "accent": {
+              "label": "Accent"
             },
-            "button_2": {
-              "header": {
-                "content": "Button 2"
+            "header": {
+              "content": "Content"
+            },
+            "subheading": {
+              "label": "Subheading"
+            },
+            "text": {
+              "default": "<p>Use this section to make a bold statement</p>",
+              "label": "Text"
+            },
+            "text_position": {
+              "label": "Text position"
+            },
+            "text_position_mobile": {
+              "label": "Mobile text position"
+            },
+            "title": {
+              "default": "Slide",
+              "label": "Heading"
+            }
+          },
+          "link_text": {
+            "default": "Read more"
+          }
+        },
+        "video": {
+          "name": "Video slide",
+          "settings": {
+            "background_video": {
+              "media_link": {
+                "label": "Video link"
               }
             },
             "content": {
-              "accent": {
-                "label": "Accent"
-              },
-              "header": {
-                "content": "Content"
-              },
-              "subheading": {
-                "label": "Subheading"
-              },
-              "text": {
-                "default": "<p>Use this section to make a bold statement</p>",
-                "label": "Text"
-              },
-              "text_position": {
-                "label": "Text position"
-              },
-              "text_position_mobile": {
-                "label": "Mobile text position"
-              },
               "title": {
-                "default": "Slide",
-                "label": "Heading"
-              }
-            },
-            "shared": {
-              "link_text": {
-                "default": "Read more"
+                "default": "Video slide"
               }
             }
           }
@@ -4979,7 +5039,11 @@
           },
           "swatch_image_source": {
             "info": "Product colors can be customized. [Learn more](https://help.fluorescent.co/v/stiletto/product-pages/variant-options/variant-swatches/use-custom-colors)",
-            "label": "Use product images as swatches"
+            "label": "Use product images as swatches",
+            "options": {
+              "color": "",
+              "image": ""
+            }
           }
         },
         "swatches": {
@@ -5280,6 +5344,7 @@
               }
             },
             "image": {
+              "info": "Only applies to YouTube and Vimeo videos. For Shopify videos, click the \"Edit\" icon on the video setting to add a thumbnail image.",
               "label": "Video preview image"
             },
             "text": {
@@ -5726,7 +5791,7 @@
         }
       },
       "video": {
-        "info": "The video's cover image will be displayed as a fallback in case it fails to load.",
+        "info": "The video's thumbnail image will be displayed as a fallback in case it fails to load.",
         "label": "Shopify video",
         "label_mobile": "Mobile Shopify video"
       },

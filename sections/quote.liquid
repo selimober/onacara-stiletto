@@ -24,14 +24,21 @@
       <div class="slider-fade-out left"></div>
       {% if section.blocks.size > 1 %}
         <button class="slider-nav-button slider-nav-button-prev" title="{{ 'general.accessibility.previous' | t }}">
-          {% render 'icon' with icon: 'chevron' %}
+          {% render 'icon', icon: 'chevron' %}
         </button>
       {% endif %}
       <div class="slider-inner swiper-wrapper">
+        {%- liquid
+          if section.blocks.size > 1
+            assign has_multiple_blocks = true
+          else
+            assign has_multiple_blocks = false
+          endif
+        -%}
+
         {%- for block in section.blocks -%}
-          {%-
-            render 'quote-item' with
-            has_multiple_blocks: section.blocks.size > 1,
+          {%- render 'quote-item',
+            has_multiple_blocks: has_multiple_blocks,
             block: block,
             forloop: forloop,
             quote: block.settings.quote,
@@ -53,7 +60,7 @@
                   aria-label="{{ 'general.accessibility.quote_nav' | t: name: block.settings.title }}"
                 >
                   {% if block.settings.logo %}
-                    {%- render 'quote-item-logo' with logo: block.settings.logo, class: "quote__navigation-logo" -%}
+                    {%- render 'quote-item-logo', logo: block.settings.logo, class: "quote__navigation-logo" -%}
                   {% else %}
                     <span class="fs-accent">Add Logo</span>
                   {% endif %}
@@ -66,14 +73,14 @@
       <div class="slider-fade-out right"></div>
       {% if section.blocks.size > 1 %}
         <button class="slider-nav-button slider-nav-button-next" title="{{ 'general.accessibility.next' | t }}">
-          {% render 'icon' with icon: 'chevron' %}
+          {% render 'icon', icon: 'chevron' %}
         </button>
       {% endif %}
     </div>
     {% if section.blocks.size > 1 %}
       <div class="quote__navigation">
         {% if section.settings.pagination_style == 'dots' %}
-          {%- render 'navigation-dots' with dot_count: section.blocks.size -%}
+          {%- render 'navigation-dots', dot_count: section.blocks.size -%}
         {% else %}
           <ul class="logo-navigation">
             {{ logo_pagination_list_item }}

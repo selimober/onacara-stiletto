@@ -25,13 +25,15 @@
       --overlay-background-gradient: {{ section.settings.color_overlay_gradient }};
     {% endif %}
     --overlay-opacity: {{ overlay_opacity }};
-    {% render 'overlay-button-vars' with color_button_text: section.settings.button_text_color, color_button_background: section.settings.button_background_color %}
+    {% render 'overlay-button-vars',
+      color_button_text: section.settings.button_text_color,
+      color_button_background: section.settings.button_background_color
+    -%}
   "
 >
   <div class="image-hero-split__inner">
     {%- for block in section.blocks -%}
-      {%-
-        render 'image-hero-split-item' with
+      {%- render 'image-hero-split-item',
         block: block,
         index: forloop.index,
         image_aspect: section.settings.image_aspect,
@@ -39,8 +41,7 @@
       -%}
 
       {%- if section.blocks.size < 2 -%}
-        {%-
-          render 'image-hero-split-item' with
+        {%- render 'image-hero-split-item',
           index: 2,
           image_aspect: section.settings.image_aspect,
           text_position: section.settings.text_position
@@ -48,8 +49,7 @@
       {%- endif -%}
     {%- else -%}
       {%- for i in (1..2) -%}
-        {%-
-          render 'image-hero-split-item' with
+        {%- render 'image-hero-split-item',
           index: forloop.index,
           image_aspect: section.settings.image_aspect,
           text_position: section.settings.text_position

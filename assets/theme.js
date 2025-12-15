@@ -4202,6 +4202,265 @@ var SocialShare = (node => {
   return destroy;
 });
 
+/*!
+ * slide-anim
+ * https://github.com/yomotsu/slide-anim
+ * (c) 2017 @yomotsu
+ * Released under the MIT License.
+ */
+const pool = [];
+const inAnimItems = {
+    add(el, defaultStyle, timeoutId, onCancelled) {
+        const inAnimItem = { el, defaultStyle, timeoutId, onCancelled };
+        this.remove(el);
+        pool.push(inAnimItem);
+    },
+    remove(el) {
+        const index = inAnimItems.findIndex(el);
+        if (index === -1)
+            return;
+        const inAnimItem = pool[index];
+        clearTimeout(inAnimItem.timeoutId);
+        inAnimItem.onCancelled();
+        pool.splice(index, 1);
+    },
+    find(el) {
+        return pool[inAnimItems.findIndex(el)];
+    },
+    findIndex(el) {
+        let index = -1;
+        pool.some((item, i) => {
+            if (item.el === el) {
+                index = i;
+                return true;
+            }
+            return false;
+        });
+        return index;
+    }
+};
+
+const CSS_EASEOUT_EXPO = 'cubic-bezier( 0.19, 1, 0.22, 1 )';
+function slideDown(el, options = {}) {
+    return new Promise((resolve) => {
+        if (inAnimItems.findIndex(el) !== -1)
+            return;
+        const _isVisible = isVisible(el);
+        const hasEndHeight = typeof options.endHeight === 'number';
+        const display = options.display || 'block';
+        const duration = options.duration || 400;
+        const onCancelled = options.onCancelled || function () { };
+        const defaultStyle = el.getAttribute('style') || '';
+        const style = window.getComputedStyle(el);
+        const defaultStyles = getDefaultStyles(el, display);
+        const isBorderBox = /border-box/.test(style.getPropertyValue('box-sizing'));
+        const contentHeight = defaultStyles.height;
+        const minHeight = defaultStyles.minHeight;
+        const paddingTop = defaultStyles.paddingTop;
+        const paddingBottom = defaultStyles.paddingBottom;
+        const borderTop = defaultStyles.borderTop;
+        const borderBottom = defaultStyles.borderBottom;
+        const cssDuration = `${duration}ms`;
+        const cssEasing = CSS_EASEOUT_EXPO;
+        const cssTransition = [
+            `height ${cssDuration} ${cssEasing}`,
+            `min-height ${cssDuration} ${cssEasing}`,
+            `padding ${cssDuration} ${cssEasing}`,
+            `border-width ${cssDuration} ${cssEasing}`
+        ].join();
+        const startHeight = _isVisible ? style.height : '0px';
+        const startMinHeight = _isVisible ? style.minHeight : '0px';
+        const startPaddingTop = _isVisible ? style.paddingTop : '0px';
+        const startPaddingBottom = _isVisible ? style.paddingBottom : '0px';
+        const startBorderTopWidth = _isVisible ? style.borderTopWidth : '0px';
+        const startBorderBottomWidth = _isVisible ? style.borderBottomWidth : '0px';
+        const endHeight = (() => {
+            if (hasEndHeight)
+                return `${options.endHeight}px`;
+            return !isBorderBox ?
+                `${contentHeight - paddingTop - paddingBottom}px` :
+                `${contentHeight + borderTop + borderBottom}px`;
+        })();
+        const endMinHeight = `${minHeight}px`;
+        const endPaddingTop = `${paddingTop}px`;
+        const endPaddingBottom = `${paddingBottom}px`;
+        const endBorderTopWidth = `${borderTop}px`;
+        const endBorderBottomWidth = `${borderBottom}px`;
+        if (startHeight === endHeight &&
+            startPaddingTop === endPaddingTop &&
+            startPaddingBottom === endPaddingBottom &&
+            startBorderTopWidth === endBorderTopWidth &&
+            startBorderBottomWidth === endBorderBottomWidth) {
+            resolve();
+            return;
+        }
+        requestAnimationFrame(() => {
+            el.style.height = startHeight;
+            el.style.minHeight = startMinHeight;
+            el.style.paddingTop = startPaddingTop;
+            el.style.paddingBottom = startPaddingBottom;
+            el.style.borderTopWidth = startBorderTopWidth;
+            el.style.borderBottomWidth = startBorderBottomWidth;
+            el.style.display = display;
+            el.style.overflow = 'hidden';
+            el.style.visibility = 'visible';
+            el.style.transition = cssTransition;
+            el.style.webkitTransition = cssTransition;
+            requestAnimationFrame(() => {
+                el.style.height = endHeight;
+                el.style.minHeight = endMinHeight;
+                el.style.paddingTop = endPaddingTop;
+                el.style.paddingBottom = endPaddingBottom;
+                el.style.borderTopWidth = endBorderTopWidth;
+                el.style.borderBottomWidth = endBorderBottomWidth;
+            });
+        });
+        const timeoutId = setTimeout(() => {
+            resetStyle(el);
+            el.style.display = display;
+            if (hasEndHeight) {
+                el.style.height = `${options.endHeight}px`;
+                el.style.overflow = `hidden`;
+            }
+            inAnimItems.remove(el);
+            resolve();
+        }, duration);
+        inAnimItems.add(el, defaultStyle, timeoutId, onCancelled);
+    });
+}
+function slideUp(el, options = {}) {
+    return new Promise((resolve) => {
+        if (inAnimItems.findIndex(el) !== -1)
+            return;
+        const _isVisible = isVisible(el);
+        const display = options.display || 'block';
+        const duration = options.duration || 400;
+        const onCancelled = options.onCancelled || function () { };
+        if (!_isVisible) {
+            resolve();
+            return;
+        }
+        const defaultStyle = el.getAttribute('style') || '';
+        const style = window.getComputedStyle(el);
+        const isBorderBox = /border-box/.test(style.getPropertyValue('box-sizing'));
+        const minHeight = pxToNumber(style.getPropertyValue('min-height'));
+        const paddingTop = pxToNumber(style.getPropertyValue('padding-top'));
+        const paddingBottom = pxToNumber(style.getPropertyValue('padding-bottom'));
+        const borderTop = pxToNumber(style.getPropertyValue('border-top-width'));
+        const borderBottom = pxToNumber(style.getPropertyValue('border-bottom-width'));
+        const contentHeight = el.scrollHeight;
+        const cssDuration = duration + 'ms';
+        const cssEasing = CSS_EASEOUT_EXPO;
+        const cssTransition = [
+            `height ${cssDuration} ${cssEasing}`,
+            `padding ${cssDuration} ${cssEasing}`,
+            `border-width ${cssDuration} ${cssEasing}`
+        ].join();
+        const startHeight = !isBorderBox ?
+            `${contentHeight - paddingTop - paddingBottom}px` :
+            `${contentHeight + borderTop + borderBottom}px`;
+        const startMinHeight = `${minHeight}px`;
+        const startPaddingTop = `${paddingTop}px`;
+        const startPaddingBottom = `${paddingBottom}px`;
+        const startBorderTopWidth = `${borderTop}px`;
+        const startBorderBottomWidth = `${borderBottom}px`;
+        requestAnimationFrame(() => {
+            el.style.height = startHeight;
+            el.style.minHeight = startMinHeight;
+            el.style.paddingTop = startPaddingTop;
+            el.style.paddingBottom = startPaddingBottom;
+            el.style.borderTopWidth = startBorderTopWidth;
+            el.style.borderBottomWidth = startBorderBottomWidth;
+            el.style.display = display;
+            el.style.overflow = 'hidden';
+            el.style.transition = cssTransition;
+            el.style.webkitTransition = cssTransition;
+            requestAnimationFrame(() => {
+                el.style.height = '0';
+                el.style.minHeight = '0';
+                el.style.paddingTop = '0';
+                el.style.paddingBottom = '0';
+                el.style.borderTopWidth = '0';
+                el.style.borderBottomWidth = '0';
+            });
+        });
+        const timeoutId = setTimeout(() => {
+            resetStyle(el);
+            el.style.display = 'none';
+            inAnimItems.remove(el);
+            resolve();
+        }, duration);
+        inAnimItems.add(el, defaultStyle, timeoutId, onCancelled);
+    });
+}
+function slideStop(el) {
+    const elementObject = inAnimItems.find(el);
+    if (!elementObject)
+        return;
+    const style = window.getComputedStyle(el);
+    const height = style.height;
+    const paddingTop = style.paddingTop;
+    const paddingBottom = style.paddingBottom;
+    const borderTopWidth = style.borderTopWidth;
+    const borderBottomWidth = style.borderBottomWidth;
+    resetStyle(el);
+    el.style.height = height;
+    el.style.paddingTop = paddingTop;
+    el.style.paddingBottom = paddingBottom;
+    el.style.borderTopWidth = borderTopWidth;
+    el.style.borderBottomWidth = borderBottomWidth;
+    el.style.overflow = 'hidden';
+    inAnimItems.remove(el);
+}
+function isVisible(el) {
+    return el.offsetHeight !== 0;
+}
+function resetStyle(el) {
+    el.style.visibility = '';
+    el.style.height = '';
+    el.style.minHeight = '';
+    el.style.paddingTop = '';
+    el.style.paddingBottom = '';
+    el.style.borderTopWidth = '';
+    el.style.borderBottomWidth = '';
+    el.style.overflow = '';
+    el.style.transition = '';
+    el.style.webkitTransition = '';
+}
+function getDefaultStyles(el, defaultDisplay = 'block') {
+    const defaultStyle = el.getAttribute('style') || '';
+    const style = window.getComputedStyle(el);
+    el.style.visibility = 'hidden';
+    el.style.display = defaultDisplay;
+    const width = pxToNumber(style.getPropertyValue('width'));
+    el.style.position = 'absolute';
+    el.style.width = `${width}px`;
+    el.style.height = '';
+    el.style.minHeight = '';
+    el.style.paddingTop = '';
+    el.style.paddingBottom = '';
+    el.style.borderTopWidth = '';
+    el.style.borderBottomWidth = '';
+    const minHeight = pxToNumber(style.getPropertyValue('min-height'));
+    const paddingTop = pxToNumber(style.getPropertyValue('padding-top'));
+    const paddingBottom = pxToNumber(style.getPropertyValue('padding-bottom'));
+    const borderTop = pxToNumber(style.getPropertyValue('border-top-width'));
+    const borderBottom = pxToNumber(style.getPropertyValue('border-bottom-width'));
+    const height = el.scrollHeight;
+    el.setAttribute('style', defaultStyle);
+    return {
+        height,
+        minHeight,
+        paddingTop,
+        paddingBottom,
+        borderTop,
+        borderBottom
+    };
+}
+function pxToNumber(px) {
+    return +px.replace(/px/, '');
+}
+
 function localStorageAvailable() {
   var test = "test";
   try {
@@ -4525,265 +4784,6 @@ function formatMoney(cents, format) {
 // more data than the .json endpoint.
 
 var getProduct = (handle => cb => fetch("".concat(window.theme.routes.products, "/").concat(handle, ".js")).then(res => res.json()).then(data => cb(data)).catch(err => console.log(err.message)));
-
-/*!
- * slide-anim
- * https://github.com/yomotsu/slide-anim
- * (c) 2017 @yomotsu
- * Released under the MIT License.
- */
-const pool = [];
-const inAnimItems = {
-    add(el, defaultStyle, timeoutId, onCancelled) {
-        const inAnimItem = { el, defaultStyle, timeoutId, onCancelled };
-        this.remove(el);
-        pool.push(inAnimItem);
-    },
-    remove(el) {
-        const index = inAnimItems.findIndex(el);
-        if (index === -1)
-            return;
-        const inAnimItem = pool[index];
-        clearTimeout(inAnimItem.timeoutId);
-        inAnimItem.onCancelled();
-        pool.splice(index, 1);
-    },
-    find(el) {
-        return pool[inAnimItems.findIndex(el)];
-    },
-    findIndex(el) {
-        let index = -1;
-        pool.some((item, i) => {
-            if (item.el === el) {
-                index = i;
-                return true;
-            }
-            return false;
-        });
-        return index;
-    }
-};
-
-const CSS_EASEOUT_EXPO = 'cubic-bezier( 0.19, 1, 0.22, 1 )';
-function slideDown(el, options = {}) {
-    return new Promise((resolve) => {
-        if (inAnimItems.findIndex(el) !== -1)
-            return;
-        const _isVisible = isVisible(el);
-        const hasEndHeight = typeof options.endHeight === 'number';
-        const display = options.display || 'block';
-        const duration = options.duration || 400;
-        const onCancelled = options.onCancelled || function () { };
-        const defaultStyle = el.getAttribute('style') || '';
-        const style = window.getComputedStyle(el);
-        const defaultStyles = getDefaultStyles(el, display);
-        const isBorderBox = /border-box/.test(style.getPropertyValue('box-sizing'));
-        const contentHeight = defaultStyles.height;
-        const minHeight = defaultStyles.minHeight;
-        const paddingTop = defaultStyles.paddingTop;
-        const paddingBottom = defaultStyles.paddingBottom;
-        const borderTop = defaultStyles.borderTop;
-        const borderBottom = defaultStyles.borderBottom;
-        const cssDuration = `${duration}ms`;
-        const cssEasing = CSS_EASEOUT_EXPO;
-        const cssTransition = [
-            `height ${cssDuration} ${cssEasing}`,
-            `min-height ${cssDuration} ${cssEasing}`,
-            `padding ${cssDuration} ${cssEasing}`,
-            `border-width ${cssDuration} ${cssEasing}`
-        ].join();
-        const startHeight = _isVisible ? style.height : '0px';
-        const startMinHeight = _isVisible ? style.minHeight : '0px';
-        const startPaddingTop = _isVisible ? style.paddingTop : '0px';
-        const startPaddingBottom = _isVisible ? style.paddingBottom : '0px';
-        const startBorderTopWidth = _isVisible ? style.borderTopWidth : '0px';
-        const startBorderBottomWidth = _isVisible ? style.borderBottomWidth : '0px';
-        const endHeight = (() => {
-            if (hasEndHeight)
-                return `${options.endHeight}px`;
-            return !isBorderBox ?
-                `${contentHeight - paddingTop - paddingBottom}px` :
-                `${contentHeight + borderTop + borderBottom}px`;
-        })();
-        const endMinHeight = `${minHeight}px`;
-        const endPaddingTop = `${paddingTop}px`;
-        const endPaddingBottom = `${paddingBottom}px`;
-        const endBorderTopWidth = `${borderTop}px`;
-        const endBorderBottomWidth = `${borderBottom}px`;
-        if (startHeight === endHeight &&
-            startPaddingTop === endPaddingTop &&
-            startPaddingBottom === endPaddingBottom &&
-            startBorderTopWidth === endBorderTopWidth &&
-            startBorderBottomWidth === endBorderBottomWidth) {
-            resolve();
-            return;
-        }
-        requestAnimationFrame(() => {
-            el.style.height = startHeight;
-            el.style.minHeight = startMinHeight;
-            el.style.paddingTop = startPaddingTop;
-            el.style.paddingBottom = startPaddingBottom;
-            el.style.borderTopWidth = startBorderTopWidth;
-            el.style.borderBottomWidth = startBorderBottomWidth;
-            el.style.display = display;
-            el.style.overflow = 'hidden';
-            el.style.visibility = 'visible';
-            el.style.transition = cssTransition;
-            el.style.webkitTransition = cssTransition;
-            requestAnimationFrame(() => {
-                el.style.height = endHeight;
-                el.style.minHeight = endMinHeight;
-                el.style.paddingTop = endPaddingTop;
-                el.style.paddingBottom = endPaddingBottom;
-                el.style.borderTopWidth = endBorderTopWidth;
-                el.style.borderBottomWidth = endBorderBottomWidth;
-            });
-        });
-        const timeoutId = setTimeout(() => {
-            resetStyle(el);
-            el.style.display = display;
-            if (hasEndHeight) {
-                el.style.height = `${options.endHeight}px`;
-                el.style.overflow = `hidden`;
-            }
-            inAnimItems.remove(el);
-            resolve();
-        }, duration);
-        inAnimItems.add(el, defaultStyle, timeoutId, onCancelled);
-    });
-}
-function slideUp(el, options = {}) {
-    return new Promise((resolve) => {
-        if (inAnimItems.findIndex(el) !== -1)
-            return;
-        const _isVisible = isVisible(el);
-        const display = options.display || 'block';
-        const duration = options.duration || 400;
-        const onCancelled = options.onCancelled || function () { };
-        if (!_isVisible) {
-            resolve();
-            return;
-        }
-        const defaultStyle = el.getAttribute('style') || '';
-        const style = window.getComputedStyle(el);
-        const isBorderBox = /border-box/.test(style.getPropertyValue('box-sizing'));
-        const minHeight = pxToNumber(style.getPropertyValue('min-height'));
-        const paddingTop = pxToNumber(style.getPropertyValue('padding-top'));
-        const paddingBottom = pxToNumber(style.getPropertyValue('padding-bottom'));
-        const borderTop = pxToNumber(style.getPropertyValue('border-top-width'));
-        const borderBottom = pxToNumber(style.getPropertyValue('border-bottom-width'));
-        const contentHeight = el.scrollHeight;
-        const cssDuration = duration + 'ms';
-        const cssEasing = CSS_EASEOUT_EXPO;
-        const cssTransition = [
-            `height ${cssDuration} ${cssEasing}`,
-            `padding ${cssDuration} ${cssEasing}`,
-            `border-width ${cssDuration} ${cssEasing}`
-        ].join();
-        const startHeight = !isBorderBox ?
-            `${contentHeight - paddingTop - paddingBottom}px` :
-            `${contentHeight + borderTop + borderBottom}px`;
-        const startMinHeight = `${minHeight}px`;
-        const startPaddingTop = `${paddingTop}px`;
-        const startPaddingBottom = `${paddingBottom}px`;
-        const startBorderTopWidth = `${borderTop}px`;
-        const startBorderBottomWidth = `${borderBottom}px`;
-        requestAnimationFrame(() => {
-            el.style.height = startHeight;
-            el.style.minHeight = startMinHeight;
-            el.style.paddingTop = startPaddingTop;
-            el.style.paddingBottom = startPaddingBottom;
-            el.style.borderTopWidth = startBorderTopWidth;
-            el.style.borderBottomWidth = startBorderBottomWidth;
-            el.style.display = display;
-            el.style.overflow = 'hidden';
-            el.style.transition = cssTransition;
-            el.style.webkitTransition = cssTransition;
-            requestAnimationFrame(() => {
-                el.style.height = '0';
-                el.style.minHeight = '0';
-                el.style.paddingTop = '0';
-                el.style.paddingBottom = '0';
-                el.style.borderTopWidth = '0';
-                el.style.borderBottomWidth = '0';
-            });
-        });
-        const timeoutId = setTimeout(() => {
-            resetStyle(el);
-            el.style.display = 'none';
-            inAnimItems.remove(el);
-            resolve();
-        }, duration);
-        inAnimItems.add(el, defaultStyle, timeoutId, onCancelled);
-    });
-}
-function slideStop(el) {
-    const elementObject = inAnimItems.find(el);
-    if (!elementObject)
-        return;
-    const style = window.getComputedStyle(el);
-    const height = style.height;
-    const paddingTop = style.paddingTop;
-    const paddingBottom = style.paddingBottom;
-    const borderTopWidth = style.borderTopWidth;
-    const borderBottomWidth = style.borderBottomWidth;
-    resetStyle(el);
-    el.style.height = height;
-    el.style.paddingTop = paddingTop;
-    el.style.paddingBottom = paddingBottom;
-    el.style.borderTopWidth = borderTopWidth;
-    el.style.borderBottomWidth = borderBottomWidth;
-    el.style.overflow = 'hidden';
-    inAnimItems.remove(el);
-}
-function isVisible(el) {
-    return el.offsetHeight !== 0;
-}
-function resetStyle(el) {
-    el.style.visibility = '';
-    el.style.height = '';
-    el.style.minHeight = '';
-    el.style.paddingTop = '';
-    el.style.paddingBottom = '';
-    el.style.borderTopWidth = '';
-    el.style.borderBottomWidth = '';
-    el.style.overflow = '';
-    el.style.transition = '';
-    el.style.webkitTransition = '';
-}
-function getDefaultStyles(el, defaultDisplay = 'block') {
-    const defaultStyle = el.getAttribute('style') || '';
-    const style = window.getComputedStyle(el);
-    el.style.visibility = 'hidden';
-    el.style.display = defaultDisplay;
-    const width = pxToNumber(style.getPropertyValue('width'));
-    el.style.position = 'absolute';
-    el.style.width = `${width}px`;
-    el.style.height = '';
-    el.style.minHeight = '';
-    el.style.paddingTop = '';
-    el.style.paddingBottom = '';
-    el.style.borderTopWidth = '';
-    el.style.borderBottomWidth = '';
-    const minHeight = pxToNumber(style.getPropertyValue('min-height'));
-    const paddingTop = pxToNumber(style.getPropertyValue('padding-top'));
-    const paddingBottom = pxToNumber(style.getPropertyValue('padding-bottom'));
-    const borderTop = pxToNumber(style.getPropertyValue('border-top-width'));
-    const borderBottom = pxToNumber(style.getPropertyValue('border-bottom-width'));
-    const height = el.scrollHeight;
-    el.setAttribute('style', defaultStyle);
-    return {
-        height,
-        minHeight,
-        paddingTop,
-        paddingBottom,
-        borderTop,
-        borderBottom
-    };
-}
-function pxToNumber(px) {
-    return +px.replace(/px/, '');
-}
 
 function accordion(node, options) {
   const labels = t$2(".accordion__label", node);
@@ -6531,7 +6531,9 @@ const selectors$G = {
   customOptionInputTargetsById: id => "[data-custom-option-target='".concat(id, "']"),
   giftCardRecipientContainer: ".product-form__gift-card-recipient",
   productMedia: "[data-product-media]",
-  moreMediaButton: "[data-more-media]"
+  moreMediaButton: "[data-more-media]",
+  header: "[data-section-type='header']",
+  shouldAutoCollapse: '.product-accordion-group[data-auto-collapse="true"]'
 };
 const useCustomEvents$2 = (_window$flu$states$2 = window.flu.states) === null || _window$flu$states$2 === void 0 ? void 0 : _window$flu$states$2.useCustomEvents;
 class Product {
@@ -6665,6 +6667,16 @@ class Product {
 
     // Sticky ATC Bar
     this.stickyAtcBar = stickyAtcBar(this.container);
+
+    // Header info for auto-collapse rows
+    this.header = n$2(selectors$G.header, document);
+    this.isStickyHeader = this.header.dataset.enableStickyHeader === "true";
+
+    // Auto-collapse rows
+    this.shouldAutoCollapse = this.container.querySelector(selectors$G.shouldAutoCollapse);
+    if (this.shouldAutoCollapse) {
+      this._autoCollapseRows();
+    }
   }
   _initEvents() {
     this.events = [];
@@ -6782,6 +6794,106 @@ class Product {
       }
     });
   }
+  _autoCollapseRows() {
+    const groups = t$2('.product-accordion-group[data-auto-collapse="true"]', this.container);
+    const leftColumnGroups = [];
+    const rightColumnGroups = [];
+    groups.forEach(group => {
+      const groupAccordionLabels = t$2(".accordion__label", group);
+      if (!groupAccordionLabels.length) return;
+
+      // There are 2 containers we care about with product blocks:
+      //  - `product__top`
+      //     - This holds the left and right column blocks, but the left column only displays on desktop
+      //  - `product__bottom`
+      //     - This holds the left column blocks so they can be displayed below the right column blocks on mobile
+      //
+      // Due to this structure, we're basically saying that there are 2 "column groups":
+      //   - The left column
+      //   - The right column
+      //   - This also includes the mobile version of the left column
+      //
+      // As a result, the left and right column blocks will auto-close rows within their respective columns on desktop.
+      // On mobile, the left and right columns are technically combined into the right column.
+      if (group.closest(".product__primary-left")) {
+        leftColumnGroups.push({
+          group,
+          groupAccordionLabels
+        });
+      } else {
+        rightColumnGroups.push({
+          group,
+          groupAccordionLabels
+        });
+      }
+      const onAutoCollapseClick = event => {
+        const label = event.currentTarget;
+        const content = label.nextElementSibling;
+        if (!content) return; // no content
+        if (isVisible(content)) return; // already open
+
+        // Determine which column the current target is in and close any rows from groups in
+        // the same column, as well as any other rows in the same group
+        const currentColumnGroups = group.closest(".product__primary-left") ? leftColumnGroups : rightColumnGroups;
+
+        // close any open rows in the same column
+        currentColumnGroups.forEach(_ref2 => {
+          let {
+            group: columnGroup,
+            groupAccordionLabels: columnGroupLabels
+          } = _ref2;
+          columnGroupLabels.forEach(columnLabel => {
+            if (columnGroup === group && columnLabel === label) return;
+            const columnContent = columnLabel.nextElementSibling;
+            if (columnContent && isVisible(columnContent)) {
+              this._closeOpenGroups(columnLabel, columnLabel.parentNode, columnContent);
+            }
+          });
+        });
+        setTimeout(() => {
+          if (this._isInView(label) === false) {
+            label.scrollIntoView({
+              block: "start",
+              behavior: "smooth"
+            });
+          }
+        }, 200);
+      };
+      this.events.push(e$2(groupAccordionLabels, "click", onAutoCollapseClick));
+    });
+  }
+  _closeOpenGroups(label, group, content) {
+    slideStop(content);
+    slideUp(content);
+    group.setAttribute("data-open", false);
+    label.setAttribute("aria-expanded", false);
+    content.setAttribute("aria-hidden", true);
+  }
+  _isInView(element) {
+    let headerHeight = 0;
+    let mobileHeaderHeight = 0;
+    let announcementHeight = 0;
+    if (this.isStickyHeader) {
+      //desktop
+      headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-desktop-sticky-height").replace(/px/gi, ""));
+
+      //mobile
+      mobileHeaderHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--height-header").replace(/px/gi, ""));
+      announcementHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--announcement-height").replace(/px/gi, ""));
+
+      // set vars to use for scroll-margin-top on mobile.
+      document.documentElement.style.setProperty("--mobile-sticky-header-height", "".concat(mobileHeaderHeight, "px"));
+      document.documentElement.style.setProperty("--mobile-sticky-announcement-height", "".concat(announcementHeight, "px"));
+
+      // On mobile '--header-desktop-sticky-height' is '0' so we have to set the headerHeight using the
+      // using the mobile vars for proper in view calculation on mobile.
+      if (headerHeight === 0) {
+        headerHeight = mobileHeaderHeight + announcementHeight;
+      }
+    }
+    const rect = element.getBoundingClientRect();
+    return rect.top >= headerHeight && rect.bottom <= window.innerHeight;
+  }
   _switchCurrentImage(id, viewInYourSpaceEl) {
     var _this$mediaContainers2, _this$mediaContainers3;
     (_this$mediaContainers2 = this.mediaContainersMobile) === null || _this$mediaContainers2 === void 0 || _this$mediaContainers2.pauseActiveMedia();
@@ -6798,7 +6910,8 @@ class Product {
 
         // Add active class to thumbnail
         (_mediaContainer$query = mediaContainer.querySelector(selectors$G.thumbById(id))) === null || _mediaContainer$query === void 0 || _mediaContainer$query.classList.add("active");
-
+      }
+      if (galleryStyle === "thumbnails" || this.isFeaturedProduct || this.isQuickView) {
         // Swap main image
         switchImage(mediaContainer.querySelector(".product__media"), id, viewInYourSpaceEl);
       }
@@ -6827,19 +6940,22 @@ class Product {
       this._loadAccordions();
       this.featuredProducts = featuredProducts(this.container);
       this._initEvents();
+      if (this.shouldAutoCollapse) {
+        this._autoCollapseRows();
+      }
     }).catch(error => {
       throw error;
     });
   }
 
   // When the user changes a product option
-  onOptionChange(_ref2) {
+  onOptionChange(_ref3) {
     let {
       dataset: {
         variant
       },
       srcElement
-    } = _ref2;
+    } = _ref3;
     // Update option label
     const optionParentWrapper = srcElement.closest(selectors$G.productOption);
     const optionLabel = n$2(selectors$G.optionLabelValue, optionParentWrapper);
@@ -6970,13 +7086,13 @@ class Product {
   }
 
   // When user updates quantity
-  onQuantityChange(_ref3) {
+  onQuantityChange(_ref4) {
     let {
       dataset: {
         variant,
         quantity
       }
-    } = _ref3;
+    } = _ref4;
     // Adjust the hidden quantity input within the form
     const quantityInputs = [...t$2('[name="quantity"]', this.formElement)];
     quantityInputs.forEach(quantityInput => {
@@ -7003,10 +7119,10 @@ class Product {
     if (!purchaseConfirmation && !quickCart) return;
     e.preventDefault();
     u$1(this.quantityError, "hidden");
-    cart.addItem(this.formElement).then(_ref4 => {
+    cart.addItem(this.formElement).then(_ref5 => {
       let {
         item
-      } = _ref4;
+      } = _ref5;
       buttonEls.forEach(button => {
         i$1(button, "loading");
       });
@@ -7031,8 +7147,8 @@ class Product {
       if (error && error.message) {
         if (typeof error.message === "object") {
           const sectionID = n$2(selectors$G.giftCardRecipientContainer, this.container).dataset.sectionId;
-          Object.entries(error.message).forEach(_ref5 => {
-            let [key, value] = _ref5;
+          Object.entries(error.message).forEach(_ref6 => {
+            let [key, value] = _ref6;
             const errorMessageID = "display-gift-card-recipient-".concat(key, "-error--").concat(sectionID);
             const errorMessage = n$2("#".concat(errorMessageID), this.container);
             const errorInput = n$2("#display-gift-card-recipient-".concat(key, "--").concat(sectionID), this.container);
@@ -9334,11 +9450,15 @@ register("blog-posts", {
 });
 
 const selectors$q = {
-  itemTrigger: ".collapsible-row-list-item__trigger"
+  itemTrigger: ".collapsible-row-list-item__trigger",
+  header: "[data-section-type='header']"
 };
 register("collapsible-row-list", {
   onLoad() {
     this.items = t$2(selectors$q.itemTrigger, this.container);
+    this.header = n$2(selectors$q.header, document);
+    this.isStickyHeader = this.header.dataset.enableStickyHeader === "true";
+    this.shouldAutoCollapse = this.container.dataset.autoCollapse === "true";
     this.clickHandlers = e$2(this.items, "click", e => {
       e.preventDefault();
       const {
@@ -9355,21 +9475,49 @@ register("collapsible-row-list", {
       this.animateCollapsibleRowList = animateCollapsibleRowList(this.container);
     }
   },
+  _closeOpenGroups(currentGroup) {
+    for (const label of this.items) {
+      const group = label.parentNode;
+      if (group === currentGroup) continue;
+      const content = label.nextElementSibling;
+      if (content && isVisible(content)) {
+        this._toggle(label, group, content, "up", false);
+      }
+    }
+  },
   _open(label, group, content) {
     if (!content) return;
-    slideStop(content);
-    slideDown(content);
-    group.setAttribute("data-open", true);
-    label.setAttribute("aria-expanded", true);
-    content.setAttribute("aria-hidden", false);
+    if (this.shouldAutoCollapse) {
+      this._closeOpenGroups(group);
+      setTimeout(() => {
+        if (this._isInView(label) === false) {
+          label.scrollIntoView({
+            block: "start",
+            behavior: "smooth"
+          });
+        }
+      }, 200);
+    }
+    this._toggle(label, group, content, "down", true);
   },
   _close(label, group, content) {
     if (!content) return;
+    this._toggle(label, group, content, "up", false);
+  },
+  _isInView(element) {
+    let headerHeight = 0;
+    if (this.isStickyHeader) {
+      headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-desktop-sticky-height").replace(/px/gi, ""));
+    }
+    const rect = element.getBoundingClientRect();
+    return rect.top >= headerHeight && rect.bottom <= window.innerHeight;
+  },
+  _toggle(label, group, content, direction, isOpen) {
     slideStop(content);
-    slideUp(content);
-    group.setAttribute("data-open", false);
-    label.setAttribute("aria-expanded", false);
-    content.setAttribute("aria-hidden", true);
+    direction === "down" ? slideDown(content) : slideUp(content);
+    group.setAttribute("data-open", isOpen);
+    label.setAttribute("aria-expanded", isOpen);
+    content.setAttribute("aria-hidden", !isOpen);
   },
   onBlockSelect(_ref) {
     let {
@@ -9936,7 +10084,9 @@ const selectors$k = {
   navigationDot: ".slideshow-navigation__dot",
   navigationLoader: ".slideshow-navigation__dot-loader",
   animatableItems: ".animation--section-blocks > *",
-  pageFooter: "footer"
+  pageFooter: "footer",
+  video: "[data-background-video]",
+  videoSlide: "[data-slide][data-slide-type='video']"
 };
 register("slideshow", {
   onLoad() {
@@ -9987,14 +10137,19 @@ register("slideshow", {
             renderBullet: (_, className) => "\n                <button class=\"".concat(className, "\" type=\"button\">\n                  <div class=\"slideshow-navigation__dot-loader\"></div>\n                </button>")
           },
           on: {
-            afterInit: () => {
+            afterInit: swiper => {
               this.handleBulletLabels();
+              this.manageVideoState(swiper.realIndex);
             },
-            slideChangeTransitionEnd() {
+            slideChange: swiper => {
+              this.manageVideoState(swiper.realIndex);
+            },
+            slideChangeTransitionEnd: () => {
               const slideEls = this.slides;
-              setTimeout(function () {
+              setTimeout(() => {
                 slideEls.forEach(slide => {
-                  slide.toggleAttribute("inert", !slide.classList.contains("swiper-slide-active"));
+                  const isActive = slide.classList.contains("swiper-slide-active");
+                  slide.toggleAttribute("inert", !isActive);
                 });
               }, 50);
             }
@@ -10082,6 +10237,55 @@ register("slideshow", {
       loader.style.animationPlayState = "running";
     });
   },
+  manageVideoState(realIndex) {
+    const formatedIndex = realIndex + 1;
+    const realIndexString = formatedIndex.toString();
+    // Slides get duplicated when swiper loops so we need to find all the videos
+    const allVideoSlides = t$2(selectors$k.videoSlide, this.container);
+    allVideoSlides.forEach(slide => {
+      const video = slide.querySelector(selectors$k.video);
+      if (!video) return;
+      const pauseBtn = slide.querySelector("[js-video-pause-button]");
+      const slideIndex = slide.dataset.slide;
+      if (realIndexString === slideIndex) {
+        // don't auto-play if user paused via a11y button
+        if (video.dataset.a11yPriorityPause === "true") {
+          return;
+        }
+        this.setPlayPause(video, pauseBtn, "play");
+      } else {
+        this.setPlayPause(video, pauseBtn, "pause");
+      }
+    });
+  },
+  setPlayPause(video, pauseBtn, state) {
+    if (!video) return;
+    const {
+      strings: {
+        accessibility: strings
+      },
+      icons
+    } = window.theme;
+    if (state === "pause") {
+      video.pause();
+      if (pauseBtn) {
+        if (pauseBtn.dataset.pauseButtonContent === "icon") {
+          pauseBtn.innerHTML = icons.play;
+        } else {
+          pauseBtn.innerText = strings.play_video;
+        }
+      }
+    } else {
+      video.play();
+      if (pauseBtn) {
+        if (pauseBtn.dataset.pauseButtonContent === "icon") {
+          pauseBtn.innerHTML = icons.pause;
+        } else {
+          pauseBtn.innerText = strings.pause_video;
+        }
+      }
+    }
+  },
   handleFocus() {
     if (a$1(document.body, "user-is-tabbing")) {
       this.pauseSlideshow();
@@ -10098,8 +10302,16 @@ register("slideshow", {
     });
   },
   handleBlockSelect(slideIndex) {
-    this.slideshow.slideTo(parseInt(slideIndex, 10));
+    const index = parseInt(slideIndex, 10);
+    if (!this.slideshow) return;
+    this.slideshow.slideTo(index);
     this.pauseSlideshow();
+
+    // sync background video when slide/block is updated
+    // swiper realIndex is 0-based, data-slide is 1-based
+    setTimeout(() => {
+      this.manageVideoState(index - 1);
+    }, 50);
   },
   handleBlockDeselect() {
     this.playSlideshow();
@@ -10111,6 +10323,7 @@ register("slideshow", {
     const {
       slide
     } = target.dataset;
+    if (!slide) return;
     if (this.slideshow) {
       this.handleBlockSelect(slide);
     } else {
@@ -11831,7 +12044,10 @@ const selectors$3 = {
   tabLabels: "[data-tab-label]",
   tabItems: "[data-tab-item]",
   tabList: "[data-tab-list]",
-  activeTabItem: "[data-tab-item][aria-hidden='false']"
+  activeTabItem: "[data-tab-item][aria-hidden='false']",
+  mobileAccordion: ".product-tabs__mobile-accordions",
+  mobileLabel: ".accordion__label",
+  header: "[data-section-type='header']"
 };
 register("product-tabs", {
   onLoad() {
@@ -11861,6 +12077,19 @@ register("product-tabs", {
     if (shouldAnimate(this.container)) {
       this.animateProductTabs = animateProductTabs(this.container);
     }
+
+    // Header info for auto-collapse rows
+    this.header = n$2(selectors$3.header, document);
+    this.isStickyHeader = this.header.dataset.enableStickyHeader === "true";
+    this.headerHeight = 0;
+    this.announcementHeight = 0;
+
+    // Auto-collapse rows
+    this.mobileAccordion = n$2(selectors$3.mobileAccordion, this.container);
+    this.shouldAutoCollapse = this.mobileAccordion.dataset.autoCollapse === "true";
+    if (this.shouldAutoCollapse) {
+      this._mobileAutoCollapse();
+    }
   },
   _closeAll() {
     this.tabLabels.forEach(label => {
@@ -11887,6 +12116,54 @@ register("product-tabs", {
     const height = content.offsetHeight;
     this.tabList.style.height = "".concat(height, "px");
   },
+  // mobile accordion
+  _mobileAutoCollapse() {
+    this.mobileAccordion = n$2(selectors$3.mobileAccordion, this.container);
+    if (!this.mobileAccordion) return;
+    this.mobileLabels = t$2(selectors$3.mobileLabel, this.mobileAccordion);
+    if (!this.mobileLabels.length) return;
+    this.mobileAutoCollapseClick = e$2(this.mobileLabels, "click", event => {
+      const label = event.currentTarget;
+      const group = label.parentNode;
+      const content = label.nextElementSibling;
+      if (!content || isVisible(content)) return;
+      this._closeOpenMobileRows(group);
+      setTimeout(() => {
+        const inViewData = this._isInView(label);
+        if (!inViewData.inView) {
+          window.scrollTo({
+            top: window.scrollY + inViewData.elementTop - (this.headerHeight + this.announcementHeight),
+            behavior: "smooth"
+          });
+        }
+      }, 400);
+    });
+  },
+  _closeOpenMobileRows(currentGroup) {
+    for (const label of this.mobileLabels) {
+      const group = label.parentNode;
+      if (group === currentGroup) continue;
+      const content = label.nextElementSibling;
+      if (content && isVisible(content)) {
+        slideStop(content);
+        slideUp(content);
+        group.setAttribute("data-open", false);
+        label.setAttribute("aria-expanded", false);
+        content.setAttribute("aria-hidden", true);
+      }
+    }
+  },
+  _isInView(element) {
+    if (this.isStickyHeader) {
+      this.headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--height-header").replace(/px/gi, ""));
+      this.announcementHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--announcement-height").replace(/px/gi, ""));
+    }
+    const rect = element.getBoundingClientRect();
+    return {
+      inView: rect.top >= this.headerHeight + this.announcementHeight && rect.bottom <= window.innerHeight,
+      elementTop: rect.top
+    };
+  },
   onBlockSelect(_ref) {
     let {
       target
@@ -11897,10 +12174,11 @@ register("product-tabs", {
     this._open(target, content);
   },
   onUnload() {
-    var _this$animateProductT;
+    var _this$animateProductT, _this$mobileAutoColla;
     this.clickHandlers();
     this.accordions.forEach(accordion => accordion.unload());
     (_this$animateProductT = this.animateProductTabs) === null || _this$animateProductT === void 0 || _this$animateProductT.destroy();
+    (_this$mobileAutoColla = this.mobileAutoCollapseClick) === null || _this$mobileAutoColla === void 0 || _this$mobileAutoColla.call(this);
   }
 });
 
@@ -13872,7 +14150,7 @@ backToTop();
 
 // Make it easy to see exactly what theme version
 // this is by commit SHA
-window.SHA = "c7e203cca8";
+window.SHA = "846f497688";
 if (!sessionStorage.getItem("flu_stat_recorded") && !((_window$Shopify = window.Shopify) !== null && _window$Shopify !== void 0 && _window$Shopify.designMode)) {
   var _window$Shopify2, _window$Shopify3;
   // eslint-disable-next-line no-process-env

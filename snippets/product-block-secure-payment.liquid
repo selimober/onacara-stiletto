@@ -47,12 +47,11 @@
 {% endcapture %}
 
 {% if block_settings.display_as_collapsible_row %}
-  {%-
-    render 'product-block-accordion' with
+  {%- render 'product-block-accordion',
     block: block,
     block_settings: block_settings,
     heading: block_settings.collapsible_row_title,
-    content: content,
+    content: content
   -%}
 {% else %}
   <div

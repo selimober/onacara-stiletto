@@ -54,17 +54,25 @@
     <div class="product__color-swatches" style="{{ swatch_style }}">
       <div class="product__color-swatches--inner">
         {%- for sibling_product in sibling_products -%}
-          {% render 'product-swatch',
+          {%- liquid
+            assign selected_value = false
+
+            if product.id == sibling_product.id
+              assign selected_value = true
+            endif
+          -%}
+
+          {% render 'product-sibling-swatch',
             context: 'product-page',
-            prod: product,
             forloop_index: forloop.index,
             swatch_size: block_settings.swatch_size,
             swatch_image_width: swatch_image_width,
             sibling_product: sibling_product,
-            option_name: settings.siblings_option_name,
-            option_value: sibling_product.metafields.stiletto.sibling_option_name,
+            sibling_label_name: settings.siblings_option_name,
+            sibling_option_name: sibling_product.metafields.stiletto.sibling_option_name,
             custom_color_key_map: custom_color_key_map,
-            custom_color_value_map: custom_color_value_map
+            custom_color_value_map: custom_color_value_map,
+            selected_value: selected_value
           %}
         {%- endfor -%}
       </div>
@@ -97,16 +105,40 @@
         assign show_popup_trigger = false
         assign rendered_popup_trigger = ''
         assign option_values = ''
+        assign hide_variant_option = false
 
         if variant_popup_content_exists and option_name == variant_popup_option
           assign show_popup_trigger = true
+        endif
+
+        # Hide "duplicate" variant options for sibling products with a single option value added to use category
+        # metafields for swatches.
+        if show_siblings
+          assign option_single_value = false
+          assign matches_sibling_value = false
+
+          if option.values.size == 1
+            assign option_single_value = true
+          endif
+
+          if option_single_value
+            assign option_value_downcased = option.values[0] | downcase | strip
+            assign sibling_downcased = product.metafields.stiletto.sibling_option_name | downcase | strip
+
+            if option_value_downcased == sibling_downcased
+              assign matches_sibling_value = true
+            endif
+          endif
+
+          if option_single_value and matches_sibling_value
+            assign hide_variant_option = true
+          endif
         endif
       -%}
 
       {% if show_popup_trigger %}
         {% capture rendered_popup_trigger %}
-          {%
-            render 'product-block-information-popup' with
+          {% render 'product-block-information-popup',
             block: block,
             popup_page_target: block_settings.variant_popup_page,
             popup_page: variant_popup_page,
@@ -234,13 +266,21 @@
           >
             {{ option_values }}
 
-            {% render 'icon' with icon: 'chevron-small' %}
+            {% render 'icon', icon: 'chevron-small' %}
           </div>
         {%- endif -%}
       {% endcapture %}
 
       {% capture rendered_option %}
-        <div class="js-enabled product__option" data-product-option>
+        <div class="
+          js-enabled
+          product__option
+          {% if hide_variant_option -%}
+            product__option--hidden-sibling-duplicate
+          {%- endif %}
+          "
+          data-product-option
+        >
           <div class="product__label-wrapper">
             <label class="product__label fs-body-100" for="option{{ option.position }}">
               {{ option.name }}:

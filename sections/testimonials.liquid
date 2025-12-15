@@ -19,7 +19,7 @@
         class="testimonials__navigation-button testimonials__navigation-button--prev"
         aria-label="{{ 'general.accessibility.carousel_previous' | t }}"
       >
-        {%- render 'icon' with icon: 'chevron' -%}
+        {%- render 'icon', icon: 'chevron' -%}
       </button>
     </div>
   {%- endif -%}
@@ -33,7 +33,7 @@
         class="testimonials__navigation-button testimonials__navigation-button--next"
         aria-label="{{ 'general.accessibility.carousel_next' | t }}"
       >
-        {%- render 'icon' with icon: 'chevron' -%}
+        {%- render 'icon', icon: 'chevron' -%}
       </button>
     </div>
   {%- endif -%}
@@ -78,8 +78,7 @@
 
       <div class="testimonials__items-wrapper swiper-wrapper">
         {%- for block in section.blocks -%}
-          {%-
-            render 'testimonials-item' with
+          {%- render 'testimonials-item',
             block: block,
             forloop: forloop,
             image_size: section.settings.image_size,

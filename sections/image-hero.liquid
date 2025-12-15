@@ -66,36 +66,37 @@
       --overlay-background-gradient: {{ section.settings.color_overlay_gradient }};
     {% endif %}
     --overlay-opacity: {{ overlay_opacity }};
-    {% render 'overlay-button-vars' with color_button_text: section.settings.button_text_color, color_button_background: section.settings.button_background_color %}
+    {% render 'overlay-button-vars',
+      color_button_text: section.settings.button_text_color,
+      color_button_background: section.settings.button_background_color
+     -%}
   "
 >
   <div class="image-hero__inner">
     <div class="image-hero__image-container">
       {%- if section.settings.image_mobile != blank -%}
-        {%-
-          render 'image' with
-          wrapper_class: "image-hero__image image-hero__image--mobile",
+        {%- render 'image',
+          wrapper_class: 'image-hero__image image-hero__image--mobile',
           image: section.settings.image_mobile,
-          sizes: "100vw",
+          sizes: '100vw',
           focal_point: section.settings.mobile_focal_point,
-          placeholder_name: "lifestyle-2",
+          placeholder_name: 'lifestyle-2',
           animate: true,
-          src_set_type: "full-width",
+          src_set_type: 'full-width',
           prioritize_loading: prioritize_loading
         -%}
       {%- endif -%}
 
-      {%-
-        render 'image' with
-        wrapper_class: "image-hero__image",
+      {%- render 'image',
+        wrapper_class: 'image-hero__image',
         image: section.settings.image,
-        sizes: "100vw",
+        sizes: '100vw',
         focal_point: section.settings.focal_point,
         include_placeholder: true,
         placeholder_natural_fallback_ratio: placeholder_aspect_ratio,
-        placeholder_name: "lifestyle-2",
+        placeholder_name: 'lifestyle-2',
         animate: true,
-        src_set_type: "full-width",
+        src_set_type: 'full-width',
         prioritize_loading: prioritize_loading
       -%}
     </div>
@@ -139,8 +140,7 @@
                   </div>
                 {%- endunless -%}
               {%- when 'image' -%}
-                {%-
-                  render 'image-block' with
+                {%- render 'image-block',
                   shopify_attributes: block.shopify_attributes,
                   wrapper_class: 'image-hero__text-container-image  section-blocks__image',
                   image: block.settings.image,
@@ -148,12 +148,11 @@
                   mobile_width: block.settings.image_size_mobile,
                   break_to_mobile_at: '480',
                   align: text_position_modifier,
-                  align_mobile: text_position_modifier_mobile,
+                  align_mobile: text_position_modifier_mobile
                 -%}
               {%- when 'button' -%}
-                {%-
-                  render 'button-block' with
-                  wrapper_class: "image-hero__text-container-image-button section-blocks__button",
+                {%- render 'button-block',
+                  wrapper_class: 'image-hero__text-container-image-button section-blocks__button',
                   link: block.settings.link,
                   label: block.settings.link_text,
                   button_style: block.settings.button_style,
@@ -164,8 +163,7 @@
                   forloop: forloop
                 -%}
               {%- when 'play-button' -%}
-                {%-
-                  render 'play-button-block' with
+                {%- render 'play-button-block',
                   wrapper_class: 'image-hero__text-container-image-play-button section-blocks__video-button',
                   block: block,
                   button_alignment: text_position_modifier,
@@ -174,7 +172,7 @@
               {%- when 'border' -%}
                 {%- render 'border-block' -%}
               {%- when 'spacer' -%}
-                {%- render 'spacer-block' with space: block.settings.space -%}
+                {%- render 'spacer-block', space: block.settings.space -%}
             {%- endcase -%}
           {%- endfor -%}
         </div>
@@ -766,7 +764,8 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:shared.section_blocks.play_button.settings.play_button.image.label"
+          "label": "t:shared.section_blocks.play_button.settings.play_button.image.label",
+          "info": "t:shared.section_blocks.play_button.settings.play_button.image.info"
         },
         {
           "type": "select",

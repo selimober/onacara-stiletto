@@ -45,7 +45,7 @@
   {%- capture navigation_buttons -%}
     {{ navigation_buttons }}
     {%- capture index_attribute -%}data-navigation="{{ forloop.index0 }}"{%- endcapture -%}
-    {%- render 'carousel-navigation' with wrapper_class: carousel_navigation_class, data_attribute: index_attribute -%}
+    {%- render 'carousel-navigation', wrapper_class: carousel_navigation_class, data_attribute: index_attribute -%}
   {%- endcapture -%}
 
   {%- capture carousel_elements -%}
@@ -137,9 +137,8 @@
           </div>
         {%- endunless -%}
 
-        {%-
-          render 'button-block' with
-          wrapper_class: "featured-collection-slider__header-button section-introduction__button",
+        {%- render 'button-block',
+          wrapper_class: 'featured-collection-slider__header-button section-introduction__button',
           link: section.settings.link,
           label: section.settings.link_text,
           button_style: section.settings.button_style

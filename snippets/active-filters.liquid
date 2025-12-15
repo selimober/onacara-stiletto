@@ -86,7 +86,7 @@
         {%- else -%}
           {{ value.label | escape }}
         {%- endif -%}
-        {%- render 'icon' with icon: 'close-small' -%}
+        {%- render 'icon', icon: 'close-small' -%}
       </a>
     {%- endfor -%}
 
@@ -105,7 +105,7 @@
           {%- else -%}
             {{ filter.range_max | money }}
           {%- endif -%}
-          {%- render 'icon' with icon: 'close-small' -%}
+          {%- render 'icon', icon: 'close-small' -%}
         </a>
       {%- endif -%}
     {% endif %}

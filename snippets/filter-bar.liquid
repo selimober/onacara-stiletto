@@ -83,7 +83,7 @@
             aria-controls="filter-bar-filters"
           {%- endif %}
         >
-          {% render 'icon' with icon: 'filter' %}
+          {% render 'icon', icon: 'filter' %}
 
           <span class="filter-bar__button-text">
             {%- liquid
@@ -101,7 +101,7 @@
 
           {%- liquid
             unless filter_location == 'sidebar'
-              render 'icon' with icon: 'chevron-small'
+              render 'icon', icon: 'chevron-small'
             endunless
           -%}
         </button>
@@ -114,7 +114,7 @@
             aria-expanded="{% if collapse_filter_bar == false or active_filter_count > 0 %}true{% else %}false{% endif %}"
             aria-controls="filter-bar-filters"
           >
-            {% render 'icon' with icon: 'filter' %}
+            {% render 'icon', icon: 'filter' %}
             {{ 'filters.title' | t }}
 
             {%- if active_filter_count > 0 -%}
@@ -126,7 +126,7 @@
 
       {%- if show_item_count -%}
         <p class="filter-bar__results-count fs-body-75" data-results-count>
-          {% render 'results-count' with results_count: results_count %}
+          {% render 'results-count', results_count: results_count %}
         </p>
       {%- endif -%}
 
@@ -152,7 +152,7 @@
             aria-controls="filter-bar-sort"
           >
             <span data-sort-label>{{ 'filters.sort_title' | t }}: {{ sort_by }}</span>
-            {% render 'icon' with icon: 'chevron-small' %}
+            {% render 'icon', icon: 'chevron-small' %}
           </button>
 
           <div
@@ -285,7 +285,7 @@
                   <span class="filter-group__label-count" data-group-active-count>{{ count_content }}</span>
                 {%- endif -%}
 
-                {% render 'icon' with icon: 'chevron-small' %}
+                {% render 'icon', icon: 'chevron-small' %}
               </button>
 
               <div
@@ -428,7 +428,12 @@
     {%- endif -%}
 
     <div class="filter-bar__active-filters">
-      {%- render 'active-filters' with results: results, show_swatch_filters: show_swatch_filters, custom_color_key_map: custom_color_key_map, custom_color_value_map: custom_color_value_map -%}
+      {%- render 'active-filters',
+        results: results,
+        show_swatch_filters: show_swatch_filters,
+        custom_color_key_map: custom_color_key_map,
+        custom_color_value_map: custom_color_value_map
+      -%}
     </div>
   {%- endif -%}
 </form>

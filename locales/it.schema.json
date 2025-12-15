@@ -154,6 +154,10 @@
       },
       "settings": {
         "items": {
+          "auto_collapse_rows": {
+            "info": "Se abilitata, le righe verranno automaticamente compresse quando si apre una nuova riga.",
+            "label": "Righe di compressione automatica"
+          },
           "header": {
             "content": "Elenco articoli"
           },
@@ -671,6 +675,18 @@
         "name": "Cursore collezione in primo piano"
       },
       "settings": {
+        "collection_tabs": {
+          "header": {
+            "content": "Schede di raccolta"
+          },
+          "mobile_display": {
+            "label": "Display mobile",
+            "options": {
+              "rows": "Righe",
+              "slider": "Slider"
+            }
+          }
+        },
         "heading": {
           "default": "Collezione in primo piano"
         }
@@ -908,13 +924,13 @@
             },
             "image": {
               "header": {
-                "content": "Immagine di sfondo"
+                "content": ""
               },
               "image": {
-                "label": "Immagine"
+                "label": ""
               },
               "mobile_image": {
-                "label": "Immagine mobile"
+                "label": ""
               }
             },
             "mobile_height": {
@@ -1642,6 +1658,10 @@
       },
       "name": "Informazioni di prodotto",
       "settings": {
+        "auto_collapse_rows": {
+          "info": "Se abilitata, le righe verranno automaticamente compresse quando si apre una nuova riga.",
+          "label": "Righe di compressione automatica"
+        },
         "enable_sticky_product_details": {
           "label": "Abilita i dettagli del prodotto"
         },
@@ -2543,6 +2563,15 @@
         "name": "Schede prodotto"
       },
       "settings": {
+        "auto_collapse_rows": {
+          "header": {
+            "content": "Righe delle schede mobili"
+          },
+          "settings": {
+            "info": "Se abilitata, le righe delle schede sui dispositivi mobili verranno automaticamente compresse quando si apre una nuova riga.",
+            "label": "Righe di schede con compressione automatica"
+          }
+        },
         "tab_layout": {
           "header": {
             "content": "Disposizione delle schede"
@@ -3352,6 +3381,9 @@
                 "default": "Aggiungi qui il contenuto della tua riga comprimibile.",
                 "label": "Contenuto"
               },
+              "custom_icon_image": {
+                "label": "Immagine icona personalizzata"
+              },
               "custom_liquid": {
                 "info": "Questa operazione sovrascriverà le impostazioni \"Contenuto\" e \"Pagina per il contenuto\" sopra riportate.",
                 "label": "Liquid personalizzato"
@@ -3363,6 +3395,9 @@
                 "default": "Riga pieghevole",
                 "info": "Includi un titolo che spieghi il contenuto.",
                 "label": "Titolo"
+              },
+              "icon": {
+                "label": "Nome icona"
               },
               "page_for_content": {
                 "info": "Questa operazione sovrascriverà l'impostazione \"Contenuto\" di cui sopra.",
@@ -3760,6 +3795,9 @@
                   "default": "Chiamate",
                   "label": "Titolo della riga collassabile"
                 },
+                "custom_icon_image": {
+                  "label": "Immagine icona personalizzata"
+                },
                 "display_as_collapsible_row": {
                   "label": "Visualizzazione come riga pieghevole"
                 },
@@ -3768,6 +3806,9 @@
                 },
                 "header": {
                   "content": "Riga pieghevole"
+                },
+                "icon": {
+                  "label": "Nome icona"
                 }
               },
               "column_placement": {
@@ -4082,7 +4123,7 @@
     },
     "slideshow": {
       "blocks": {
-        "slide": {
+        "image": {
           "name": "Scorrimento",
           "settings": {
             "background_image": {
@@ -4099,44 +4140,64 @@
                 "label": "Collegamento immagine"
               }
             },
-            "button_1": {
-              "header": {
-                "content": "Pulsante 1"
+            "content": {
+              "title": {
+                "default": "Diapositiva dell'immagine"
               }
+            }
+          }
+        },
+        "shared_settings": {
+          "button_1": {
+            "header": {
+              "content": "Pulsante 1"
+            }
+          },
+          "button_2": {
+            "header": {
+              "content": "Pulsante 2"
+            }
+          },
+          "content": {
+            "accent": {
+              "label": "Colore accento"
             },
-            "button_2": {
-              "header": {
-                "content": "Pulsante 2"
+            "header": {
+              "content": "Contenuto"
+            },
+            "subheading": {
+              "label": "Sottotitolo"
+            },
+            "text": {
+              "default": "<p>Utilizza questa sezione per fare una dichiarazione audace</p>",
+              "label": "Testo"
+            },
+            "text_position": {
+              "label": "Posizione del testo"
+            },
+            "text_position_mobile": {
+              "label": "Posizione del testo mobile"
+            },
+            "title": {
+              "default": "Scorrimento",
+              "label": "Titolo"
+            }
+          },
+          "link_text": {
+            "default": "Per saperne di più"
+          }
+        },
+        "video": {
+          "name": "Diapositiva video",
+          "settings": {
+            "background_video": {
+              "media_link": {
+                "label": "Collegamento video"
               }
             },
             "content": {
-              "accent": {
-                "label": "Colore accento"
-              },
-              "header": {
-                "content": "Contenuto"
-              },
-              "subheading": {
-                "label": "Sottotitolo"
-              },
-              "text": {
-                "default": "<p>Utilizza questa sezione per fare una dichiarazione audace</p>",
-                "label": "Testo"
-              },
-              "text_position": {
-                "label": "Posizione del testo"
-              },
-              "text_position_mobile": {
-                "label": "Posizione del testo mobile"
-              },
               "title": {
-                "default": "Scorrimento",
-                "label": "Titolo"
-              }
-            },
-            "shared": {
-              "link_text": {
-                "default": "Per saperne di più"
+                "default": "Diapositiva video"
               }
             }
           }
@@ -4980,8 +5041,8 @@
             "info": "I colori dei prodotti possono essere personalizzati. [Ulteriori informazioni](https://help.fluorescent.co/v/stiletto/product-pages/variant-options/variant-swatches/use-custom-colors)",
             "label": "Fonte del campione",
             "options": {
-              "color": "Colore del prodotto",
-              "image": "Immagine del prodotto"
+              "color": "",
+              "image": ""
             }
           }
         },
@@ -5283,6 +5344,7 @@
               }
             },
             "image": {
+              "info": "Valido solo per i video di YouTube e Vimeo. Per i video di Shopify, clicca sull'icona \"Modifica\" nelle impostazioni video per aggiungere un'immagine in miniatura.",
               "label": "Immagine di anteprima del video"
             },
             "text": {
@@ -5729,7 +5791,7 @@
         }
       },
       "video": {
-        "info": "L'immagine di copertina del video Shopify verrà visualizzata come fallback nel caso in cui non riesca a caricarsi.",
+        "info": "L'immagine in miniatura del video Shopify verrà visualizzata come fallback nel caso in cui non riesca a caricarsi.",
         "label": "Video di Shopify",
         "label_mobile": "Video Shopify mobile"
       },

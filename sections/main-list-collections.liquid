@@ -36,21 +36,19 @@
       <div class="list-collections__grid">
         {%- if section.settings.display_type == 'all' -%}
           {%- for collection in collections -%}
-            {%
-              render 'collection-item' with
+            {% render 'collection-item',
               collection: collection,
               aspect_ratio: section.settings.collection_listing_aspect_ratio,
               label_style: section.settings.label_style,
               overlay_text_color: section.settings.overlay_text_color,
               overlay_title_background: section.settings.overlay_title_background,
-              overlay_title_background_style: section.settings.overlay_title_background_style
+              overlay_title_background_style: section.settings.overlay_title_background_style,
               image_sizes: image_sizes
             %}
           {%- endfor -%}
         {%- else -%}
           {%- for collection_item in section.settings.collection_list -%}
-            {%
-              render 'collection-item' with
+            {% render 'collection-item',
               collection: collection_item,
               aspect_ratio: section.settings.collection_listing_aspect_ratio,
               label_style: section.settings.label_style,
@@ -61,15 +59,14 @@
             %}
           {%- else -%}
             {%- for i in (1..per_page) -%}
-              {%
-                render 'collection-item' with
+              {% render 'collection-item',
                 collection: collection,
                 aspect_ratio: section.settings.collection_listing_aspect_ratio,
                 label_style: section.settings.label_style,
                 overlay_text_color: section.settings.overlay_text_color,
                 overlay_title_background: section.settings.overlay_title_background,
-                overlay_title_background_style: section.settings.overlay_title_background_style
-                image_sizes: image_sizes,
+                overlay_title_background_style: section.settings.overlay_title_background_style,
+                image_sizes: image_sizes
               %}
             {%- endfor -%}
           {%- endfor -%}
@@ -79,15 +76,9 @@
       {% if paginated %}
         <div>
           {% if paginate.pages > 1 %}
-            {%
-              render 'pagination' with
-              paginate: paginate,
-              type: 'general.pagination.collections',
-              show_item_count: true
-            %}
+            {% render 'pagination', paginate: paginate, type: 'general.pagination.collections', show_item_count: true %}
           {% else %}
-            {%
-              render 'pagination' with
+            {% render 'pagination',
               paginate: paginate,
               type: 'general.pagination.collections',
               display_paginate_item_count_only: true

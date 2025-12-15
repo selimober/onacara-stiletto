@@ -39,6 +39,15 @@
         aria-expanded="{% if open %}true{% else %}false{% endif %}"
         aria-controls="{{ block.id }}"
       >
+        {%- if block_settings.custom_icon_image != blank -%}
+          {%- render 'image',
+            wrapper_class: 'accordion__label-icon',
+            image: block_settings.custom_icon_image,
+            sizes: '25px'
+          -%}
+        {%- elsif block_settings.icon != 'none' %}
+          {% render 'icon-editorial', class: 'accordion__label-icon', icon: block_settings.icon %}
+        {%- endif -%}
         {%- liquid
           assign heading_tag = 'h3'
           if block.settings.heading_tag

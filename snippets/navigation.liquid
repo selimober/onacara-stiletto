@@ -85,15 +85,14 @@
             {{ link.title }}
           </span>
           <span class="header__links-icon">
-            {% render 'icon' with icon: 'chevron-small' %}
+            {% render 'icon', icon: 'chevron-small' %}
           </span>
         </{{ trigger_tag }}>
 
         {%- if has_children and can_show_children -%}
           {%- if show_meganav -%}
-            {%-
-              render 'meganav-standard-with-promo'
-              with menu: link.handle,
+            {%- render 'meganav-standard-with-promo',
+              menu: link.handle,
               meganav_settings: meganav_settings,
               link: link,
               shopify_attributes: meganav_shopify_attributes,

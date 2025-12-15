@@ -11,6 +11,7 @@
   "
   data-section-id="{{ section.id }}"
   data-section-type="collapsible-row-list"
+  data-auto-collapse="{{ section.settings.auto_collapse_rows }}"
   style="
     --heading-alignment: {{ section.settings.heading_alignment }};
     {% if section.settings.content_width == 'custom' %}
@@ -47,6 +48,7 @@
 {
   "name": "t:sections.collapsible_row_list.name",
   "tag": "section",
+  "class": "shopify-section--collapsible-row-list",
   "disabled_on": {
     "groups": [
       "header",
@@ -204,6 +206,13 @@
           "label": "t:sections.collapsible_row_list.settings.items.item_heading_font.options.body"
         }
       ]
+    },
+    {
+      "id": "auto_collapse_rows",
+      "type": "checkbox",
+      "label": "t:sections.collapsible_row_list.settings.items.auto_collapse_rows.label",
+      "default": false,
+      "info": "t:sections.collapsible_row_list.settings.items.auto_collapse_rows.info"
     },
     {
       "type": "header",

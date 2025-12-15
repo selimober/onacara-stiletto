@@ -70,10 +70,9 @@
             full_width: full_width
           -%}
         {%- when 'button' -%}
-          {%-
-            render 'button-block' with
+          {%- render 'button-block',
             shopify_attributes: block.shopify_attributes,
-            wrapper_class: "rich-text__button section-blocks__button",
+            wrapper_class: 'rich-text__button section-blocks__button',
             link: block.settings.link,
             label: block.settings.link_text,
             button_style: block.settings.button_style,
@@ -82,8 +81,7 @@
             forloop: forloop
           -%}
         {%- when 'play-button' -%}
-          {%-
-            render 'play-button-block' with
+          {%- render 'play-button-block',
             wrapper_class: 'rich-text__play-button section-blocks__video-button',
             block: block,
             button_alignment: content_alignment
@@ -490,7 +488,8 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:shared.section_blocks.play_button.settings.play_button.image.label"
+          "label": "t:shared.section_blocks.play_button.settings.play_button.image.label",
+          "info": "t:shared.section_blocks.play_button.settings.play_button.image.info"
         },
         {
           "type": "select",

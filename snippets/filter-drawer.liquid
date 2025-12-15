@@ -96,7 +96,7 @@
               aria-label="{{ 'general.accessibility.close_modal' | t }}"
               data-close-icon
             >
-              {% render 'icon-button' with small: true, icon: 'close' %}
+              {% render 'icon-button', small: true, icon: 'close' %}
             </button>
           </div>
 
@@ -118,7 +118,12 @@
 
         <div class="filter-drawer__footer animation--filter-drawer-item">
           <div class="filter-drawer__footer-active-filters" data-scroll-lock-ignore>
-            {%- render 'active-filters' with results: results, show_swatch_filters: show_swatch_filters, custom_color_key_map: custom_color_key_map, custom_color_value_map: custom_color_value_map -%}
+            {%- render 'active-filters',
+              results: results,
+              show_swatch_filters: show_swatch_filters,
+              custom_color_key_map: custom_color_key_map,
+              custom_color_value_map: custom_color_value_map
+            -%}
           </div>
 
           <div class="filter-drawer__footer-buttons">
@@ -131,7 +136,7 @@
             </button>
 
             <p class="filter-drawer__results-count fs-body-50 fc" data-results-count>
-              {% render 'results-count' with results_count: results_count %}
+              {% render 'results-count', results_count: results_count %}
             </p>
 
             <button type="button" class="filter-drawer__button-apply btn btn--primary" data-button="close">
@@ -167,7 +172,7 @@
               aria-label="{{ 'general.accessibility.close_modal' | t }}"
               data-close-icon
             >
-              {% render 'icon-button' with small: true, icon: 'close' %}
+              {% render 'icon-button', small: true, icon: 'close' %}
             </button>
           </div>
 
