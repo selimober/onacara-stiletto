@@ -18,8 +18,8 @@
           "type": "announcement",
           "disabled": true,
           "settings": {
-            "title": "<p>BLACK FRIDAY SALE! Enjoy 25% off our entire Collection with code FRIDAY25 at checkout. Limited stock only. </p>",
-            "title_mobile": "<p>BLACK FRIDAY SALE! Enjoy 25% off our entire Collection with code FRIDAY25 at checkout. Limited stock only. </p>",
+            "title": "<p>BOXING DAY SALE! Up to 40% off our entire Collection with code BOXINGDAY at checkout. Limited stock only. </p>",
+            "title_mobile": "<p>BOXING DAY SALE! Up to 40% off our entire Collection with code BOXINGDAY at checkout. Limited stock only. </p>",
             "link": ""
           }
         },
@@ -33,6 +33,7 @@
         },
         "announcement_ixx7BP": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "title": "<p>🎄 Christmas Delivery Cut-Off: Order by 2 PM on 21st December for Christmas arrival 🎄</p>",
             "title_mobile": "<p>🎄 Christmas Delivery Cut-Off: Order by 2 PM on 21st December for Christmas arrival 🎄</p>",
