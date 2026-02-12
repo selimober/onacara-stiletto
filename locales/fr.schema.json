@@ -3077,6 +3077,7 @@
               "label": "Afficher les filtres de puce d'option de variante"
             },
             "show_filters": {
+              "info": "Permettez à vos clients de filtrer les produits par options, type de produit, prix, disponibilité, etc. [En savoir plus](https://help.fluorescent.co/stiletto/collection-pages/filters-and-sorting)",
               "label": "Activer le filtrage"
             },
             "show_sort": {
@@ -5225,6 +5226,7 @@
         "leaf": "Feuille",
         "lipstick": "Rouge à lèvres",
         "measuring_tape": "Ruban de mesure",
+        "model_silhouette": "Silhouette du modèle",
         "money_bills": "Billets de banque",
         "moving_truck": "Camion de déménagement",
         "none": "Aucune",
@@ -5240,11 +5242,10 @@
         "ruler": "Règle",
         "scissors": "Ciseaux",
         "security_badge": "Badge de sécurité",
-        "silhouette": "Silhouette du modèle",
         "stiletto": "Stiletto",
         "stopwatch": "Chronomètre",
         "sunflower": "Tournesol",
-        "tshirt": "T-shirt",
+        "t_shirt": "T-shirt",
         "washing_symbol": "Symbole de lavage",
         "water_bottle": "Bouteille d'eau"
       },

@@ -57,18 +57,15 @@
   "
   {{ block.shopify_attributes }}
 >
-  {%- capture wrapping_tag -%}
-    {%- if block.settings.link != blank %}a{% else %}div{% endif -%}
-  {%- endcapture -%}
-  {%- capture wrapping_attributes -%}
-    {%- if block.settings.link != blank -%}
-      href="{{ block.settings.link }}"
-    {%- endif -%}
-  {%- endcapture -%}
-  <{{ wrapping_tag }}
-    {{ wrapping_attributes }}
+  <div
     class="grid-item__inner"
   >
+    {%- if block.settings.link != blank -%}
+      <a
+        class="grid-item__link-overlay"
+        href="{{ block.settings.link }}"
+      ></a>
+    {%- endif -%}
     {%- case block.settings.media_type -%}
       {%- when 'image' -%}
         {%- if block.settings.mobile_image != blank -%}
@@ -129,7 +126,7 @@
           {%- endunless -%}
 
           {%- unless block.settings.subheading == blank -%}
-            <{{ block.settings.subheading_tag }} class="grid-item__subheading ff-subheading {{ block.settings.subheading_font_class }} section-blocks__subheading">
+            <{{ block.settings.subheading_tag }} class="grid-item__subheading ff-subheading {{ block.settings.subheading_font_class }} section-blocks__subheading rte">
               {{ block.settings.subheading }}
             </{{ block.settings.subheading_tag }}>
           {%- endunless -%}
@@ -142,13 +139,16 @@
 
           {%- if block.settings.link_text != blank and block.settings.link != blank -%}
             <div class="grid-item__button section-blocks__button">
-              <div class="btn btn--overlay {{ block.settings.button_style }}{% if use_small_button_above_960 %} btn--small-above-960{% endif %}">
+              <a
+                href="{{ block.settings.link }}"
+                class="btn btn--overlay {{ block.settings.button_style }}{% if use_small_button_above_960 %} btn--small-above-960{% endif %}"
+              >
                 <span>{{ block.settings.link_text }}</span>
-              </div>
+              </a>
             </div>
           {%- endif -%}
         </div>
       </div>
     </div>
-  </{{ wrapping_tag }}>
+  </div>
 </div>

@@ -3077,6 +3077,7 @@
               "label": "Mostra i filtri chip delle opzioni varianti"
             },
             "show_filters": {
+              "info": "Consenti ai clienti di filtrare per opzioni di prodotto, tipo di prodotto, prezzo, disponibilità e altro ancora. [Scopri di più](https://help.fluorescent.co/stiletto/collection-pages/filters-and-sorting)",
               "label": "Abilita i filtri"
             },
             "show_sort": {
@@ -5225,6 +5226,7 @@
         "leaf": "Foglia",
         "lipstick": "Rossetto",
         "measuring_tape": "Nastro di misurazione",
+        "model_silhouette": "Silhouette del modello",
         "money_bills": "Banconote",
         "moving_truck": "Camion in movimento",
         "none": "Nessuno",
@@ -5240,11 +5242,10 @@
         "ruler": "Righello",
         "scissors": "Forbici",
         "security_badge": "Badge di sicurezza",
-        "silhouette": "Silhouette del modello",
         "stiletto": "Stiletto",
         "stopwatch": "Cronometro",
         "sunflower": "Girasole",
-        "tshirt": "Maglietta",
+        "t_shirt": "Maglietta",
         "washing_symbol": "Simbolo di lavaggio",
         "water_bottle": "Bottiglia d'acqua"
       },

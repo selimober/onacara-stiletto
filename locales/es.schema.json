@@ -3077,6 +3077,7 @@
               "label": "Mostrar filtros de chips con opciones de variante"
             },
             "show_filters": {
+              "info": "Permite a los clientes filtrar por opciones de producto, tipo de producto, precio, disponibilidad y más. [Más información](https://help.fluorescent.co/stiletto/collection-pages/filters-and-sorting)",
               "label": "Habilitar el filtrado"
             },
             "show_sort": {
@@ -5225,6 +5226,7 @@
         "leaf": "Hoja",
         "lipstick": "Lápiz de labios",
         "measuring_tape": "Cinta métrica",
+        "model_silhouette": "Silueta del modelo",
         "money_bills": "Billetes",
         "moving_truck": "Camión de mudanzas",
         "none": "Ninguno",
@@ -5240,11 +5242,10 @@
         "ruler": "Regla",
         "scissors": "Tijeras",
         "security_badge": "Placa de seguridad",
-        "silhouette": "Silueta del modelo",
         "stiletto": "Stiletto",
         "stopwatch": "Cronómetro",
         "sunflower": "Girasol",
-        "tshirt": "Camiseta",
+        "t_shirt": "Camiseta",
         "washing_symbol": "Símbolo de lavado",
         "water_bottle": "Botella de agua"
       },

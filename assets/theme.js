@@ -13029,33 +13029,35 @@ const filterDrawer = node => {
   }
   function renderFilters(updatedDoc) {
     const currentDrawerPanel = n$2(sel$2.filterDrawerPanel);
-    const updatedDrawerPanel = n$2(sel$2.filterDrawerPanel, updatedDoc);
-    const updatedGroupToggles = t$2(sel$2.groupToggle, updatedDrawerPanel);
+    if (currentDrawerPanel) {
+      const updatedDrawerPanel = n$2(sel$2.filterDrawerPanel, updatedDoc);
+      const updatedGroupToggles = t$2(sel$2.groupToggle, updatedDrawerPanel);
 
-    // We're going to replace the current drawer content with the updated content, so we need to
-    // loop through the current content to maintain the state of group toggles.
-    updatedGroupToggles.forEach(groupToggle => {
-      const currentGroupToggle = n$2("[data-drawer-group-toggle=\"".concat(groupToggle.getAttribute("data-drawer-group-toggle"), "\"]"), currentDrawerPanel);
-      if (currentGroupToggle) {
-        const currentGroupContent = n$2(sel$2.groupContents, currentGroupToggle.parentElement);
-        const groupContent = n$2(sel$2.groupContents, groupToggle.parentElement);
-        groupToggle.setAttribute("aria-expanded", currentGroupToggle.getAttribute("aria-expanded"));
-        groupContent.setAttribute("aria-hidden", currentGroupContent.getAttribute("aria-hidden"));
-      }
-    });
+      // We're going to replace the current drawer content with the updated content, so we need to
+      // loop through the current content to maintain the state of group toggles.
+      updatedGroupToggles.forEach(groupToggle => {
+        const currentGroupToggle = n$2("[data-drawer-group-toggle=\"".concat(groupToggle.getAttribute("data-drawer-group-toggle"), "\"]"), currentDrawerPanel);
+        if (currentGroupToggle) {
+          const currentGroupContent = n$2(sel$2.groupContents, currentGroupToggle.parentElement);
+          const groupContent = n$2(sel$2.groupContents, groupToggle.parentElement);
+          groupToggle.setAttribute("aria-expanded", currentGroupToggle.getAttribute("aria-expanded"));
+          groupContent.setAttribute("aria-hidden", currentGroupContent.getAttribute("aria-hidden"));
+        }
+      });
 
-    // We need to unload before we replace all of the content
-    unload();
-    currentDrawerPanel.innerHTML = updatedDrawerPanel.innerHTML;
+      // We need to unload before we replace all of the content
+      unload();
+      currentDrawerPanel.innerHTML = updatedDrawerPanel.innerHTML;
 
-    // Now that we've replaced the content, we need to re-init
-    refreshElements();
-    initEvents();
-    initPriceRange(rangeContainer);
-    updateInnerHTML("".concat(sel$2.drawer, " ").concat(sel$2.resultsCount), updatedDoc);
-    updateInnerHTML("".concat(sel$2.drawer, " ").concat(sel$2.activeFilters), updatedDoc);
-    updateInnerHTML("".concat(sel$2.drawer, " ").concat(sel$2.drawerTitle), updatedDoc);
-    updateInnerHTML("[data-mobile-filters] [data-mobile-filters-toggle]", updatedDoc);
+      // Now that we've replaced the content, we need to re-init
+      refreshElements();
+      initEvents();
+      initPriceRange(rangeContainer);
+      updateInnerHTML("".concat(sel$2.drawer, " ").concat(sel$2.resultsCount), updatedDoc);
+      updateInnerHTML("".concat(sel$2.drawer, " ").concat(sel$2.activeFilters), updatedDoc);
+      updateInnerHTML("".concat(sel$2.drawer, " ").concat(sel$2.drawerTitle), updatedDoc);
+      updateInnerHTML("[data-mobile-filters] [data-mobile-filters-toggle]", updatedDoc);
+    }
   }
   function unload() {
     var _range2;
@@ -14150,7 +14152,7 @@ backToTop();
 
 // Make it easy to see exactly what theme version
 // this is by commit SHA
-window.SHA = "846f497688";
+window.SHA = "6eebbbc7f2";
 if (!sessionStorage.getItem("flu_stat_recorded") && !((_window$Shopify = window.Shopify) !== null && _window$Shopify !== void 0 && _window$Shopify.designMode)) {
   var _window$Shopify2, _window$Shopify3;
   // eslint-disable-next-line no-process-env

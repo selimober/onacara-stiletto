@@ -3077,6 +3077,7 @@
               "label": "Variantenoptions-Chipfilter anzeigen"
             },
             "show_filters": {
+              "info": "Ermöglichen Sie Ihren Kunden, nach Produktoptionen, Produkttyp, Preis, Verfügbarkeit und mehr zu filtern. [Mehr erfahren](https://help.fluorescent.co/stiletto/collection-pages/filters-and-sorting)",
               "label": "Filterung aktivieren"
             },
             "show_sort": {
@@ -5225,6 +5226,7 @@
         "leaf": "Blatt",
         "lipstick": "Lippenstift",
         "measuring_tape": "Maßband",
+        "model_silhouette": "Modell-Silhouette",
         "money_bills": "Geldscheine",
         "moving_truck": "Umzugswagen",
         "none": "Keine",
@@ -5240,11 +5242,10 @@
         "ruler": "Lineal",
         "scissors": "Scheren",
         "security_badge": "Sicherheitsabzeichen",
-        "silhouette": "Modell-Silhouette",
         "stiletto": "Stiletto",
         "stopwatch": "Uhr anhalten",
         "sunflower": "Sonnenblume",
-        "tshirt": "T-shirt",
+        "t_shirt": "T-shirt",
         "washing_symbol": "Wasch-Symbol",
         "water_bottle": "Wasserflasche"
       },
