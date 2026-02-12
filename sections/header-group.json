@@ -46,6 +46,7 @@
         "announcement_93aDM4",
         "announcement_ixx7BP"
       ],
+      "disabled": true,
       "settings": {
         "enable_sticky_announcement_bar": "never",
         "autoplay_enabled": false,
