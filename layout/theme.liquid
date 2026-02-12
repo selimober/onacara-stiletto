@@ -71,6 +71,7 @@
     {%- render 'theme-globals' -%}
 
     {{ content_for_header }}
+    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script><script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.25.0-min.js.gz"></script><script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('379e21a582cdcb45fef1aa83f04579c0', {"autocapture":{"elementInteractions":true}});</script>
   </head>
 
   <body class="template-{{ request.page_type | handle }}">
