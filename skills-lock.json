@@ -6,6 +6,12 @@
       "sourceType": "github",
       "skillPath": "skills/shopify-liquid/SKILL.md",
       "computedHash": "26a35fb80e56619e0cfc3b0b0391d868ef1b3a22ec996abe18981ed436d3136f"
+    },
+    "shopify-storefront-graphql": {
+      "source": "Shopify/shopify-ai-toolkit",
+      "sourceType": "github",
+      "skillPath": "skills/shopify-storefront-graphql/SKILL.md",
+      "computedHash": "82922b597ef1d97886de82ad82be2796d3c875b229796f764aa6f4a027ab8cb5"
     }
   }
 }
