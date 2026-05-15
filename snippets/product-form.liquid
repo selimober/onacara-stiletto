@@ -178,9 +178,7 @@
 
       {%- assign sample_products = prod.metafields.custom.sample_products.value -%}
       {%- if sample_products != blank and sample_products.count > 0 -%}
-        {%- for sample_product in sample_products limit: 1 -%}
-          {%- render 'product-order-sample-button', sample_product: sample_product -%}
-        {%- endfor -%}
+        {%- render 'product-order-sample-button', sample_products: sample_products -%}
       {%- endif -%}
 
       {%- if show_dynamic_checkout -%}

@@ -1,22 +1,35 @@
 {% doc %}
-  Renders a secondary "Order sample fabric" CTA that adds a linked sample product to the cart.
+  Renders a secondary "Order sample fabric" CTA that adds linked sample products to the cart in one go.
 
-  @param {product} sample_product - The sample product to add to the cart when the button is clicked.
+  @param sample_products - List of sample products to add to the cart when the button is clicked.
 
   @example
-  {% render 'product-order-sample-button', sample_product: product.metafields.custom.sample_products.value.first %}
+  {% render 'product-order-sample-button', sample_products: product.metafields.custom.sample_products.value %}
 {% enddoc %}
 
 {%- liquid
-  if sample_product == blank
+  if sample_products == blank
     break
   endif
 
-  assign sample_variant = sample_product.selected_or_first_available_variant
+  assign sample_variant_ids = ''
 
-  if sample_variant == blank or sample_variant.available == false
+  for sample_product in sample_products
+    assign sample_variant = sample_product.selected_or_first_available_variant
+    if sample_variant != blank and sample_variant.available
+      if sample_variant_ids == ''
+        assign sample_variant_ids = sample_variant.id | append: ''
+      else
+        assign sample_variant_ids = sample_variant_ids | append: ',' | append: sample_variant.id
+      endif
+    endif
+  endfor
+
+  if sample_variant_ids == ''
     break
   endif
+
+  assign sample_count = sample_variant_ids | split: ',' | size
 -%}
 
 <div class="product-form__order-sample">
@@ -24,9 +37,9 @@
     type="button"
     class="product-form__order-sample-btn btn btn--medium btn--full btn--secondary"
     data-sample-button
-    data-sample-variant-id="{{ sample_variant.id }}"
+    data-sample-variant-ids="{{ sample_variant_ids }}"
   >
-    <span data-sample-button-text>{{ 'products.product.order_sample' | t }}</span>
+    <span data-sample-button-text>{{ 'products.product.order_sample' | t: count: sample_count }}</span>
     <div class="btn__loading-wrap">
       <div class="btn__loading-bar"></div>
     </div>
@@ -64,8 +77,11 @@
 
       event.preventDefault();
 
-      var variantId = button.dataset.sampleVariantId;
-      if (!variantId) return;
+      var variantIds = (button.dataset.sampleVariantIds || '')
+        .split(',')
+        .map(function (id) { return id.trim(); })
+        .filter(Boolean);
+      if (variantIds.length === 0) return;
 
       var errorEl = button.parentNode.querySelector('[data-sample-error]');
       if (errorEl) {
@@ -82,7 +98,9 @@
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({ items: [{ id: variantId, quantity: 1 }] })
+        body: JSON.stringify({
+          items: variantIds.map(function (id) { return { id: id, quantity: 1 }; })
+        })
       })
         .then(function (response) {
           return response.json().then(function (data) {
@@ -101,10 +119,12 @@
             return;
           }
 
+          document.dispatchEvent(new CustomEvent('apps:product-added-to-cart', {
+            detail: { items: result.data && result.data.items }
+          }));
+
           var cartIcon = document.querySelector('[data-js-cart-icon]');
-          if (cartIcon) {
-            cartIcon.click();
-          }
+          if (cartIcon) cartIcon.click();
         })
         .catch(function () {
           button.classList.remove(LOADING_CLASS);
