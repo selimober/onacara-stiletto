@@ -88,7 +88,7 @@
         "d0cd2366-7930-4809-80d7-2b38d2d4fb07": {
           "type": "heading",
           "settings": {
-            "title": "Winter, wrapped in luxury.",
+            "title": "Summer is almost here.",
             "heading_tag": "h2",
             "heading_font_class": "fs-heading-display-2"
           }
@@ -96,8 +96,8 @@
         "d525a297-b0ac-4079-a90c-68d26f07aae7": {
           "type": "button",
           "settings": {
-            "link": "shopify://collections/single-cushions",
-            "link_text": "Discover Now",
+            "link": "shopify://collections/spring-cushion-collection",
+            "link_text": "Discover Our Cushions",
             "button_style": "btn--primary"
           }
         }
@@ -111,15 +111,15 @@
         "image_aspect": "custom",
         "desktop_height": 75,
         "mobile_height": 60,
-        "image": "shopify://shop_images/image00002.jpg",
-        "image_mobile": "shopify://shop_images/image00002.jpg",
+        "image": "shopify://shop_images/ONACARA-39341-Edit-4.jpg",
+        "image_mobile": "shopify://shop_images/ONACARA-39344-3.jpg",
         "focal_point": "image_presentation",
         "mobile_focal_point": "image_presentation",
-        "media_link": "shopify://collections/festive-collection",
+        "media_link": "shopify://collections/spring-cushion-collection",
         "text_position": "flex-start_flex-start",
-        "text_position_mobile": "flex-start_flex-start",
-        "text_color": "#f4f4f4",
-        "button_background_color": "#000000",
+        "text_position_mobile": "flex-end_flex-start",
+        "text_color": "#ffffff",
+        "button_background_color": "#7f3f3f",
         "button_text_color": "#f4f4f4",
         "color_overlay": "#000000",
         "color_overlay_gradient": "",
@@ -134,7 +134,7 @@
         "text_TdPKPx": {
           "type": "text",
           "settings": {
-            "text": "<p>Onacara's luxury cushions, paired with exquisite accessories, can transform your living space this festive season. Expertly curated to reflect the latest interior trends, our preselected cushion sets make restyling effortless. <br/><br/>As the year comes to a close, order now to ensure your home is ready in time for Christmas!</p>",
+            "text": "<p>Onacara's luxury cushions, paired with exquisite accessories, can transform your living space. Expertly curated to reflect the latest interior trends, our preselected cushion sets make restyling effortless. </p>",
             "text_font_class": "fs-body-200"
           }
         }
@@ -161,7 +161,7 @@
             "height": 500,
             "mobile_height": 360,
             "media_type": "image",
-            "image": "shopify://shop_images/IMG-20231213-WA0058_2943854f-945e-42ce-b6a2-8539098b5565.jpg",
+            "image": "shopify://shop_images/Oncara_25_3.jpg",
             "focal_point": "image_presentation",
             "mobile_focal_point": "image_presentation",
             "video_focal_point": "center",
@@ -196,7 +196,7 @@
             "height": 500,
             "mobile_height": 360,
             "media_type": "image",
-            "image": "shopify://shop_images/OnacaraAralik2023-7184-Edit_fbc68d64-bb0e-4863-9125-868a82e1e5ad.jpg",
+            "image": "shopify://shop_images/ONACARA-39541.jpg",
             "focal_point": "image_presentation",
             "mobile_focal_point": "image_presentation",
             "video_focal_point": "center",
@@ -231,7 +231,7 @@
             "height": 600,
             "mobile_height": 360,
             "media_type": "image",
-            "image": "shopify://shop_images/OnacaraAralik2023-7132-Edit_a8967c75-5eb8-4925-843c-345c1c67f718.jpg",
+            "image": "shopify://shop_images/M4A0218.jpg",
             "mobile_image": "shopify://shop_images/PXL_20231213_134059499_981cae9f-59a2-4b90-9ad7-9fb85aef3847.jpg",
             "focal_point": "image_presentation",
             "mobile_focal_point": "image_presentation",
@@ -249,7 +249,7 @@
             "text": "",
             "text_font_class": "fs-body-100",
             "link": "shopify://pages/bespoke-service",
-            "link_text": "Shop now",
+            "link_text": "Learn more",
             "button_style": "btn--callout",
             "background_color": "",
             "text_color": "#ffffff",
@@ -300,7 +300,7 @@
         "button_nPqyTc": {
           "type": "button",
           "settings": {
-            "link": "shopify://collections/throw",
+            "link": "shopify://collections/throws",
             "link_text": "Discover now",
             "button_style": "btn--primary"
           }
@@ -401,6 +401,7 @@
       "block_order": [
         "hotspot_WJL6c6"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/IMG_0707.heic",
         "aspect_ratio": "landscape",
@@ -473,7 +474,7 @@
       ],
       "name": "Cushions on Real Homes",
       "settings": {
-        "heading": "Cushions on Real Homes",
+        "heading": "Cushions in Real Homes",
         "heading_tag": "h2",
         "subheading": "",
         "link": "",
