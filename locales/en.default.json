@@ -422,6 +422,7 @@
     },
     "product": {
       "add_to_cart": "Add to Bag",
+      "order_sample": "Order sample fabric",
       "buy_now": "Buy now",
       "change_option": "Change",
       "chip_count": {
